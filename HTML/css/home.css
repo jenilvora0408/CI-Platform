@@ -5,6 +5,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333333;
 }
+
+/* --------------------
+    Navbar - 1
+    --------------------- */
+
 .home-navbar-1, .home-navbar-2{
     width: 80vw;
     height: 7vh;
@@ -42,9 +47,13 @@
     width: 100vw;
     background: #CCCCCC;
 }
+
+/* ---------------------
+    Navbar - 2
+    --------------------- */
+
 .home-navbar-2 .home-nav2-left, .home-navbar-2 .home-nav2-right{
     width: 40vw;
-    /* border: 1px solid blueviolet; */
     display: flex;
     align-items: center;
 }
@@ -84,6 +93,11 @@
 .selection .navbar-nav{
     padding-left: 1vw;
 }
+
+/* ===============================
+    Media Queries of both Navbar
+    =============================== */
+
 @media only screen and (max-width: 800px){
     .home-navbar-2{
         margin-left: 0;
@@ -158,4 +172,67 @@
     .home-navbar-1 .home-nav1-left{
         width: 35vw;
     }
+}
+
+/* -------------------
+    Chips
+    ------------------- */
+
+.home-chips{
+    margin-left: 10vw;
+    width: 80vw;
+    margin-top: 2vh;
+    display: flex;  
+}
+.home-chips .home-chip-1{
+    width: 7vw;
+    border: 1px solid #CCCCCC;
+    border-radius: 23px;
+    padding: 3px 5px;
+    margin-right: 1vw;
+}
+.home-chips a{
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+}
+
+/* ------------------
+    Heading
+    --------------------- */
+
+.home-heading{
+    margin-left: 10vw;
+    margin-top: 3vh;
+    width: 80vw;
+    display: flex;  
+}
+.home-heading .heading-left{
+    width: 60vw;
+}
+.home-heading .heading-left p{
+    font-size: 1.3rem;
+    color: #333333;
+}
+.home-heading .heading-left span{
+    font-size: 1.5rem;
+}
+.home-heading .heading-right{
+    width: 20vw;
+    margin-left: 6vw;
+    display: flex;
+    align-items: center;
+}
+.home-heading .heading-right .selection{
+    border: 1px solid #333333;
+    width: 10vw;
+    padding: 3px 6px;
+}
+.home-heading .heading-right .selection a{
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+}
+.home-heading .heading-right .images{
+    margin-left: 2vw;
 }
