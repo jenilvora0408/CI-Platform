@@ -1,0 +1,78 @@
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.Development.json
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.json
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.staticwebassets.runtime.json
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.exe
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.deps.json
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.runtimeconfig.json
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.dll
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\ref\CIPlatform.dll
+D:\Projects\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.pdb
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.AssemblyReference.cache
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfoInputs.cache
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfo.cs
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.CoreCompileInputs.cache
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cache
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cs
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.build.json
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.development.json
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\bundle\CIPlatform.styles.css
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\projectbundle\CIPlatform.bundle.scp.css
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.dll
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
+D:\Projects\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.Development.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.staticwebassets.runtime.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.exe
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.deps.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.runtimeconfig.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.dll
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\ref\CIPlatform.dll
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.pdb
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.AssemblyReference.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfoInputs.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfo.cs
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.CoreCompileInputs.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cache
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cs
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.build.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.development.json
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\bundle\CIPlatform.styles.css
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\projectbundle\CIPlatform.bundle.scp.css
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.dll
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
+D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.staticwebassets.runtime.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.exe
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.deps.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.runtimeconfig.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\ref\CIPlatform.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.pdb
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.AssemblyReference.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfoInputs.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfo.cs
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.CoreCompileInputs.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cs
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\bundle\CIPlatform.styles.css
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\scopedcss\projectbundle\CIPlatform.bundle.scp.css
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
