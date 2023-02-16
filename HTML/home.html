@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/home.css">
@@ -127,14 +128,20 @@
             <div class="home-nav2-end"></div>
         </header>
         <!---------------------
-            Chips
-        ------------------------  -->
+            Chips 
+        -------------------------- -->
         <div class="home-chips">
-            <div class="home-chip-1">
-                <span>Tree Plantation</span>
-                <a><img src="./images/cancel.png" alt=""></a>
+            <div class="chips">
+                <div class="chip">
+                    Tree Plantation
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </div>
+                <div class="chip">
+                    Canada
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </div>
             </div>
-            <a href="#">Clear All</a>
+            <a class="close-chips" href="#">Clear All</a>
         </div> 
         <!-----------------------
             Heading
@@ -158,12 +165,28 @@
                     </ul>
                 </div>
                 <div class="images">
-                    <img src="./images/grid.png" alt="">
-                    <img src="./images/list.png" alt="">
+                    <div class="circle-bg-img">
+                        <a><img src="./images/grid.png" alt=""></a>
+                    </div>
+                    <a><img src="./images/list.png" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
     <script src="./js/bootstrap.bundle.js"></script>
+    <script>
+        $(".close-chips").on("click",function(e){
+            $(".home-chips .chip").remove();
+            $(this).hide();
+        });
+        // $(".close-chips").on("click", function(e){
+        //     $(".close-chips").remove();
+        // });
+        $(".dropdown-menu li a").on("click", function(e){
+            $(".home-chips .chips").append('<div class="chip">'+$(this).text()+'<span class="closebtn" onclick="this.parentElement.style.display=\'none\'">&times;</span>');
+                $(".close-chips").show();
+            
+        })
+    </script>
 </body> 
 </html>
