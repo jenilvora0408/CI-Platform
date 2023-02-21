@@ -28,10 +28,12 @@
         font-weight: normal;
         line-height: 5vh;
         width: 61%;
+        color: #fff;
     }
 
     .imgcontent p {
         width: 83%;
+        color: #fff;
     }
 
 .logincontent {
