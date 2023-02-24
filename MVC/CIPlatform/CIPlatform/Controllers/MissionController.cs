@@ -18,5 +18,10 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
+
+        public IActionResult MissionVolunteering()
+        {
+            return View();
+        }
     }
 }

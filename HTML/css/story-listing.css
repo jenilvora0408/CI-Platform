@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#story-top-image-div {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url(../images/Grow-Trees-On-the-path-to-environment-sustainability-login.png);
+    height: 250px;
+    background-size: 100vw 615px;
+    background-repeat: no-repeat;
+    background-position: 0px -180px;
+}
+
+.grid-view {
+    /* border: 1px solid gray;  */
+    margin-top: 5vh;
+    width: 80vw;
+}
+
+.story-list .grid-items {
+    height: 50vh;
+}
+
+.grid-view .grid-items .grid-item .card {
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border: none;
+}
+
+.grid-view .grid-items .grid-item .card-image {
+    position: relative;
+}
+
+.grid-view .grid-items .grid-item .location {
+    position: absolute;
+    /* / position: relative; / */
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: #000;
+    opacity: 0.5;
+    border-radius: 25px;
+    padding: 5px 8px;
+}
+
+.grid-view .grid-items .grid-item .location .country {
+    color: #fff;
+    font-size: 18px;
+}
+
+.grid-view .grid-items .grid-item .feature {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.grid-view .grid-items .grid-item .feature img {
+    background-color: #000;
+    opacity: 0.5;
+    padding: 5px 5px;
+    border-radius: 50%;
+}
+
+.grid-view .grid-items .grid-item .feature i {
+    background-color: #000;
+    opacity: 0.5;
+    padding: 5px 5px;
+    border-radius: 50%;
+}
+
+.grid-view .grid-items .grid-item .filter {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* / color: #fff; / */
+}
+
+.grid-view .grid-items .grid-item .filter span {
+    width: 10vw;
+    background: #fff;
+    padding: 5px 12px;
+    border-radius: 25px;
+}
+
+.grid-view .grid-items .grid-item .ratings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6vw;
+    margin-top: 1vh;
+}
+
+.grid-view .grid-items .grid-item .insights {
+    position: relative;
+}
+
+.grid-view .grid-items .grid-item .mission-date {
+    text-align: center;
+    margin-top: -6%;
+    z-index: 1;
+}
+
+.grid-view .grid-items .grid-item .mission-date span {
+    font-size: 14px;
+    border: 1px solid #888;
+    padding: 5px 8px;
+    border-radius: 25px;
+    background-color: #fff;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left,
+.grid-view .grid-items .grid-item .card-body .card-body-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left {
+    /* align-items: flex-end;
+       justify-content: flex-end;
+       align-items: self-end; */
+    /* margin-left: 9vw; */
+    width: 13vw;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-img img,
+.grid-view .grid-items .grid-item .card-body .card-body-right .card-body-right-img img {
+    height: 3vh;
+    border: 2px solid gray;
+    border-radius: 50%;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-text,
+.grid-view .grid-items .grid-item .card-body .card-body-right .card-body-right-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-text .figure,
+.grid-view .grid-items .grid-item .card-body .card-body-right .card-body-right-text .figure {
+    font-size: 20px;
+}
+
+.grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-text .seats-left,
+.grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-text .deadline {
+    font-size: 14px;
+}
+
+.grid-view .grid-items .grid-item .insight {
+    padding: 0;
+    display: flex;
+    /* gap: 10vw; */
+    margin-left: 2vw;
+    width: 100%;
+}
+
+.grid-view .grid-items .grid-item .apply-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 5vh; */
+}
+
+.grid-view .grid-items .grid-item button {
+    width: 8vw;
+    background: #fff;
+    border: 2px solid #f88634;
+    border-radius: 25px;
+    padding: 7px;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 80vw;
+    }
+}
+
+@media (max-width: 1000px) {
+    .grid-view .grid-items .grid-item .ratings {
+        gap: 2vw;
+    }
+
+    .grid-view .grid-items .grid-item button {
+        width: 12vw;
+    }
+
+    .grid-view .grid-items .grid-item .insight {
+        margin-left: 10px;
+    }
+
+    .grid-view .grid-items .grid-item .card-body .card-body-left {
+        width: 15vw;
+    }
+
+    .grid-view .grid-items .grid-item .mission-date {
+        margin-top: -8%;
+    }
+}
+
+@media (max-width: 760px) {
+    .grid-view .grid-items .grid-item .mission-date {
+        margin-top: -5%;
+    }
+
+    .grid-view .grid-items .grid-item .card-body .card-body-left {
+        width: 40vw;
+    }
+
+    .grid-view .grid-items .grid-item button {
+        width: 15vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .grid-view .grid-items .grid-item button {
+        width: 25vw;
+    }
+}
+
+@media (max-width: 400px) {
+    .grid-view .grid-items .grid-item button {
+        width: 30vw;
+    }
+}
+
+.story-profiles {
+    margin-left: 2vw;
+}
+
+.story-profiles .profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.story-profiles .profile img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.card:hover .overlay {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.story-list .grid-view .card {
+    height: 50vh;
+}
