@@ -1,5 +1,8 @@
-﻿using CIPlatform.Models;
+﻿using Entities.ViewModels;
+using Entities.Data;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Repository.Interface;
 using System.Diagnostics;
 
 namespace CIPlatform.Controllers
@@ -7,15 +10,18 @@ namespace CIPlatform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RegisterInterface _registerInterface;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RegisterInterface registerInterface)
         {
             _logger = logger;
+            _registerInterface = registerInterface;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<User> lstUsers = _registerInterface.GetUsersList();
+            return View(lstUsers);
         }
 
         public IActionResult Privacy()

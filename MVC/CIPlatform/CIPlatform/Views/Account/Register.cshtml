@@ -1,4 +1,4 @@
-﻿@model CIPlatform.Models.Register
+﻿@model Entities.ViewModels.Register;
 @{
     ViewData["Title"] = "Register Page";
 }
@@ -7,8 +7,8 @@
             @Html.Partial("_AccountCarousel")
             <div id="registercontent" class="col-md-4 col-sm-12 logincontent">
 
-                <form action="#" id="registerform">
-                    <label for="registerfname">First Name</label>
+                <form asp-controller="Account" asp-action="Register">
+                    <label  for="registerfname">First Name</label>
                     <input asp-for="first_name" type="text" id="registerfname" placeholder="Jenil">
                     <span asp-validation-for="first_name" class="text-danger"></span>
 

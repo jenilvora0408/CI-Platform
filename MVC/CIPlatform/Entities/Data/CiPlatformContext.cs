@@ -823,7 +823,6 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("profile_text");
             entity.Property(e => e.Status)
-                .IsRequired()
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("status");
             entity.Property(e => e.Title)
@@ -837,12 +836,10 @@ public partial class CiPlatformContext : DbContext
 
             entity.HasOne(d => d.City).WithMany(p => p.Users)
                 .HasForeignKey(d => d.CityId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_city_id");
 
             entity.HasOne(d => d.Country).WithMany(p => p.Users)
                 .HasForeignKey(d => d.CountryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_user_country_id");
         });
 
