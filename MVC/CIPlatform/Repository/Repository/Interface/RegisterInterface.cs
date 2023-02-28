@@ -14,5 +14,8 @@ namespace Repository.Repository.Interface
         public void InsertUser(User user);
         Boolean isEmailAvailable(string email);
         User isPasswordAvailable(string password, string email);
+        public long GetUserID(string Email);
+        public Boolean ChangePassword(int UserID, NewPassword rpm);
+
     }
 }

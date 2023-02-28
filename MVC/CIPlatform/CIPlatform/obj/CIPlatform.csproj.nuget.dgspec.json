@@ -72,9 +72,17 @@
               "target": "Package",
               "version": "[6.0.12, )"
             },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.3.0, )"
+            },
+            "System.Net.Mail": {
+              "target": "Package",
+              "version": "[1.0.0-rtm-00002, )"
             }
           },
           "imports": [
@@ -159,6 +167,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.12, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "System.Net.Mail": {
+              "target": "Package",
+              "version": "[1.0.0-rtm-00002, )"
             }
           },
           "imports": [
@@ -244,6 +260,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.12, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "System.Net.Mail": {
+              "target": "Package",
+              "version": "[1.0.0-rtm-00002, )"
             }
           },
           "imports": [
