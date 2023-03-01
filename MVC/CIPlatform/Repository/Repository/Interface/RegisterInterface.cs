@@ -15,7 +15,17 @@ namespace Repository.Repository.Interface
         Boolean isEmailAvailable(string email);
         User isPasswordAvailable(string password, string email);
         public long GetUserID(string Email);
-        public Boolean ChangePassword(int UserID, NewPassword rpm);
+        public bool ChangePassword(int UserID, PasswordReset rpm);
+
+        public User findUser(string email);
+        public User findUser(int? id);
+
+        public PasswordReset findUserByToken(string token);
+        public void updatePassword(User user);
+
+        public void addUser(User user);
+        public void addResetPasswordToken(PasswordReset obj);
+        public void removeResetPasswordToekn(PasswordReset obj);
 
     }
 }

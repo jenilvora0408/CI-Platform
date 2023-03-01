@@ -44,11 +44,22 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
-        public IActionResult NewPassword(string? email)
+        public IActionResult NewPassword(string? token)
         {
-            NewPassword newPassword = new NewPassword();
-            newPassword.email = email;
-            return View(newPassword);
+
+            var resetObj = _registerInterface.findUserByToken(token);
+            TimeSpan remainingTime = DateTime.Now - resetObj.CreatedAt;
+
+            int hour = remainingTime.Hours;
+
+            if (hour >= 4)
+            {
+                _registerInterface.removeResetPasswordToekn(resetObj);
+                return RedirectToAction("Login");
+            }
+            NewPassword newPasswordModel = new NewPassword();
+            newPasswordModel.token = token;
+            return View(newPasswordModel);
         }
 
 
@@ -102,51 +113,66 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
-        public ActionResult ForgotPassword(ForgotPassword model)
+        public IActionResult ForgotPassword(ForgotPassword obj)
         {
+            if (!_registerInterface.isEmailAvailable(obj.email))
+            {
+                ModelState.AddModelError("EmailId", "Email not found");
+            }
             if (ModelState.IsValid)
             {
-                var emailExist = _registerInterface.isEmailAvailable(model.email);
-                if (emailExist)
+
+                string uuid = Guid.NewGuid().ToString();
+                PasswordReset resetPasswordObj = new PasswordReset();
+                resetPasswordObj.Email = obj.email;
+                resetPasswordObj.Token = uuid;
+                resetPasswordObj.CreatedAt = DateTime.Now;
+
+                _registerInterface.addResetPasswordToken(resetPasswordObj);
+
+                var userObj = _registerInterface.findUser(obj.email);
+                int UserID = (int)userObj.UserId;
+                string welcomeMessage = "Welcome to CI platform, <br/> You can Reset your password using below link. </br>";
+                string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Account/NewPassword?token=" + uuid + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
+                MailHelper mailHelper = new MailHelper(configuration);
+                ViewBag.sendMail = mailHelper.Send(obj.email, welcomeMessage + path);
+
+
+                return View();
+            }
+            return View();
+        }
+
+        
+        [HttpPost]
+        public IActionResult NewPassword(NewPassword obj)
+        {
+            string token = obj.token;
+            if (token != null)
+            {
+                if (obj.password.Equals(obj.confirm_password))
                 {
-                    var lnkHref = "<a href='" + Url.Action("NewPassword", "Account", new { email = model.email }, "https") + "'>Reset Password</a>";
-                    string subject = "Reset Password";
-                    string body = "<b>Please find the Password Reset Link. </b><br/><br/>" + lnkHref;
-                    List<string> toList = new List<string>();
-                    toList.Add(model.email);
-                    EmailManager.SendEmail(toList, subject, body);
-                    ViewBag.Alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>An email has been sent to your account. <b>Click on the link in received email to reset the password.</b><button type= 'button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-                    return View();
+
+                    var resetObj = _registerInterface.findUserByToken(token);
+                    var userObj = _registerInterface.findUser(resetObj.Email);
+                    if (!obj.password.Equals(userObj.Password))
+                    {
+                        userObj.Password = obj.password;
+                        _registerInterface.updatePassword(userObj);
+                        _registerInterface.removeResetPasswordToekn(resetObj);
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("NewPassword", "You can not set Old password as New Password");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("email", "Enter correct email address");
-                    return View();
+                    ModelState.AddModelError("ConfirmPassword", "Confirm password does not match to new password");
                 }
             }
-            else
-            {
-                return View(model);
-            }
-        }
-
-        [HttpPost]
-        public IActionResult NewPassword(NewPassword model)
-        {
-            if (ModelState.IsValid)
-            {
-                User user = _ciPlatformContext.Users.Where(user => user.Email.Equals(model.email)).FirstOrDefault();
-                user.Password = model.password;
-                user.UpdatedAt = DateTime.Now;
-                _ciPlatformContext.Users.Update(user);
-                _ciPlatformContext.SaveChanges();
-                return RedirectToAction("MissionListing", "Mission", new { loginPopUp = true });
-            }
-            else
-            {
-                return View(model);
-            }
-
+            return View();
         }
 
         public async Task<IActionResult> LogOut()

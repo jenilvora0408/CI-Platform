@@ -55,7 +55,6 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfoInputs.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.AssemblyInfo.cs
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.csproj.CoreCompileInputs.cache
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.RazorAssemblyInfo.cs

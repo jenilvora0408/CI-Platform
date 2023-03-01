@@ -7,11 +7,11 @@
 
 #story-top-image-div {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url(../images/Grow-Trees-On-the-path-to-environment-sustainability-login.png);
-    height: 250px;
-    background-size: 100vw 615px;
+        url(../images/Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png);
+    height: 350px;
+    background-size: 100vw 400px;
     background-repeat: no-repeat;
-    background-position: 0px -180px;
+    /* background-position: 0px -10px; */
 }
 
 .grid-view {

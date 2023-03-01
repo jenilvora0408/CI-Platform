@@ -66,7 +66,7 @@ public partial class CiPlatformContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;initial catalog=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;DataBase=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -592,17 +592,17 @@ public partial class CiPlatformContext : DbContext
 
         modelBuilder.Entity<PasswordReset>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("password_reset");
+            entity.HasKey(e => e.Email);
 
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnName("created_at");
+            entity.ToTable("password_reset");
+
             entity.Property(e => e.Email)
                 .HasMaxLength(191)
                 .IsUnicode(false)
                 .HasColumnName("email");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnName("created_at");
             entity.Property(e => e.Token)
                 .HasMaxLength(191)
                 .IsUnicode(false)

@@ -11,5 +11,6 @@ namespace Entities.ViewModels
         [Required]
         [Compare("password", ErrorMessage = "Password does not match")]
         public string confirm_password { get; set; }
+        public string token { get; set; }
     }
 }

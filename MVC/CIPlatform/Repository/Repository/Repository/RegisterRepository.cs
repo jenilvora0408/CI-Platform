@@ -63,7 +63,64 @@ namespace Repository.Repository.Repository
             //    return -1;
             //}
         }
-        public Boolean ChangePassword(int UserID, NewPassword rpm)
+       
+        
+
+
+        public IEnumerable<User> getUsers()
+        {
+            var Users = _ciPlatformContext.Users;
+            return Users;
+        }
+
+        void RegisterInterface.addResetPasswordToken(PasswordReset passwordResetObj)
+        {
+            bool isAlreadyGenerated = _ciPlatformContext.PasswordResets.Any(u => u.Email.Equals(passwordResetObj.Email));
+            if (isAlreadyGenerated)
+            {
+                _ciPlatformContext.Update(passwordResetObj);
+
+            }
+            else
+            {
+                _ciPlatformContext.Add(passwordResetObj);
+            }
+            _ciPlatformContext.SaveChanges();
+        }
+
+        void RegisterInterface.addUser(User user)
+        {
+            _ciPlatformContext.Users.Add(user);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        User RegisterInterface.findUser(string email)
+        {
+            return _ciPlatformContext.Users.Where(u => u.Email.Equals(email)).First();
+        }
+        User RegisterInterface.findUser(int? id)
+        {
+            return _ciPlatformContext.Users.Where(u => u.UserId == id).First();
+        }
+
+        PasswordReset RegisterInterface.findUserByToken(string token)
+        {
+            return _ciPlatformContext.PasswordResets.Where(u => u.Token.Equals(token)).First();
+        }
+
+        void RegisterInterface.removeResetPasswordToekn(PasswordReset obj)
+        {
+            _ciPlatformContext.Remove(obj);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        void RegisterInterface.updatePassword(User user)
+        {
+            _ciPlatformContext.Update(user);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        bool RegisterInterface.ChangePassword(int UserID, PasswordReset rpm)
         {
             try
             {
@@ -79,8 +136,9 @@ namespace Repository.Repository.Repository
                 return false;
             }
         }
-
     }
 
-
 }
+
+
+
