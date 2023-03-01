@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit Profile</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/edit-profile.css">
+</head>
+<body>
+    <div class="edit-profile-page">
+        <div class="edit-user-profile">
+            <div class="edit-left">
+                <img src="./images/user-img-large.png" alt="">
+                <p class="user-name">Evan Donohue</p>
+                <a href="./newpassword.html">Change Password </a>
+            </div>
+            <div class="edit-right">
+                <p class="edit-right-heading"><span> Basic Information</span></p>
+
+                <form action="#">
+                    <div class="layer-1">
+                        <div class="layer-part-1">
+                            <div class="edit-name">
+                                <label for="name">Name*</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Name"/>
+                            </div>
+                            <div class="edit-surname">
+                                <label for="surname">Surname*</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Surname"/>
+                            </div>
+                        </div>
+                        <div class="layer-part-2">
+                            <div class="edit-employeeID">
+                                <label for="employee-id">Employee ID</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Employee ID"/>
+                            </div>
+                            <div class="edit-surname">
+                                <label for="surname">Manager</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Manager Details"/>
+                            </div>
+                        </div>
+                        <div class="layer-part-3">
+                            <div class="edit-employeeID">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title for Story"/>
+                            </div>
+                            <div class="edit-surname">
+                                <label for="department">Department</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Department"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layer-2">
+                        <div class="layer2-part-1">
+                            <label for="profile">My Profile*</label>
+                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7" placeholder="Enter your Comments..."></textarea>
+                        </div>
+                        <div class="layer2-part-2">
+                            <label for="profile">Why I Volunteer?</label>
+                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7" placeholder="Enter your Comments..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layer-3">
+                        <p class="edit-right-heading address"><span> Address Information</span></p>
+                        <div class="layer3-part-1">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your City"/>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.js"></script>
+</body>
+</html>

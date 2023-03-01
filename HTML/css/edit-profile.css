@@ -49,6 +49,32 @@
 .edit-right .edit-right-heading{
     font-size: 1.5rem;
     /* text-decoration: underline; */
-    padding-bottom: 10px;
-    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #D9D9D9;
 }
+.edit-right .edit-right-heading span{
+    border-bottom: 1px solid #414141;
+    padding-bottom: 21px;
+}
+.edit-profile-page form .layer-1 input,
+.edit-profile-page form .layer-3 input{
+    width: 27.5vw;
+}
+.edit-profile-page form .layer-1 .layer-part-1,
+.edit-profile-page form .layer-1 .layer-part-2,
+.edit-profile-page form .layer-1 .layer-part-3{
+    display: flex;
+    gap: 5vw;
+    margin-bottom: 2vh;
+}
+.edit-profile-page form .layer-2 .layer2-part-1{
+    margin-bottom: 2vh;
+    margin-top: 4vh;
+}
+.edit-profile-page form .layer-3{
+    margin-top: 5vh;
+}
+
+/* .layer-3 .layer3-part-1{
+    width: 22.5vw;
+} */
