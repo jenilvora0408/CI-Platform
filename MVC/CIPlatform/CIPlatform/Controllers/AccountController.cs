@@ -2,8 +2,15 @@
 using Entities.Data;
 using Entities.Models;
 using Entities.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Repository.Repository.Interface;
+using Newtonsoft.Json;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
 
 namespace CIPlatform.Controllers
 {
@@ -29,7 +36,6 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
-       
         public IActionResult ForgotPassword()
         {
             return View();
@@ -38,9 +44,11 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
-        public IActionResult NewPassword()
+        public IActionResult NewPassword(string? email)
         {
-            return View();
+            NewPassword newPassword = new NewPassword();
+            newPassword.email = email;
+            return View(newPassword);
         }
 
 
@@ -92,72 +100,59 @@ namespace CIPlatform.Controllers
             }
             return RedirectToAction("Login");
         }
-        
-        //[HttpPost]
-        //public IActionResult ValidateForgotPassword(ForgotPassword N)
-        //{
-        //    return RedirectToAction("Login");
-        //}
 
-        public IActionResult ValidateNewPassword(NewPassword N)
-        {
-            return RedirectToAction("Login");
-     
-        }
         [HttpPost]
-        public IActionResult ValidateForgotDetails(ForgotPassword fpm)
+        public ActionResult ForgotPassword(ForgotPassword model)
         {
-            if (_registerInterface.isEmailAvailable(fpm.email))
+            if (ModelState.IsValid)
             {
-                try
+                var emailExist = _registerInterface.isEmailAvailable(model.email);
+                if (emailExist)
                 {
-                    long UserID = _registerInterface.GetUserID(fpm.email);
-                    string welcomeMessage = "Welcome to CI platform, <br/> You can Reset your password using below link. </br>";
-                    string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Account/NewPassword/" + UserID.ToString() + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
-                    MailHelper mailHelper = new MailHelper(configuration);
-                    ViewBag.sendMail = mailHelper.Send(fpm.email, welcomeMessage + path);
-                    ModelState.Clear();
+                    var lnkHref = "<a href='" + Url.Action("NewPassword", "Account", new { email = model.email }, "https") + "'>Reset Password</a>";
+                    string subject = "Reset Password";
+                    string body = "<b>Please find the Password Reset Link. </b><br/><br/>" + lnkHref;
+                    List<string> toList = new List<string>();
+                    toList.Add(model.email);
+                    EmailManager.SendEmail(toList, subject, body);
+                    ViewBag.Alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>An email has been sent to your account. <b>Click on the link in received email to reset the password.</b><button type= 'button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+                    return View();
                 }
-                catch (Exception ex)
+                else
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError("email", "Enter correct email address");
+                    return View();
                 }
             }
             else
             {
-                ModelState.AddModelError("", "error1");
-                ViewBag.isForgetPasswordOpen = true;
+                return View(model);
             }
-
-
-
-            return View("Login");
         }
 
-        public IActionResult Reset(int id)
-        {
-            return View();
-        }
-        public IActionResult Reset(NewPassword rpm, int id)
+        [HttpPost]
+        public IActionResult NewPassword(NewPassword model)
         {
             if (ModelState.IsValid)
             {
-
-                if (_registerInterface.ChangePassword(id, rpm))
-                {
-                    ModelState.Clear();
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "error2");
-                }
-
-
+                User user = _ciPlatformContext.Users.Where(user => user.Email.Equals(model.email)).FirstOrDefault();
+                user.Password = model.password;
+                user.UpdatedAt = DateTime.Now;
+                _ciPlatformContext.Users.Update(user);
+                _ciPlatformContext.SaveChanges();
+                return RedirectToAction("MissionListing", "Mission", new { loginPopUp = true });
+            }
+            else
+            {
+                return View(model);
             }
 
-            return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("index", "home");
         }
     }
-
 }

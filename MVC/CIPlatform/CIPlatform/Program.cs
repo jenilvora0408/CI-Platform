@@ -1,6 +1,8 @@
 using Entities.Data;
 using Repository.Repository.Interface;
 using Repository.Repository.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+//using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiPlatformContext>();
 builder.Services.AddScoped<RegisterInterface, RegisterRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie("Cookies", options =>
+{
+    options.LoginPath = "/Account/Login/true";
+    options.ReturnUrlParameter = "ReturnUrl";
+});
 
 var app = builder.Build();
 
