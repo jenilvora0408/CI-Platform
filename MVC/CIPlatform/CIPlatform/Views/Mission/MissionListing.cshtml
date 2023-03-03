@@ -1,4 +1,6 @@
 ﻿
+
+
   <div class="home-container">
     <!-- ---------------
         Navbar - 1
@@ -56,11 +58,11 @@
                   aria-expanded="false" style="color: #333333">
                   Country
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">India</a></li>
+                <ul class="dropdown-menu mission-Countrys" id="mission-countries">
+                 @* <li><a class="dropdown-item" href="#">India</a></li>
                   <li><a class="dropdown-item" href="#">Australia</a></li>
                   <li><a class="dropdown-item" href="#">Germany</a></li>
-                  <li><a class="dropdown-item" href="#">Russia</a></li>
+                  <li><a class="dropdown-item" href="#">Russia</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -73,11 +75,11 @@
                   aria-expanded="false" style="color: #333333">
                   City
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Rajkot</a></li>
+                <ul class="dropdown-menu mission-Cities" id="mission-cities">
+                 @* <li><a class="dropdown-item" href="#">Rajkot</a></li>
                   <li><a class="dropdown-item" href="#">Ahmedabad</a></li>
                   <li><a class="dropdown-item" href="#">Vadodara</a></li>
-                  <li><a class="dropdown-item" href="#">Surat</a></li>
+                  <li><a class="dropdown-item" href="#">Surat</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -90,11 +92,11 @@
                   aria-expanded="false" style="color: #333333">
                   Theme
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Theme-1</a></li>
+                <ul class="dropdown-menu mission-Theme" id="mission-theme">
+                  @*<li><a class="dropdown-item" href="#">Theme-1</a></li>
                   <li><a class="dropdown-item" href="#">Theme-2</a></li>
                   <li><a class="dropdown-item" href="#">Theme-3</a></li>
-                  <li><a class="dropdown-item" href="#">Theme-4</a></li>
+                  <li><a class="dropdown-item" href="#">Theme-4</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -107,11 +109,11 @@
                   aria-expanded="false" style="color: #333333">
                   Skills
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Skill-1</a></li>
+                <ul class="dropdown-menu mission-Skill" id="mission-skill">
+                  @*<li><a class="dropdown-item" href="#">Skill-1</a></li>
                   <li><a class="dropdown-item" href="#">Skill-2</a></li>
                   <li><a class="dropdown-item" href="#">Skill-3</a></li>
-                  <li><a class="dropdown-item" href="#">Skill-4</a></li>
+                  <li><a class="dropdown-item" href="#">Skill-4</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -717,32 +719,6 @@
       </div>
     </footer>
   </div>
-  <script src="/js/bootstrap.bundle.js"></script>
-  <script>
-    $(".close-chips").on("click", function (e) {
-      $(".home-chips .chip").remove();
-      $(this).hide();
-    });
-    // $(".close-chips").on("click", function(e){
-    // $(".close-chips").remove();
-    // });
-    $(".selection .dropdown-menu li a").on("click", function (e) {
-      $(".home-chips .chips").append(
-        '<div class="chip">' +
-        $(this).text() +
-        '<span class="closebtn" onclick="this.parentElement.style.display=\'none\'">&times;</span>'
-      );
-      $(".close-chips").show();
-    });
 
-    $(".listmain-2").hide();
-    $("#select-list-style").on("click", function(e){
-      $(".grid-view").hide();
-      $(".listmain-2").show();
-    });
+  
 
-    $("#select-grid-style").on("click", function(e){
-      $(".listmain-2").hide();
-      $(".grid-view").show();
-    })
-  </script>

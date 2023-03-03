@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GVMs7lCJ9ckO9vtXmdX6pjnYMsVu/XdCUIzlM5Ze6TiwnGjKhwxqUEva1sIvc+vE6JqP09WT3dmjDTSYcPUyQw==",
+  "dgSpecHash": "mJQhf2KsNdXqYClcTKqivPe7iPKx04pUlRr2Rc5zcl3OpyPcoiUBFXFqmjvEsTNNcWkHxpoztmvWjczj92y3ag==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
@@ -78,7 +78,7 @@
     "C:\\Users\\tatva\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\newtonsoft.json\\13.0.3-beta1\\newtonsoft.json.13.0.3-beta1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\nuget.common\\6.3.1\\nuget.common.6.3.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\nuget.configuration\\6.3.1\\nuget.configuration.6.3.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\nuget.dependencyresolver.core\\6.3.1\\nuget.dependencyresolver.core.6.3.1.nupkg.sha512",

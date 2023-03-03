@@ -23,7 +23,7 @@ namespace Entities.ViewModels
         public string password { get; set; }
 
         [Required]
-        //[Compare("password", ErrorMessage = "Password does not match")]
+        [Compare("password", ErrorMessage = "Password does not match")]
         public string confirm_password { get; set; }
     }
 }

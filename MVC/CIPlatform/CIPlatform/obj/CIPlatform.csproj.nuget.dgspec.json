@@ -76,6 +76,10 @@
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3-beta1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.3.0, )"
@@ -172,6 +176,10 @@
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3-beta1, )"
+            },
             "System.Net.Mail": {
               "target": "Package",
               "version": "[1.0.0-rtm-00002, )"
@@ -264,6 +272,10 @@
             "NETCore.MailKit": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3-beta1, )"
             },
             "System.Net.Mail": {
               "target": "Package",

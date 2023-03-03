@@ -7,10 +7,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Repository.Repository.Interface;
-using Newtonsoft.Json;
-using System.Net;
-using System.Net.Mail;
-using System.Security.Claims;
 
 namespace CIPlatform.Controllers
 {
@@ -18,19 +14,15 @@ namespace CIPlatform.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly RegisterInterface _registerInterface;
-        private readonly CiPlatformContext _ciPlatformContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
       
-        public AccountController(ILogger<AccountController> logger, RegisterInterface registerInterface, CiPlatformContext ciPlatformContext,IHttpContextAccessor httpContextAccessor,
-                              IConfiguration _configuration)
+        public AccountController(ILogger<AccountController> logger, RegisterInterface registerInterface, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
         {
-            
             _logger = logger;
            _registerInterface = registerInterface;
-            _ciPlatformContext = ciPlatformContext;
             _httpContextAccessor = httpContextAccessor;
-            configuration = _configuration;
+            _configuration = configuration;
         }
         public IActionResult Login()
         {
@@ -119,11 +111,12 @@ namespace CIPlatform.Controllers
         {
             if (!_registerInterface.isEmailAvailable(obj.email))
             {
-                ModelState.AddModelError("EmailId", "Email not found");
-            }
-            if (ModelState.IsValid)
-            {
+                ModelState.AddModelError("Email", "Email not found");
+                return View();
 
+            }
+            if(ModelState.IsValid)
+            {
                 string uuid = Guid.NewGuid().ToString();
                 PasswordReset resetPasswordObj = new PasswordReset();
                 resetPasswordObj.Email = obj.email;
@@ -136,10 +129,9 @@ namespace CIPlatform.Controllers
                 int UserID = (int)userObj.UserId;
                 string welcomeMessage = "Welcome to CI platform, <br/> You can Reset your password using below link. </br>";
                 string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Account/NewPassword?token=" + uuid + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
-                MailHelper mailHelper = new MailHelper(configuration);
-                ViewBag.sendMail = mailHelper.Send(obj.email, welcomeMessage + path);
-
-
+                MailHelper mailHelper = new MailHelper(_configuration);
+                ViewBag.sendMail = mailHelper.Send(obj.email, welcomeMessage + path); 
+                ViewBag.Alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>An email has been sent to your account. <b>Click on the link in received email to reset the password.</b><button type= 'button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
                 return View();
             }
             return View();
@@ -177,10 +169,6 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        public async Task<IActionResult> LogOut()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("index", "home");
-        }
+        
     }
 }
