@@ -84,6 +84,7 @@ namespace CIPlatform.Controllers
             return RedirectToAction("Index", "Home");
         }
  
+
         [HttpPost]
         public IActionResult ValidateLogin(Login N)
         {
@@ -111,6 +112,7 @@ namespace CIPlatform.Controllers
             }
             return RedirectToAction("Login");
         }
+
 
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPassword obj)

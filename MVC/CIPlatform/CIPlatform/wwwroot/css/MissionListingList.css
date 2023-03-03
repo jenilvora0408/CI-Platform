@@ -576,3 +576,9 @@
 }
 /* ----------------------- */
 
+.listmain-2 .container-fluid > .row{
+    width: 80vw;
+}
+.listmain-2 .card  {
+    height: 24.5vh !important;
+}

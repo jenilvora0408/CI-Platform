@@ -41,12 +41,9 @@ namespace Repository.Repository.Repository
 
         public long GetUserID(string Email)
         {
-            //try
-            //{
             User user = _ciPlatformContext.Users.Where(x => x.Email == Email).FirstOrDefault();
             if (user == null)
             {
-                //var msg = " Invalid Email";
                 return -1;
             }
             else
@@ -54,25 +51,13 @@ namespace Repository.Repository.Repository
 
                 return user.UserId;
             }
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    _Message += ex.Message;
-            //    return -1;
-            //}
         }
-       
-        
-
 
         public IEnumerable<User> getUsers()
         {
             var Users = _ciPlatformContext.Users;
             return Users;
         }
-
         void RegisterInterface.addResetPasswordToken(PasswordReset passwordResetObj)
         {
             bool isAlreadyGenerated = _ciPlatformContext.PasswordResets.Any(u => u.Email.Equals(passwordResetObj.Email));

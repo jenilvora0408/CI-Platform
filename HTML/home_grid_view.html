@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
   <!-- <link rel="stylesheet" href="./css/home.css" /> -->
   <link rel="stylesheet" href="./css/home_grid_view.css" />
+  <link rel="stylesheet" href="./css/home_list_view.css">
 </head>
 
 <body>
@@ -178,9 +179,9 @@
         </div>
         <div class="images">
           <div class="circle-bg-img">
-            <a><img src="./images/grid.png" alt="" /></a>
+            <a style="cursor: pointer;" id="select-grid-style"><img src="./images/grid.png" alt="" /></a>
           </div>
-          <a><img src="./images/list.png" alt="" /></a>
+          <a style="cursor: pointer;" id="select-list-style"><img src="./images/list.png" alt="" /></a>
         </div>
       </div>
     </div>
@@ -404,6 +405,296 @@
         </div>
       </div>
     </div>
+    <div class="listmain-2 mx-auto">
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
+              <div class="card h-100 shadow">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="listbtn-1">
+                              <img class="img-1 img-fluid" src="./images/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                                  class="card-img-top" alt="Error">
+                              <button class="listbtn-2">
+                                  <img src="./images/pin.png" alt="Error" style="width:11px;">
+                                  <span>Toronto</span>
+                              </button>
+                              <button class="listbtn-3">
+                                  <img src="./images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                              </button>
+                              <button class="listbtn-4">
+                                  <img src="./images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                              </button>
+                              <button class="listbtn-5">
+                                  Environment
+                              </button>
+                          </div>
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body" style="margin-bottom:-15px;position: relative;">
+                              <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
+                              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                  tempor incididunt ut labore...</p>
+                              <div class="listcard-body-1" style="display:flex;">
+                                  <div class="listcard-1 col">
+                                      <div class="listcard-4" >
+                                  <p class="listcard-body-2">Tree Canada</p>
+                                  <div style="margin-left: 1vw;margin-bottom: 20px;">
+                                      <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                      <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                      <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                      <img class="listimg-1" src="./images/star.png" alt="Error">
+                                      <img class="listimg-1" src="./images/star.png" alt="Error">
+                                  </div>
+                              </div>
+                              </div>
+                                  <div class="listcard-2 col ">
+                                  <hr style="margin-top:0px;margin-bottom: 11px;">
+                                  <div class="listcard-body-3" style="position:relative;bottom:13px;">
+                                      <button class="listcard-body-4">
+                                          From 10/01/2019 until 25/02/2019
+                                      </button>
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
+                         
+                          <ul class="list-group list-group-flush" style="border: 0px; ">
+                              <li class="list-group-item">
+                                  <div class="listcardcontainer4" style="display:flex;">
+                                      <div class="" style="width: 100%;">
+                                          <div class="" style="float: left;">
+                                              <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
+                                                  style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
+                                              </button>
+                                          </div>
+                                          <div class="" style="float: right;">
+                                              <div class="listcardcontainer6">
+                                                  <img class="listimg-1" src="./images/deadline.png" alt="Error">
+                                                  <div class="listcard-body-5">
+                                                      <p class="listcard-body-6">05/10/2022</p>
+                                                      <p class="listcard-body-7">Deadline</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="" style="float: right;">
+                                              <div class="listcardcontainer5">
+                                                  <img class="listimg-1" src="./images/Seats-left.png" alt="Error">
+                                                  <div class="listcard-body-5">
+                                                      <p class="listcard-body-6">10</p>
+                                                      <p class="listcard-body-7">Seats-left</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                      
+                          <!-- <hr style="margin-top:0px; margin-bottom:0px;"> -->
+                          <!-- <div class="card-body" style="text-align:center;"> -->
+                              
+                          <!-- </div> -->
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
+                  <div class="card h-100 shadow">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="listbtn-1">
+                                  <img class="img-1 img-fluid" src="./images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+                                      class="card-img-top" alt="Error">
+                                  <button class="listbtn-2">
+                                      <img src="./images/pin.png" alt="Error" style="width:11px;">
+                                      <span>Toronto</span>
+                                  </button>
+                                  <button class="listbtn-3">
+                                      <img src="./images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                                  </button>
+                                  <button class="listbtn-4">
+                                      <img src="./images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                                  </button>
+                                  <button class="listbtn-5">
+                                      Environment
+                                  </button>
+                              </div>
+                          </div>
+                          <div class="col-md-8">
+                              <div class="card-body" style="margin-bottom:-15px;position: relative;">
+                                  <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
+                                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                      tempor incididunt ut labore...</p>
+                                  <div class="listcard-body-1" style="display:flex;">
+                                      <div class="listcard-1 col">
+                                          <div class="listcard-4" >
+                                      <p class="listcard-body-2">Tree Canada</p>
+                                      <div style="margin-left: 1vw;margin-bottom: 20px;">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/star.png" alt="Error">
+                                      </div>
+                                  </div>
+                                  </div>
+                                      <div class="listcard-2 col ">
+                                      <hr style="margin-top:0px;margin-bottom: 11px;">
+                                      <div class="listcard-body-3" style="position:relative;bottom:13px;">
+                                          <button class="listcard-body-4">
+                                              From 10/01/2019 until 25/02/2019
+                                          </button>
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>
+                             
+                              <ul class="list-group list-group-flush" style="border: 0px; ">
+                                  <li class="list-group-item">
+                                      <div class="listcardcontainer4" style="display:flex;">
+                                          <div class="" style="width: 100%;">
+                                              <div class="" style="float: left;">
+                                                  <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
+                                                      style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
+                                                  </button>
+                                              </div>
+                                              <div class="" style="float: right;">
+                                                  <div class="listcardcontainer6">
+                                                      <img class="listimg-1" src="./images/deadline.png" alt="Error">
+                                                      <div class="listcard-body-5">
+                                                          <p class="listcard-body-6">05/10/2022</p>
+                                                          <p class="listcard-body-7">Deadline</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="" style="float: right;">
+                                                  <div class="listcardcontainer5">
+                                                      <img class="listimg-1" src="./images/Seats-left.png" alt="Error">
+                                                      <div class="listcard-body-5">
+                                                          <p class="listcard-body-6">10</p>
+                                                          <p class="listcard-body-7">Seats-left</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          
+                              <!-- <hr style="margin-top:0px; margin-bottom:0px;"> -->
+                              <!-- <div class="card-body" style="text-align:center;"> -->
+                                  
+                              <!-- </div> -->
+                          </div>
+                      </div>
+                      
+                  </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
+                  <div class="card h-100 shadow">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="listbtn-1">
+                                  <img class="img-1 img-fluid" src="./images/Nourish-the-Children-in--African-country.png"
+                                      class="card-img-top" alt="Error">
+                                  <button class="listbtn-2">
+                                      <img src="./images/pin.png" alt="Error" style="width:11px;">
+                                      <span>Toronto</span>
+                                  </button>
+                                  <button class="listbtn-3">
+                                      <img src="./images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                                  </button>
+                                  <button class="listbtn-4">
+                                      <img src="./images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
+                                  </button>
+                                  <button class="listbtn-5">
+                                      Environment
+                                  </button>
+                              </div>
+                          </div>
+                          <div class="col-md-8">
+                              <div class="card-body" style="margin-bottom:-15px;position: relative;">
+                                  <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
+                                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                      tempor incididunt ut labore...</p>
+                                  <div class="listcard-body-1" style="display:flex;">
+                                      <div class="listcard-1 col">
+                                          <div class="listcard-4" >
+                                      <p class="listcard-body-2">Tree Canada</p>
+                                      <div style="margin-left: 1vw;margin-bottom: 20px;">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/selected-star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/star.png" alt="Error">
+                                          <img class="listimg-1" src="./images/star.png" alt="Error">
+                                      </div>
+                                  </div>
+                                  </div>
+                                      <div class="listcard-2 col ">
+                                      <hr style="margin-top:0px;margin-bottom: 11px;">
+                                      <div class="listcard-body-3" style="position:relative;bottom:13px;">
+                                          <button class="listcard-body-4">
+                                              From 10/01/2019 until 25/02/2019
+                                          </button>
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>
+                             
+                              <ul class="list-group list-group-flush" style="border: 0px; ">
+                                  <li class="list-group-item">
+                                      <div class="listcardcontainer4" style="display:flex;">
+                                          <div class="" style="width: 100%;">
+                                              <div class="" style="float: left;">
+                                                  <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
+                                                      style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
+                                                  </button>
+                                              </div>
+                                              <div class="" style="float: right;">
+                                                  <div class="listcardcontainer6">
+                                                      <img class="listimg-1" src="./images/deadline.png" alt="Error">
+                                                      <div class="listcard-body-5">
+                                                          <p class="listcard-body-6">05/10/2022</p>
+                                                          <p class="listcard-body-7">Deadline</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="" style="float: right;">
+                                                  <div class="listcardcontainer5">
+                                                      <img class="listimg-1" src="./images/Seats-left.png" alt="Error">
+                                                      <div class="listcard-body-5">
+                                                          <p class="listcard-body-6">10</p>
+                                                          <p class="listcard-body-7">Seats-left</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          
+                              <!-- <hr style="margin-top:0px; margin-bottom:0px;"> -->
+                              <!-- <div class="card-body" style="text-align:center;"> -->
+                                  
+                              <!-- </div> -->
+                          </div>
+                      </div>
+                      
+                  </div>
+              </div>
+             
+
+              
+            
+          </div>
+
+        </div>
+        
+
+
+      </div>
 <!-- ------------
     Pagination
   ---------------- -->
@@ -459,6 +750,17 @@
       );
       $(".close-chips").show();
     });
+
+    $(".listmain-2").hide();
+    $("#select-list-style").on("click", function(e){
+      $(".grid-view").hide();
+      $(".listmain-2").show();
+    });
+
+    $("#select-grid-style").on("click", function(e){
+      $(".listmain-2").hide();
+      $(".grid-view").show();
+    })
   </script>
 </body>
 
