@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XfqaaAiHWpvwDFpKEm0yMmoxb4m8DTtxjmKbg464oN0=",
+  "Hash": "08J9mnwIDmy4jN6YdNc13L99BVGUdPk8jNBP+k1zXms=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -2057,12 +2057,12 @@
       "OriginalItemSpec": "wwwroot\\images\\xlsx.png"
     },
     {
-      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\js\\demo.js",
       "SourceId": "CIPlatform",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
       "BasePath": "_content/CIPlatform",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/demo.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2071,7 +2071,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\demo.js"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

@@ -7,6 +7,7 @@
 // $(".close-chips").remove();
 // });
 function showChip() {
+    debugger;
     $(".selection .dropdown-menu li a").on("click", function (e) {
         $(".home-chips .chips").append(
             '<div class="chip">' +
@@ -16,6 +17,7 @@ function showChip() {
         $(".close-chips").show();
     });
 }
+
 
 $(".listmain-2").hide();
 $("#select-list-style").on("click", function (e) {
@@ -28,11 +30,14 @@ $("#select-grid-style").on("click", function (e) {
     $(".grid-view").show();
 })
 
+
+
+
 $(document).ready(function () {
     /*debugger*/
-    var ddlCountry = $('.mission-Countrys');
+    var ddlCountry = $('#mission-countries');
     ddlCountry.append($("<ul></ul>").val(''));
-    $.ajax({
+    var ajaxRequest1 = $.ajax({
         url: 'https://localhost:7165/Mission/listCountries',
         type: 'GET',
         dataType: 'json',
@@ -43,83 +48,67 @@ $(document).ready(function () {
                 a += '<li><a class= "dropdown-item" href = "#" >' + country.name + '</a></li>';
             });
             ddlCountry.append(a);
-            showChip();
-            
         },
         error: function () {
             alert('Error!');
         }
     });
-});
 
-$(document).ready(function () {
-    /*debugger*/
-    var ddlCountry = $('.mission-Cities');
-    ddlCountry.append($("<ul></ul>").val(''));
-    $.ajax({
+    var ddlCity = $('#mission-cities');
+    ddlCity.append($("<ul></ul>").val(''));
+    var ajaxRequest2 = $.ajax({
         url: 'https://localhost:7165/Mission/listCities',
         type: 'GET',
         dataType: 'json',
         success: function (d) {
-            /*debugger*/
-            var a = "";
+            var b = "";
             $.each(d, function (i, city) {
-                a += '<li><a class= "dropdown-item" href = "#" >' + city.name + '</a></li>';
+                b += '<li><a class= "dropdown-item" href = "#" >' + city.name + '</a></li>';
             });
-            ddlCountry.append(a);
-            showChip();
-
+            ddlCity.append(b);
         },
         error: function () {
             alert('Error!');
         }
     });
-});
 
-$(document).ready(function () {
-    /*debugger*/
-    var ddlCountry = $('.mission-Theme');
-    ddlCountry.append($("<ul></ul>").val(''));
-    $.ajax({
+    var ddltheme = $('#mission-theme');
+    ddltheme.append($("<ul></ul>").val(''));
+    var ajaxRequest3 = $.ajax({
         url: 'https://localhost:7165/Mission/listTheme',
         type: 'GET',
         dataType: 'json',
         success: function (d) {
-            /*debugger*/
-            var a = "";
+            var c = "";
             $.each(d, function (i, theme) {
-                a += '<li><a class= "dropdown-item" href = "#" >' + theme.title + '</a></li>';
+                c += '<li><a class= "dropdown-item" href = "#" >' + theme.title + '</a></li>';
             });
-            ddlCountry.append(a);
-            showChip();
-
+            ddltheme.append(c);
         },
         error: function () {
             alert('Error!');
         }
     });
-});
 
-$(document).ready(function () {
-    /*debugger*/
-    var ddlCountry = $('.mission-Skill');
-    ddlCountry.append($("<ul></ul>").val(''));
-    $.ajax({
+    var ddlSkill = $('#mission-skill');
+    ddlSkill.append($("<ul></ul>").val(''));
+    var ajaxRequest4 = $.ajax({
         url: 'https://localhost:7165/Mission/listSkill',
         type: 'GET',
         dataType: 'json',
         success: function (d) {
-            /*debugger*/
-            var a = "";
+            var skills = "";
             $.each(d, function (i, skill) {
-                a += '<li><a class= "dropdown-item" href = "#" >' + skill.skillName + '</a></li>';
+                skills += '<li><a class= "dropdown-item" href = "#" >' + skill.skillName + '</a></li>';
             });
-            ddlCountry.append(a);
-            showChip();
-
+            ddlSkill.append(skills);
         },
         error: function () {
             alert('Error!');
         }
+    });
+
+    $.when(ajaxRequest1, ajaxRequest2, ajaxRequest3, ajaxRequest4).done(function () {
+        showChip();
     });
 });

@@ -9,9 +9,12 @@ namespace Repository.Repository.Interface
 {
     public interface MissionInterface
     {
+        //public MissionRepository(CiPlatformContext ciPlatformContext);
         public List<Country> GetCountries();
         public List<City> GetCities();
         public List<MissionTheme> GetMissionThemes();
         public List<Skill> GetSkills();
+        public List<Mission> GetMissions();
+        public List<GoalMission> GetGoalMissions();
     }
 }
