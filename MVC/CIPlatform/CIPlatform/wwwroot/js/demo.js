@@ -7,7 +7,6 @@
 // $(".close-chips").remove();
 // });
 function showChip() {
-    debugger;
     $(".selection .dropdown-menu li a").on("click", function (e) {
         $(".home-chips .chips").append(
             '<div class="chip">' +
@@ -31,7 +30,7 @@ $("#select-grid-style").on("click", function (e) {
 })
 
 
-
+    /*AJAX Call for Countries - Dropdown*/
 
 $(document).ready(function () {
     /*debugger*/
@@ -54,6 +53,8 @@ $(document).ready(function () {
         }
     });
 
+    /*AJAX Call for Cities - Dropdown*/
+
     var ddlCity = $('#mission-cities');
     ddlCity.append($("<ul></ul>").val(''));
     var ajaxRequest2 = $.ajax({
@@ -72,6 +73,8 @@ $(document).ready(function () {
         }
     });
 
+    /*AJAX Call for Theme - Dropdown*/
+
     var ddltheme = $('#mission-theme');
     ddltheme.append($("<ul></ul>").val(''));
     var ajaxRequest3 = $.ajax({
@@ -89,6 +92,8 @@ $(document).ready(function () {
             alert('Error!');
         }
     });
+
+    /*AJAX Call for Skill - Dropdown*/
 
     var ddlSkill = $('#mission-skill');
     ddlSkill.append($("<ul></ul>").val(''));
@@ -111,4 +116,89 @@ $(document).ready(function () {
     $.when(ajaxRequest1, ajaxRequest2, ajaxRequest3, ajaxRequest4).done(function () {
         showChip();
     });
+
+    /*AJAX Call for Grid View*/
+
+    $.ajax({
+        type: "GET",
+        url: 'https://localhost:7165/Mission/GridSP',
+        dataType: "json",
+        success: function (data) {
+            /*Loop through the data and append each item to the grid*/
+            var html = '';
+            /*console.log(data);*/
+            $.each(data, function (i, item) {
+                /*console.log(item.countryName);*/
+                
+                 html += '<div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">'+
+                    '<div class="card">' +
+                    '<div class="card-image">' +
+                    '<img class="card-img-top" src="' + item.missionImage + '" alt="Card image cap" />' +
+                    '<div class="location">' +
+                    '<img class="country-pin" src="/images/pin.png" alt="" />' +
+                    '<span class="country">' + item.cityName + '</span>' +
+                    '</div>' +
+                    '<div class="feature">' +
+                    '<img src="/images/heart.png" alt="" />' +
+                    '<img src="/images/user.png" alt="" />' +
+                    '</div>' +
+                    '<p class="filter"><span>' + item.themeName + '</span></p>' +
+                    '</div>' +
+                    '<div class="card-body">' +
+                    '<h5 class="card-title">' + item.missionTitle + '</h5>' +
+                    '<div class="text-1">' +
+                    '<p class="card-text">' + item.missionShortDesc + '</p>' +
+                    '</div>' +
+                    '<div class="ratings">' +
+                    '<span>' + item.organizationName + '</span>' +
+                    '<div class="rating">';
+                for (var j = 0; j < 5; j++) {
+                    html += '<i class="bi bi-star"></i>';
+                }
+                html += '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<hr />' +
+                    '<p class="mission-date">' +
+                    '<span class="time-span">From ' + Date.parse(item.cityName) + ' until ' + item.endDate + '</span>' +
+                    '</p>' +
+                    '<div class="card-body insight">' +
+                    '<div class="card-body-left">' +
+                    '<div class="card-body-left-img">' +
+                    '<img src="/images/Already-volunteered.png" alt="" />' +
+                    '</div>' +
+                    '<div class="card-body-left-text">' +
+                    '<span class="figure">' + item.availableSeats + '</span>' +
+                    '<span class="seats-left">Seats left</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="card-body-right">' +
+                    '<div class="card-body-right-img">' +
+                    '<img src="/images/deadline.png" alt="" />' +
+                    '</div>' +
+                    '<div class="card-body-right-text">' +
+                    '<span class="figure">' + item.endDate + '</span>' +
+                    '<span class="deadline">Deadline</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<hr />' +
+                    '<div class="apply-btn">' +
+                    '<button>' +
+                    'Apply <img src="/images/right-arrow.png" alt="" />' +
+                    '</button>' +
+                    '<br /><br />' +
+                    '</div>' +
+                    '</div>' + '</div>' ;
+                
+            });
+            $('#GridView').append(html);
+        },
+        error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+        }
+    });
+
+    /*AJAX Call for Grid View*/
 });

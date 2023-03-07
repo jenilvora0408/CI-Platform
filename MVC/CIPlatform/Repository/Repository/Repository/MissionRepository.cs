@@ -49,26 +49,5 @@ namespace Repository.Repository.Repository
             return goalMissions;
         }
 
-        
-
-        //public List<MissionList> getMissionForGrid()
-        //{
-        //    var x = _ciPlatformContext.Missions.Where(x => x.CountryId == 1).Include(x => x.CountryId).FirstOrDefault();
-        //    var y = x.Country.Name;
-
-        //    var m = _ciPlatformContext.Missions.Where(x => x.ThemeId == 2).Include(x => x.ThemeId).FirstOrDefault();
-        //    var n = m.
-
-        //    List<MissionList> missionLists = new List<MissionList>();
-        //    MissionList missionList = new MissionList();
-        //    missionList.countryName = y;
-        //    missionLists.Add(missionList);
-        //    return missionLists;
-        //}
-
-        //public List<Mission> getMissionDatas()
-        //{
-        //    List<Mission> getMissionDatas = _ciPlatformContext.ExecuteStoreQuery<Mission>("exec GetEmployeeData").ToList();
-        //}
     }
 }

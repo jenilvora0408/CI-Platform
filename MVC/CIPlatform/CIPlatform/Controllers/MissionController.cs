@@ -61,38 +61,11 @@ namespace CIPlatform.Controllers
             IEnumerable<GoalMission> goalMissions = _missionInterface.GetGoalMissions();
             return Json(goalMissions);
         }
-        //public IActionResult demo()
-        //{
 
-        //}
-
-        public IActionResult GetAProduct()
+        public IActionResult gridSP()
         {
-            List<MissionList> list;
-            string sql = "EXEC GetMissionData";
-
-            //        List<SqlParameter> parms = new List<SqlParameter>
-            //{
-            //    // Create parameter(s)    
-            //    new SqlParameter { ParameterName = "@ProductID", Value = 706 }
-            //};
-
-            list = _ciPlatformContext.MissionList.FromSqlRaw<MissionList>(sql).ToList();
-
-            return View("Index");
+            return Json(_ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData"));
         }
-
-
-        //public IActionResult GetSP()
-        //{
-        //    List<MissionList> list;
-        //    string sql = "EXEC GetMissionData";
-        //    list = _ciPlatformContext.Missions.FromSqlRaw<MissionList>(sql).ToList();
-        //    Debugger.Break();
-        //    return View("Index");
-        //}
-
-
 
 
         public IActionResult MissionListing_List()
