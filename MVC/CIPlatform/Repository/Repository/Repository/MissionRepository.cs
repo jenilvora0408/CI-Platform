@@ -18,6 +18,10 @@ namespace Repository.Repository.Repository
         {
             _ciPlatformContext = ciPlatformContext;
         }
+        User MissionInterface.findUser(string email)
+        {
+            return _ciPlatformContext.Users.Where(u => u.Email.Equals(email)).First();
+        }
         public List<Country> GetCountries()
         {
             List<Country> countries = _ciPlatformContext.Countries.ToList();

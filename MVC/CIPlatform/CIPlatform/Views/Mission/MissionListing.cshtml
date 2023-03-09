@@ -1,12 +1,13 @@
 ﻿
-
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
   <div class="home-container">
     <!-- ---------------
         Navbar - 1
     ---------------------- -->
     <header>
-      <div class="home-navbar-1">
+     @* <div class="home-navbar-1">
         <div class="home-nav1-left">
           <a href="#">Stories</a>
           <ul class="navbar-nav">
@@ -24,12 +25,12 @@
           </ul>
         </div>
         <div class="home-nav1-right">
-          <img src="/images/user-img.png" alt="" />
+          <img src="~/@ViewBag.avatar"  alt="" />
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                 style="color: #333333">
-                Evan Donohue
+                ViewBag.first_name
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
@@ -39,7 +40,8 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div>*@
+      <partial name="_Navbar_1"/>
       <div class="home-nav1-end"></div>
       <!-- ------------------
           Navbar - 2
@@ -59,10 +61,6 @@
                   Country
                 </a>
                 <ul class="dropdown-menu mission-Countrys" id="mission-countries">
-                 @* <li><a class="dropdown-item" href="#">India</a></li>
-                  <li><a class="dropdown-item" href="#">Australia</a></li>
-                  <li><a class="dropdown-item" href="#">Germany</a></li>
-                  <li><a class="dropdown-item" href="#">Russia</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -76,10 +74,6 @@
                   City
                 </a>
                 <ul class="dropdown-menu mission-Cities" id="mission-cities">
-                 @* <li><a class="dropdown-item" href="#">Rajkot</a></li>
-                  <li><a class="dropdown-item" href="#">Ahmedabad</a></li>
-                  <li><a class="dropdown-item" href="#">Vadodara</a></li>
-                  <li><a class="dropdown-item" href="#">Surat</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -93,10 +87,6 @@
                   Theme
                 </a>
                 <ul class="dropdown-menu mission-Theme" id="mission-theme">
-                  @*<li><a class="dropdown-item" href="#">Theme-1</a></li>
-                  <li><a class="dropdown-item" href="#">Theme-2</a></li>
-                  <li><a class="dropdown-item" href="#">Theme-3</a></li>
-                  <li><a class="dropdown-item" href="#">Theme-4</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -110,10 +100,6 @@
                   Skills
                 </a>
                 <ul class="dropdown-menu mission-Skill" id="mission-skill">
-                  @*<li><a class="dropdown-item" href="#">Skill-1</a></li>
-                  <li><a class="dropdown-item" href="#">Skill-2</a></li>
-                  <li><a class="dropdown-item" href="#">Skill-3</a></li>
-                  <li><a class="dropdown-item" href="#">Skill-4</a></li>*@
                 </ul>
               </li>
             </ul>
@@ -164,7 +150,7 @@
           </ul>
         </div>
         <div class="images">
-          <div class="circle-bg-img">
+          <div class="circle-bg-img switch-view">
             <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
           </div>
           <a style="cursor: pointer;" id="select-list-style"><img src="/images/list.png" alt="" /></a>
@@ -176,12 +162,7 @@
         Grid View
     ---------------- -->
     <div class="grid-view container">
-      <div class="grid-items">
-          
-              <partial name="_Grid"/>
-          
-        
-      </div>
+      <div class="grid-items" id="grid-items"></div>
     </div>
 
     <!-- ------------
@@ -189,274 +170,12 @@
     ---------------- -->
 
     <div class="listmain-2 mx-auto">
-      <div class="container-fluid">
-        <div class="row ">
-          <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
-              <div class="card h-100 shadow">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="listbtn-1">
-                              <img class="img-1 img-fluid" src="/images/Grow-Trees-On-the-path-to-environment-sustainability.png"
-                                  class="card-img-top" alt="Error">
-                              <button class="listbtn-2">
-                                  <img src="/images/pin.png" alt="Error" style="width:11px;">
-                                  <span>Toronto</span>
-                              </button>
-                              <button class="listbtn-3">
-                                  <img src="/images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                              </button>
-                              <button class="listbtn-4">
-                                  <img src="/images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                              </button>
-                              <button class="listbtn-5">
-                                  Environment
-                              </button>
-                          </div>
-                      </div>
-                      <div class="col-md-8">
-                          <div class="card-body" style="margin-bottom:-15px;position: relative;">
-                              <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
-                              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                  tempor incididunt ut labore...</p>
-                              <div class="listcard-body-1" style="display:flex;">
-                                  <div class="listcard-1 col">
-                                      <div class="listcard-4" >
-                                  <p class="listcard-body-2">Tree Canada</p>
-                                  <div style="margin-left: 1vw;margin-bottom: 20px;">
-                                      <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                      <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                      <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                      <img class="listimg-1" src="/images/star.png" alt="Error">
-                                      <img class="listimg-1" src="/images/star.png" alt="Error">
-                                  </div>
-                              </div>
-                              </div>
-                                  <div class="listcard-2 col ">
-                                  <hr style="margin-top:0px;margin-bottom: 11px;">
-                                  <div class="listcard-body-3" style="position:relative;bottom:13px;">
-                                      <button class="listcard-body-4">
-                                          From 10/01/2019 until 25/02/2019
-                                      </button>
-                                  </div>
-                              </div>
-                              </div>
-                          </div>
-                         
-                          <ul class="list-group list-group-flush" style="border: 0px; ">
-                              <li class="list-group-item">
-                                  <div class="listcardcontainer4" style="display:flex;">
-                                      <div class="" style="width: 100%;">
-                                          <div class="" style="float: left;">
-                                              <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
-                                                  style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
-                                              </button>
-                                          </div>
-                                          <div class="" style="float: right;">
-                                              <div class="listcardcontainer6">
-                                                  <img class="listimg-1" src="/images/deadline.png" alt="Error">
-                                                  <div class="listcard-body-5">
-                                                      <p class="listcard-body-6">05/10/2022</p>
-                                                      <p class="listcard-body-7">Deadline</p>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="" style="float: right;">
-                                              <div class="listcardcontainer5">
-                                                  <img class="listimg-1" src="/images/Seats-left.png" alt="Error">
-                                                  <div class="listcard-body-5">
-                                                      <p class="listcard-body-6">10</p>
-                                                      <p class="listcard-body-7">Seats-left</p>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </li>
-                          </ul>
-                      
-                          <!-- <hr style="margin-top:0px; margin-bottom:0px;"> -->
-                          <!-- <div class="card-body" style="text-align:center;"> -->
-                              
-                          <!-- </div> -->
-                      </div>
-                  </div>
-                  
-              </div>
+      <div class="container-fluid d-flex align-items-center justify-content-center">
+          <div id="mission-list" class="mt-5 p-0">
+          <partial name="_List"/>
           </div>
-              <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
-                  <div class="card h-100 shadow">
-                      <div class="row">
-                          <div class="col-md-4">
-                              <div class="listbtn-1">
-                                  <img class="img-1 img-fluid" src="/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
-                                      class="card-img-top" alt="Error">
-                                  <button class="listbtn-2">
-                                      <img src="/images/pin.png" alt="Error" style="width:11px;">
-                                      <span>Toronto</span>
-                                  </button>
-                                  <button class="listbtn-3">
-                                      <img src="/images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                                  </button>
-                                  <button class="listbtn-4">
-                                      <img src="/images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                                  </button>
-                                  <button class="listbtn-5">
-                                      Environment
-                                  </button>
-                              </div>
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body" style="margin-bottom:-15px;position: relative;">
-                                  <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
-                                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                      tempor incididunt ut labore...</p>
-                                  <div class="listcard-body-1" style="display:flex;">
-                                      <div class="listcard-1 col">
-                                          <div class="listcard-4" >
-                                      <p class="listcard-body-2">Tree Canada</p>
-                                      <div style="margin-left: 1vw;margin-bottom: 20px;">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/star.png" alt="Error">
-                                      </div>
-                                  </div>
-                                  </div>
-                                      <div class="listcard-2 col ">
-                                      <hr style="margin-top:0px;margin-bottom: 11px;">
-                                      <div class="listcard-body-3" style="position:relative;bottom:13px;">
-                                          <button class="listcard-body-4">
-                                              From 10/01/2019 until 25/02/2019
-                                          </button>
-                                      </div>
-                                  </div>
-                                  </div>
-                              </div>
-                             
-                              <ul class="list-group list-group-flush" style="border: 0px; ">
-                                  <li class="list-group-item">
-                                      <div class="listcardcontainer4" style="display:flex;">
-                                          <div class="" style="width: 100%;">
-                                              <div class="" style="float: left;">
-                                                  <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
-                                                      style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
-                                                  </button>
-                                              </div>
-                                              <div class="" style="float: right;">
-                                                  <div class="listcardcontainer6">
-                                                      <img class="listimg-1" src="/images/deadline.png" alt="Error">
-                                                      <div class="listcard-body-5">
-                                                          <p class="listcard-body-6">05/10/2022</p>
-                                                          <p class="listcard-body-7">Deadline</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="" style="float: right;">
-                                                  <div class="listcardcontainer5">
-                                                      <img class="listimg-1" src="/images/Seats-left.png" alt="Error">
-                                                      <div class="listcard-body-5">
-                                                          <p class="listcard-body-6">10</p>
-                                                          <p class="listcard-body-7">Seats-left</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </li>
-                              </ul>
-                      </div>
-                      
-                  </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-12 mb-4" style="padding: 0px 20px 12px 4px;">
-                  <div class="card h-100 shadow">
-                      <div class="row">
-                          <div class="col-md-4">
-                              <div class="listbtn-1">
-                                  <img class="img-1 img-fluid" src="/images/Nourish-the-Children-in--African-country.png"
-                                      class="card-img-top" alt="Error">
-                                  <button class="listbtn-2">
-                                      <img src="/images/pin.png" alt="Error" style="width:11px;">
-                                      <span>Toronto</span>
-                                  </button>
-                                  <button class="listbtn-3">
-                                      <img src="/images/heart.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                                  </button>
-                                  <button class="listbtn-4">
-                                      <img src="/images/user.png" alt="Error" style="width:11px; padding-bottom: 6px;">
-                                  </button>
-                                  <button class="listbtn-5">
-                                      Environment
-                                  </button>
-                              </div>
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body" style="margin-bottom:-15px;position: relative;">
-                                  <h5 class="card-title">Grow Trees – On the path to environment sustainability</h5>
-                                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                      tempor incididunt ut labore...</p>
-                                  <div class="listcard-body-1" style="display:flex;">
-                                      <div class="listcard-1 col">
-                                          <div class="listcard-4" >
-                                      <p class="listcard-body-2">Tree Canada</p>
-                                      <div style="margin-left: 1vw;margin-bottom: 20px;">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/selected-star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/star.png" alt="Error">
-                                          <img class="listimg-1" src="/images/star.png" alt="Error">
-                                      </div>
-                                  </div>
-                                  </div>
-                                      <div class="listcard-2 col ">
-                                      <hr style="margin-top:0px;margin-bottom: 11px;">
-                                      <div class="listcard-body-3" style="position:relative;bottom:13px;">
-                                          <button class="listcard-body-4">
-                                              From 10/01/2019 until 25/02/2019
-                                          </button>
-                                      </div>
-                                  </div>
-                                  </div>
-                              </div>
-                             
-                              <ul class="list-group list-group-flush" style="border: 0px; ">
-                                  <li class="list-group-item">
-                                      <div class="listcardcontainer4" style="display:flex;">
-                                          <div class="" style="width: 100%;">
-                                              <div class="" style="float: left;">
-                                                  <button type="submit" class="form-control rounded-pill btn btn-outline-warning font listapply-btn "
-                                                      style="width:10vw;font-size: 12px;">Apply <i class="bi bi-arrow-right"></i>
-                                                  </button>
-                                              </div>
-                                              <div class="" style="float: right;">
-                                                  <div class="listcardcontainer6">
-                                                      <img class="listimg-1" src="/images/deadline.png" alt="Error">
-                                                      <div class="listcard-body-5">
-                                                          <p class="listcard-body-6">05/10/2022</p>
-                                                          <p class="listcard-body-7">Deadline</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="" style="float: right;">
-                                                  <div class="listcardcontainer5">
-                                                      <img class="listimg-1" src="/images/Seats-left.png" alt="Error">
-                                                      <div class="listcard-body-5">
-                                                          <p class="listcard-body-6">10</p>
-                                                          <p class="listcard-body-7">Seats-left</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
+          @*</div>*@
+      </div>
       </div>
 <!-- ------------
     Pagination
@@ -495,8 +214,30 @@
         </div>
       </div>
     </footer>
-  </div>
+  
 
   
 
  
+    <script>
+        $(document).ready(function () {
+        
+             loadCard();
+        });
+    function loadCard(){
+        $.ajax({
+        type: "GET",
+        url: 'https://localhost:7165/Mission/GridSP',
+        dataType: "html",
+        success: function (data) {
+            $("#grid-items").html("");
+            /*$("#list-switch").html(a);*/
+            $('#grid-items').html(data);    
+        },
+        error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+        }
+    });
+    }
+    </script>

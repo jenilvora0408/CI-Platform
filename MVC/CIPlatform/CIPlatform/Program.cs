@@ -14,9 +14,11 @@ builder.Services.AddScoped<MissionInterface, MissionRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie("Cookies", options =>
 {
-    options.LoginPath = "/Account/Login/true";
+    options.LoginPath = "/Account/Login";
     options.ReturnUrlParameter = "ReturnUrl";
 });
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -32,6 +34,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

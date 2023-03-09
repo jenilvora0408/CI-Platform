@@ -1,5 +1,6 @@
-﻿<header>
-      <div class="home-navbar-1">
+﻿@using Entities.ViewModels
+ @model Navbar_1    
+ <div class="home-navbar-1">
         <div class="home-nav1-left">
           <a href="#">Stories</a>
           <ul class="navbar-nav">
@@ -17,12 +18,12 @@
           </ul>
         </div>
         <div class="home-nav1-right">
-          <img src="/images/user-img.png" alt="" />
+          <img src="@Model.avatar"  alt="" />
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                 style="color: #333333">
-                Evan Donohue
+                @Model.username
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
@@ -34,4 +35,3 @@
         </div>
       </div>
       <div class="home-nav1-end"></div>
-</header>

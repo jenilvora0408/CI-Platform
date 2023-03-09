@@ -11,15 +11,15 @@ namespace Entities.ViewModels
     {
         [Key]
         public long MissionId { get; set; } 
-        public string cityName { get; set; }
-        public string themeName { get; set; }
-        public string  missionTitle { get; set; }
-        public string missionShortDesc { get; set; }
-        public string organizationName { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public string availableSeats { get; set; }
-        public string goalObjective { get; set; }
-        public string missionImage { get; set; }
+        public string? cityName { get; set; }
+        public string? themeName { get; set; }
+        public string?  missionTitle { get; set; }
+        public string? missionShortDesc { get; set; }
+        public string? organizationName { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public string? availableSeats { get; set; }
+        public string? goalObjective { get; set; }
+        public string? missionImage { get; set; }
     }
 }

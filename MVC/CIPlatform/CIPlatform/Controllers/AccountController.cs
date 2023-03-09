@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using Repository.Repository.Interface;
 
 namespace CIPlatform.Controllers
@@ -85,9 +86,11 @@ namespace CIPlatform.Controllers
                 var emailExist = _registerInterface.isEmailAvailable(N.email);
                 if (emailExist)
                 {
+                    
                     var password = _registerInterface.isPasswordAvailable(N.password, N.email);
                     if(password != null)
                     {
+                        HttpContext.Session.SetString("useremail", N.email);
                         return RedirectToAction("MissionListing", "Mission");
                     }
                     else

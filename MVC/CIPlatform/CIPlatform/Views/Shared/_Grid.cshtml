@@ -1,32 +1,34 @@
-﻿<div id="GridView" class="row" style="margin-bottom:3vh;">
-         @*<div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
+﻿@model List<Entities.ViewModels.MissionList>
+
+<div id="GridView" class="row" style="margin-bottom:3vh;">
+   @foreach(var item in Model) {
+         <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
           <div class="card">
             <div class="card-image">
-              <img class="card-img-top" src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+              <img class="card-img-top" src="@item.missionImage"
                 alt="Card image cap" />
               <div class="location">
                 <img class="country-pin" src="/images/pin.png" alt="" />
-                <span class="country">Toronto</span>
+                <span class="country">@item.cityName</span>
               </div>
               <div class="feature">
                 <img src="/images/heart.png" alt="" />
                 <!-- <i class="bi bi-square-fill"></i> -->
                 <img src="/images/user.png" alt="" />
               </div>
-              <p class="filter"><span>Environment</span></p>
+              <p class="filter"><span>@item.themeName</span></p>
             </div>
             <div class="card-body">
               <h5 class="card-title">
-                Grow Trees - On the path to environment sustainability
+                @item.missionTitle
               </h5>
               <div class="text-1">
                 <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Velit asperiores.
+                  @item.missionShortDesc
                 </p>
               </div>
               <div class="ratings">
-                <span>Tree Canada</span>
+                <span>@item.organizationName</span>
                 <div class="rating">
                   <i class="bi bi-star"></i>
                   <i class="bi bi-star"></i>
@@ -38,7 +40,7 @@
             </div>
             <hr />
             <p class="mission-date">
-              <span class="time-span">From 10/01/2019 until 25/02/2019</span>
+              <span class="time-span">From @item.startDate until @item.endDate</span>
             </p>
             <div class="card-body insight">
               <div class="card-body-left">
@@ -46,7 +48,7 @@
                   <img src="/images/Already-volunteered.png" alt="" />
                 </div>
                 <div class="card-body-left-text">
-                  <span class="figure">10</span>
+                  <span class="figure">@item.availableSeats</span>
                   <span class="seats-left">Seats left</span>
                 </div>
               </div>
@@ -55,7 +57,7 @@
                   <img src="/images/deadline.png" alt="" />
                 </div>
                 <div class="card-body-right-text">
-                  <span class="figure">09/01/2019</span>
+                  <span class="figure">@item.endDate</span>
                   <span class="deadline">Deadline</span>
                 </div>
               </div>
@@ -68,6 +70,6 @@
               <br /><br />
             </div>
           </div>
-        </div>*@
-
+        </div>
+        }
         </div>

@@ -6,6 +6,7 @@ using Repository.Repository.Interface;
 using CI_PLATFORM_MAIN_ENTITIES.Models.ViewModels;
 using Entities.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace CIPlatform.Controllers
 {
@@ -27,8 +28,19 @@ namespace CIPlatform.Controllers
         }
 
         public IActionResult MissionListing()
-        {   
-            return View();
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            Navbar_1 missionHomeModel = new Navbar_1();
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+          
+            return View(missionHomeModel);
         }
 
         public IActionResult listCountries()
@@ -62,12 +74,6 @@ namespace CIPlatform.Controllers
             return Json(goalMissions);
         }
 
-        public IActionResult gridSP()
-        {
-            return Json(_ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData"));
-        }
-
-
         public IActionResult MissionListing_List()
         {
             return View();
@@ -77,5 +83,12 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
+        public IActionResult gridSP()
+        {
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData").ToList();
+            return PartialView("_Grid", test);
+        }
+
+
     }
 }

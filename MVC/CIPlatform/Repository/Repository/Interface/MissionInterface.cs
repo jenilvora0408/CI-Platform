@@ -16,5 +16,6 @@ namespace Repository.Repository.Interface
         public List<Skill> GetSkills();
         public List<Mission> GetMissions();
         public List<GoalMission> GetGoalMissions();
+        public User findUser(string email);
     }
 }
