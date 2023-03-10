@@ -114,14 +114,14 @@
     -------------------------- -->
     <div class="home-chips">
       <div class="chips d-flex flex-wrap" style="gap:1vw;">
-        <div class="chip">
+       @* <div class="chip">
           Tree Plantation
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
         </div>
         <div class="chip">
           Canada
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
+        </div>*@
       </div>
       <a class="close-chips" href="#">Clear All</a>
     </div>
@@ -172,9 +172,8 @@
     <div class="listmain-2 mx-auto">
       <div class="container-fluid d-flex align-items-center justify-content-center">
           <div id="mission-list" class="mt-5 p-0">
-          <partial name="_List"/>
+          @*<partial name="_List"/>*@
           </div>
-          @*</div>*@
       </div>
       </div>
 <!-- ------------
@@ -221,17 +220,38 @@
  
     <script>
         $(document).ready(function () {
-        
              loadCard();
+             loadList();
         });
+    
     function loadCard(){
+        var countryIds = [];
+        var cityIds  = [];
+        var themeIds  = [];
+        var skillIds  = [];
+        $(".chip").each(function(){
+            if($(this).is(':visible')){
+                if($(this).attr('data-filter-type')=='country')
+                    countryIds.push($(this).attr('data-id'))
+                else if($(this).attr('data-filter-type')=='city')   
+                    cityIds.push($(this).attr('data-id'))
+                else if($(this).attr('data-filter-type')=='theme')
+                    themeIds.push($(this).attr('data-id'))
+                else if($(this).attr('data-filter-type')=='skill')
+                    skillIds.push($(this).attr('data-id'))
+            }
+            
+        })
+        debugger
         $.ajax({
-        type: "GET",
-        url: 'https://localhost:7165/Mission/GridSP',
+        type: "POST",
+        url: "@Url.Action("gridSP","Mission")",
         dataType: "html",
+        cache: false,
+        data:{country:countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString()},
         success: function (data) {
+            //console.warn(data);
             $("#grid-items").html("");
-            /*$("#list-switch").html(a);*/
             $('#grid-items').html(data);    
         },
         error: function (xhr, status, error) {
@@ -239,5 +259,19 @@
             console.log(error);
         }
     });
+    }
+    function loadList(){
+        $.ajax({
+            type:"GET",
+            url: "https://localhost:7165/Mission/listSP",
+            dataType: "html",
+            success: function(data){
+                $("#mission-list").html("");
+                $("#mission-list").html(data);
+            },
+            error: function(xhr, status, error){
+                console.log(error);
+            }
+        })
     }
     </script>

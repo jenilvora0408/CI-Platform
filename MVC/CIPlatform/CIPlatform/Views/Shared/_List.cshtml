@@ -1,14 +1,17 @@
-﻿<div class="row" id="list-switch" style="width: 80vw">
-    @*<div id="list-card-parent" class="col-12 d-flex p-0 mb-4 border shadow">
-        <div class="power">
-        @*<div class="list-image-part position-relative">
-            <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="list-img"
+﻿@model List<Entities.ViewModels.MissionList>
+
+<div class="row" id="list-switch" style="width: 80vw">
+    @foreach(var list in Model){
+    <div id="list-card-parent" class="col-12 d-flex p-0 mb-4 border shadow">
+        
+        <div class="list-image-part position-relative">
+            <img src="@list.missionImage" class="list-img"
                 alt="" />
             <h5 class="list-card-theme-title bg-white rounded-5 p-2">Environment</h5>
             <div id="list-card-image-content" class="h-100 d-flex flex-column position-absolute p-2">
                 <div id="list-location-image" class="list-img-content p-2 rounded-5" style="border-radius:23px">
                     <img src="~/images/pin.png" alt="">
-                    Torrento
+                    @list.cityName
                 </div>
                 <div class="d-flex flex-column align-items-end" style="position:absolute; top:100px; right: 15px;">
                     <div class="img-heart list-img-content p-2 rounded-5 m-1" style="border-radius:23px">
@@ -21,10 +24,9 @@
             </div>
         </div>
         <div class="list-content-part d-flex flex-column justify-content-around p-2">
-            <h5 class="card-title fs-3">Grow Trees-On the path to environment sustainability</h5>
+            <h5 class="card-title fs-3">@list.missionTitle</h5>
             <p class="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam nulla blanditiis laboriosam inventore
-                ...
+                @list.missionShortDesc
             </p>
             <div id="list-info-content" class="d-flex justify-content-between">
                 <div>
@@ -48,7 +50,7 @@
                 <div>
                     <div id="list-mission-duration-div" >
                         <h5 id="list-card-time-duration-title" class="border bg-white rounded-5 m-auto fs-6 p-2" style="border-radius:23px">From
-                            10/01/2019 until 25/02/2019
+                            @list.startDate until @list.endDate
                         </h5>
                     </div>
                     <div id="list-seats-info-card"
@@ -56,14 +58,14 @@
                         <div id="remain-seats-cards" class=" w-50 d-flex align-items-center p-1 px-lg-4 px-md-1">
                             <img id="list-seats-left-image" src="~/images/Seats-left.png" alt="">
                             <div class="d-flex flex-column p-2 ">
-                                <p id="count" class="m-0 p-0 fs-5">10</p>
+                                <p id="count" class="m-0 p-0 fs-5">@list.availableSeats</p>
                                 <p id="list-seats-left-text" class="m-0 p-0">Seats left</p>
                             </div>
                         </div>
                         <div id="list-deadline-info-card" class=" w-40 d-flex align-items-center p-1 px-lg-4 px-md-1">
                             <img id="list-deadline-image" src="~/images/deadline.png" alt="">
                             <div class="d-flex flex-column p-2 ">
-                                <p id="list-deadline-date" class="m-0 p-0 fs-5">19/11/2022</p>
+                                <p id="list-deadline-date" class="m-0 p-0 fs-5">@list.endDate</p>
                                 <p id="list-deadline-text" class="m-0 p-0">Deadline</p>
                             </div>
                         </div>
@@ -71,6 +73,7 @@
                 </div>
             </div>
         </div>
-        </div>
-    </div>*@
+        
+    </div>
+    }
 </div>

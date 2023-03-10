@@ -1,0 +1,54 @@
+USE [CI_Platform]
+GO
+/****** Object:  StoredProcedure [dbo].[GetMissionData]    Script Date: 10-03-2023 14:46:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[GetMissionData]
+--@search nvarchar(100),
+@searchCountry varchar(50) = null,
+@searchCity varchar(50) = null,
+@searchTheme varchar(50) = null
+AS
+BEGIN
+    SELECT 
+		mission.country_id as countryID,
+		mission.mission_id as missionID,
+        city.name as cityName, 
+        mission_theme.title as themeName,	
+        mission.title as missionTitle, 
+        mission.short_description as missionShortDesc, 
+        mission.organization_name as organizationName, 
+        mission.start_date as startDate, 
+        mission.end_date as endDate, 
+        mission.availability as availableSeats, 
+        goal_mission.goal_objective_text as goalObjective, 
+        mission_media.media_name as missionImage
+    FROM 
+        mission 
+        left JOIN goal_mission ON mission.mission_id = goal_mission.mission_id 
+        left JOIN mission_theme ON mission.mission_id = mission_theme.mission_theme_id 
+        left JOIN city ON mission.mission_id = city.city_id 
+        inner JOIN mission_media ON mission.mission_id = mission_media.mission_id
+		
+	where
+	--(@search is null or
+	--mission_theme.title like '%' + @search + '%' OR
+	--mission.short_description like '%' + @search + '%')
+	
+(
+ @searchCountry IS NULL OR
+ mission.country_id in (select value from STRING_SPLIT(@searchCountry, ','))
+)
+and
+(
+@searchCity is null or
+mission.city_id in (select value from STRING_SPLIT(@searchCity, ','))
+)
+and
+(
+@searchTheme is null or
+mission_theme.mission_theme_id in (select value from STRING_SPLIT(@searchTheme, ','))
+)
+END

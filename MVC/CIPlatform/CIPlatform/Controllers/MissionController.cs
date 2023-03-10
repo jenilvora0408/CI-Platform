@@ -83,12 +83,17 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
-        public IActionResult gridSP()
+        [HttpPost]
+        public IActionResult gridSP(Utilities utilities)
         {
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData").ToList();
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}").ToList();
             return PartialView("_Grid", test);
         }
-
+        public IActionResult listSP()
+        {
+            List<MissionList> listing = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData").ToList();
+            return PartialView("_List", listing);
+        }
 
     }
 }
