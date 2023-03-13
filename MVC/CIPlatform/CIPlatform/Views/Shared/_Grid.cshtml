@@ -30,17 +30,31 @@
               <div class="ratings">
                 <span>@item.organizationName</span>
                 <div class="rating">
+                  @*<i class="bi bi-star"></i>
                   <i class="bi bi-star"></i>
                   <i class="bi bi-star"></i>
                   <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
+                  <i class="bi bi-star"></i>*@
+                    <div title="Rating">
+                    @if (true)
+                    {
+                        for (var i = 0; i < (@item.Rating); i++)
+                        {
+                            <i class="fa fa-star rating-color checked"></i>
+                        }
+                        for (var i = 0; i < 5 - (@item.Rating); i++)
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                    }
                 </div>
+                </div>
+              
               </div>
             </div>
             <hr />
             <p class="mission-date">
-              <span class="time-span">From @item.startDate until @item.endDate</span>
+              <span class="time-span">From @item.startDate?.ToString("dd-mm-yyyy") until @item.endDate?.ToString("dd-mm-yyyy")</span>
             </p>
             <div class="card-body insight">
               <div class="card-body-left">
@@ -57,7 +71,7 @@
                   <img src="/images/deadline.png" alt="" />
                 </div>
                 <div class="card-body-right-text">
-                  <span class="figure">@item.endDate</span>
+                  <span class="figure">@item.endDate?.ToString("dd-mm-yyyy")</span>
                   <span class="deadline">Deadline</span>
                 </div>
               </div>
@@ -73,3 +87,5 @@
         </div>
         }
         </div>
+
+        

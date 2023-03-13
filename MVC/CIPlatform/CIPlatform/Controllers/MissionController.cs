@@ -7,6 +7,9 @@ using CI_PLATFORM_MAIN_ENTITIES.Models.ViewModels;
 using Entities.Data;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using Dapper;
 
 namespace CIPlatform.Controllers
 {
@@ -86,7 +89,7 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult gridSP(Utilities utilities)
         {
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}").ToList();
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}").ToList();
             return PartialView("_Grid", test);
         }
         public IActionResult listSP()
@@ -94,6 +97,7 @@ namespace CIPlatform.Controllers
             List<MissionList> listing = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData").ToList();
             return PartialView("_List", listing);
         }
+        
 
     }
 }

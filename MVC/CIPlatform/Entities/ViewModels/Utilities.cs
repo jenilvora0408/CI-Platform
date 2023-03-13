@@ -13,13 +13,7 @@ namespace Entities.ViewModels
         public string city { get; set; }
         public string theme { get; set; }
         public string skill { get; set; }
-        public int pageStart { get; set; }
-        public int pageLength { get; set; }
-
-
-        //public string? newest { get; set; }
-        //public string? oldest { get; set; }
-        //public int? lowestAvailableSeats { get; set; }
-        //public int? highestAvailableSeats { get; set; }
+        public string sortBy { get; set; }
+        public int? pageNumber { get; set; }
     }
 }

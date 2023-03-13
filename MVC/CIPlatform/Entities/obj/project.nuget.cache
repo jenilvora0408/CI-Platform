@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mJQhf2KsNdXqYClcTKqivPe7iPKx04pUlRr2Rc5zcl3OpyPcoiUBFXFqmjvEsTNNcWkHxpoztmvWjczj92y3ag==",
+  "dgSpecHash": "+l1Tmp0UFeMviYrT3+2NktWsW+otFdo1EJrs8aaySFImlqNU7MYmWL2h0WxmYvftYr6wrP6dKBxHW4HT1KsONA==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tatva\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

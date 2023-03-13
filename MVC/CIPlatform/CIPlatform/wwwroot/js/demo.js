@@ -54,7 +54,7 @@ $(document).ready(function () {
             /*debugger*/
             var a = "";
             $.each(d, function (i, country) {
-                console.warn(country);
+                /*console.warn(country);*/
                 a += '<li class="countryItem" value="'+country.countryId+'"><a data-filter-type="country" class= "dropdown-item" href = "#" >' + country.name + '</a></li>';
             });
             ddlCountry.append(a);
@@ -103,7 +103,7 @@ $(document).ready(function () {
         success: function (d) {
             var c = "";
             $.each(d, function (i, theme) {
-                console.log(theme.missionThemeId);
+                /*console.log(theme.missionThemeId);*/
                 c += '<li class="themeItem" value="' + theme.missionThemeId +'"><a data-filter-type="theme" class= "dropdown-item" href = "#" >' + theme.title + '</a></li>';
             });
             ddltheme.append(c);
@@ -145,34 +145,34 @@ $(document).ready(function () {
 });
     
   
-////---Convet-Grid-List---
-//localStorage.setItem("lastVisible", "grid");
-//var windowWidth = $(window).width();
-//// Check if the window width is less than 1440px
-//if (windowWidth < 1400) {
-//    // Hide the list view and show the gird view
-//    $('#mission-list').hide();
-//    $('.grid-view').show();
-//}
-//$(window).resize(function (e) {
-//    // Get the new window width
-//    var newWindowWidth = $(window).width();
+//---Convet-Grid-List---
+localStorage.setItem("lastVisible", "grid");
+var windowWidth = $(window).width();
+// Check if the window width is less than 1440px
+if (windowWidth < 1400) {
+    // Hide the list view and show the gird view
+    $('#mission-list').hide();
+    $('.grid-view').show();
+}
+$(window).resize(function (e) {
+    // Get the new window width
+    var newWindowWidth = $(window).width();
 
-//    // Check if the window width is less than 1440px
-//    if (newWindowWidth < 1400) {
-//        // Hide the list view and show the gird view
-//        $('#mission-list').hide();
-//        $('.grid-view').show();
-//        $(".switch-view").hide();
-//        $("#select-list-style").hide();
-//    }
-//    else {
-//        $(".switch-view").show();
-//        $("#select-list-style").show();
-//        // Show the list view and hide the gird view
-//        if (localStorage.getItem("lastVisible") == "list") {
-//            $('.grid-view').hide();
-//            $('#mission-list').show();
-//        }
-//    }
-//});
+    // Check if the window width is less than 1440px
+    if (newWindowWidth < 1400) {
+        // Hide the list view and show the gird view
+        $('#mission-list').hide();
+        $('.grid-view').show();
+        $(".switch-view").hide();
+        $("#select-list-style").hide();
+    }
+    else {
+        $(".switch-view").show();
+        $("#select-list-style").show();
+        // Show the list view and hide the gird view
+        if (localStorage.getItem("lastVisible") == "list") {
+            $('.grid-view').hide();
+            $('#mission-list').show();
+        }
+    }
+});

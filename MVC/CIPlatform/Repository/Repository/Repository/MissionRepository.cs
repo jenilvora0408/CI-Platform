@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using Dapper;
 
 namespace Repository.Repository.Repository
 {
@@ -52,6 +55,6 @@ namespace Repository.Repository.Repository
             List<GoalMission> goalMissions = _ciPlatformContext.GoalMissions.ToList();
             return goalMissions;
         }
-
+        
     }
 }
