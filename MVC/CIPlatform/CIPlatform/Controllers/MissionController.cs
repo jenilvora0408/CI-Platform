@@ -11,6 +11,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using Dapper;
 
+
 namespace CIPlatform.Controllers
 {
     public class MissionController : Controller
@@ -89,15 +90,21 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult gridSP(Utilities utilities)
         {
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}").ToList();
-            return PartialView("_Grid", test);
+            // make explicit SQL Parameter
+            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            Pagination pagination = new Pagination();
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out").ToList();
+            pagination.missions = test;
+            pagination.pageSize = 9;
+            pagination.pageCount = long.Parse(output.Value.ToString());
+            pagination.activePage = utilities.pageNumber;
+            return PartialView("_Grid", pagination);
         }
-        public IActionResult listSP()
+        public IActionResult listSP(Utilities utilities)
         {
-            List<MissionList> listing = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData").ToList();
+            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            List<MissionList> listing = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, {output}out").ToList();
             return PartialView("_List", listing);
         }
-        
-
     }
 }
