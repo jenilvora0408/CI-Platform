@@ -43,6 +43,7 @@ namespace CIPlatform.Controllers
 
             missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
             missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
           
             return View(missionHomeModel);
         }
@@ -92,19 +93,59 @@ namespace CIPlatform.Controllers
         {
             // make explicit SQL Parameter
             var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
             Pagination pagination = new Pagination();
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out").ToList();
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out").ToList();
             pagination.missions = test;
             pagination.pageSize = 9;
             pagination.pageCount = long.Parse(output.Value.ToString());
+            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
             pagination.activePage = utilities.pageNumber;
             return PartialView("_Grid", pagination);
         }
+        [HttpPost]
         public IActionResult listSP(Utilities utilities)
         {
             var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            List<MissionList> listing = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, {output}out").ToList();
-            return PartialView("_List", listing);
+            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            Pagination pagination = new Pagination();
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out").ToList();
+            pagination.missions = test;
+            pagination.pageSize = 9;
+            pagination.pageCount = long.Parse(output.Value.ToString());
+            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
+            pagination.activePage = utilities.pageNumber;
+            return PartialView("_List", pagination);
         }
+        public void addFavouriteMissions(string userId, string missionId)
+        {
+            FavouriteMission favouriteMissionObj = new FavouriteMission();
+            favouriteMissionObj.UserId = Int64.Parse(userId);
+            favouriteMissionObj.MissionId = Int64.Parse(missionId);
+            _missionInterface.addFavouriteMission(favouriteMissionObj);
+        }
+        public void removeFavouriteMissions(string userId, string missionId)
+        {
+            FavouriteMission favouriteMissionObj = new FavouriteMission();
+            favouriteMissionObj.UserId = Int64.Parse(userId);
+            favouriteMissionObj.MissionId = Int64.Parse(missionId);
+            FavouriteMission favouriteMission = _missionInterface.getFavouriteMission(favouriteMissionObj);
+            _missionInterface.removeFavouriteMission(favouriteMission);
+        }
+        public IActionResult getFavouriteMissionsOfUser(int userid)
+        {
+            IEnumerable<FavouriteMission> favouriteMissions = _missionInterface.getFavouriteMissionsOfUser(userid);
+            string arr = "";
+            foreach (FavouriteMission favouriteMission in favouriteMissions)
+            {
+                arr += favouriteMission.MissionId + ",";
+            }
+            return Json(new { data = arr });
+        }
+        //public IActionResult getCount()
+        //{
+        //    var recordCount = 0;
+            
+        //}
     }
 }

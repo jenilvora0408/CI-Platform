@@ -2,6 +2,7 @@
     $(".home-chips .chip").remove();
     $(this).hide();
     loadCard();
+    loadList();
 });
 
 // $(".close-chips").on("click", function(e){
@@ -20,6 +21,7 @@ function showChip() {
 
         $(".closebtn").on("click", function (e) {
             loadCard();
+            loadList();
         })
     });
 }
@@ -37,8 +39,8 @@ $("#select-grid-style").on("click", function (e) {
     $("#mission-list").hide();
     $(".grid-view").show();
     localStorage.setItem("lastVisible", "grid");
-})
 
+})
 
     /*AJAX Call for Countries - Dropdown*/
 
@@ -60,6 +62,7 @@ $(document).ready(function () {
             ddlCountry.append(a);
             $(".countryItem").on("click", function (e) {
                 loadCard();
+                loadList();
             })
         },
         error: function () {
@@ -85,6 +88,7 @@ $(document).ready(function () {
             ddlCity.append(b);
             $(".cityItem").on("click", function (e) {
                 loadCard();
+                loadList();
             })
         },
         error: function () {
@@ -109,6 +113,7 @@ $(document).ready(function () {
             ddltheme.append(c);
             $(".themeItem").on("click", function (e) {
                 loadCard();
+                loadList();
             })
         },
         error: function () {
@@ -132,6 +137,7 @@ $(document).ready(function () {
             ddlSkill.append(skills);
             $(".skillItem").on("click", function (e) {
                 loadCard();
+                loadList();
             })
         },
         error: function () {
@@ -145,34 +151,35 @@ $(document).ready(function () {
 });
     
   
-//---Convet-Grid-List---
-localStorage.setItem("lastVisible", "grid");
-var windowWidth = $(window).width();
-// Check if the window width is less than 1440px
-if (windowWidth < 1400) {
-    // Hide the list view and show the gird view
-    $('#mission-list').hide();
-    $('.grid-view').show();
-}
-$(window).resize(function (e) {
-    // Get the new window width
-    var newWindowWidth = $(window).width();
+////---Convet-Grid-List---
+//localStorage.setItem("lastVisible", "grid");
+//var windowWidth = $(window).width();
+//// Check if the window width is less than 1440px
+//if (windowWidth < 1400) {
+//    // Hide the list view and show the gird view
+//    $('#mission-list').hide();
+//    $('.grid-view').show();
+//}
+//$(window).resize(function (e) {
+//    // Get the new window width
+//    var newWindowWidth = $(window).width();
 
-    // Check if the window width is less than 1440px
-    if (newWindowWidth < 1400) {
-        // Hide the list view and show the gird view
-        $('#mission-list').hide();
-        $('.grid-view').show();
-        $(".switch-view").hide();
-        $("#select-list-style").hide();
-    }
-    else {
-        $(".switch-view").show();
-        $("#select-list-style").show();
-        // Show the list view and hide the gird view
-        if (localStorage.getItem("lastVisible") == "list") {
-            $('.grid-view').hide();
-            $('#mission-list').show();
-        }
-    }
-});
+//    // Check if the window width is less than 1440px
+//    if (newWindowWidth < 1400) {
+//        // Hide the list view and show the gird view
+//        $('#mission-list').hide();
+//        $('.grid-view').show();
+//        $(".switch-view").hide();
+//        $("#select-list-style").hide();
+//    }
+//    else {
+//        $(".switch-view").show();
+//        $("#select-list-style").show();
+//        // Show the list view and hide the gird view
+//        if (localStorage.getItem("lastVisible") == "list") {
+//            $('.grid-view').hide();
+//            $('#mission-list').show();
+//        }
+//    }
+//});
+

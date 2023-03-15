@@ -1,6 +1,44 @@
 ﻿@using Entities.ViewModels
 @*@model List<Entities.ViewModels.MissionList>*@
     @model Pagination
+     @*<div class="home-heading">
+        <div class="heading-left">
+            <p>explore @Model.totalMissionCount<span> missions</span></p>
+        </div>
+        <div class="heading-right">
+            <div class="selections">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           style="color: #333333">
+                            sort by
+                        </a>
+                        <ul class="dropdown-menu" id="sort-menu">
+                            <li><a class="dropdown-item" >newest</a></li>
+                            <li><a class="dropdown-item" >oldest</a></li>
+                            <li><a class="dropdown-item" >lowest seats</a></li>
+                            <li><a class="dropdown-item" >highest seats</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="images">
+                <div class="circle-bg-img switch-view">
+                    <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
+    </div>
+                <a style="cursor: pointer;" id="select-list-style"><img src="/images/list.png" alt="" /></a>
+            </div>
+        </div>
+    </div>*@
+
+@{
+    int missionTotal =(int) Model.totalMissionCount;
+}
+@if (missionTotal==0)
+{
+        <div><p style="font-: 1.5rem; color: gray; letter-spacing:2px">No Mission Found</p></div>
+    
+}
 
 <div id="GridView" class="row" style="margin-bottom:3vh;">
    @foreach(var item in Model.missions) {
@@ -13,8 +51,9 @@
                 <img class="country-pin" src="/images/pin.png" alt="" />
                 <span class="country">@item.cityName</span>
               </div>
-              <div class="feature">
-                <img src="/images/heart.png" alt="" />
+              <div class="feature favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId">
+                <img id="heart" src="/images/heart.png" alt="" />
+
                 <!-- <i class="bi bi-square-fill"></i> -->
                 <img src="/images/user.png" alt="" />
               </div>
@@ -90,6 +129,10 @@
         }
         </div>
 
+
+
+
+
         <div class="Pagination my-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center" id="pagination">
@@ -124,6 +167,8 @@
     </div>
 
     <script>
+        var demo=@Model.totalMissionCount;
+        $("#totalMissionCount").text(demo);
         console.log("in grid");
         loadPagination();
         function loadPagination(){
@@ -135,4 +180,11 @@
                      loadCard(null, paging);
                  })
         }
+
+        
+
+
+
     </script>
+
+    @*<script src="~/js/demo.js" asp-append-version="true"></script>*@

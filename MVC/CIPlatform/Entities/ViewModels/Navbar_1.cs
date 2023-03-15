@@ -8,6 +8,7 @@ namespace Entities.ViewModels
 {
     public class Navbar_1
     {
+        public long userId { get; set; }
         public string username { get; set; }
         public string avatar { get; set; }
     }

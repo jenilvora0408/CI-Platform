@@ -17,6 +17,9 @@ namespace Repository.Repository.Interface
         public List<Mission> GetMissions();
         public List<GoalMission> GetGoalMissions();
         public User findUser(string email);
-        
+        public void addFavouriteMission(FavouriteMission favouriteMissionObj);
+        public void removeFavouriteMission(FavouriteMission favouriteMissionObj);
+        public FavouriteMission getFavouriteMission(FavouriteMission favouriteMissionObj);
+        public IEnumerable<FavouriteMission> getFavouriteMissionsOfUser(int userid);
     }
 }

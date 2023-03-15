@@ -55,6 +55,26 @@ namespace Repository.Repository.Repository
             List<GoalMission> goalMissions = _ciPlatformContext.GoalMissions.ToList();
             return goalMissions;
         }
-        
+        public void addFavouriteMission(FavouriteMission favouriteMissionObj)
+        {
+            _ciPlatformContext.FavouriteMissions.Add(favouriteMissionObj);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public void removeFavouriteMission(FavouriteMission favouriteMissionObj)
+        {
+            _ciPlatformContext.FavouriteMissions.Remove(favouriteMissionObj);
+            _ciPlatformContext.SaveChanges();
+        }
+        public FavouriteMission getFavouriteMission(FavouriteMission favouriteMissionObj)
+        {
+            FavouriteMission favouriteMission = _ciPlatformContext.FavouriteMissions.Where(u => u.UserId == favouriteMissionObj.UserId && u.MissionId == favouriteMissionObj.MissionId).First();
+
+            return favouriteMission;
+        }
+        public IEnumerable<FavouriteMission> getFavouriteMissionsOfUser(int userid)
+        {
+            return _ciPlatformContext.FavouriteMissions.Where(u => u.UserId == userid);
+        }
     }
 }

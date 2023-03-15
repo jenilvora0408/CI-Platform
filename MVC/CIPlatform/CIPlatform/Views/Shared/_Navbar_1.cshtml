@@ -21,7 +21,7 @@
           <img src="@Model.avatar"  alt="" />
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              <a id="@Model.userId" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                 style="color: #333333">
                 @Model.username
               </a>
@@ -35,3 +35,4 @@
         </div>
       </div>
       <div class="home-nav1-end"></div>
+
