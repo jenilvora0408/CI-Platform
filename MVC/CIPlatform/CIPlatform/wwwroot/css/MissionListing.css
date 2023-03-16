@@ -425,8 +425,8 @@
 }
 
     .grid-view .grid-items .grid-item .card {
-        box-shadow: 10px 10px 5px #aaaaaa;
-        border: none;
+        /*box-shadow: 10px 10px 5px #aaaaaa;*/
+        border: 2px solid #0000000F;
     }
 
     .grid-view .grid-items .grid-item .card-image {
@@ -535,7 +535,7 @@
         .grid-view .grid-items .grid-item .card-body .card-body-left .card-body-left-img img,
         .grid-view .grid-items .grid-item .card-body .card-body-right .card-body-right-img img {
             height: 3vh;
-            border: 2px solid gray;
+            /*border: 2px solid gray;*/
             border-radius: 50%;
         }
 

@@ -1,51 +1,29 @@
 ﻿@using Entities.ViewModels
-@*@model List<Entities.ViewModels.MissionList>*@
     @model Pagination
-     @*<div class="home-heading">
-        <div class="heading-left">
-            <p>explore @Model.totalMissionCount<span> missions</span></p>
-        </div>
-        <div class="heading-right">
-            <div class="selections">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                           style="color: #333333">
-                            sort by
-                        </a>
-                        <ul class="dropdown-menu" id="sort-menu">
-                            <li><a class="dropdown-item" >newest</a></li>
-                            <li><a class="dropdown-item" >oldest</a></li>
-                            <li><a class="dropdown-item" >lowest seats</a></li>
-                            <li><a class="dropdown-item" >highest seats</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="images">
-                <div class="circle-bg-img switch-view">
-                    <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
-    </div>
-                <a style="cursor: pointer;" id="select-list-style"><img src="/images/list.png" alt="" /></a>
-            </div>
-        </div>
-    </div>*@
+   
 
 @{
     int missionTotal =(int) Model.totalMissionCount;
 }
 @if (missionTotal==0)
 {
-        <div><p style="font-: 1.5rem; color: gray; letter-spacing:2px">No Mission Found</p></div>
+        <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Mission Found</p></div>
     
 }
 
+
+
 <div id="GridView" class="row" style="margin-bottom:3vh;">
    @foreach(var item in Model.missions) {
+       
          <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
           <div class="card">
             <div class="card-image">
-              <img class="card-img-top" src="@item.missionImage"
+                    @if(item.endDate == null && item.goalValue == 100)
+                    {
+                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
+                    }
+                    <img class="card-img-top" src="@item.missionImage"
                 alt="Card image cap" />
               <div class="location">
                 <img class="country-pin" src="/images/pin.png" alt="" />
@@ -94,27 +72,74 @@
               </div>
             </div>
             <hr />
-            <p class="mission-date">
-              <span class="time-span">From @item.startDate?.ToString("dd-mm-yyyy") until @item.endDate?.ToString("dd-mm-yyyy")</span>
-            </p>
+            @if (item.startDate == null)
+            {
+                <p class="mission-date">
+                    <span class="time-span">@item.goalObjective</span>
+                </p>
+            }
+            else
+            {
+                <p class="mission-date">
+                    <span class="time-span">@item.startDate?.ToString("dd-mm-yyyy") until @item.endDate?.ToString("dd-mm-yyyy")</span>
+                </p>
+            }
+
             <div class="card-body insight">
               <div class="card-body-left">
-                <div class="card-body-left-img">
-                  <img src="/images/Already-volunteered.png" alt="" />
+                
+                        @if(item.availableSeats > 0)
+                        {
+                            <div class="card-body-left-img">
+                  <img src="/images/Seats-left.png" alt="" />
                 </div>
-                <div class="card-body-left-text">
+                            <div class="card-body-left-text">
                   <span class="figure">@item.availableSeats</span>
                   <span class="seats-left">Seats left</span>
-                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>No Seats Left</div>
+                        }
+
               </div>
               <div class="card-body-right">
                 <div class="card-body-right-img">
-                  <img src="/images/deadline.png" alt="" />
+                            @if(item.endDate == null)
+                            {
+                                <img src="/images/achieved.png" alt="" />
+                            }
+                            else
+                            {
+                                <img src="/images/deadline.png" alt="" />
+                            }
+                            
                 </div>
+               @* <div class="card-body-right-text">
+                  <span class="figure">@item.endDate?.ToString("dd-mm-yyyy")</span>
+                  <span class="deadline">Deadline</span>
+                </div>*@
+                @if (item.endDate == null)
+            {
+             
+                                var progress = @item.goalValue;
+                       
+                <div class="card-body-right-text">
+                <div class="progress" style="width: 7vw; height: 13px;  ">
+                  <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@item.goalValue" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <span class="seats-left">@item.goalValue achieved</span>
+              </div>
+            }
+            else
+            {
                 <div class="card-body-right-text">
                   <span class="figure">@item.endDate?.ToString("dd-mm-yyyy")</span>
                   <span class="deadline">Deadline</span>
                 </div>
+            }
               </div>
             </div>
             <hr />
@@ -147,7 +172,7 @@
                  @for (int i = 1; i <= Model.pageCount; i++)
             {
                 <li class="page-item ">
-                    <a class="page-link" href="">@i</a>
+                    <a id="pageUp" class="page-link" href='#top'>@i</a>
                 </li>
             }
             @*
@@ -178,13 +203,16 @@
                      e.preventDefault();
                      paging = $(this).text();
                      loadCard(null, paging);
+                     loadList(null,paging);
                  })
         }
 
         
+        $(".page-item").on("click", function(e){
+             $("html, body"). animate({ scrollTop: 0 }, "slow"); return false; 
+        })
 
-
-
+        
     </script>
 
     @*<script src="~/js/demo.js" asp-append-version="true"></script>*@

@@ -8,6 +8,7 @@ using Entities.Data;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Data;
 using Dapper;
 
@@ -48,6 +49,22 @@ namespace CIPlatform.Controllers
             return View(missionHomeModel);
         }
 
+        public IActionResult MissionVolunteering()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            Navbar_1 navbar1 = new Navbar_1();
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+
+            navbar1.username = userObj.FirstName + " " + userObj.LastName;
+            navbar1.avatar = userObj.Avatar;
+            navbar1.userId = userObj.UserId;
+            return View(navbar1);
+        }
+
         public IActionResult listCountries()
         {
             IEnumerable<Country> countries = _missionInterface.GetCountries();
@@ -84,10 +101,8 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        public IActionResult MissionVolunteering()
-        {
-            return View();
-        }
+
+
         [HttpPost]
         public IActionResult gridSP(Utilities utilities)
         {
@@ -103,6 +118,7 @@ namespace CIPlatform.Controllers
             pagination.activePage = utilities.pageNumber;
             return PartialView("_Grid", pagination);
         }
+
         [HttpPost]
         public IActionResult listSP(Utilities utilities)
         {
@@ -117,6 +133,8 @@ namespace CIPlatform.Controllers
             pagination.activePage = utilities.pageNumber;
             return PartialView("_List", pagination);
         }
+
+
         public void addFavouriteMissions(string userId, string missionId)
         {
             FavouriteMission favouriteMissionObj = new FavouriteMission();
@@ -142,10 +160,5 @@ namespace CIPlatform.Controllers
             }
             return Json(new { data = arr });
         }
-        //public IActionResult getCount()
-        //{
-        //    var recordCount = 0;
-            
-        //}
     }
 }

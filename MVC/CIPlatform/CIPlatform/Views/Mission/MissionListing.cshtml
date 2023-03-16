@@ -96,7 +96,7 @@
     -------------------------- -->
    <div class="home-heading">
         <div class="heading-left">
-            <p>explore <span id="totalMissionCount"></span> missions</p>
+            <p>Explore <span id="totalMissionCount"></span> missions</p>
         </div>
         <div class="heading-right">
             <div class="selections">
@@ -190,6 +190,9 @@
                         skillIds.push($(this).attr('data-id'))
                 }
             })
+            if(!sortColumn) {
+sortColumn = localStorage.getItem("sortColumn");
+}
 
             $.ajax({
             type: "POST",
@@ -236,6 +239,9 @@
                         skillIds.push($(this).attr('data-id'))
                 }
             })
+            if(!sortColumn) {
+sortColumn = localStorage.getItem("sortColumn");
+}
             $.ajax({
                 type:"POST",
                 url: "@Url.Action("listSP","Mission")",
@@ -265,10 +271,13 @@
                  var sortColumn = "";
                  $("#sort-menu li a").on("click", function(e){
                       sortColumn = $(this).text();
+                      localStorage.setItem("sortColumn",sortColumn);
                       loadCard(sortColumn, 1);
                       loadList(sortColumn, 1);
                  })
-
+                 $(window).on('beforeunload', function () {
+                     localStorage.removeItem("sortColumn");
+                });
               
             });
 

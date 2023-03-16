@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\MissionVol\" />
     <Folder Include="wwwroot\Assets\" />
   </ItemGroup>
 

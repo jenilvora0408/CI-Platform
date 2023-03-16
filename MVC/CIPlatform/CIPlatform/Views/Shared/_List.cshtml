@@ -35,7 +35,7 @@
 }
 @if (missionTotal==0)
 {
-        <div class="noMission"><p style="font-: 2rem; color: gray; letter-spacing:2px">No Mission Found</p></div>
+        <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center">No Mission Found</p></div>
     
 }
 <div class="row" id="list-switch" style="width: 80vw">
@@ -45,6 +45,10 @@
         <div class="list-image-part position-relative">
             <img src="@list.missionImage" class="list-img"
                 alt="" />
+                @if(list.endDate == null && list.goalValue == 100)
+                    {
+                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
+                    }
             <h5 class="list-card-theme-title bg-white rounded-5 p-2">Environment</h5>
             <div id="list-card-image-content" class="h-100 d-flex flex-column position-absolute p-2">
                 <div id="list-location-image" class="list-img-content p-2 rounded-5" style="border-radius:23px">
@@ -71,11 +75,21 @@
                     <div id="list-star-content" class="d-flex align-items-center justify-content-between">
                         <p class="my-auto">Tree Canada</p>
                         <div class="d-flex align-items-center">
-                            <img src="~/images/selected-star.png" alt="">
-                            <img src="~/images/selected-star.png" alt="">
-                            <img src="~/images/selected-star.png" alt="">
-                            <img src="~/images/star.png" alt="">
-                            <img src="~/images/star.png" alt="">
+                            <div class="rating">
+                            <div title="Rating">
+                            @if (true)
+                            {
+                                for (var i = 0; i < (@list.Rating); i++)
+                                {
+                                    <i class="fa fa-star rating-color checked"></i>
+                                }
+                                for (var i = 0; i < 5 - (@list.Rating); i++)
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+                            }
+                            </div>
+                            </div>
                         </div>
                     </div>
                     <div class="list-card-button-apply m-1 p-1 w-100 ">
@@ -87,25 +101,69 @@
                 </div>
                 <div>
                     <div id="list-mission-duration-div" >
-                        <h5 id="list-card-time-duration-title" class="border bg-white rounded-5 m-auto fs-6 p-2" style="border-radius:23px">From
+                        @if (list.startDate == null)
+                        {
+                            <h5 id="list-card-time-duration-title" class="border bg-white rounded-5 m-auto fs-6 p-2" style="border-radius:23px">@list.goalObjective
+                        </h5>
+                        }
+                        else
+                        {
+                            <h5 id="list-card-time-duration-title" class="border bg-white rounded-5 m-auto fs-6 p-2" style="border-radius:23px">From
                             @list.startDate?.ToString("dd-mm-yyyy") until @list.endDate?.ToString("dd-mm-yyyy")
                         </h5>
+                        }
+                        
                     </div>
                     <div id="list-seats-info-card"
                         class="d-flex border-top border-1 position-relative pt-3 align-items-center justify-content-around">
                         <div id="remain-seats-cards" class=" w-50 d-flex align-items-center p-1 px-lg-4 px-md-1">
+                            
+                        @if(list.availableSeats > 0)
+                        {
                             <img id="list-seats-left-image" src="~/images/Seats-left.png" alt="">
                             <div class="d-flex flex-column p-2 ">
                                 <p id="count" class="m-0 p-0 fs-5">@list.availableSeats</p>
                                 <p id="list-seats-left-text" class="m-0 p-0">Seats left</p>
                             </div>
+                        }
+                        else
+                        {
+                            <div>No Seats Left</div>
+                        }
+                            
                         </div>
                         <div id="list-deadline-info-card" class=" w-40 d-flex align-items-center p-1 px-lg-4 px-md-1">
-                            <img id="list-deadline-image" src="~/images/deadline.png" alt="">
+                                @if(list.endDate == null)
+                                {
+                                    <img id="list-deadline-image" src="~/images/achieved.png" alt="">
+                                }
+                                else
+                                {
+                                    <img id="list-deadline-image" src="~/images/deadline.png" alt="">    
+                                }
+                                
+                             @if (list.endDate == null)
+                            {
+                                var progress = @list.goalValue;
+                                <div class="card-body-right-text">
+
+                                    <div class="progress" style="width: 7vw; height: 13px;  ">
+                                        <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@list.goalValue" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                        <span class="seats-left">@list.goalValue achieved</span>
+                                </div>
+                            }
+                            else
+                            {
+                                 
                             <div class="d-flex flex-column p-2 ">
                                 <p id="list-deadline-date" class="m-0 p-0 fs-5">@list.endDate?.ToString("dd-mm-yyyy")</p>
                                 <p id="list-deadline-text" class="m-0 p-0">Deadline</p>
                             </div>
+                            }
+                           
                         </div>
                     </div>
                 </div>
@@ -130,7 +188,7 @@
                  @for (int i = 1; i <= Model.pageCount; i++)
             {
                 <li class="page-item ">
-                    <a class="page-link" href="">@i</a>
+                    <a class="page-link" href="#top">@i</a>
                 </li>
             }
             @*
@@ -161,10 +219,13 @@
                      e.preventDefault();
                      paging = $(this).text();
                      loadList(null, paging);
+                     loadCard(null, paging);
                  })
         }
 
-
+        $(".page-item").on("click", function(e){
+             $("html, body"). animate({ scrollTop: 0 }, "slow"); return false; 
+        })
  
  
  </script>

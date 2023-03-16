@@ -1,6 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Mission Volunteering";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using Entities.ViewModels
+@model Navbar_1
+   
 
 <partial name="_Navbar_1"/>
 
@@ -168,7 +173,7 @@
             </div>
           </div>
           <div class="vol-apply-btn">
-            <button type="button" class="btn btn-light">
+            <button type="button" class="btn btn-light"  '">
               Apply Now <img src="/images/right-arrow.png" alt="" />
             </button>
           </div>
@@ -369,7 +374,7 @@
   <div class="vol-related-missions">
     <p class="related-mission-heading">Related Missions</p>
   </div>
-  <partial name="_Grid"/>
+  @*<partial name="_Grid"/>*@
  @* <script>
     document.getElementById("add").onclick = function () {
       var text = document.getElementById("idea").value;

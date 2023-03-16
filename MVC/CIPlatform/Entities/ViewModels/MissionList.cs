@@ -22,5 +22,6 @@ namespace Entities.ViewModels
         public string? goalObjective { get; set; }
         public string? missionImage { get; set; }
         public int? Rating { get; set; }
+        public int? goalValue { get; set; }
     }
 }
