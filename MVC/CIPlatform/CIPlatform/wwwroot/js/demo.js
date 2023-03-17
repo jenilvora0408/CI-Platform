@@ -151,35 +151,35 @@ $(document).ready(function () {
 });
     
   
-////---Convet-Grid-List---
-//localStorage.setItem("lastVisible", "grid");
-//var windowWidth = $(window).width();
-//// Check if the window width is less than 1440px
-//if (windowWidth < 1400) {
-//    // Hide the list view and show the gird view
-//    $('#mission-list').hide();
-//    $('.grid-view').show();
-//}
-//$(window).resize(function (e) {
-//    // Get the new window width
-//    var newWindowWidth = $(window).width();
+//---Convet-Grid-List---
+localStorage.setItem("lastVisible", "grid");
+var windowWidth = $(window).width();
+// Check if the window width is less than 1440px
+if (windowWidth < 1400) {
+    // Hide the list view and show the gird view
+    $('#mission-list').hide();
+    $('.grid-view').show();
+}
+$(window).resize(function (e) {
+    // Get the new window width
+    var newWindowWidth = $(window).width();
 
-//    // Check if the window width is less than 1440px
-//    if (newWindowWidth < 1400) {
-//        // Hide the list view and show the gird view
-//        $('#mission-list').hide();
-//        $('.grid-view').show();
-//        $(".switch-view").hide();
-//        $("#select-list-style").hide();
-//    }
-//    else {
-//        $(".switch-view").show();
-//        $("#select-list-style").show();
-//        // Show the list view and hide the gird view
-//        if (localStorage.getItem("lastVisible") == "list") {
-//            $('.grid-view').hide();
-//            $('#mission-list').show();
-//        }
-//    }
-//});
+    // Check if the window width is less than 1440px
+    if (newWindowWidth < 1400) {
+        // Hide the list view and show the gird view
+        $('#mission-list').hide();
+        $('.grid-view').show();
+        $(".switch-view").hide();
+        $("#select-list-style").hide();
+    }
+    else {
+        $(".switch-view").show();
+        $("#select-list-style").show();
+        // Show the list view and hide the gird view
+        if (localStorage.getItem("lastVisible") == "list") {
+            $('.grid-view').hide();
+            $('#mission-list').show();
+        }
+    }
+});
 

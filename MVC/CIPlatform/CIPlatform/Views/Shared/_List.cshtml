@@ -43,7 +43,11 @@
     <div id="list-card-parent" class="col-12 d-flex p-0 mb-4 border shadow">
         
         <div class="list-image-part position-relative">
-            <img src="@list.missionImage" class="list-img"
+             
+            @{
+                string[] mediaNames = @list.missionImage.ToString().Split(",");
+            }
+            <img src="@list.mediaPath@mediaNames[0].@list.mediaType" class="list-img"
                 alt="" />
                 @if(list.endDate == null && list.goalValue == 100)
                     {

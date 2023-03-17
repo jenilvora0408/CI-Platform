@@ -1,29 +1,32 @@
-﻿using System;
+﻿using Entities.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Entities.ViewModels
 {
-    public class MissionList
+    public class MissionVol
     {
+
+        public Navbar_1? Navbar_1 { get; set; }
+        
         [Key]
-        public long MissionId { get; set; } 
+        public long MissionId { get; set; }
         public string? cityName { get; set; }
         public string? themeName { get; set; }
-        public string?  missionTitle { get; set; }
+        public string? missionTitle { get; set; }
         public string? missionShortDesc { get; set; }
         public string? organizationName { get; set; }
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
         public long? availableSeats { get; set; }
         public string? goalObjective { get; set; }
+        public int? goalValue { get; set; }
         public string? missionImage { get; set; }
         public string? mediaPath { get; set; }
         public string? mediaType { get; set; }
-        public int? Rating { get; set; }
-        public int? goalValue { get; set; }
     }
 }

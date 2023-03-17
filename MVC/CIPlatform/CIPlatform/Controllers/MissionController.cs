@@ -49,20 +49,22 @@ namespace CIPlatform.Controllers
             return View(missionHomeModel);
         }
 
-        public IActionResult MissionVolunteering()
+        public IActionResult MissionVolunteering(int? missionId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             if (userSessionEmailId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+            MissionVol missionVol = new MissionVol();
+            missionVol = _ciPlatformContext.MissionVols.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}").AsEnumerable().First();
             Navbar_1 navbar1 = new Navbar_1();
             User userObj = _missionInterface.findUser(userSessionEmailId);
-
-            navbar1.username = userObj.FirstName + " " + userObj.LastName;
-            navbar1.avatar = userObj.Avatar;
-            navbar1.userId = userObj.UserId;
-            return View(navbar1);
+            missionVol.Navbar_1 = new Navbar_1();
+            missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
+            missionVol.Navbar_1.avatar = userObj.Avatar;
+            missionVol.Navbar_1.userId = userObj.UserId;
+            return View(missionVol);
         }
 
         public IActionResult listCountries()

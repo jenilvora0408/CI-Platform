@@ -23,7 +23,10 @@
                     {
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
                     }
-                    <img class="card-img-top" src="@item.missionImage"
+                    @{
+                        string[] mediaNames = @item.missionImage.ToString().Split(",");
+                    }
+                    <img class="card-img-top" src="@item.mediaPath@mediaNames[0].@item.mediaType"
                 alt="Card image cap" />
               <div class="location">
                 <img class="country-pin" src="/images/pin.png" alt="" />
@@ -144,7 +147,7 @@
             </div>
             <hr />
             <div class="apply-btn">
-              <button>
+              <button onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                 Apply <img src="/images/right-arrow.png" alt="" />
               </button>
               <br /><br />

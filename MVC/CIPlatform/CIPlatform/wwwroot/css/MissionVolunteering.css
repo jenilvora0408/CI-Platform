@@ -552,7 +552,7 @@ swiper-slide img {
     .vol-bottom-left .comments .comment-box {
         margin-top: 4vh;
         padding: 8px 15px;
-        display: none;
+        /*display: none;*/
     }
 
     .vol-bottom-left .comments .comment-btn {
