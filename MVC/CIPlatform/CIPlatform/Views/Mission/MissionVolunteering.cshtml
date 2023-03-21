@@ -3,6 +3,7 @@
 }
 @model Entities.ViewModels.MissionVol
    
+@Html.HiddenFor(c => Model.MissionId , new {@id="MissionID"})
 
     @*@model Pagination*@
 <div class="home-navbar-1">
@@ -52,74 +53,28 @@
               height: 50vh;
               width: 35vw;
             " class="mySwiper" thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
-          @*<swiper-slide>
-            <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Nourish-the-Children-in--African-country-1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/image1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/img1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/img11.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Plantation-and-Afforestation-programme.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Animal-welfare-_-save-birds-campaign-1.png" alt="" />
-          </swiper-slide>*@
+         
            @{
                 string[] mediaNames = @Model.missionImage.ToString().Split(",");
             }
             @foreach (var item in mediaNames)
-                        {
-                            <swiper-slide>
-                            <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
-                            </swiper-slide>
-                        }
+            {
+                <swiper-slide>
+                <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
+                </swiper-slide>
+            }
         </swiper-container>
 
         <swiper-container style="height: 10vh; width: 35vw" class="mySwiper2" space-between="10" slides-per-view="4"
           free-mode="true" watch-slides-progress="true">
-          @*<swiper-slide>
-            <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-4.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Nourish-the-Children-in--African-country-1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/image1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/img1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/img11.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Plantation-and-Afforestation-programme-1.png" alt="" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/images/Animal-welfare-_-save-birds-campaign-1.png" alt="" />
-          </swiper-slide>*@
+         
          
             @foreach (var item in mediaNames)
-                        {
-                            <swiper-slide>
-                            <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
-                            </swiper-slide>
-                        }
+            {
+                <swiper-slide>
+                <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
+                </swiper-slide>
+            }
         </swiper-container>
       </div>
       <div class="vol-right">
@@ -164,14 +119,56 @@
           </div>
           <hr />
           <div id="mission-favourite-recomend-div" class="d-flex">
-            <button class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;">
-              <img src="images/heart1.png" alt="" />
-              <span>Add to Favourite</span>
-            </button>
-            <button class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;">
-              <img src="images/add1.png" alt="" />
+            
+                <button onclick="addtofavi(this)" id="AddtoFaviourite" value="@Model.MissionId" data-value="@Model.favourite" class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;">
+                    <img src="/images/heart1.png" alt="" />
+                    <span>Add to Favourite</span>
+                </button>
+@*<button class="btnaddtofav " onclick="addtofavi(this, 1)" id="card-image-icon2" value="@Model.MissionId"><img src="/assets/heart.png" style="height:20px;width:20px; background-color:red;" class="Icon mx-auto" alt="" /></button>*@
+
+
+              
+            
+            <button class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+              <img src="/images/add1.png" alt="" />
               <span>Recommend to a Co-Worker</span>
             </button>
+
+
+          @*  <div type="button" class="text-center vplbtnGap border rounded-pill" style="font-size:calc(13px + 0.1vw);" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+<img src="/Assets/add1.png" alt="" class="mb-1" style="height:15px ;">
+Recommend to a Co-Worker
+</div>*@
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalCenterTitle">Recommend to a Co-Worker</h5>
+<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<form style="width:auto;">
+<div class="modal-body">
+<input id="volunteerEmail" class="form-control" type="email" name="email" placeholder="E-mail Address" required>
+<div class="valid-feedback">Email field is valid!</div>
+<div class="invalid-feedback">Email field cannot be blank!</div>
+
+</div>
+<div class="modal-footer form-button">
+<button type="button" class=" btn-secondary" data-bs-dismiss="modal">Close</button>
+<button type="button" class=" btn-primary" data-bs-dismiss="modal" id="RecommandtoUser">Send</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
           </div>
           <div>
             <hr class="ratings" />
@@ -261,28 +258,13 @@
         <div class="tab-pane tab-bar fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <p class="tab-heading">Introduction</p>
           <p class="tab-content">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Perferendis natus earum in sequi! Numquam fugit perferendis vero
-            sunt. Cum consequatur, vitae at fugiat aspernatur eaque labore
-            repellendus cupiditate animi saepe maxime ratione, ducimus,
-            voluptatem ipsa.
+            @Model.introduction
           </p>
           <p class="tab-content">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque
-            quasi itaque esse quae libero consectetur fuga dolorum ipsam eius
-            nesciunt veniam numquam, quia perferendis ab cupiditate.
-            Veritatis, nihil!
+            @Model.introduction
           </p>
           <p class="tab-content">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
-            iste accusamus animi temporibus. Consectetur veniam ab officiis
-            iusto, dignissimos excepturi accusamus totam dolores repellendus
-            voluptate rem impedit ea velit quidem odit soluta magni maiores
-            quos facilis? Aspernatur cum temporibus harum fuga! Repellat
-            consectetur dolore minus, sint eius nihil quia vitae, illo ea
-            quibusdam, voluptates inventore est cum dolores aperiam error.
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero,
-            laudantium quis animi, odio perferendis, quasi quidem .
+            @Model.introduction
           </p>
           <p class="tab-heading">Challenge</p>
           <p class="tab-content">
@@ -323,12 +305,13 @@
         </div>
 
         <div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
+          @*Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
           tenetur, temporibus illo libero magnam ea vitae voluptate
           accusantium voluptatibus excepturi nesciunt sapiente fugiat, quis,
           laborum veritatis animi nisi doloremque fugit iusto! Soluta, natus
           provident! Pariatur id labore unde excepturi tempora qui commodi et,
-          iusto nemo!
+          iusto nemo!*@
+          @Model.organizationDetail
         </div>
         @*<div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
@@ -352,11 +335,11 @@
         <table>
           <tr class="table-item">
             <td>Skills</td>
-            <td>Cool, Easy going, Math, Computer</td>
+            <td>@Model.skill</td>
           </tr>
           <tr class="table-item">
             <td>Days</td>
-            <td>Weekend Only</td>
+            <td>@Model.days</td>
           </tr>
           <tr>
             <td>Rating</td>
@@ -457,5 +440,56 @@
             $("#idea").hide();
         }
     })
+
+   
+
+function addtofavi(abc){
+    
+
+   var val = $(abc).val();
+   var flag =  $('#AddtoFaviourite').attr("data-value");
+   if(flag == 0){
+       flag=1;
+       
+   }
+   else{
+       flag=0;
+   }
+    $.ajax({
+        type: "POST",
+        url: '/Mission/addToFavourites',
+        data: {missionid: val.toString(), fav: flag},
+        success: function (data) {
+            //loadGridCard();
+            //loadListCard();
+            //loadPagination();
+            $('#AddtoFaviourite').attr("data-value",flag); //setter
+            
+        },
+        error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+        }
+    });
+};
+
+$('#RecommandtoUser').on("click", function (e) {
+var MissionId = $('#MissionID').val();
+
+$.ajax({
+url: '/Mission/RecommandtoCoWorker',
+type: 'Post',
+dataType: 'json',
+data: { MissionId: MissionId,
+InviteEmail:$("#volunteerEmail").val()
+},
+success: function (data) {
+alert(data["data"]);
+},
+error: function(xhr, status, error) {
+alert(xhr.responseText);
+},
+});
+});
 
   </script>

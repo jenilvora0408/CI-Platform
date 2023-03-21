@@ -28,5 +28,11 @@ namespace Entities.ViewModels
         public string? missionImage { get; set; }
         public string? mediaPath { get; set; }
         public string? mediaType { get; set; }
+        //public string? MediaName { get; set; }
+        public string? introduction { get; set; }
+        public string? days { get; set; }
+        public string? skill { get; set; }
+        public string? organizationDetail { get; set; }
+        public  int? favourite { get; set; }
     }
 }

@@ -278,7 +278,8 @@ sortColumn = localStorage.getItem("sortColumn");
                  $(window).on('beforeunload', function () {
                      localStorage.removeItem("sortColumn");
                 });
-              
+                loadCard();
+              //getFavouriteMissions();
             });
 
         function favouriteMissions() {
@@ -295,7 +296,8 @@ sortColumn = localStorage.getItem("sortColumn");
             url: '/Mission/addFavouriteMissions',
             data: { userId: userId, missionId: missionId },
             success: function (data) {
-            getFavouriteMissions();
+                loadCard();
+            //getFavouriteMissions();
             
             },
             error: function (xhr, status, error) {
@@ -316,7 +318,8 @@ sortColumn = localStorage.getItem("sortColumn");
             data: { userId: userId, missionId: missionId },
             success: function (data) {
                 console.log("remove fav");
-            getFavouriteMissions();
+                loadCard();
+            //getFavouriteMissions();
                 console.log("remove fav2");
             },
             error: function (xhr, status, error) {
@@ -333,7 +336,7 @@ sortColumn = localStorage.getItem("sortColumn");
 
         function getFavouriteMissions() {
         var userId = $(".home-nav1-right .user-btn")[0].id;
-
+        console.log("In get fav");
     $.ajax({
         type: "GET",
         url: '/Mission/getFavouriteMissionsOfUser',
@@ -341,8 +344,8 @@ sortColumn = localStorage.getItem("sortColumn");
         success: function (data) {
             var dataArr = data["data"].split(",");
         $("#GridView .favourite-mission-div").each(function (index) {
-
                 var id = this.id.slice(18);
+                console.log(dataArr);
                 console.log("In get fav:",id);
                 var temp=false;
                 Loop1: 

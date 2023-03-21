@@ -12,7 +12,6 @@ using System.Data.SqlClient;
 using System.Data;
 using Dapper;
 
-
 namespace CIPlatform.Controllers
 {
     public class MissionController : Controller
@@ -20,12 +19,17 @@ namespace CIPlatform.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly MissionInterface _missionInterface;
         private readonly CiPlatformContext _ciPlatformContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
 
-        public MissionController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext)
+
+        public MissionController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
         {
             _logger = logger;
             _missionInterface = missionInterface;
             _ciPlatformContext = ciPlatformContext;
+            _httpContextAccessor = httpContextAccessor;
+            _configuration = configuration;
         }
         public IActionResult Index()
         {
@@ -65,6 +69,15 @@ namespace CIPlatform.Controllers
             missionVol.Navbar_1.avatar = userObj.Avatar;
             missionVol.Navbar_1.userId = userObj.UserId;
             return View(missionVol);
+        }
+        [HttpPost]
+        public IActionResult addToFavourites(String missionid, int fav)
+        {
+            string userSession = HttpContext.Session.GetString("useremail");
+            long userObj = _missionInterface.GetUserID(userSession);
+            long misid = Int64.Parse(missionid);
+            _missionInterface.addToFavourites(misid, userObj, fav);
+            return Ok();  
         }
 
         public IActionResult listCountries()
@@ -161,6 +174,36 @@ namespace CIPlatform.Controllers
                 arr += favouriteMission.MissionId + ",";
             }
             return Json(new { data = arr });
+        }
+
+
+        [HttpPost]
+        public IActionResult RecommandtoCoWorker(string InviteEmail, long MissionId)
+        {
+            
+            string email = HttpContext.Session.GetString("useremail");
+            var userfrom = _missionInterface.findUser((string)email);
+            var userto = _missionInterface.findUser((string)InviteEmail);
+            
+            bool shareMessage = _missionInterface.RecommandtoCoWorker((long)userfrom.UserId, (int)MissionId, (long)userto.UserId);
+            string message = "";
+            if (shareMessage)
+            {
+                message = "You Alerady Invited";
+                ViewBag.Message = "You Alerady Invited";
+            }
+            else
+            {
+                string mailmessage = "Welcome to CI Platform, <br/> your friend " + userfrom.FirstName + " " + userfrom.LastName + " " + "You can Join Mission Using Below link.. </br>";
+                string path = "<a href=\"" + "https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Mission/MissionVolunteering?MissionId=" + MissionId + "\"style=\"font-weight:500;color:blue;\">Invite to </a>";
+                //string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Mission/MissionVolunteering?token=" + MissionId + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
+                MailHelper mailHelper = new MailHelper(_configuration);
+                ViewBag.sendMail = mailHelper.Send(InviteEmail, mailmessage + path);
+                message = "You Successfully Invited";
+                ViewBag.Message = "You Successfully Invited";
+                ModelState.Clear();
+            }
+            return Json(new { data = message });
         }
     }
 }

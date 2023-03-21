@@ -308,13 +308,18 @@ public partial class CiPlatformContext : DbContext
             entity.ToTable("mission");
 
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
-            entity.Property(e => e.Availability).HasColumnName("availability");
+            entity.Property(e => e.Availability)
+                .HasMaxLength(50)
+                .HasColumnName("availability");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
+            entity.Property(e => e.Deadline)
+                .HasColumnType("datetime")
+                .HasColumnName("deadline");
             entity.Property(e => e.DeletedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("deleted_at");
@@ -491,7 +496,7 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("deleted_at");
             entity.Property(e => e.MediaName)
-                .HasMaxLength(64)
+                .HasMaxLength(1000)
                 .IsUnicode(false)
                 .HasColumnName("media_name");
             entity.Property(e => e.MediaPath)

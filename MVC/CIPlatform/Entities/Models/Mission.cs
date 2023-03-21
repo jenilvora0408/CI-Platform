@@ -31,8 +31,6 @@ public partial class Mission
 
     public string? OrganizationDetail { get; set; }
 
-    public long? Availability { get; set; }
-
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
@@ -40,6 +38,10 @@ public partial class Mission
     public DateTime? DeletedAt { get; set; }
 
     public long? TotalSeats { get; set; }
+
+    public DateTime? Deadline { get; set; }
+
+    public string? Availability { get; set; }
 
     public virtual City City { get; set; } = null!;
 

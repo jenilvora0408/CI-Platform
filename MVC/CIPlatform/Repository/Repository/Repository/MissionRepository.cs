@@ -21,7 +21,7 @@ namespace Repository.Repository.Repository
         {
             _ciPlatformContext = ciPlatformContext;
         }
-        User MissionInterface.findUser(string email)
+        public User findUser(string email)
         {
             return _ciPlatformContext.Users.Where(u => u.Email.Equals(email)).First();
         }
@@ -76,5 +76,63 @@ namespace Repository.Repository.Repository
         {
             return _ciPlatformContext.FavouriteMissions.Where(u => u.UserId == userid);
         }
+        public long GetUserID(string Email)
+        {
+            User user = _ciPlatformContext.Users.Where(x => x.Email == Email).FirstOrDefault();
+            if (user == null)
+            {
+                return -1;
+            }
+            else
+            {
+
+                return user.UserId;
+            }
+        }
+        public void addToFavourites(long missionid, long userid, int fav)
+        {
+            if (fav == 1)
+            {
+                FavouriteMission favouriteMission = new FavouriteMission();
+                favouriteMission.MissionId = missionid;
+                favouriteMission.UserId = userid;
+                favouriteMission.CreatedAt = DateTime.Now;
+                _ciPlatformContext.FavouriteMissions.Add(favouriteMission);
+                _ciPlatformContext.SaveChangesAsync();
+
+            }
+            else
+            {
+                FavouriteMission favouriteMission = _ciPlatformContext.FavouriteMissions.Where(x => x.MissionId == missionid && x.UserId == userid).FirstOrDefault();
+                _ciPlatformContext.FavouriteMissions.Remove(favouriteMission);
+                _ciPlatformContext.SaveChangesAsync();
+            }
+        }
+        public Mission GetMissionByMissionId(int MissionId)
+        {
+            return _ciPlatformContext.Missions.Where(u => u.MissionId.Equals(MissionId)).First();
+        }
+        public Boolean RecommandtoCoWorker(long fromUserId, int MissionId, long toUserId)
+        {
+            var shareMission = _ciPlatformContext.MissionInvites.FirstOrDefault(x => x.FromUserId == fromUserId && x.ToUserId == toUserId && x.MissionId == MissionId);
+
+            if (shareMission != null)
+            {
+                return true;
+            }
+            else
+            {
+                MissionInvite missioninvite = new MissionInvite();
+                missioninvite.FromUserId = fromUserId;
+                missioninvite.MissionId = MissionId;
+                missioninvite.ToUserId = toUserId;
+                missioninvite.CreatedAt = DateTime.Now;
+                _ciPlatformContext.MissionInvites.Add(missioninvite);
+                _ciPlatformContext.SaveChanges();
+                return false;
+            }
+
+        }
     }
+
 }
