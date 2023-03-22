@@ -14,7 +14,7 @@ using Dapper;
 
 namespace Repository.Repository.Repository
 {
-    public class MissionRepository: MissionInterface
+    public class MissionRepository : MissionInterface
     {
         private readonly CiPlatformContext _ciPlatformContext;
         public MissionRepository(CiPlatformContext ciPlatformContext)
@@ -89,25 +89,7 @@ namespace Repository.Repository.Repository
                 return user.UserId;
             }
         }
-        public void addToFavourites(long missionid, long userid, int fav)
-        {
-            if (fav == 1)
-            {
-                FavouriteMission favouriteMission = new FavouriteMission();
-                favouriteMission.MissionId = missionid;
-                favouriteMission.UserId = userid;
-                favouriteMission.CreatedAt = DateTime.Now;
-                _ciPlatformContext.FavouriteMissions.Add(favouriteMission);
-                _ciPlatformContext.SaveChangesAsync();
 
-            }
-            else
-            {
-                FavouriteMission favouriteMission = _ciPlatformContext.FavouriteMissions.Where(x => x.MissionId == missionid && x.UserId == userid).FirstOrDefault();
-                _ciPlatformContext.FavouriteMissions.Remove(favouriteMission);
-                _ciPlatformContext.SaveChangesAsync();
-            }
-        }
         public Mission GetMissionByMissionId(int MissionId)
         {
             return _ciPlatformContext.Missions.Where(u => u.MissionId.Equals(MissionId)).First();
@@ -132,6 +114,17 @@ namespace Repository.Repository.Repository
                 return false;
             }
 
+        }
+
+        public void addComments(long missionid, long userid, string commented)
+        {
+            Comment comment = new Comment();
+            comment.MissionId = missionid;
+            comment.UserId = userid;
+            comment.CreatedAt = DateTime.Now;
+            comment.CommentText = commented;
+            _ciPlatformContext.Comments.Add(comment);
+            _ciPlatformContext.SaveChangesAsync();
         }
     }
 

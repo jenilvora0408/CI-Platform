@@ -88,9 +88,21 @@
         </p>
         <div>
           <hr />
-          <p class="mission-date">
+          @if (@Model.startDate == null)
+            {
+                <p class="mission-date">
+                    <span class="time-span">@Model.goalObjective</span>
+                </p>
+            }
+            else
+            {
+                <p class="mission-date">
+                    <span class="time-span">@Model.startDate?.ToString("dd-mm-yyyy") until @Model.endDate?.ToString("dd-mm-yyyy")</span>
+                </p>
+            }
+         @* <p class="mission-date">
             <span class="time-span">@Model.goalObjective</span>
-          </p>
+          </p>*@
         </div>
         <div>
           <div class="card-body insight">
@@ -105,8 +117,38 @@
             </div>
             <div class="card-body-right">
               <div class="card-body-right-img">
-                <img src="/images/achieved.png" alt="" />
+                @*<img src="/images/achieved.png" alt="" />*@
+                 @if(@Model.endDate == null)
+                            {
+                                <img src="/images/achieved.png" alt="" />
+                            }
+                            else
+                            {
+                                <img src="/images/deadline.png" alt="" />
+                            }
               </div>
+
+                  @if (@Model.endDate == null)
+            {
+             
+                                var progress = @Model.goalValue;
+                       
+                <div class="card-body-right-text">
+                <div class="progress" style="width: 7vw; height: 13px;  ">
+                  <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@Model.goalValue" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <span class="seats-left">@Model.goalValue achieved</span>
+              </div>
+            }
+            else
+            {
+                <div class="card-body-right-text d-flex flex-column">
+                  <span class="figure">@Model.deadline?.ToString("dd-mm-yyyy")</span>
+                  <span class="deadline">Deadline</span>
+                </div>
+            }
+@*
               <div class="card-body-right-text">
                 <div class="progress" style="width: 10vw; height: 13px">
                     
@@ -114,17 +156,18 @@
                     aria-valuemax="100"></div>
                 </div>
                 <span class="seats-left">@Model.goalValue achieved</span>
-              </div>
+              </div>*@
             </div>
           </div>
           <hr />
           <div id="mission-favourite-recomend-div" class="d-flex">
-            
-                <button onclick="addtofavi(this)" id="AddtoFaviourite" value="@Model.MissionId" data-value="@Model.favourite" class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;">
-                    <img src="/images/heart1.png" alt="" />
-                    <span>Add to Favourite</span>
-                </button>
-@*<button class="btnaddtofav " onclick="addtofavi(this, 1)" id="card-image-icon2" value="@Model.MissionId"><img src="/assets/heart.png" style="height:20px;width:20px; background-color:red;" class="Icon mx-auto" alt="" /></button>*@
+                    
+                         <button id="likeButton" id="favourite-mission-@Model.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:white; border: 2px solid red;">
+                    <img id="likeImage" src="/images/heart1.png" alt="" />
+                    <span id="likedText" >Add to Favourite</span>
+                        </button>
+                 
+                
 
 
               
@@ -173,13 +216,16 @@ Recommend to a Co-Worker
           <div>
             <hr class="ratings" />
             <p class="mission-date">
-              <span class="star-rating">
+              
+                @*<i class="bi bi-star"></i>
                 <i class="bi bi-star"></i>
                 <i class="bi bi-star"></i>
                 <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-              </span>
+                <i class="bi bi-star"></i>*@ 
+                 <div id="stars-rating" class="d-flex justify-content-center align-items-center position-relative z-1">
+                <input id="user_rating" type="text" class="rating text-center d-none" data-size="sm" />
+                </div>
+             
             </p>
           </div>
           <div class="vol-filters">
@@ -198,7 +244,7 @@ Recommend to a Co-Worker
               </div>
               <div class="bottom">
                 <span>Theme</span>
-                <p>@Model.themeName</p>
+                <p id="themeName">@Model.themeName</p>
               </div>
             </div>
             <div class="vol-filter-3">
@@ -305,12 +351,7 @@ Recommend to a Co-Worker
         </div>
 
         <div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          @*Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
-          tenetur, temporibus illo libero magnam ea vitae voluptate
-          accusantium voluptatibus excepturi nesciunt sapiente fugiat, quis,
-          laborum veritatis animi nisi doloremque fugit iusto! Soluta, natus
-          provident! Pariatur id labore unde excepturi tempora qui commodi et,
-          iusto nemo!*@
+       
           @Model.organizationDetail
         </div>
         @*<div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -323,9 +364,10 @@ Recommend to a Co-Worker
         </div>*@
 
         <div class="tab-pane tab-bar fade comments" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <textarea class="comment-box" id="idea" name="" cols="100" rows="5"></textarea>
-          <input class="comment-btn" type="button" value="Post Comment" id="add" />
-          <ul class="comment-items" id="list"></ul>
+          <textarea class="comment-box" id="commentText" name="" cols="100" rows="5"></textarea>
+          <button class="comment-btn" type="button" value="@Model.MissionId" id="post-comment-btn" >Post Comment</button>
+          @*<ul class="comment-items" id="list"></ul>*@
+          <div class=" commnets bg-light" id="CommentsList"> </div>
         </div>
       </div>
     </div>
@@ -343,9 +385,24 @@ Recommend to a Co-Worker
           </tr>
           <tr>
             <td>Rating</td>
-            <td>
-              <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i
-                class="bi bi-star"></i> (By 125volunteers)
+            <td class="d-flex flex-column">
+              @*<i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i
+                class="bi bi-star"></i> *@
+                <div title="Rating">
+                    @if (true)
+                    {
+                        for (var i = 0; i < (@Model.Rating); i++)
+                        {
+                            <i class="fa fa-star rating-color checked"></i>
+                        }
+                        for (var i = 0; i < 5 - (@Model.Rating); i++)
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                    }
+                    (By @Model.ratingvolcount    volunteers)
+                </div>
+                
             </td>
           </tr>
         </table>
@@ -361,7 +418,7 @@ Recommend to a Co-Worker
           <div class="d-flex flex-wrap p-1">
             <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
               <img src="/images/volunteer1.png" class="rounded-circle volunteer-images" alt="" />
-              <span class="fs-6 volunteer-names">Umang Gohel</span>
+              <span class="fs-6 volunteer-names">Jenil Vora</span>
             </div>
             <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
               <img src="/images/volunteer2.png" class="rounded-circle volunteer-images" alt="" />
@@ -417,61 +474,42 @@ Recommend to a Co-Worker
     <p class="related-mission-heading">Related Missions</p>
   </div>
   @*<partial name="_Grid"/>*@
-  <script>
-    document.getElementById("add").onclick = function () {
-      var text = document.getElementById("idea").value;
-      var a = document.createElement("li");
-      a.innerHTML = text;
-      if(text == ""){
-        alert("Please enter something to add comment");
-      }
-      else{
-        document.getElementById("list").appendChild(a);
-      }
-      
-      $("#idea").val("");
-    };
 
-    $(".tab-3").on("click", function(){
-        if("#contact-tab"){
-            $("idea").show();
-        }
-        else{
-            $("#idea").hide();
-        }
-    })
+
+   <div class=" grid-view container">
+        <div class="grid-items" id="grid-items">
+
+        </div>
+    </div>
+
+
+  <script>
+    //document.getElementById("add").onclick = function () {
+    //  var text = document.getElementById("idea").value;
+    //  var a = document.createElement("li");
+    //  a.innerHTML = text;
+    //  if(text == ""){
+    //    alert("Please enter something to add comment");
+    //  }
+    //  else{
+    //    document.getElementById("list").appendChild(a);
+    //  }
+      
+    //  $("#idea").val("");
+    //};
+
+    //$(".tab-3").on("click", function(){
+    //    if("#contact-tab"){
+    //        $("idea").show();
+    //    }
+    //    else{
+    //        $("#idea").hide();
+    //    }
+    //})
 
    
 
-function addtofavi(abc){
-    
 
-   var val = $(abc).val();
-   var flag =  $('#AddtoFaviourite').attr("data-value");
-   if(flag == 0){
-       flag=1;
-       
-   }
-   else{
-       flag=0;
-   }
-    $.ajax({
-        type: "POST",
-        url: '/Mission/addToFavourites',
-        data: {missionid: val.toString(), fav: flag},
-        success: function (data) {
-            //loadGridCard();
-            //loadListCard();
-            //loadPagination();
-            $('#AddtoFaviourite').attr("data-value",flag); //setter
-            
-        },
-        error: function (xhr, status, error) {
-            // Handle error
-            console.log(error);
-        }
-    });
-};
 
 $('#RecommandtoUser').on("click", function (e) {
 var MissionId = $('#MissionID').val();
@@ -491,5 +529,198 @@ alert(xhr.responseText);
 },
 });
 });
+
+
+var hello = '@Model.themeName';
+$.ajax({
+      type: "POST",
+      url: "@Url.Action("relatedMissions","Mission")",
+      dataType: "html",
+      cache: false,
+      data:{theme:hello},
+      success: function (data) {
+          $("#grid-items").html("");
+          $('#grid-items').html(data);
+      },
+      error: function (xhr, status, error) {
+          console.log(error);
+      }
+        });
+
+
+
+$(document).ready(function(){
+
+    var first = @Model.MissionId;
+console.log("Mission-ID", first);
+
+    favouriteMissions();
+
+    $("#stars-rating .rating-stars").click(function() {
+        alert("Hello Rating");
+var rating = $("#user_rating").val();
+console.log("clicked!");
+$.ajax({
+url: 'https://localhost:7165/Mission/MissionUserRating',
+type: 'POST',
+data: {ratingCount:rating, missionid:first},
+success: function (CountryResult) {
+alert('Rating submitted.');
+},
+error: function () {
+alert('Rating Failed!');
+}
+});
+});
+ 
+})
+
+
+
+  function favouriteMissions() {
+            $("#mission-favourite-recomend-div #likeButton").on("click", function (event) {
+            event.preventDefault();
+            if (this.style.backgroundColor == "white") {
+            this.style.opacity = 1;
+            var missionId =first;
+            var userId =$(".home-nav1-right .user-btn")[0].id;
+            $.ajax({
+            type: "POST",
+            url: '/Mission/addFavouriteMissions',
+            data: { userId: userId, missionId: missionId },
+            success: function (data) {
+               getFavouriteMissions();
+            
+            },
+            error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+            }
+            });
+            
+            }
+            else {
+            
+            var missionId = first; 
+            
+            var userId = $(".home-nav1-right .user-btn")[0].id;
+            $.ajax({
+            type: "POST",
+            url: '/Mission/removeFavouriteMissions',
+            data: { userId: userId, missionId: missionId },
+            success: function (data) {
+               getFavouriteMissions();
+            },
+            error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+            }
+            });
+            
+            }
+            });
+            }
+   
+          
+
+        function getFavouriteMissions() {
+            
+        var userId = $(".home-nav1-right .user-btn")[0].id;
+        console.log("In get fav");
+    $.ajax({
+        type: "GET",
+        url: '/Mission/getFavouriteMissionsOfUser',
+        data: { userid: userId },
+        success: function (data) {
+            var dataArr = data["data"].split(",");
+        $("#mission-favourite-recomend-div #likeButton").each(function (index) {
+                var id = first;
+                var temp=false;
+                Loop1: 
+
+                for (var i = 0; i < dataArr.length ; i++) {
+                    if (dataArr[i] == id) {    
+                        console.log(dataArr[i], id);
+                        temp=true;
+                        break Loop1;
+                    }
+                }
+                    if(temp){
+                        alert("True");
+                        this.style.background = "red";
+                        this.style.opacity = 1;
+                    }
+                    else{
+                        alert("False");
+                        console.log("False",dataArr,id,dataArr[i] == id);
+
+                    this.style.backgroundColor = "white";
+                    this.style.opacity = 0.4;
+                    }
+                    
+                
+            });
+        },
+        error: function (xhr, status, error) {
+            // Handle error
+            console.log(error);
+        }
+    });
+}
+
+
+
+$(document).ready(function () {
+var missionId = $("#post-comment-btn").val();
+listComment(missionId);
+//addtofav(missionId, flag);
+loadRealtedGridCard();
+
+});
+$("#post-comment-btn").on("click",function(e){
+e.preventDefault();
+
+var missionid=$(this).val()
+var comments = document.getElementById("commentText").value;
+var val = missionid;
+$.ajax({
+type: "POST",
+url: '/Mission/PostComments',
+dataType: "html",
+data: { MissionID: val,comment:comments.toString()},
+success: function (data) {
+
+//$('#CommentsList').html("");
+//$('#CommentsList').html(data);
+listComment(missionid);
+},
+error: function (xhr, status, error) {
+// Handle error
+console.log(error);
+}
+})
+
+});
+function listComment(missionid) {
+//var comments = $("#commentText").text();
+var comments = document.getElementById("commentText").value;
+var val = missionid;
+$.ajax({
+type: "GET",
+url: '/Mission/ListComments',
+dataType: "html",
+data: { MissionID: val,comment:comments.toString()},
+success: function (data) {
+
+$('#CommentsList').html("");
+$('#CommentsList').html(data);
+
+},
+error: function (xhr, status, error) {
+// Handle error
+console.log(error);
+}
+})
+};
 
   </script>

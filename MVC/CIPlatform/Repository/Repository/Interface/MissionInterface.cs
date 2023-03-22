@@ -22,9 +22,8 @@ namespace Repository.Repository.Interface
         public FavouriteMission getFavouriteMission(FavouriteMission favouriteMissionObj);
         public IEnumerable<FavouriteMission> getFavouriteMissionsOfUser(int userid);
         public long GetUserID(string Email);
-        public void addToFavourites(long missionid, long userid, int fav);
-
         public Mission GetMissionByMissionId(int MissionId);
         public Boolean RecommandtoCoWorker(long fromUserId, int MissionId, long toUserId);
+        public void addComments(long missionid, long userid, string commented);
     }
 }

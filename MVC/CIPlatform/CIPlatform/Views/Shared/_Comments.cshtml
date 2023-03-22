@@ -1,0 +1,25 @@
+﻿@using Entities.Models
+@model List<Comment>
+@foreach (var item in Model)
+{
+<div class="card mb-3">
+<div class="row g-0 ">
+<div class="col-sm-2 float-start d-flex align-items-center">
+<img src="/assets/volunteer1.png"
+class="img-fluid border rounded-circle" alt="...">
+</div>
+<div class="col-sm-10 float-end">
+<div class="card-body comment">
+<h5 class="card-title">@item.User.FirstName</h5>
+<p class="card-text">
+<small class="text-muted">
+Last updated @item.CreatedAt.ToShortTimeString() mins
+ago
+</small>
+</p>
+<p class="card-text">@item.CommentText</p>
+</div>
+</div>
+</div>
+</div>
+}

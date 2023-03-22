@@ -66,6 +66,7 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<UserSkill> UserSkills { get; set; }
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<MissionVol> MissionVols { get; set; }
+    public virtual DbSet<RelatedMission> RelatedMissions { get; set;}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -194,6 +195,10 @@ public partial class CiPlatformContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValueSql("('PENDING')")
                 .HasColumnName("approval_status");
+            entity.Property(e => e.CommentText)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("commentText");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

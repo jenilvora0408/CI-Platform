@@ -10,7 +10,6 @@ namespace Entities.ViewModels
 {
     public class MissionVol
     {
-
         public Navbar_1? Navbar_1 { get; set; }
         
         [Key]
@@ -33,6 +32,9 @@ namespace Entities.ViewModels
         public string? days { get; set; }
         public string? skill { get; set; }
         public string? organizationDetail { get; set; }
-        public  int? favourite { get; set; }
+        public long? favMissionId { get; set; }
+        public DateTime? deadline { get; set; }
+        public int? Rating { get; set; }
+        public int? ratingvolcount { get; set; }
     }
 }
