@@ -62,21 +62,33 @@ namespace CIPlatform.Controllers
                     return RedirectToAction("Login", "Account");
                 }
                 MissionVol missionVol = new MissionVol();
-                missionVol = _ciPlatformContext.MissionVols.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}").AsEnumerable().First();
+            missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
+            missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}").AsEnumerable().First();
                 Navbar_1 navbar1 = new Navbar_1();
+                RecentVolunteer recentVolunteer = new RecentVolunteer();
                 User userObj = _missionInterface.findUser(userSessionEmailId);
                 missionVol.Navbar_1 = new Navbar_1();
                 missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
                 missionVol.Navbar_1.avatar = userObj.Avatar;
                 missionVol.Navbar_1.userId = userObj.UserId;
-                return View(missionVol);
+                missionVol.recentVolunteer = _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId}").ToList();
+            return View(missionVol);
             }
-        [HttpPost]
+
+            //public IActionResult RecentVolunteers(int? missionId)
+            //{
+            //    MissionVol missionVol = new MissionVol();
+            //    missionVol.recentVolunteer = _ciPlatformContext.MissionVols.FromSqlInterpolated($"exec recentVolunteer").ToList();
+            //    return View(missionVol);
+            //}
+
+
+            [HttpPost]
             public IActionResult relatedMissions(string theme)
-        {
+            {
                 IEnumerable<RelatedMission> relatedMission=_ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}");
                 return PartialView("RelatedMission",relatedMission);
-        }
+            }
 
         public IActionResult listCountries()
         {
@@ -234,8 +246,33 @@ namespace CIPlatform.Controllers
             return Ok();
         }
 
-
-
+        [HttpPost]
+        public IActionResult ApplyNow(long? missionID, long? userID)
+        {
+            //var Email = HttpContext.Session.GetString("useremail");
+            //User user = _missionInterface.findUser((string)Email);
+            var applyNow = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userID && x.MissionId == missionID).FirstOrDefault();
+            if (applyNow == null)
+            {
+                MissionApplication missionApplication = new MissionApplication();
+                missionApplication.UserId = userID;
+                missionApplication.MissionId = missionID;
+                missionApplication.ApprovalStatus = "Pending";
+                missionApplication.AppliedAt = DateTime.Now;
+                var missionApply = _ciPlatformContext.MissionApplications.Add(missionApplication);
+                _ciPlatformContext.SaveChanges();
+            }
+            else
+            {
+                applyNow.UserId = userID;
+                applyNow.MissionId = missionID;
+                applyNow.ApprovalStatus = "Deleted";
+                applyNow.AppliedAt = DateTime.Now;
+                _ciPlatformContext.MissionApplications.Remove(applyNow);
+                _ciPlatformContext.SaveChanges();
+            }
+            return Ok();
+        }
 
 
         [HttpPost]
@@ -259,5 +296,7 @@ namespace CIPlatform.Controllers
             List<Comment> comment1 = _ciPlatformContext.Comments.Where(x => x.MissionId == missid).Include(x => x.User).AsEnumerable().ToList();
             return PartialView("_Comments", comment1);
         }
+
+
     }
 }

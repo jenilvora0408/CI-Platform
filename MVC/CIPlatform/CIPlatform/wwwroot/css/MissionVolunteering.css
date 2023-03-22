@@ -731,3 +731,15 @@ table {
         height:70vh;
     }
 }
+
+
+
+.clear-rating {
+    display: none !important;
+}
+
+
+
+.caption {
+    display: none !important;
+}

@@ -50,6 +50,10 @@ D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.dl
 D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
 D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
 D:\Projects\CI platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Features.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\appsettings.json
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\CIPlatform.staticwebassets.runtime.json
@@ -76,7 +80,6 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Features.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Features.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.VisualBasic.dll
@@ -85,12 +88,9 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll

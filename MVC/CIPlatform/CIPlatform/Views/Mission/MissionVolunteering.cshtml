@@ -3,7 +3,7 @@
 }
 @model Entities.ViewModels.MissionVol
    
-@Html.HiddenFor(c => Model.MissionId , new {@id="MissionID"})
+@Html.HiddenFor(c => Model.Volunteering.MissionId , new {@id="MissionID"})
 
     @*@model Pagination*@
 <div class="home-navbar-1">
@@ -55,12 +55,12 @@
             " class="mySwiper" thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
          
            @{
-                string[] mediaNames = @Model.missionImage.ToString().Split(",");
+                string[] mediaNames = @Model.Volunteering.missionImage.ToString().Split(",");
             }
             @foreach (var item in mediaNames)
             {
                 <swiper-slide>
-                <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
+                <img src="@Model.Volunteering.mediaPath@item.@Model.Volunteering.mediaType" alt="" />
                 </swiper-slide>
             }
         </swiper-container>
@@ -72,14 +72,14 @@
             @foreach (var item in mediaNames)
             {
                 <swiper-slide>
-                <img src="@Model.mediaPath@item.@Model.mediaType" alt="" />
+                <img src="@Model.Volunteering.mediaPath@item.@Model.Volunteering.mediaType" alt="" />
                 </swiper-slide>
             }
         </swiper-container>
       </div>
       <div class="vol-right">
         <p class="vol-heading">
-          @Model.missionTitle
+          @Model.Volunteering.missionTitle
         </p>
         <p class="vol-description">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -88,16 +88,16 @@
         </p>
         <div>
           <hr />
-          @if (@Model.startDate == null)
+          @if (@Model.Volunteering.startDate == null)
             {
                 <p class="mission-date">
-                    <span class="time-span">@Model.goalObjective</span>
+                    <span class="time-span">@Model.Volunteering.goalObjective</span>
                 </p>
             }
             else
             {
                 <p class="mission-date">
-                    <span class="time-span">@Model.startDate?.ToString("dd-mm-yyyy") until @Model.endDate?.ToString("dd-mm-yyyy")</span>
+                    <span class="time-span">@Model.Volunteering.startDate?.ToString("dd-mm-yyyy") until @Model.Volunteering.endDate?.ToString("dd-mm-yyyy")</span>
                 </p>
             }
          @* <p class="mission-date">
@@ -111,14 +111,14 @@
                 <img src="/images/Seats-left.png" alt="" />
               </div>
               <div class="card-body-left-text">
-                <span class="figure">@Model.availableSeats</span>
+                <span class="figure">@Model.Volunteering.availableSeats</span>
                 <span class="seats-left">Seats left</span>
               </div>
             </div>
             <div class="card-body-right">
               <div class="card-body-right-img">
                 @*<img src="/images/achieved.png" alt="" />*@
-                 @if(@Model.endDate == null)
+                 @if(@Model.Volunteering.endDate == null)
                             {
                                 <img src="/images/achieved.png" alt="" />
                             }
@@ -128,23 +128,23 @@
                             }
               </div>
 
-                  @if (@Model.endDate == null)
+                  @if (@Model.Volunteering.endDate == null)
             {
              
-                                var progress = @Model.goalValue;
+                                var progress = @Model.Volunteering.goalValue;
                        
                 <div class="card-body-right-text">
                 <div class="progress" style="width: 7vw; height: 13px;  ">
-                  <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@Model.goalValue" aria-valuemin="0"
+                  <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@Model.Volunteering.goalValue" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 </div>
-                <span class="seats-left">@Model.goalValue achieved</span>
+                <span class="seats-left">@Model.Volunteering.goalValue achieved</span>
               </div>
             }
             else
             {
                 <div class="card-body-right-text d-flex flex-column">
-                  <span class="figure">@Model.deadline?.ToString("dd-mm-yyyy")</span>
+                  <span class="figure">@Model.Volunteering.deadline?.ToString("dd-mm-yyyy")</span>
                   <span class="deadline">Deadline</span>
                 </div>
             }
@@ -162,7 +162,7 @@
           <hr />
           <div id="mission-favourite-recomend-div" class="d-flex">
                     
-                         <button id="likeButton" id="favourite-mission-@Model.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:white; border: 2px solid red;">
+                         <button id="likeButton" id="favourite-mission-@Model.Volunteering.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:white; border: 2px solid red;">
                     <img id="likeImage" src="/images/heart1.png" alt="" />
                     <span id="likedText" >Add to Favourite</span>
                         </button>
@@ -235,7 +235,7 @@ Recommend to a Co-Worker
               </div>
               <div class="bottom">
                 <span>City</span>
-                <p>@Model.cityName</p>
+                <p>@Model.Volunteering.cityName</p>
               </div>
             </div>
             <div class="vol-filter-2">
@@ -244,7 +244,7 @@ Recommend to a Co-Worker
               </div>
               <div class="bottom">
                 <span>Theme</span>
-                <p id="themeName">@Model.themeName</p>
+                <p id="themeName">@Model.Volunteering.themeName</p>
               </div>
             </div>
             <div class="vol-filter-3">
@@ -262,15 +262,34 @@ Recommend to a Co-Worker
               </div>
               <div class="bottom">
                 <span>organization</span>
-                <p>@Model.organizationName</p>
+                <p>@Model.Volunteering.organizationName</p>
               </div>
             </div>
           </div>
-          <div class="vol-apply-btn">
-            <button type="button" class="btn btn-light"  '">
-              Apply Now <img src="/images/right-arrow.png" alt="" />
-            </button>
-          </div>
+          @if (Model.Volunteering.approvalStatus == "Approved")
+          {
+              <div class="vol-apply-btn">
+              <button id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
+                  Approved <img src="/images/right.png" alt="" />
+              </button>
+              </div>
+          }
+          else if (Model.Volunteering.approvalStatus == "Pending")
+          {
+              <div class="vol-apply-btn">
+              <button id="APPLYBTN" type="button" class="btn btn-warning" style="border: 2px solid gray">
+                  Pending <img src="/images/right-arrow.png" alt="" />
+              </button>
+              </div>
+          }
+          else
+          {
+              <div class="vol-apply-btn">
+              <button id="APPLYBTN" type="button" class="btn btn-light">
+                  Apply Now <img src="/images/right-arrow.png" alt="" />
+              </button>
+              </div>
+          }
         </div>
       </div>
     </div>
@@ -304,13 +323,13 @@ Recommend to a Co-Worker
         <div class="tab-pane tab-bar fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <p class="tab-heading">Introduction</p>
           <p class="tab-content">
-            @Model.introduction
+            @Model.Volunteering.introduction
           </p>
           <p class="tab-content">
-            @Model.introduction
+            @Model.Volunteering.introduction
           </p>
           <p class="tab-content">
-            @Model.introduction
+            @Model.Volunteering.introduction
           </p>
           <p class="tab-heading">Challenge</p>
           <p class="tab-content">
@@ -335,7 +354,28 @@ Recommend to a Co-Worker
           </p>
           <p class="tab-heading">Documents</p>
           <div class="documents">
-            <a class="download-doc" href="/assets/Training Plan_2022-23_.net_Ahmedabad.pdf" download>
+
+              @foreach(var document in @Model.missionDocument)
+{
+    <a class="download-doc " href="@document.DocumentPath@document.DocumentName.@document.DocumentType" download>
+        @if (document.DocumentType == "pdf")
+        {
+            <img src="/images/pdf.png" alt="" />
+        }
+        else if (document.DocumentType == "docx")
+        {
+            <img src="/images/doc.png" alt="" />
+        }
+        else{
+            <img src="/images/xlsx.png" alt="" />
+        }
+        <span style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;max-width: 20ch;">
+            @document.DocumentName</span>
+    </a>
+}
+
+
+          @*  <a class="download-doc" href="/assets/Training Plan_2022-23_.net_Ahmedabad.pdf" download>
               <img src="/images/pdf.png" alt="" />
               <span>Training-Plan.pdf</span>
             </a>
@@ -346,13 +386,13 @@ Recommend to a Co-Worker
             <a href="/assets/CI Platform - DB.xlsx" class="download-doc" download>
               <img src="/images/xlsx.png" alt="" />
               <span>CI-Database.xlsx</span>
-            </a>
+            </a>*@
           </div>
         </div>
 
         <div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
        
-          @Model.organizationDetail
+          @Model.Volunteering.organizationDetail
         </div>
         @*<div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
@@ -365,7 +405,7 @@ Recommend to a Co-Worker
 
         <div class="tab-pane tab-bar fade comments" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <textarea class="comment-box" id="commentText" name="" cols="100" rows="5"></textarea>
-          <button class="comment-btn" type="button" value="@Model.MissionId" id="post-comment-btn" >Post Comment</button>
+          <button class="comment-btn" type="button" value="@Model.Volunteering.MissionId" id="post-comment-btn" >Post Comment</button>
           @*<ul class="comment-items" id="list"></ul>*@
           <div class=" commnets bg-light" id="CommentsList"> </div>
         </div>
@@ -377,11 +417,11 @@ Recommend to a Co-Worker
         <table>
           <tr class="table-item">
             <td>Skills</td>
-            <td>@Model.skill</td>
+            <td>@Model.Volunteering.skill</td>
           </tr>
           <tr class="table-item">
             <td>Days</td>
-            <td>@Model.days</td>
+            <td>@Model.Volunteering.days</td>
           </tr>
           <tr>
             <td>Rating</td>
@@ -391,16 +431,16 @@ Recommend to a Co-Worker
                 <div title="Rating">
                     @if (true)
                     {
-                        for (var i = 0; i < (@Model.Rating); i++)
+                        for (var i = 0; i < (@Model.Volunteering.Rating); i++)
                         {
                             <i class="fa fa-star rating-color checked"></i>
                         }
-                        for (var i = 0; i < 5 - (@Model.Rating); i++)
+                        for (var i = 0; i < 5 - (@Model.Volunteering.Rating); i++)
                         {
                             <i class="fa fa-star"></i>
                         }
                     }
-                    (By @Model.ratingvolcount    volunteers)
+                    (By @Model.Volunteering.ratingvolcount    volunteers)
                 </div>
                 
             </td>
@@ -416,7 +456,16 @@ Recommend to a Co-Worker
             </span>
           </div>
           <div class="d-flex flex-wrap p-1">
-            <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
+
+              @foreach(var item in @Model.recentVolunteer)
+              {
+                <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
+                    <img src="@item.Avatar" class="rounded-circle volunteer-images" alt="" />
+                    <span class="fs-6 volunteer-names">@item.FirstName @item.LastName</span>
+                </div>
+              }
+
+            @*<div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
               <img src="/images/volunteer1.png" class="rounded-circle volunteer-images" alt="" />
               <span class="fs-6 volunteer-names">Jenil Vora</span>
             </div>
@@ -451,7 +500,7 @@ Recommend to a Co-Worker
             <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
               <img src="/images/volunteer9.png" class="rounded-circle volunteer-images" alt="" />
               <span class="fs-6 volunteer-names">Smriti Mandhana</span>
-            </div>
+            </div>*@
           </div>
           <div id="volunteer-scroll-bar"
             class="d-flex justify-content-center align-items-center border border-1 m-0 w-100">
@@ -531,7 +580,7 @@ alert(xhr.responseText);
 });
 
 
-var hello = '@Model.themeName';
+var hello = '@Model.Volunteering.themeName';
 $.ajax({
       type: "POST",
       url: "@Url.Action("relatedMissions","Mission")",
@@ -551,15 +600,31 @@ $.ajax({
 
 $(document).ready(function(){
 
-    var first = @Model.MissionId;
-console.log("Mission-ID", first);
+    var first = @Model.Volunteering.MissionId;
+    var userMission = @Model.Navbar_1.userId;
+    console.log("User ID is", userMission);
+
+    $("#APPLYBTN").on("click", function(e){
+        $.ajax({
+            url:'https://localhost:7165/Mission/ApplyNow',
+            type:'POST',
+            data:{missionID:first, userID:userMission},
+            success: function(data){
+                alert('Applied to Mission Successfully');
+                $(this).text('Pending');
+                $(this).css("color", "gray");
+            },
+            error: function(){
+                alert('Application failed');
+            }
+        })
+    })
 
     favouriteMissions();
 
     $("#stars-rating .rating-stars").click(function() {
         alert("Hello Rating");
 var rating = $("#user_rating").val();
-console.log("clicked!");
 $.ajax({
 url: 'https://localhost:7165/Mission/MissionUserRating',
 type: 'POST',
@@ -674,7 +739,7 @@ $(document).ready(function () {
 var missionId = $("#post-comment-btn").val();
 listComment(missionId);
 //addtofav(missionId, flag);
-loadRealtedGridCard();
+//loadRealtedGridCard();
 
 });
 $("#post-comment-btn").on("click",function(e){
