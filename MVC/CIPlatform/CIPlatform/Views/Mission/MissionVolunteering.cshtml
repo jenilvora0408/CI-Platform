@@ -161,11 +161,22 @@
           </div>
           <hr />
           <div id="mission-favourite-recomend-div" class="d-flex">
-                    
-                         <button id="likeButton" id="favourite-mission-@Model.Volunteering.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:white; border: 2px solid red;">
+                    @if(Model.Volunteering.favMissionId != null)
+                    {
+                        <button id="likeButton" id="favourite-mission-@Model.Volunteering.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:red; border: 2px solid red;">
                     <img id="likeImage" src="/images/heart1.png" alt="" />
                     <span id="likedText" >Add to Favourite</span>
                         </button>
+                    }
+                    else
+                    {
+                    <button id="likeButton" id="favourite-mission-@Model.Volunteering.MissionId"  class="w-50 border border-3 rounded-5  p-2 m-2" style="border-radius: 25px;background-color:white; border: 2px solid red;">
+                    <img id="likeImage" src="/images/heart1.png" alt="" />
+                    <span id="likedText" >Add to Favourite</span>
+                        </button>
+
+                    }
+                    
                  
                 
 
@@ -215,7 +226,7 @@ Recommend to a Co-Worker
           </div>
           <div>
             <hr class="ratings" />
-            <p class="mission-date">
+            <p class="mission-date" style="margin-top:-40px"> 
               
                 @*<i class="bi bi-star"></i>
                 <i class="bi bi-star"></i>
@@ -266,7 +277,7 @@ Recommend to a Co-Worker
               </div>
             </div>
           </div>
-          @if (Model.Volunteering.approvalStatus == "Approved")
+          @if (Model.Volunteering.approvalStatus == 1)
           {
               <div class="vol-apply-btn">
               <button id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
@@ -274,7 +285,7 @@ Recommend to a Co-Worker
               </button>
               </div>
           }
-          else if (Model.Volunteering.approvalStatus == "Pending")
+          else if (Model.Volunteering.approvalStatus == 0)
           {
               <div class="vol-apply-btn">
               <button id="APPLYBTN" type="button" class="btn btn-warning" style="border: 2px solid gray">
@@ -647,7 +658,7 @@ alert('Rating Failed!');
             event.preventDefault();
             if (this.style.backgroundColor == "white") {
             this.style.opacity = 1;
-            var missionId =first;
+            var missionId = @Model.Volunteering.MissionId;
             var userId =$(".home-nav1-right .user-btn")[0].id;
             $.ajax({
             type: "POST",
@@ -666,7 +677,8 @@ alert('Rating Failed!');
             }
             else {
             
-            var missionId = first; 
+            var missionId = @Model.Volunteering.MissionId; 
+            console.warn("New Mission ID is", missionId);
             
             var userId = $(".home-nav1-right .user-btn")[0].id;
             $.ajax({
@@ -699,7 +711,7 @@ alert('Rating Failed!');
         success: function (data) {
             var dataArr = data["data"].split(",");
         $("#mission-favourite-recomend-div #likeButton").each(function (index) {
-                var id = first;
+                var id = @Model.Volunteering.MissionId;
                 var temp=false;
                 Loop1: 
 
@@ -711,12 +723,12 @@ alert('Rating Failed!');
                     }
                 }
                     if(temp){
-                        alert("True");
+                        alert("Added to Favourite Successfully");
                         this.style.background = "red";
                         this.style.opacity = 1;
                     }
                     else{
-                        alert("False");
+                        alert("Removed from Favourite");
                         console.log("False",dataArr,id,dataArr[i] == id);
 
                     this.style.backgroundColor = "white";

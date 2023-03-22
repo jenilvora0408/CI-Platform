@@ -57,16 +57,16 @@ namespace CIPlatform.Controllers
             public IActionResult MissionVolunteering(int? missionId)
             {
                 string userSessionEmailId = HttpContext.Session.GetString("useremail");
+                User userObj = _missionInterface.findUser(userSessionEmailId);
             if (userSessionEmailId == null)
                 {
                     return RedirectToAction("Login", "Account");
                 }
                 MissionVol missionVol = new MissionVol();
             missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
-            missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}").AsEnumerable().First();
+            missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}, @userId={userObj.UserId}").AsEnumerable().First();
                 Navbar_1 navbar1 = new Navbar_1();
                 RecentVolunteer recentVolunteer = new RecentVolunteer();
-                User userObj = _missionInterface.findUser(userSessionEmailId);
                 missionVol.Navbar_1 = new Navbar_1();
                 missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
                 missionVol.Navbar_1.avatar = userObj.Avatar;

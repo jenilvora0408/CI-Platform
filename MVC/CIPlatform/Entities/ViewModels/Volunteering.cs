@@ -33,6 +33,7 @@ namespace Entities.ViewModels
         public DateTime? deadline { get; set; }
         public int? Rating { get; set; }
         public int? ratingvolcount { get; set; }
-        public string? approvalStatus { get; set; }
+        public int? approvalStatus { get; set; }
+        
     }
 }
