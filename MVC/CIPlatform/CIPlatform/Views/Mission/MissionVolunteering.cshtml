@@ -288,7 +288,7 @@ Recommend to a Co-Worker
           else if (Model.Volunteering.approvalStatus == 0)
           {
               <div class="vol-apply-btn">
-              <button id="APPLYBTN" type="button" class="btn btn-warning" style="border: 2px solid gray">
+              <button id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
                   Pending <img src="/images/right-arrow.png" alt="" />
               </button>
               </div>
@@ -706,7 +706,8 @@ alert('Rating Failed!');
         console.log("In get fav");
     $.ajax({
         type: "GET",
-        url: '/Mission/getFavouriteMissionsOfUser',
+        url: '/Mission/
+        OfUser',
         data: { userid: userId },
         success: function (data) {
             var dataArr = data["data"].split(",");
