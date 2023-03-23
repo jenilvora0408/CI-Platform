@@ -71,7 +71,7 @@ namespace CIPlatform.Controllers
                 missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
                 missionVol.Navbar_1.avatar = userObj.Avatar;
                 missionVol.Navbar_1.userId = userObj.UserId;
-                missionVol.recentVolunteer = _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId}").ToList();
+                missionVol.recentVolunteer = _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
             return View(missionVol);
             }
 
@@ -84,9 +84,9 @@ namespace CIPlatform.Controllers
 
 
             [HttpPost]
-            public IActionResult relatedMissions(string theme)
+            public IActionResult relatedMissions(string theme, int? missionID)
             {
-                IEnumerable<RelatedMission> relatedMission=_ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}");
+                IEnumerable<RelatedMission> relatedMission=_ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}");
                 return PartialView("RelatedMission",relatedMission);
             }
 

@@ -1,0 +1,44 @@
+﻿@using Entities.ViewModels
+@model StoryPage
+
+<div class="grid-items row">
+    @foreach (var item in Model.Stories)
+    {
+        <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img-top"
+                     src="@item.storyImagePath.@item.storyImageType"
+                     alt="Card image cap" />
+                    <p class="filter"><span>@item.missionTheme</span></p>
+                    <div class="overlay effect">
+                        <div class="text">
+                            <button id="story-top-image-btn" style="width: 10vw"
+                                class="text-white p-2 px-4 border mt-1 mt-sm-2 border-2 border-white bg-transparent rounded-5">
+                                View Details
+                                <img src="/images/right-arrow.png" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @item.storyTitle
+                    </h5>
+                    <div class="text-1">
+                        <p class="card-text">
+                            @item.storyDescription
+                        </p>
+                    </div>
+                </div>
+                <div class="story-profiles">
+                    <div class="profile">
+                        <img src="@item.Avatar" alt="" />
+                        <span>@item.firstName @item.lastName</span>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,58 @@
+﻿@using Entities.ViewModels
+@model StoryPage
+
+<partial name="_Navbar_1" model="@Model.Navbar_1"/>
+
+<div class="story-list">
+    <div id="story-top-image-div" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-center w-50 fs-6">
+            <div id="story-top-image-content" class="text-white text-center mb-1 mb-sm-2 fw-lighter">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                ex eum reprehenderit, fugit at sint enim, nemo alias explicabo
+                architecto amet nostrum minus a laudantium sunt earum veniam
+                aspernatur rem.
+            </div>
+            <button id="story-top-image-btn"
+                    class="text-white p-2 px-4 border mt-1 mt-sm-2 border-1 border-white bg-transparent rounded-5">
+                Share your Story
+                <img src="/images/right-arrow.png" alt="" />
+            </button>
+        </div>
+    </div>
+    
+    <div class="grid-view container" id="storyCards">
+         @*   <partial name="_StoryListingCard"/>*@
+    </div>
+</div>
+
+<script>
+
+
+    $(document).ready(function () {
+        $.ajax({
+            type:"GET",
+            url:'/Story/StoryCard',
+               data: {},
+            dataType: "html",
+            success: function(data){
+                alert("Hello Success");
+                $("#storyCards").html("");
+                $("#storyCards").html(data);
+                console.log("Success in Story Listing Page");
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        })
+       
+        $('.card').hover(function () {
+            $(this).addClass('.overlay');
+        }, function () {
+            $(this).removeClass('.overlay');
+        });
+    });
+
+
+
+   
+</script>

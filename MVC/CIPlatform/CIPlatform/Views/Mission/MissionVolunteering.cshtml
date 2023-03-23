@@ -368,21 +368,31 @@ Recommend to a Co-Worker
 
               @foreach(var document in @Model.missionDocument)
 {
-    <a class="download-doc " href="@document.DocumentPath@document.DocumentName.@document.DocumentType" download>
+    
         @if (document.DocumentType == "pdf")
         {
-            <img src="/images/pdf.png" alt="" />
+            <a class="download-doc " href="@document.DocumentPath@document.DocumentName.@document.DocumentType" target="_blank">
+                <img src="/images/pdf.png" alt="" />
+                 <span style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;max-width: 20ch;">
+                @document.DocumentName</span>
+            </a>
         }
         else if (document.DocumentType == "docx")
         {
-            <img src="/images/doc.png" alt="" />
+            <a class="download-doc " href="@document.DocumentPath@document.DocumentName.@document.DocumentType" target="_blank">
+                <img src="/images/doc.png" alt="" />
+                <span style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;max-width: 20ch;">
+                @document.DocumentName</span>
+            </a>
         }
         else{
-            <img src="/images/xlsx.png" alt="" />
+            <a class="download-doc " href="@document.DocumentPath@document.DocumentName.@document.DocumentType" target="_blank">
+                <img src="/images/xlsx.png" alt="" />
+                <span style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;max-width: 20ch;">
+                @document.DocumentName</span>
+            </a>
         }
-        <span style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;max-width: 20ch;">
-            @document.DocumentName</span>
-    </a>
+       
 }
 
 
@@ -592,12 +602,13 @@ alert(xhr.responseText);
 
 
 var hello = '@Model.Volunteering.themeName';
+var missID = @Model.Volunteering.MissionId;
 $.ajax({
       type: "POST",
       url: "@Url.Action("relatedMissions","Mission")",
       dataType: "html",
       cache: false,
-      data:{theme:hello},
+      data:{theme:hello, missionID:missID},
       success: function (data) {
           $("#grid-items").html("");
           $('#grid-items').html(data);
@@ -706,8 +717,7 @@ alert('Rating Failed!');
         console.log("In get fav");
     $.ajax({
         type: "GET",
-        url: '/Mission/
-        OfUser',
+        url: '/Mission/getFavouriteMissionsOfUser',
         data: { userid: userId },
         success: function (data) {
             var dataArr = data["data"].split(",");
