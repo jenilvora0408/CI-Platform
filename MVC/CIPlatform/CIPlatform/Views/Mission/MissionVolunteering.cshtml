@@ -277,30 +277,35 @@ Recommend to a Co-Worker
               </div>
             </div>
           </div>
-          @if (Model.Volunteering.approvalStatus == 1)
+          @if(Model.Volunteering.endDate <= Model.Volunteering.deadline || Model.Volunteering.endDate == null && Model.Volunteering.goalValue == 100 || Model.Volunteering.endDate == null)
           {
-              <div class="vol-apply-btn">
-              <button id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
-                  Approved <img src="/images/right.png" alt="" />
-              </button>
-              </div>
-          }
-          else if (Model.Volunteering.approvalStatus == 0)
-          {
-              <div class="vol-apply-btn">
-              <button id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
-                  Pending <img src="/images/right-arrow.png" alt="" />
-              </button>
-              </div>
-          }
-          else
-          {
-              <div class="vol-apply-btn">
-              <button id="APPLYBTN" type="button" class="btn btn-light">
-                  Apply Now <img src="/images/right-arrow.png" alt="" />
-              </button>
-              </div>
-          }
+                @if (Model.Volunteering.approvalStatus == 1)
+                {
+                    <div class="vol-apply-btn">
+                    <button id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
+                        Approved <img src="/images/right.png" alt="" />
+                    </button>
+                    </div>
+                }
+                else if (Model.Volunteering.approvalStatus == 0)
+                {
+                    <div class="vol-apply-btn">
+                    <button id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
+                        Pending <img src="/images/right-arrow.png" alt="" />
+                    </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="vol-apply-btn">
+                    <button id="APPLYBTN" type="button" class="btn btn-light">
+                        Apply Now <img src="/images/right-arrow.png" alt="" />
+                    </button>
+                    </div>
+                }
+         }
+                   
+          
         </div>
       </div>
     </div>

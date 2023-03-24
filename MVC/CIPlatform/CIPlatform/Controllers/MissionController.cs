@@ -226,6 +226,10 @@ namespace CIPlatform.Controllers
             var findUserRating = _ciPlatformContext.MissionRatings.Where(x => x.UserId == user.UserId && x.MissionId == missionid).FirstOrDefault();
             if (findUserRating == null)
             {
+                if (ratingCount == 0.5)
+                {
+                    ratingCount = 1;
+                }
                 MissionRating missionRating = new MissionRating();
                 missionRating.UserId = user.UserId;
                 missionRating.MissionId = (long)missionid;
@@ -235,7 +239,10 @@ namespace CIPlatform.Controllers
             }
             else
             {
-
+                if (ratingCount == 0.5)
+                {
+                    ratingCount = 1;
+                }
                 findUserRating.UserId = user.UserId;
                 findUserRating.MissionId = (long)missionid;
                 findUserRating.Rating = (int)ratingCount;
