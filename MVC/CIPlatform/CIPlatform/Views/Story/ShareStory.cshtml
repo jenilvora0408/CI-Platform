@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Story </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/share-story.css">
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+</head>
+
+<body>
+    <div class="share-story">
+        <div class="story-details">
+
+            <p class="share-story-title">Share your Story</p>
+
+            <form action="#">
+                <div class="layer-1">
+                    <div class="selection-mission">
+                        <label for="mission-select">Select Mission</label>
+                        <select class="form-select mission-select" aria-label="Default select example">
+                            <option selected>Select your Mission</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    <div class="title-for-story">
+                        <label for="story-title" class="form-label">My Story Title</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter Story Title">
+                    </div>
+
+                    <div class="date-for-story">
+                        <label for="story-date" class="form-label">Date</label>
+                        <!-- <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                        <input placeholder="Select date" class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="date" />
+                    </div>
+                </div>
+
+                <div class="layer-2">
+                    <textarea id="editor"></textarea>
+                </div>
+
+                <div class="layer-3">
+                    <label for="Video URL">Enter Video URL</label>
+                    <input type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+
+                <div class="layer-4">
+                    <label for="Upload-Images">Upload Your Photos</label>
+                    <div class="upload__box">
+                        <div class="upload__btn-box">
+                          <label class="upload__btn">
+                            <p class="uploadButton">+</p>   
+                            <p>Drag & Drop your Pictures & Photos</p>
+                            <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                          </label>
+                        </div>
+                        <div class="upload__img-wrap"></div>
+                      </div>
+                </div>
+
+                <div class="layer-5">
+                    <div class="col-md-6 col-sm-6 col-6 layer-5-cancel">
+                        <button type="reset" id="cancelBtn">Cancel</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-6 layer-5-submit d-flex">
+                        <button id="saveBtn">Save</button>
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script>
+       ClassicEditor
+    .create( document.querySelector( '#editor' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
+    $("#cancelBtn").on("click",function(){
+        $(".ck-editor__main p").text("");
+        
+    })
+
+    
+   $("#saveBtn").on("click", function(e){
+    if($('.ck-editor__main p').css('display') != 'none')
+    {
+        var save = $(".ck-editor__main p").text();
+        console.log(save);
+    }
+    
+   })
+   
+
+
+    jQuery(document).ready(function () {
+  ImgUpload();
+});
+
+function ImgUpload() {
+  var imgWrap = "";
+  var imgArray = [];
+
+  $('.upload__inputfile').each(function () {
+    $(this).on('change', function (e) {
+      imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+      var maxLength = $(this).attr('data-max_length');
+
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+      var iterator = 0;
+      filesArr.forEach(function (f, index) {
+
+        if (!f.type.match('image.*')) {
+          return;
+        }
+
+        if (imgArray.length > maxLength) {
+          return false
+        } else {
+          var len = 0;
+          for (var i = 0; i < imgArray.length; i++) {
+            if (imgArray[i] !== undefined) {
+              len++;
+            }
+          }
+          if (len > maxLength) {
+            return false;
+          } else {
+            imgArray.push(f);
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+              imgWrap.append(html);
+              iterator++;
+            }
+            reader.readAsDataURL(f);
+          }
+        }
+      });
+    });
+  });
+
+  $('body').on('click', ".upload__img-close", function (e) {
+    var file = $(this).parent().data("file");
+    for (var i = 0; i < imgArray.length; i++) {
+      if (imgArray[i].name === file) {
+        imgArray.splice(i, 1);
+        break;
+      }
+    }
+    $(this).parent().parent().remove();
+  });
+}
+    </script>
+</body>
+
+    <script>
+  
+</script>
+
+
+</html>

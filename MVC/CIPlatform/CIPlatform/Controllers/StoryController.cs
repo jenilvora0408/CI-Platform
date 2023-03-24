@@ -61,5 +61,10 @@ namespace CIPlatform.Controllers
             storyPage.pageCount = long.Parse(output.Value.ToString());
             return PartialView("_StoryListingCard", storyPage);
         }
+
+        public IActionResult ShareStory()
+        {
+            return View();
+        }
     }
 }

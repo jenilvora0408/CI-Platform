@@ -25,5 +25,7 @@ namespace Repository.Repository.Interface
         public Mission GetMissionByMissionId(int MissionId);
         public Boolean RecommandtoCoWorker(long fromUserId, int MissionId, long toUserId);
         public void addComments(long missionid, long userid, string commented);
+
+
     }
 }

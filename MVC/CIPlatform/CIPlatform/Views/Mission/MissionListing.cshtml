@@ -205,6 +205,7 @@ sortColumn = localStorage.getItem("sortColumn");
                 $("#grid-items").html("");
                 $('#grid-items').html(data);
                   favouriteMissions();
+                  loadPagination(null, paging);
               console.warn("hello");
             },
             error: function (xhr, status, error) {
