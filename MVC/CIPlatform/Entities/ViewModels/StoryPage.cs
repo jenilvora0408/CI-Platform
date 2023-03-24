@@ -14,5 +14,9 @@ namespace Entities.ViewModels
         }
         public List<StoryListing> Stories { get; set; }
         public Navbar_1? Navbar_1 { get; set; }
+        public long? pageCount { get; set; }
+        public long? activePage { get; set; }
+        public long? pageSize { get; set; }
+        public long totalMissionCount { get; set; }
     }
 }

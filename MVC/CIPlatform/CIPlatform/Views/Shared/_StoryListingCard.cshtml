@@ -42,3 +42,47 @@
         </div>
     }
 </div>
+
+
+
+        <div class="Pagination my-3">
+        <nav aria-label="Page navigation example">
+            @*<ul class="pagination justify-content-center" id="pagination">
+                 @for (int i = 1; i <= Model.pageCount; i++)
+                {
+                    <li class="page-item ">
+                        <a id="pageUp" class="page-link" href='#top'>@i</a>
+                    </li>
+                }
+            </ul>*@
+            <ul class="pagination justify-content-center" id="pagination">
+    @for (int i = 1; i <= Model.pageCount; i++)
+    {
+        <li class="page-item">
+            <a class="page-link pageUp" href='#top'>@i</a>
+        </li>
+    }
+</ul>
+
+        </nav>
+    </div>
+
+    <script>
+        loadPagination();
+        function loadPagination(){
+    var paging="";
+    $(".pageUp").on("click",function(e){
+        e.preventDefault();
+        paging = $(this).text();
+        loadStory(paging);
+    })
+}
+
+
+        
+        $(".page-item").on("click", function(e){
+             $("html, body"). animate({ scrollTop: 0 }, "slow"); return false; 
+        })
+
+        
+    </script>

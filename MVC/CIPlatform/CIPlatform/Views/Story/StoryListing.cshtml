@@ -29,21 +29,7 @@
 
 
     $(document).ready(function () {
-        $.ajax({
-            type:"GET",
-            url:'/Story/StoryCard',
-               data: {},
-            dataType: "html",
-            success: function(data){
-                alert("Hello Success");
-                $("#storyCards").html("");
-                $("#storyCards").html(data);
-                console.log("Success in Story Listing Page");
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        })
+        loadStory(1);
        
         $('.card').hover(function () {
             $(this).addClass('.overlay');
@@ -53,6 +39,21 @@
     });
 
 
+    function loadStory(paging){
+    $.ajax({
+        type: 'GET',
+        url: '/Story/StoryCard',
+        data: {pageNumber: paging},
+        success: function(result){
+            $('#storyCards').html("");
+            $('#storyCards').html(result);
+            loadPagination();
+        },
+        error: function(){
+            console.log('Error fetching data');
+        }
+    })
+}
 
    
 </script>

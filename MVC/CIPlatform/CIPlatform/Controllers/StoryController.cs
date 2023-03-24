@@ -51,10 +51,14 @@ namespace CIPlatform.Controllers
             return View(storyPage);
         }
         
-        public IActionResult StoryCard()
+        public IActionResult StoryCard(int? pageNumber)
         {
+            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
             StoryPage storyPage = new StoryPage();
-            storyPage.Stories  = _ciPlatformContext.StoryListings.FromSqlInterpolated($"exec StoryListing").ToList();
+            storyPage.Stories  = _ciPlatformContext.StoryListings.FromSqlInterpolated($"exec StoryListing @pageNumber={pageNumber},  @TotalCount = {output} out").ToList();
+            storyPage.pageSize = 3;
+            storyPage.activePage = pageNumber;
+            storyPage.pageCount = long.Parse(output.Value.ToString());
             return PartialView("_StoryListingCard", storyPage);
         }
     }
