@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
+options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+); ;
 builder.Services.AddDbContext<CiPlatformContext>();
 builder.Services.AddScoped<RegisterInterface, RegisterRepository>();
 builder.Services.AddScoped<MissionInterface, MissionRepository>();

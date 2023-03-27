@@ -64,7 +64,29 @@ namespace CIPlatform.Controllers
 
         public IActionResult ShareStory()
         {
-            return View();
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ShareStory shareStory = new ShareStory();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            shareStory.Navbar_1 = missionHomeModel;
+            return View(shareStory);
         }
+      
+        
+         public IActionResult userAplliedMission()
+         {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            IEnumerable<MissionApplication> missionApplications = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved").Include(x => x.Mission).AsEnumerable();
+             return Json(new { data = missionApplications });
+         }
+        
     }
 }
