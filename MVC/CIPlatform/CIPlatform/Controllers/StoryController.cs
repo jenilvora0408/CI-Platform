@@ -20,13 +20,15 @@ namespace CIPlatform.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly MissionInterface _missionInterface;
         private readonly CiPlatformContext _ciPlatformContext;
+        private readonly IWebHostEnvironment _env;
 
-        public StoryController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext)
+        public StoryController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, IWebHostEnvironment env)
         {
             _logger = logger;
             _missionInterface = missionInterface;
             _ciPlatformContext = ciPlatformContext;
-           
+            _env = env;
+
         }
 
         public IActionResult Index()
@@ -80,13 +82,53 @@ namespace CIPlatform.Controllers
         }
       
         
-         public IActionResult userAplliedMission()
-         {
+        public IActionResult userAplliedMission()
+        {
+           string userSessionEmailId = HttpContext.Session.GetString("useremail");
+           User userObj = _missionInterface.findUser(userSessionEmailId);
+           IEnumerable<MissionApplication> missionApplications = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved").Include(x => x.Mission).AsEnumerable();
+            return Json(new { data = missionApplications });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadImages(List<IFormFile> files, long StoryId)
+        {
+            foreach (var file in files)
+            {
+                // Save the file to the desired folder
+                var fileName = Path.GetFileName(file.FileName);
+                var filePath = Path.Combine(_env.WebRootPath, "uploads", fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                StoryMedium storymedia = new StoryMedium();
+                storymedia.Path = "/uploads/" + fileName;
+                storymedia.Type = file.ContentType.Substring(6,9);
+                
+                storymedia.StoryId = StoryId;
+
+                _ciPlatformContext.StoryMedia.Add(storymedia);
+                _ciPlatformContext.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult storyInsert(long DropdownItem,string TitleOfStory,string StoryDate,string EditorText)
+        {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            IEnumerable<MissionApplication> missionApplications = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved").Include(x => x.Mission).AsEnumerable();
-             return Json(new { data = missionApplications });
-         }
-        
+            Story story = new Story();
+            story.Title = TitleOfStory;
+            story.MissionId = DropdownItem;
+            story.CreatedAt  = DateTime.Now;
+            story.Description = EditorText;
+            story.UserId = userObj.UserId;
+            _ciPlatformContext.Stories.Add(story);
+            _ciPlatformContext.SaveChanges();
+            return Ok(story.StoryId);
+        }
     }
 }

@@ -66,6 +66,8 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\MailKit.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\MessagePack.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Build.dll
@@ -126,6 +128,7 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Mono.TextTemplating.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\NETCore.MailKit.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\NuGet.Common.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\NuGet.Configuration.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
@@ -348,6 +351,3 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

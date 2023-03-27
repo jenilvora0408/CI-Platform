@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TCcv8t/kzuDsuMF9q2Cu3btEOTgkxEAcZiZLEnlmaek=",
+  "Hash": "xo7yraKFPtA46E8o5/H94NNNtkQ3qbKxdNtQMbf+ygI=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -831,23 +831,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\gift.png"
-    },
-    {
-      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\graph.png",
-      "SourceId": "CIPlatform",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
-      "BasePath": "_content/CIPlatform",
-      "RelativePath": "images/graph.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\graph.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\grid.png",
