@@ -91,9 +91,9 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadImages(List<IFormFile> files, long StoryId)
+        public async Task<IActionResult> UploadImages([FromForm] ImageUploadViewModel imageUploadViewModel)
         {
-            foreach (var file in files)
+            foreach (var file in imageUploadViewModel.files)
             {
                 // Save the file to the desired folder
                 var fileName = Path.GetFileName(file.FileName);
@@ -104,9 +104,10 @@ namespace CIPlatform.Controllers
                 }
                 StoryMedium storymedia = new StoryMedium();
                 storymedia.Path = "/uploads/" + fileName;
-                storymedia.Type = file.ContentType.Substring(6,9);
-                
-                storymedia.StoryId = StoryId;
+                int index = file.ContentType.IndexOf("/");
+                string textAfterSlash = file.ContentType.Substring(index + 1);
+                storymedia.Type = textAfterSlash;
+                storymedia.StoryId = imageUploadViewModel.StoryId;
 
                 _ciPlatformContext.StoryMedia.Add(storymedia);
                 _ciPlatformContext.SaveChangesAsync();

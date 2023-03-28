@@ -43,316 +43,301 @@
 
         <p class="share-story-title">Share your Story</p>
 
-            <div class="layer-1">
-                <div class="selection-mission">
-                    <label for="mission-select">Select Mission</label>
-                    <select id="storyMissions" class="form-select mission-select" aria-label="Default select example">
-                        <option selected>Select your Mission</option>
-                    </select>
-                </div>
-
-                <div class="title-for-story">
-                    <label for="story-title" class="form-label">My Story Title</label>
-                    <input type="text" class="form-control storyTitle" id="exampleInputEmail1" aria-describedby="emailHelp"
-                           placeholder="Enter Story Title">
-                </div>
-
-                <div class="date-for-story">
-                    <label for="story-date" class="form-label">Date</label>
-                    <!-- <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                    <input placeholder="Select date" class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="date" />
-                </div>
+        <div class="layer-1">
+            <div class="selection-mission">
+                <label for="mission-select">Select Mission</label>
+                <select id="storyMissions" class="form-select mission-select" aria-label="Default select example">
+                    <option selected>Select your Mission</option>
+                </select>
             </div>
 
-            <div class="layer-2">
-                <textarea id="editor"></textarea>
+            <div class="title-for-story">
+                <label for="story-title" class="form-label">My Story Title</label>
+                <input type="text" class="form-control storyTitle" id="exampleInputEmail1" aria-describedby="emailHelp"
+                       placeholder="Enter Story Title">
             </div>
 
-            <div class="layer-3">
-                <label for="Video URL">Enter Video URL</label>
-                <input type="url" class="form-control storyURL" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            <div class="date-for-story">
+                <label for="story-date" class="form-label">Date</label>
+                <!-- <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                <input placeholder="Select date" class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="date" />
             </div>
+        </div>
 
-            @*Image - Upload*@
+        <div class="layer-2">
+            <textarea id="editor"></textarea>
+        </div>
 
-            <div class="layer-4">
-                <label for="Upload-Images">Upload Your Photos</label>
-                <div class="upload__box">
-                    <div class="upload__btn-box">
-                        <label class="upload__btn">
-                            <p class="uploadButton">+</p>
-                            <p>Drag & Drop your Pictures & Photos</p>
-                            <input type="file" multiple="" data-max_length="19" class="upload__inputfile">
-                        </label>
-                    </div>
-                    <div class="upload__img-wrap"></div>
+        <div class="layer-3">
+            <label for="Video URL">Enter Video URL</label>
+            <input type="url" class="form-control storyURL" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        </div>
+
+        @*Image - Upload*@
+
+        <div class="layer-4">
+            <label for="Upload-Images">Upload Your Photos</label>
+            <div class="upload__box">
+                <div class="upload__btn-box">
+                    <label class="upload__btn">
+                        <p class="uploadButton">+</p>
+                        <p>Drag & Drop your Pictures & Photos</p>
+                        <input type="file" multiple="" data-max_length="19" class="upload__inputfile">
+                    </label>
                 </div>
+                <div class="upload__img-wrap"></div>
             </div>
+        </div>
 
-            <div class="layer-5">
-                <div class="col-md-6 col-sm-6 col-6 layer-5-cancel">
-                    <button type="reset" id="cancelBtn">Cancel</button>
-                </div>
-                <div class="col-md-6 col-sm-6 col-6 layer-5-submit d-flex">
-                    <button id="saveBtn" onclick="insertStory()">Save</button>
-                    <button id="saveBtn">Submit</button>
-                </div>
+        <div class="layer-5">
+            <div class="col-md-6 col-sm-6 col-6 layer-5-cancel">
+                <button type="reset" id="cancelBtn">Cancel</button>
             </div>
+            <div class="col-md-6 col-sm-6 col-6 layer-5-submit d-flex">
+                <button id="saveBtn" onclick="insertStory()">Save</button>
+                <button id="submitBtn">Submit</button>
+            </div>
+        </div>
     </div>
 </div>
 <script src="./js/bootstrap.bundle.js"></script>
 <script>
-//Script for CK Editor
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch(error => {
-        console.error(error);
+      $(document).ready(function() {
+        loadUserMission();
+        ImgUpload();
     });
+     var formData = new FormData();
+    //Script for CK Editor
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 
-//Script for Cancel & Save
-$("#cancelBtn").on("click", function() {
-    $(".ck-editor__main p").text("");
-})
-
-
-$("#saveBtn").on("click", function(e) {
-    if ($('.ck-editor__main p').css('display') != 'none') {
-        var save = $(".ck-editor__main p").text();
-        console.log(save);
-    }
-})
-
+    //Script for Cancel & Save
+    $("#cancelBtn").on("click", function() {
+        $(".ck-editor__main p").text("");
+    })
 
 
-    
-
-    function insertStory(){
-        var dropdownItem = $("#storyMissions").val();
-    var titleOfStory = $(".storyTitle").val();
-    var storyDate = $("#date").val();
-    var editorText = $(".ck-editor__main p").text();
-    var storyUrl = $(".storyURL").val();
-            $.ajax({
-        type: "POST",
-        url: "/Story/storyInsert",
-        data: {DropdownItem:  dropdownItem, TitleOfStory:titleOfStory, StoryDate:storyDate, EditorText:editorText},
-        success: function(data) {
-           console.log("Success in story insert");
-           ImgUpload(data);
-        },
-        failure: function(response) {
-            alert("failure");
-        },
-        error: function(response) {
-            alert("Something went Wrong in Dropodown");
+    $("#saveBtn").on("click", function(e) {
+        if ($('.ck-editor__main p').css('display') != 'none') {
+            var save = $(".ck-editor__main p").text();
+            console.log(save);
         }
-    });
-        
-    }
+    })
 
 
-function ImgUpload(StoryId) {
-    var imgWrap = "";
-    var imgArray = [];
-
-    $('.upload__inputfile').each(function() {
-    $(this).on('change', function(e) {
-        imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-        var maxLength = $(this).attr('data-max_length');
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
-        var iterator = 0;
-        var formData = new FormData();
 
 
-        filesArr.forEach(function(f, index) {
-            // Check if file is an image with the correct extension
-            if (!f.type.match('image.(png|jpe?g)')) {
-                alert('Please select only .png, .jpg, or .jpeg images.');
-                return;
-            }
 
-            // Check if file size is less than 4 MB
-            if (f.size > 4 * 1024 * 1024) {
-                alert('Please select an image that is less than 4 MB.');
-                return;
-            }
-
-            formData.append("files", f);
-
-            if (imgArray.length > maxLength) {
-                return false;
-            } else {
-                var len = 0;
-                for (var i = 0; i < imgArray.length; i++) {
-                    if (imgArray[i] !== undefined) {
-                        len++;
-                    }
-                }
-                if (len > maxLength) {
-                    return false;
-                } else {
-                    imgArray.push(f);
-
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-                        imgWrap.append(html);
-                        iterator++;
-                    }
-                    reader.readAsDataURL(f);
-                }
-            }
-        });
-
-        // Send image data to server via AJAX
-       
-              $.ajax({
-            url: "/Story/UploadImages",
+        function insertStory(){
+            var dropdownItem = $("#storyMissions").val();
+        var titleOfStory = $(".storyTitle").val();
+        var storyDate = $("#date").val();
+        var editorText = $(".ck-editor__main p").text();
+        var storyUrl = $(".storyURL").val();
+                $.ajax({
             type: "POST",
-            data: {formData:formData, StoryId:StoryId},
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                console.log(response);
+            url: "/Story/storyInsert",
+            data: {DropdownItem:  dropdownItem, TitleOfStory:titleOfStory, StoryDate:storyDate, EditorText:editorText},
+            success: function(data) {
+               console.log("Success in story insert");
+               console.log(formData);
+               formData.append('storyId', data);
+                     $.ajax({
+                url: "/Story/UploadImages",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+
+
+            });
             },
-            error: function(xhr, status, error) {
-                console.log(xhr.responseText);
+            failure: function(response) {
+                alert("failure");
+            },
+            error: function(response) {
+                alert("Something went Wrong in Dropodown");
             }
-       
-      
         });
-    });
-});
 
-
-    $('body').on('click', ".upload__img-close", function(e) {
-        var file = $(this).parent().data("file");
-        for (var i = 0; i < imgArray.length; i++) {
-            if (imgArray[i].name === file) {
-                imgArray.splice(i, 1);
-                break;
-            }
         }
-        $(this).parent().parent().remove();
-    });
 
 
-    $('.upload__box').on('dragover', function(e) {
-        e.preventDefault();
-        $(this).addClass('dragover');
-    });
+    function ImgUpload() {
+        var imgWrap = "";
+        var imgArray = [];
 
-    $('.upload__box').on('dragleave', function(e) {
-        e.preventDefault();
-        $(this).removeClass('dragover');
-    });
-
-    $('.upload__box').on('drop', function(e) {
-        e.preventDefault();
-        $(this).removeClass('dragover');
-        imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-        var maxLength = $(this).find('.upload__inputfile').attr('data-max_length');
-        var formData = new FormData();
-        var files = e.originalEvent.dataTransfer.files;
-        var filesArr = Array.prototype.slice.call(files);
-        var iterator = 0;
-
-
-        filesArr.forEach(function(f, index) {
-            if (!f.type.match('image.*')) {
-                return;
-            }
-
-            // Check if file is an image with the correct extension
-            if (!f.type.match('image.(png|jpe?g)')) {
-                alert('Please select only .png, .jpg, or .jpeg images.');
-                return;
-            }
-
-             formData.append("files", f);
-
-            // Check if file size is less than 4 MB
-            if (f.size > 4 * 1024 * 1024) {
-                alert('Please select an image that is less than 4 MB.');
-                return;
-            }
-
-            if (imgArray.length > maxLength) {
-                return false
-            } else {
-                var len = 0;
-                for (var i = 0; i < imgArray.length; i++) {
-                    if (imgArray[i] !== undefined) {
-                        len++;
-                    }
-                }
-                if (len > maxLength) {
-                    return false;
-                } else {
-                    imgArray.push(f);
-
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-                        imgWrap.append(html);
-                        iterator++;
-                    }
-                    reader.readAsDataURL(f);
-                }
-            }
-        });
-          
-              $.ajax({
-            url: "/Story/UploadImages",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                console.log(xhr.responseText);
-            }
+        $('.upload__inputfile').each(function() {
+        $(this).on('change', function(e) {
+            imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+            var maxLength = $(this).attr('data-max_length');
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+            var iterator = 0;
      
-      
+
+
+            filesArr.forEach(function(f, index) {
+                // Check if file is an image with the correct extension
+                if (!f.type.match('image.(png|jpe?g)')) {
+                    alert('Please select only .png, .jpg, or .jpeg images.');
+                    return;
+                }
+
+                // Check if file size is less than 4 MB
+                if (f.size > 4 * 1024 * 1024) {
+                    alert('Please select an image that is less than 4 MB.');
+                    return;
+                }
+
+                formData.append("files", f);
+
+                if (imgArray.length > maxLength) {
+                    return false;
+                } else {
+                    var len = 0;
+                    for (var i = 0; i < imgArray.length; i++) {
+                        if (imgArray[i] !== undefined) {
+                            len++;
+                        }
+                    }
+                    if (len > maxLength) {
+                        return false;
+                    } else {
+                        imgArray.push(f);
+
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                            imgWrap.append(html);
+                            iterator++;
+                        }
+                        reader.readAsDataURL(f);
+                    }
+                }
+            });
+            // Send image data to server via AJAX
+        });
+    });
+
+
+        $('body').on('click', ".upload__img-close", function(e) {
+            var file = $(this).parent().data("file");
+            for (var i = 0; i < imgArray.length; i++) {
+                if (imgArray[i].name === file) {
+                    imgArray.splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().parent().remove();
         });
 
-    });
-}
+
+        $('.upload__box').on('dragover', function(e) {
+            e.preventDefault();
+            $(this).addClass('dragover');
+        });
+
+        $('.upload__box').on('dragleave', function(e) {
+            e.preventDefault();
+            $(this).removeClass('dragover');
+        });
+
+        $('.upload__box').on('drop', function(e) {
+            e.preventDefault();
+            $(this).removeClass('dragover');
+            imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+            var maxLength = $(this).find('.upload__inputfile').attr('data-max_length');
+            var files = e.originalEvent.dataTransfer.files;
+            var filesArr = Array.prototype.slice.call(files);
+            var iterator = 0;
 
 
-//Script for AJAX Call
+            filesArr.forEach(function(f, index) {
+                if (!f.type.match('image.*')) {
+                    return;
+                }
 
-$(document).ready(function() {
-    loadUserMission();
-});
+                // Check if file is an image with the correct extension
+                if (!f.type.match('image.(png|jpe?g)')) {
+                    alert('Please select only .png, .jpg, or .jpeg images.');
+                    return;
+                }
 
-function loadUserMission() {
-    $.ajax({
-        type: "GET",
-        url: "/Story/userAplliedMission",
-        data: "{}",
-        success: function(data) {
-            console.log("Dropdown success");
-            var str = "";
-            var themeDD = $("#storyMissions");
-            for (var j = 0; j < data["data"].length; j++) {
-                str += '<option value="' + data["data"][j].missionId + '" >' + data["data"][j].mission.title + '</option>';
+                 formData.append("files", f);
+
+                // Check if file size is less than 4 MB
+                if (f.size > 4 * 1024 * 1024) {
+                    alert('Please select an image that is less than 4 MB.');
+                    return;
+                }
+
+                if (imgArray.length > maxLength) {
+                    return false
+                } else {
+                    var len = 0;
+                    for (var i = 0; i < imgArray.length; i++) {
+                        if (imgArray[i] !== undefined) {
+                            len++;
+                        }
+                    }
+                    if (len > maxLength) {
+                        return false;
+                    } else {
+                        imgArray.push(f);
+
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                            imgWrap.append(html);
+                            iterator++;
+                        }
+                        reader.readAsDataURL(f);
+                    }
+                }
+            });
+
+        });
+    }
+
+
+    //Script for AJAX Call
+
+  
+
+    function loadUserMission() {
+        $.ajax({
+            type: "GET",
+            url: "/Story/userAplliedMission",
+            data: "{}",
+            success: function(data) {
+                console.log("Dropdown success");
+                var str = "";
+                var themeDD = $("#storyMissions");
+                for (var j = 0; j < data["data"].length; j++) {
+                    str += '<option value="' + data["data"][j].missionId + '" >' + data["data"][j].mission.title + '</option>';
+                }
+                themeDD.append(str);
+            },
+            failure: function(response) {
+                alert("failure");
+            },
+            error: function(response) {
+                alert("Something went Wrong in Dropodown");
             }
-            themeDD.append(str);
-        },
-        failure: function(response) {
-            alert("failure");
-        },
-        error: function(response) {
-            alert("Something went Wrong in Dropodown");
-        }
-    });
+        });
 
 
 
 
 
-}</script>
+    }</script>

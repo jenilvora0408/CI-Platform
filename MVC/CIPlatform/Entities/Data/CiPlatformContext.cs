@@ -64,9 +64,10 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
+
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
-    public virtual DbSet<RelatedMission> RelatedMissions { get; set;}
+    public virtual DbSet<RelatedMission> RelatedMissions { get; set; }
     public virtual DbSet<RecentVolunteer> RecentVolunteer { get; set; }
     public virtual DbSet<StoryListing> StoryListings { get; set; }
 
@@ -730,7 +731,7 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnName("path");
             entity.Property(e => e.StoryId).HasColumnName("story_id");
             entity.Property(e => e.Type)
-                .HasMaxLength(8)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("type");
             entity.Property(e => e.UpdatedAt)
