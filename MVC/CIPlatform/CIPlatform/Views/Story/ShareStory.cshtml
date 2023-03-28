@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-6 layer-5-submit d-flex">
                 <button id="saveBtn" onclick="insertStory()">Save</button>
-                <button id="submitBtn">Submit</button>
+                <button id="submitBtn" onclick="submitStory()">Submit</button>
             </div>
         </div>
     </div>
@@ -127,24 +127,22 @@
         }
     })
 
-
-
-
-
-        function insertStory(){
-            var dropdownItem = $("#storyMissions").val();
+    function submitStory(){
+                var dropdownItem = $("#storyMissions").val();
         var titleOfStory = $(".storyTitle").val();
         var storyDate = $("#date").val();
         var editorText = $(".ck-editor__main p").text();
         var storyUrl = $(".storyURL").val();
+        
                 $.ajax({
             type: "POST",
-            url: "/Story/storyInsert",
+            url: "/Story/submitStory",
             data: {DropdownItem:  dropdownItem, TitleOfStory:titleOfStory, StoryDate:storyDate, EditorText:editorText},
             success: function(data) {
                console.log("Success in story insert");
                console.log(formData);
                formData.append('storyId', data);
+               formData.append('storyUrl', storyUrl);
                      $.ajax({
                 url: "/Story/UploadImages",
                 type: "POST",
@@ -168,7 +166,49 @@
                 alert("Something went Wrong in Dropodown");
             }
         });
+    
+    }
 
+        function insertStory(){
+        var dropdownItem = $("#storyMissions").val();
+        var titleOfStory = $(".storyTitle").val();
+        var storyDate = $("#date").val();
+        var editorText = $(".ck-editor__main p").text();
+        var storyUrl = $(".storyURL").val();
+
+        
+                $.ajax({
+            type: "POST",
+            url: "/Story/storyInsert",
+            data: {DropdownItem:  dropdownItem, TitleOfStory:titleOfStory, StoryDate:storyDate, EditorText:editorText},
+            success: function(data) {
+               console.log("Success in story insert");
+               console.log(formData);
+                   formData.append('storyUrl', storyUrl);
+               formData.append('storyId', data);
+                     $.ajax({
+                url: "/Story/UploadImages",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+            },
+            failure: function(response) {
+                alert("failure");
+            },
+            error: function(response) {
+                alert("Something went Wrong in Dropodown");
+            }
+        });
+
+     
         }
 
 
@@ -311,8 +351,6 @@
 
 
     //Script for AJAX Call
-
-  
 
     function loadUserMission() {
         $.ajax({

@@ -62,16 +62,17 @@ namespace CIPlatform.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
-                MissionVol missionVol = new MissionVol();
-            missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
-            missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}, @userId={userObj.UserId}").AsEnumerable().First();
-                Navbar_1 navbar1 = new Navbar_1();
-                RecentVolunteer recentVolunteer = new RecentVolunteer();
-                missionVol.Navbar_1 = new Navbar_1();
-                missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
-                missionVol.Navbar_1.avatar = userObj.Avatar;
-                missionVol.Navbar_1.userId = userObj.UserId;
-                missionVol.recentVolunteer = _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
+            int userId = (int)userObj.UserId;
+            MissionVol missionVol =_missionInterface.getMissionVolData(missionId,userId);
+            //missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
+            //missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}, @userId={userObj.UserId}").AsEnumerable().First();
+            Navbar_1 navbar1 = new Navbar_1();
+            missionVol.Navbar_1 = new Navbar_1();
+            missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
+            missionVol.Navbar_1.avatar = userObj.Avatar;
+            missionVol.Navbar_1.userId = userObj.UserId;
+            missionVol.recentVolunteer = _missionInterface.getRelatedMissions(missionId);
+
             return View(missionVol);
             }
 

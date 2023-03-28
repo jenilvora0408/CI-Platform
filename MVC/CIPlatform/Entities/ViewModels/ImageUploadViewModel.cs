@@ -9,8 +9,10 @@ namespace Entities.ViewModels
 {
     public class ImageUploadViewModel
     {
-        public List<IFormFile> files { get; set; }
+        public List<IFormFile>? files { get; set; }
 
         public long StoryId { get; set; }
+
+        public string? storyUrl { get; set; }
     }
 }

@@ -11,15 +11,22 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Dapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace Repository.Repository.Repository
 {
     public class MissionRepository : MissionInterface
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+
         private readonly CiPlatformContext _ciPlatformContext;
-        public MissionRepository(CiPlatformContext ciPlatformContext)
+        public MissionRepository(CiPlatformContext ciPlatformContext, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
         {
             _ciPlatformContext = ciPlatformContext;
+            _httpContextAccessor = httpContextAccessor;
+            _configuration = configuration;
         }
         public User findUser(string email)
         {
@@ -127,6 +134,20 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.SaveChangesAsync();
         }
 
+        MissionVol MissionInterface.getMissionVolData(int? missionId,int? userId)
+        {
+            MissionVol missionVol = new MissionVol();
+            missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
+            missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}, @userId={userId}").AsEnumerable().First();
+            return missionVol;
+        }
+
+        List<RecentVolunteer> MissionInterface.getRelatedMissions(int? missionId)
+        {
+            RecentVolunteer recentVolunteer = new RecentVolunteer();
+            return  _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
+
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace Repository.Repository.Interface
         public Mission GetMissionByMissionId(int MissionId);
         public Boolean RecommandtoCoWorker(long fromUserId, int MissionId, long toUserId);
         public void addComments(long missionid, long userid, string commented);
-
+        public MissionVol getMissionVolData(int? missionId,int? userId);
+        public List<RecentVolunteer> getRelatedMissions(int? missionId); 
 
     }
 }

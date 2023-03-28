@@ -3,7 +3,6 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\bin\Debug
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\bin\Debug\net6.0\ref\Entities.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.pdb
-C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
