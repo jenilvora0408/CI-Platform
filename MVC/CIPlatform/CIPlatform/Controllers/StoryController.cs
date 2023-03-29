@@ -124,7 +124,7 @@ namespace CIPlatform.Controllers
                     storymedia.StoryId = imageUploadViewModel.StoryId;
 
                     _ciPlatformContext.StoryMedia.Add(storymedia);
-                    _ciPlatformContext.SaveChangesAsync();
+                    await _ciPlatformContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -136,7 +136,7 @@ namespace CIPlatform.Controllers
                     storymedia.StoryId = imageUploadViewModel.StoryId;
 
                     _ciPlatformContext.StoryMedia.Update(storymedia);
-                    _ciPlatformContext.SaveChangesAsync();
+                    await _ciPlatformContext.SaveChangesAsync();
                 }
             }
             return Ok();
