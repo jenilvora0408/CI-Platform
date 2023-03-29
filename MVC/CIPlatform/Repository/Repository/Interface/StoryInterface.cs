@@ -8,5 +8,6 @@ namespace Repository.Repository.Interface
 {
     public interface StoryInterface
     {
+        public Boolean RecommandtoCoWorker(long fromUserId, int StoryId, long toUserId);
     }
 }

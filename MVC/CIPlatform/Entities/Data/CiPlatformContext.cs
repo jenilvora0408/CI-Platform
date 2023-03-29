@@ -64,7 +64,6 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
-
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
     public virtual DbSet<RelatedMission> RelatedMissions { get; set; }
@@ -73,7 +72,7 @@ public partial class CiPlatformContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;DataBase=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;initial catalog=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -678,6 +677,7 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.Views).HasColumnName("views");
 
             entity.HasOne(d => d.Mission).WithMany(p => p.Stories)
                 .HasForeignKey(d => d.MissionId)

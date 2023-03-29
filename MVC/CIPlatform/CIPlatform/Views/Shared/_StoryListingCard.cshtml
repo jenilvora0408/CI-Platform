@@ -13,7 +13,7 @@
                     <p class="filter"><span>@item.missionTheme</span></p>
                     <div class="overlay effect">
                         <div class="text">
-                            <button style="width:fit-content !important; white-space:nowrap;" id="story-top-image-btn" 
+                            <button  onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyId=@item.storyID}) '" style="width:fit-content !important; white-space:nowrap;" id="story-top-image-btn" 
                                 class="text-white p-2 px-4 border mt-1 mt-sm-2 border-2 border-white bg-transparent rounded-5">
                                 View Details
                                 <img src="/images/right-arrow.png" alt="" />

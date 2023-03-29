@@ -14,6 +14,7 @@ options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoop
 builder.Services.AddDbContext<CiPlatformContext>();
 builder.Services.AddScoped<RegisterInterface, RegisterRepository>();
 builder.Services.AddScoped<MissionInterface, MissionRepository>();
+builder.Services.AddScoped<StoryInterface, StoryRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie("Cookies", options =>
 {

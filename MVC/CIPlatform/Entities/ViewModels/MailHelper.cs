@@ -37,7 +37,7 @@ namespace CI_PLATFORM_MAIN_ENTITIES.Models.ViewModels
                 };
 
                 var mailMessage = new MailMessage("t12281554@gmail.com", to);
-                mailMessage.Subject = "Forget Password";
+                mailMessage.Subject = "CI Platform";
                 mailMessage.Body = content;
                 mailMessage.IsBodyHtml = true;
                 smtpClient.Send(mailMessage);
