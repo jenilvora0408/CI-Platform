@@ -160,13 +160,13 @@
             <div class="apply-btn">
                     @if(item.endDate >= item.deadline || (item.endDate == null && item.goalValue == 100))
                     {
-                        <button onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                        <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                             View Details <img src="/images/right-arrow.png" alt="" />
                         </button>
                     }
                     else
                     {
-                        <button onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                        <button  style="width: fit-content !important; white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                            Apply  <img src="/images/right-arrow.png" alt="" />
                         </button>  
                     }

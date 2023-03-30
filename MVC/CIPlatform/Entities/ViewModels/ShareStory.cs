@@ -11,7 +11,8 @@ namespace Entities.ViewModels
     {
         public Navbar_1? Navbar_1 { get; set; }
         
-        public List<Mission> mission { get; set; }
-        public List<MissionApplication> application { get; set; }
+        public List<Story> stories { get; set; }
+     
+      
     }
 }

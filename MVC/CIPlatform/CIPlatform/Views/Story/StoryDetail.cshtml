@@ -54,7 +54,7 @@
             @foreach (var item in mediaNames)
             {
                 <swiper-slide>
-                <img src="@item.@Model.mediaType" alt="" />
+                <img style="object-fit:fill;" src="@item" alt="" />
                 </swiper-slide>
             }
         </swiper-container>
@@ -66,7 +66,7 @@
             @foreach (var item in mediaNames)
             {
                 <swiper-slide>
-                <img src="@item.@Model.mediaType" alt="" />
+                <img style="height:90px;" src="@item" alt="" />
                 </swiper-slide>
             }
         </swiper-container>
@@ -96,7 +96,7 @@
           </div>
 
           <p class="vol-description">
-            @Model.StoryDescription
+            @Model.WhyIVolunteer
           </p>
          
           <div>
@@ -120,7 +120,8 @@
 
 <form style="width:auto;">
 <div class="modal-body">
-<input id="volunteerEmail" class="form-control" type="email" name="email" placeholder="E-mail Address" required>
+<input id="volunteerEmail" onkeyup="filterFunction()"  class="form-control searchInput" type="email" name="email" placeholder="E-mail Address" required>
+           <div style="max-height:60vh; overflow-y:scroll;" id="myInput1"></div>
 <div class="valid-feedback">Email field is valid!</div>
 <div class="invalid-feedback">Email field cannot be blank!</div>
 
@@ -150,7 +151,7 @@
            Tabs content 
           ------------------------>
         <p class="fs-4"> @Model.StoryTitle </p>
-        <p> @Model.WhyIVolunteer </p>
+        <p> @Model.StoryDescription </p>
       </div>
     </div>
     
@@ -158,6 +159,28 @@
     
   
     <script>
+
+function filterFunction() {
+
+var searchUser = $(".searchInput").val();
+
+$.ajax({
+type: "GET",
+url: '/Story/SearchUser',
+dataType: "html",
+data: { name: searchUser},
+success: function (data) {
+
+$('#myInput1').html("");
+$('#myInput1').html(data);
+
+},
+error: function (xhr, status, error) {
+// Handle error
+console.log(error);
+}
+})
+};
         
 $('#RecommandtoUser').on("click", function (e) {
 var StoryId = @Model.StoryId;
@@ -178,4 +201,8 @@ alert(xhr.responseText);
 });
 });
 
+function addUserToInput(button) {
+var value = button.value;
+document.getElementById("volunteerEmail").value = value;
+}
     </script>

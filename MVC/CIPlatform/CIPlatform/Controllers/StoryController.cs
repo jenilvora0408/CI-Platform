@@ -219,15 +219,30 @@ namespace CIPlatform.Controllers
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            Story story = new Story();
-            story.Title = TitleOfStory;
-            story.MissionId = DropdownItem;
-            story.CreatedAt  = DateTime.Now;
-            story.Description = EditorText;
-            story.UserId = userObj.UserId;
-            _ciPlatformContext.Stories.Add(story);
-            _ciPlatformContext.SaveChanges();
-            return Ok(story.StoryId);
+            if (!_ciPlatformContext.Stories.Any(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory))
+            {
+                Story story = new Story();
+                story.Title = TitleOfStory;
+                story.MissionId = DropdownItem;
+                story.CreatedAt = DateTime.Now;
+                story.Description = EditorText;
+                story.UserId = userObj.UserId;
+                _ciPlatformContext.Stories.Add(story);
+                _ciPlatformContext.SaveChanges();
+                return Ok(story.StoryId);
+            }
+            else
+            {
+                Story story = new Story();
+                story.Title = TitleOfStory;
+                story.MissionId = DropdownItem;
+                story.CreatedAt = DateTime.Now;
+                story.Description = EditorText;
+                story.UserId = userObj.UserId;
+                _ciPlatformContext.Stories.Update(story);
+                _ciPlatformContext.SaveChanges();
+                return Ok(story.StoryId);
+            }
         }
 
         [HttpPost]
@@ -262,8 +277,11 @@ namespace CIPlatform.Controllers
                 _ciPlatformContext.SaveChanges();
                 return Ok(story.StoryId);
             }
-                
-           
+        }
+        public IActionResult SearchUser(string name)
+        {
+            List<User> user = _ciPlatformContext.Users.Where(x => x.FirstName.Contains(name) || x.LastName.Contains(name) || x.Email.Contains(name)).Take(10).ToList();
+            return PartialView("_RecommendUser", user);
         }
     }
 }

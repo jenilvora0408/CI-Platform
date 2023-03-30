@@ -94,6 +94,7 @@
                 <button type="reset" id="cancelBtn">Cancel</button>
             </div>
             <div class="col-md-6 col-sm-6 col-6 layer-5-submit d-flex">
+               <a id="previewBtn" href=""><button id="previewBtn2">Preview</button></a>
                 <button id="saveBtn" onclick="insertStory()">Save</button>
                 <button id="submitBtn" onclick="submitStory()">Submit</button>
             </div>
@@ -105,6 +106,7 @@
       $(document).ready(function() {
         loadUserMission();
         ImgUpload();
+        $("#previewBtn").hide();
     });
      var formData = new FormData();
     //Script for CK Editor
@@ -150,6 +152,10 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $("#previewBtn").show();
+                    $("#previewBtn").prop("href","/Story/StoryDetail?storyID="+data);
+                    $("#saveBtn").hide();
+                    alert("Response submitted successfully");
                     console.log(response);
                 },
                 error: function(xhr, status, error) {
@@ -193,6 +199,9 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $("#previewBtn").show();
+                    $("#previewBtn").prop("href","/Story/StoryDetail?storyID="+data);
+                    alert("Response Saved Successfully");
                     console.log(response);
                 },
                 error: function(xhr, status, error) {

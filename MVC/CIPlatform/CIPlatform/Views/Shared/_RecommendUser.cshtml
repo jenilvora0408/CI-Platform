@@ -1,0 +1,19 @@
+﻿@using Entities.Models
+@model List<User>
+@if (Model.Count() == 0)
+{
+<h6 style="text-align: center;
+    margin-top: 10px;">No User found</h6>
+}
+else{
+@foreach (var item in Model)
+{
+<div class="my-3" >
+
+<button style="display:flex;align-items:center;padding-left:15px;width:20vw; border:2px solid #ADADAD;border-radius:5px; background:#fff;" id="searchUser" onclick="addUserToInput(this)"
+type="button" value="@item.Email"><img style="height:4vh;" src="@item.Avatar" class="Icon2 rounded-circle me-3">@item.FirstName @item.LastName 
+<span style="font-size:12px; margin-left:3px;"> (@item.Email)</span></button>
+
+</div>
+}
+}
