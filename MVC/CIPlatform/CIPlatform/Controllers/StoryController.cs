@@ -233,7 +233,7 @@ namespace CIPlatform.Controllers
             }
             else
             {
-                Story story = new Story();
+                Story story = _ciPlatformContext.Stories.Where(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory).First();
                 story.Title = TitleOfStory;
                 story.MissionId = DropdownItem;
                 story.CreatedAt = DateTime.Now;

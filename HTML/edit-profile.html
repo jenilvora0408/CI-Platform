@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Edit Profile</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/edit-profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/edit-profile.css" />
 </head>
+
 <body>
     <div class="edit-profile-page">
         <div class="edit-user-profile">
             <div class="edit-left">
-                <img src="./images/user-img-large.png" alt="">
+                <img src="./images/user-img-large.png" alt="" />
                 <p class="user-name">Evan Donohue</p>
-                <a href="./newpassword.html">Change Password </a>
+                <a id="changePassword" href="">Change Password </a>
+                <div class="passwordContainer">
+                    <div class="passwordContent">
+                        <div class="d-flex justify-content-between">
+                            <h5>Change Password</h5>
+                            <button id="closePasswordPopUp"><i class="bi bi-x"></i></button>
+                        </div>
+                        <form action="">
+                            <input type="text" class="form-control mt-3" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter old Password" />
+
+                            <input type="text" class="form-control mt-3" id="exampleInputEmail2"
+                                aria-describedby="emailHelp" placeholder="Enter new Password" />
+
+                            <input type="text" class="form-control mt-3" id="exampleInputEmail3 "
+                                aria-describedby="emailHelp" placeholder="Enter confirm Password" />
+                            <div class="d-flex flex-row mt-3 justify-content-end" style="gap: 10px">
+                                <button class="user-edit-changepassword-cencel" id="changePasswordCencelButton">
+                                    Cancel
+                                </button>
+                                <button class="user-edit-changepassword" type="submit">
+                                    Change Password
+                                </button>
+                            </div>
+                        </form>
+
+                        <div></div>
+                    </div>
+                </div>
             </div>
             <div class="edit-right">
                 <p class="edit-right-heading"><span> Basic Information</span></p>
@@ -24,31 +56,37 @@
                         <div class="layer-part-1">
                             <div class="edit-name">
                                 <label for="name">Name*</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Name"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Name" />
                             </div>
                             <div class="edit-surname">
                                 <label for="surname">Surname*</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Surname"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Surname" />
                             </div>
                         </div>
                         <div class="layer-part-2">
                             <div class="edit-employeeID">
                                 <label for="employee-id">Employee ID</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Employee ID"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Employee ID" />
                             </div>
                             <div class="edit-surname">
                                 <label for="surname">Manager</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Manager Details"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Manager Details" />
                             </div>
                         </div>
                         <div class="layer-part-3">
                             <div class="edit-employeeID">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title for Story"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter title for Story" />
                             </div>
                             <div class="edit-surname">
                                 <label for="department">Department</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Department"/>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Department" />
                             </div>
                         </div>
                     </div>
@@ -56,26 +94,221 @@
                     <div class="layer-2">
                         <div class="layer2-part-1">
                             <label for="profile">My Profile*</label>
-                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7" placeholder="Enter your Comments..."></textarea>
+                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7"
+                                placeholder="Enter your Comments..."></textarea>
                         </div>
                         <div class="layer2-part-2">
                             <label for="profile">Why I Volunteer?</label>
-                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7" placeholder="Enter your Comments..."></textarea>
+                            <textarea name="message" class="form-control txt" id="exampleFormControlTextarea1" rows="7"
+                                placeholder="Enter your Comments..."></textarea>
                         </div>
                     </div>
 
                     <div class="layer-3">
-                        <p class="edit-right-heading address"><span> Address Information</span></p>
-                        <div class="layer3-part-1">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your City"/>
+                        <p class="edit-right-heading address">
+                            <span> Address Information</span>
+                        </p>
+                        <div class="layer-3-parts">
+                            <div class="layer3-part-1">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your City" />
+                            </div>
+                            <div class="layer3-part-2">
+                                <label for="city">Country*</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your City" />
+                            </div>
                         </div>
                     </div>
-                    
+
+                    <div class="layer-4">
+                        <p class="edit-right-heading address">
+                            <span> Professional Information</span>
+                        </p>
+                        <div class="layer-4-parts">
+                            <div class="layer4-part-1">
+                                <label for="city">Availability</label>
+                                <select class="form-select mission-select" aria-label="Default select example">
+                                    <option selected>Select your Availability</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="layer4-part-2">
+                                <label for="city">Country*</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your City" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layer-5">
+                        <p class="edit-right-heading address"><span> My Skills </span></p>
+                        <div class="layer-5-part-skill">
+                            <ul style="height: 5vh;" id="addSkillForUser"></ul>
+                        </div>
+
+                        <div class="row mt-3">
+                            <!-- <button class="user-edit-add-skill-btn">Add Skills</button> -->
+                        </div>
+                        <div class="popup-container" style="display: none">
+                            <div class="popup-content d-flex flex-column">
+                                <div class="d-flex justify-content-between">
+                                    <h5>Add your Skills</h5>
+                                    <button class="close-popup-btn remove-skill">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="available-skills">
+                                        <ul class="skill-list" id="uesrskills">
+                                            <li>History</li>
+                                            <li>Poetry</li>
+                                            <li>Elocution</li>
+                                            <li>Mimicry</li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center"
+                                        style="margin-right: 8px; gap: 5px">
+                                        <button class="add-skill">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </button>
+                                        <button class="remove-skill">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="selected-skills">
+                                        <ul class="skill-list" id="uesrskillsRight"></ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row mt-3" style="gap: 10px">
+                                        <button class="user-edit-add-skill-btn user-edit-close-btn" style="padding: 8px 20px; border-radius: 23px; border: 1px solid #ADADAD;background: #fff;">
+                                            Cancel
+                                        </button>
+                                        <button class="user-edit-save-btn" style="padding: 8px 20px; border-radius: 23px; border: 2px solid #f39e2e; background: #fff;">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="addSkill user-edit-add-skill-btn">Add Skills</a>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="saveBtn">Save</button>
+                    </div>
+
+                    <!-- <div class="col-12 d-flex justify-content-end">
+                        <button class="saveBtn">Save</button>
+                    </div> -->
                 </form>
             </div>
         </div>
     </div>
     <script src="./js/bootstrap.bundle.js"></script>
+    <script>
+        const changePassword = $("#changePassword");
+        const passwordCloseBtn = $("#closePasswordPopUp");
+        const passwordCancelBtn = $("#changePasswordCencelButton");
+        const passwordPopUp = $(".passwordContainer");
+
+        $(document).ready(function (e) {
+            changePassword.click(function (event) {
+                event.preventDefault(); // Prevent the default behavior of the anchor tag
+                passwordPopUp.fadeIn();
+            });
+
+            passwordCloseBtn.click(function () {
+                passwordPopUp.fadeOut();
+            });
+
+            passwordCancelBtn.click(function () {
+                event.preventDefault(); // Prevent the default behavior of the button
+                $("input").val("");
+            });
+
+            $(window).click(function (event) {
+                if (event.target == passwordPopUp[0]) {
+                    passwordPopUp.fadeOut();
+                }
+            });
+
+            $(document).ready(function () {
+                $(".add-skill").on("click", function (event) {
+                    event.preventDefault(); // prevent default behavior
+                    var selectedSkill = $(".available-skills .skill-list li.selected");
+                    if (selectedSkill.length > 0) {
+                        var skillValue = selectedSkill.attr("value");
+                        selectedSkill.appendTo($(".selected-skills .skill-list"));
+                        selectedSkill.removeClass("selected");
+                    }
+                });
+
+                $(".remove-skill").on("click", function (event) {
+                    event.preventDefault(); // prevent default behavior
+                    var selectedSkill = $(".selected-skills .skill-list li.selected");
+                    if (selectedSkill.length > 0) {
+                        var skillValue = selectedSkill.attr("value");
+                        selectedSkill.appendTo($(".available-skills .skill-list"));
+                        selectedSkill.removeClass("selected");
+                    }
+                });
+
+                $("#uesrskillsRight").on("click", "li", function () {
+                    $(this).toggleClass("selected");
+                });
+
+                $("#uesrskills").on("click", "li", function () {
+                    $(this).toggleClass("selected");
+                });
+
+                $(".user-edit-save-btn").on("click", function (event) {
+                    event.preventDefault(); // prevent default behavior
+                    $("#addSkillForUser").empty();
+                    $(".selected-skills .skill-list li").each(function () {
+                        var skillId = $(this).val();
+                        var skillName = $(this).text().trim();
+                        $("<li>")
+                            .text(skillName)
+                            .val(skillId)
+                            .appendTo($("#addSkillForUser"));
+                    });
+                    $(".popup-container").hide();
+                });
+
+                $(".user-edit-add-skill-btn").on("click", function (event) {
+                    event.preventDefault();
+                    $(".popup-container").show();
+                });
+
+                $(".user-edit-close-btn").on("click", function () {
+                    $(".popup-container").hide();
+                });
+
+                $(".close-popup-btn").click(function () {
+                    $(".popup-container").hide();
+                });
+
+                $(window).click(function (event) {
+                    const skillpopup = $(".popup-container");
+                    if (event.target == skillpopup[0]) {
+                        skillpopup.hide();
+                    }
+                });
+
+                // Hide popup by default
+                $(".popup-container").hide();
+            });
+
+            $(window).click(function (event) {
+                const skillpopup = $(".popup-container");
+                if (event.target == skillpopup[0]) {
+                    skillpopup.hide();
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
