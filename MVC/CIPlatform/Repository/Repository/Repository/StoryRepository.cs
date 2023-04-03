@@ -42,7 +42,27 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
                 return false;
             }
+        }
 
+        public Story GetStoryById(long id)
+        {
+            return _ciPlatformContext.Stories.FirstOrDefault(x => x.StoryId == id);
+        }
+
+        public User GetUserById(long id)
+        {
+            return _ciPlatformContext.Users.FirstOrDefault(x => x.UserId == id);
+        }
+
+        public StoryMedium GetStoryMediaByStoryId(long id)
+        {
+            return _ciPlatformContext.StoryMedia.FirstOrDefault(x => x.StoryId == id);
+        }
+
+        public void UpdateStory(Story story)
+        {
+            _ciPlatformContext.Stories.Update(story);
+            _ciPlatformContext.SaveChanges();
         }
     }
 }

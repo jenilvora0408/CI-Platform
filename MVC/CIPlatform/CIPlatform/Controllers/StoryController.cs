@@ -76,22 +76,20 @@ namespace CIPlatform.Controllers
             missionHomeModel.userId = userObj.UserId;
             storyDetail.Navbar_1 = missionHomeModel;
             storyDetail.StoryId = storyID;
-            Story stories = new Story();
-            stories = _ciPlatformContext.Stories.Where(x => x.StoryId == storyID).FirstOrDefault();
+            Story stories = _storyInterface.GetStoryById(storyID.Value);
             stories.Views = stories.Views + 1;
-            User user = _ciPlatformContext.Users.Where(x => x.UserId == stories.UserId).FirstOrDefault();
+            User user = _storyInterface.GetUserById(stories.UserId);
             storyDetail.Avatar = user.Avatar;
             storyDetail.WhyIVolunteer = user.WhyIVolunteer;
             storyDetail.Name = user.FirstName + " " + user.LastName;
-            StoryMedium media = _ciPlatformContext.StoryMedia.Where(x => x.StoryId == storyID).FirstOrDefault();
+            StoryMedium media = _storyInterface.GetStoryMediaByStoryId(storyID.Value);
             storyDetail.StoryDescription = stories.Description;
             storyDetail.StoryTitle = stories.Title;
             storyDetail.Views = stories.Views;
             storyDetail.MissionId = stories.MissionId;
             storyDetail.mediaPath = media.Path;
             storyDetail.mediaType = media.Type;
-            var entry = _ciPlatformContext.Stories.Update(stories);
-            _ciPlatformContext.SaveChanges();
+            _storyInterface.UpdateStory(stories);
 
             return View(storyDetail);
         }

@@ -64,15 +64,16 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
+
+    
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
     public virtual DbSet<RelatedMission> RelatedMissions { get; set; }
     public virtual DbSet<RecentVolunteer> RecentVolunteer { get; set; }
     public virtual DbSet<StoryListing> StoryListings { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;initial catalog=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;DataBase=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -834,7 +835,7 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnName("password");
             entity.Property(e => e.PhoneNumber).HasColumnName("phone_number");
             entity.Property(e => e.ProfileText)
-                .HasColumnType("text")
+                .IsUnicode(false)
                 .HasColumnName("profile_text");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("((1))")
@@ -845,7 +846,7 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnName("title");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
             entity.Property(e => e.WhyIVolunteer)
-                .HasColumnType("text")
+                .IsUnicode(false)
                 .HasColumnName("why_i_volunteer");
 
             entity.HasOne(d => d.City).WithMany(p => p.Users)

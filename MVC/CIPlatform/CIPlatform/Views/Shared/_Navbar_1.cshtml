@@ -2,7 +2,10 @@
 
     @*@model Pagination*@
  @model Navbar_1    
- <div class="home-navbar-1">
+ @{
+    int a = 5;
+}
+<div class="home-navbar-1">
         <div class="home-nav1-left">
           <a href="#" onclick="return location.href=' @Url.Action("StoryListing","Story") '">Stories</a>
           <ul class="navbar-nav">
@@ -28,9 +31,9 @@
                 @Model.username
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                <li onclick="return location.href=' @Url.Action("EditProfile","Profile") '"><a class="dropdown-item" href="#">Edit Profile</a></li>
                 <li><a class="dropdown-item" href="#">Help</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" href="/Account/logout">Logout</a></li>
               </ul>
             </li>
           </ul>

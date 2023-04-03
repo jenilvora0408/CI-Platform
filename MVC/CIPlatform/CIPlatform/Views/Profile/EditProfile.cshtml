@@ -1,0 +1,375 @@
+﻿@model Entities.ViewModels.editProfile
+
+<partial name="_Navbar_1" model="Model.Navbar_1" />
+    <div class="edit-profile-page">
+        <div class="edit-user-profile">
+            <div class="edit-left">
+                <img id="user-avatar" src="/images/user-img-large.png" alt=""/>
+                <p class="user-name">@Model.FirstName @Model.LastName</p>
+                <a id="changePassword" href="">Change Password </a>
+
+                 @*Password Pop Up*@
+
+                <div class="passwordContainer">
+                    <div class="passwordContent">
+                        <div class="d-flex justify-content-between">
+                            <h5>Change Password</h5>
+                            <button id="closePasswordPopUp"><i class="bi bi-x"></i></button>
+                        </div>
+                        <form method="post" asp-action="changePasswordForProfile" asp-controller="Profile">
+                            <input asp-for="oldPassword" type="password" class="form-control mt-3" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter old Password" />
+                                <span asp-validation-for="oldPassword" class="text-danger"></span>
+
+
+                            <input asp-for="newPassword" type="password" class="form-control mt-3" id="exampleInputEmail2"
+                                aria-describedby="emailHelp" placeholder="Enter new Password" />
+                                <span asp-validation-for="newPassword" class="text-danger"></span>
+
+                            <input asp-for="confirmPassword" type="password" class="form-control mt-3" id="exampleInputEmail3 "
+                                aria-describedby="emailHelp" placeholder="Enter confirm Password" />
+                                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+
+                            <div class="d-flex flex-row mt-3 justify-content-end" style="gap: 10px">
+                                <button class="user-edit-changepassword-cencel" id="changePasswordCencelButton">
+                                    Cancel
+                                </button>
+                                <button class="user-edit-changepassword" type="submit">
+                                    Change Password
+                                </button>
+                            </div>
+                        </form>
+
+                        <div></div>
+                    </div>
+                </div>
+    
+              
+            </div>
+            <div class="edit-right">
+                <p class="edit-right-heading mb-3"><span> Basic Information</span></p>
+
+                <form method="post" asp-action="SaveUserEditProfile" asp-controller="Profile">
+                    <div class="layer-1">
+                        <div class="layer-part-1">
+                            <div class="edit-name">
+                                <label for="name">Name*</label>
+                                <input type="text" asp-for="FirstName" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Name" />
+                            </div>
+                            <div class="edit-surname">
+                                <label for="surname">Surname*</label>
+                                <input type="text" asp-for="LastName" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Surname" />
+                            </div>
+                        </div>
+                        <div class="layer-part-2">
+                            <div class="edit-employeeID">
+                                <label for="employee-id">Employee ID</label>
+                                <input type="text" asp-for="EmployeeID" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Employee ID" />
+                            </div>
+                            <div class="edit-surname">
+                                <label for="surname">Manager</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Manager Details" />
+                            </div>
+                        </div>
+                        <div class="layer-part-3">
+                            <div class="edit-employeeID">
+                                <label for="title">Title</label>
+                                <input type="text" asp-for="Title" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter" />
+                            </div>
+                            <div class="edit-surname">
+                                <label for="department">Department</label>
+                                <input type="text" asp-for="Department" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your Department" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layer-2">
+                        <div class="layer2-part-1">
+                            <label for="profile">My Profile*</label>
+                            <textarea asp-for="MyProfile"  class="form-control txt" id="exampleFormControlTextarea1" rows="7"
+                                placeholder="Enter your Comments..."></textarea>
+                            @*<input type="text" asp-for="MyProfile" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter" />*@
+                              @*<textarea asp-for="MyProfile"  placeholder="Enter your comments..." id="" cols="30" rows="5" style="width: 100%;border: 1px solid #ced4da;"></textarea>*@
+                        </div>
+                        <div class="layer2-part-2">
+                            <label for="profile">Why I Volunteer?</label>
+                            <textarea asp-for="WhyIVolunteer"  class="form-control txt" id="exampleFormControlTextarea1" rows="7"
+                                placeholder="Enter your Comments..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layer-3">
+                        <p class="edit-right-heading address mb-3">
+                            <span> Address Information</span>
+                        </p>
+                        <div class="layer-3-parts">
+                            <div class="layer3-part-1">
+                                <label for="city">City</label>
+                                <input asp-for="CityName" type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter your City" />
+                            </div>
+                            <div class="layer3-part-2">
+                                <label for="city">Country*</label>
+                                 @*<select id="selectCountry" class="form-select mission-select" aria-label="Default select example">
+                                    <option selected>Country</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>*@
+                                @Html.DropDownListFor(m => m.CountryID,ViewBag.Country as List<SelectListItem>, "Select your country", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layer-4">
+                        <p class="edit-right-heading address mb-3 ">
+                            <span> Professional Information</span>
+                        </p>
+                        <div class="layer-4-parts">
+                            <div class="layer4-part-1">
+                                <label for="city">Availability</label>
+                                <select class="form-select mission-select" aria-label="Default select example">
+                                    <option selected>Select your Availability</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="layer4-part-2">
+                                <label for="city">LinkedIn*</label>
+                                <input asp-for="LinkedInURL" type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter LinkedIn URL" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
+
+                    <div class="layer-5">
+                        <p class="edit-right-heading address mb-3"><span> My Skills </span></p>
+                        <div class="layer-5-part-skill">
+                            <ul style="height: 5vh;" id="addSkillForUser">
+                                
+@foreach (var skill in ViewBag.selectedskills)
+{
+<li value="@skill.Value" >@skill.Text</li>
+}
+
+                            </ul>
+                        </div>
+
+                        <div class="row mt-3">
+                            <!-- <button class="user-edit-add-skill-btn">Add Skills</button> -->
+                        </div>
+                        <div class="popup-container" style="display: none">
+                            <div class="popup-content d-flex flex-column">
+                                <div class="d-flex justify-content-between">
+                                    <h5>Add your Skills</h5>
+                                    <button class="close-popup-btn remove-skill">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="available-skills">
+                                        <ul class="skill-list" id="uesrskills">
+                                           
+@foreach (var skill in ViewBag.notselectedskills)
+{
+<li value="@skill.Value" >@skill.Text</li>
+}
+
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center"
+                                        style="margin-right: 8px; gap: 5px">
+                                        <button class="add-skill">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </button>
+                                        <button class="remove-skill">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="selected-skills">
+                                        <ul class="skill-list" id="uesrskillsRight">
+                                            @foreach (var skill in ViewBag.selectedskills)
+{
+<li value="@skill.Value" >@skill.Text</li>
+}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row mt-3" style="gap: 10px">
+                                        <button class="user-edit-add-skill-btn user-edit-close-btn" style="padding: 8px 20px; border-radius: 23px; border: 1px solid #ADADAD;background: #fff;">
+                                            Cancel
+                                        </button>
+                                        <button class="user-edit-save-btn" style="padding: 8px 20px; border-radius: 23px; border: 2px solid #f39e2e; background: #fff;">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="addSkill user-edit-add-skill-btn">Add Skills</a>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="submit" class="saveBtn">Save</button>
+                    </div>
+
+                    <!-- <div class="col-12 d-flex justify-content-end">
+                        <button class="saveBtn">Save</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+     
+    
+    <script>
+
+        const changePassword = $("#changePassword");
+        const passwordCloseBtn = $("#closePasswordPopUp");
+        const passwordCancelBtn = $("#changePasswordCencelButton");
+        const passwordPopUp = $(".passwordContainer");
+
+        $(document).ready(function (e) {
+            changePassword.click(function (event) {
+                event.preventDefault(); // Prevent the default behavior of the anchor tag
+                passwordPopUp.fadeIn();
+            });
+
+            passwordCloseBtn.click(function () {
+                passwordPopUp.fadeOut();
+            });
+
+            passwordCancelBtn.click(function () {
+                event.preventDefault(); // Prevent the default behavior of the button
+                $("input").val("");
+            });
+
+            $(window).click(function (event) {
+                if (event.target == passwordPopUp[0]) {
+                    passwordPopUp.fadeOut();
+                }
+            });
+
+            $(document).ready(function () {
+                $(".add-skill").on("click", function (event) {
+                    event.preventDefault(); // prevent default behavior
+                    var selectedSkill = $(".available-skills .skill-list li.selected");
+                    if (selectedSkill.length > 0) {
+                        var skillValue = selectedSkill.attr("value");
+                        selectedSkill.appendTo($(".selected-skills .skill-list"));
+                        selectedSkill.removeClass("selected");
+                    }
+                });
+
+                $(".remove-skill").on("click", function (event) {
+                    event.preventDefault(); // prevent default behavior
+                    var selectedSkill = $(".selected-skills .skill-list li.selected");
+                    if (selectedSkill.length > 0) {
+                        var skillValue = selectedSkill.attr("value");
+                        selectedSkill.appendTo($(".available-skills .skill-list"));
+                        selectedSkill.removeClass("selected");
+                    }
+                });
+
+                $("#uesrskillsRight").on("click", "li", function () {
+                    $(this).toggleClass("selected");
+                });
+
+                $("#uesrskills").on("click", "li", function () {
+                    $(this).toggleClass("selected");
+                });
+
+                //$(".user-edit-save-btn").on("click", function (event) {
+                //    event.preventDefault(); // prevent default behavior
+                //    $("#addSkillForUser").empty();
+                //    $(".selected-skills .skill-list li").each(function () {
+                //        var skillId = $(this).val();
+                //        var skillName = $(this).text().trim();
+                //        $("<li>")
+                //            .text(skillName)
+                //            .val(skillId)
+                //            .appendTo($("#addSkillForUser"));
+                //    });
+                //    $(".popup-container").hide();
+                //});
+
+                
+            $(".user-edit-save-btn").on("click", function () {
+                 event.preventDefault(); // prevent default behavior
+                    $("#addSkillForUser").empty();
+                var selectedSkills = [];
+                $(".selected-skills .skill-list li").each(function () {
+                    var skillId = $(this).val();
+                    var skillName = $(this).text().trim();
+                    $("<li>").text(skillName).val(skillId).appendTo($("#addSkillForUser"));
+                    selectedSkills.push(skillId);
+                });
+                var skills = selectedSkills.join(',');
+                $('#userSelectedSkills').val(skills);
+                $(".popup-container").hide();
+            });
+
+
+                $(".user-edit-add-skill-btn").on("click", function (event) {
+                    event.preventDefault();
+                    $(".popup-container").show();
+                });
+
+                $(".user-edit-close-btn").on("click", function () {
+                    $(".popup-container").hide();
+                });
+
+                $(".close-popup-btn").click(function () {
+                    $(".popup-container").hide();
+                });
+
+                $(window).click(function (event) {
+                    const skillpopup = $(".popup-container");
+                    if (event.target == skillpopup[0]) {
+                        skillpopup.hide();
+                    }
+                });
+
+                // Hide popup by default
+                $(".popup-container").hide();
+            });
+
+            $(window).click(function (event) {
+                const skillpopup = $(".popup-container");
+                if (event.target == skillpopup[0]) {
+                    skillpopup.hide();
+                }
+            });
+        });
+
+//    $(document).ready(function() {
+//$('#user-avatar').click(function() {
+//var input = document.createElement('input');
+//input.type = 'file';
+
+//input.onchange = function() {
+//var file = this.files[0];
+//var reader = new FileReader();
+
+//reader.onload = function(event) {
+//$('#user-avatar').attr('src', event.target.result);
+//};
+
+//reader.readAsDataURL(file);
+//};
+//input.click();
+//});
+
+//});
+    </script>

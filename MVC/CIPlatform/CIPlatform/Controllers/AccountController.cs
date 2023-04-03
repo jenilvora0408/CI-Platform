@@ -95,7 +95,7 @@ namespace CIPlatform.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("password", "Enter correct password");
+                        ModelState.AddModelError("password", "Enter correct password"); 
                     }
                     return View("Login");
                 }
@@ -171,7 +171,13 @@ namespace CIPlatform.Controllers
             }
             return View();
         }
+        public IActionResult logout()
+        {
+            HttpContext.Session.Remove("useremail");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login","Account");
 
+        }
         
     }
 }

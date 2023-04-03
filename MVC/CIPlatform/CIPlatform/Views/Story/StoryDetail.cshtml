@@ -1,41 +1,6 @@
 ﻿@model Entities.ViewModels.storyDetail
 
-<div class="home-navbar-1">
-        <div class="home-nav1-left">
-          <a href="#" onclick="return location.href=' @Url.Action("StoryListing","Story") '">Stories</a>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                style="color: #333333">
-                Policy
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Policy1</a></li>
-                <li><a class="dropdown-item" href="#">Policy2</a></li>
-                <li><a class="dropdown-item" href="#">Policy3</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="home-nav1-right">
-          <img src="@Model.Navbar_1.avatar"  alt="" />
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a id="@Model.Navbar_1.userId" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                style="color: #333333">
-                @Model.Navbar_1.username
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                <li><a class="dropdown-item" href="#">Help</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="home-nav1-end"></div>
-
+<partial name="_Navbar_1" model="Model.Navbar_1"/>
 
 
     <div class="vol-container">
