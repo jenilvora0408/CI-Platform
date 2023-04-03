@@ -64,20 +64,15 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult changePasswordForProfile(editProfile edit)
         {
-            if (ModelState.IsValid)
-            {
+           
                 string userSessionEmailId = HttpContext.Session.GetString("useremail");
                 var a = _profileInterface.changePassword(edit, userSessionEmailId);
                 if (!a)
                 {
                     ModelState.AddModelError("oldPassword", "Incorrect old password.");
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("oldPassword", "Enter correct password");
-                
-            }
+            
+            
             return RedirectToAction("EditProfile");
         }
 
