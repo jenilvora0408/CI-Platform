@@ -50,7 +50,7 @@ namespace CIPlatform.Controllers
             var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
             ViewBag.Country = country;
             var email = HttpContext.Session.GetString("useremail");
-            User user = _ciPlatformContext.Users.Where(x => x.Email == email).FirstOrDefault();
+            User user = _missionInterface.findUser(userSessionEmailId);
             var selectedskills = _ciPlatformContext.UserSkills.Where(us => us.UserId == user.UserId).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
             ViewBag.selectedskills = selectedskills;
             var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.UserSkills.Where(us => us.UserId == user.UserId).Select(us => us.SkillId).Contains(s.SkillId)).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
@@ -85,5 +85,20 @@ namespace CIPlatform.Controllers
             return RedirectToAction("EditProfile");
         }
 
+
+        [HttpPost]
+        public IActionResult UserContactUs(editProfile N)
+        {
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email);
+            string welcomeMessage = "Welcome to CI platform, <br/> " + user.FirstName + " " + user.LastName + "(" + user.Email + ") Want to contact to you.";
+            string path = "<br/>" + N.Message + "";
+            MailManager mailHelper = new MailManager(_configuration);
+            string subject = N.Subject;
+            ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            ModelState.AddModelError("Email", "Email sent successfully.");
+            return RedirectToAction("EditProfile");
+
+        }
     }
 }

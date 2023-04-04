@@ -64,5 +64,7 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.Stories.Update(story);
             _ciPlatformContext.SaveChanges();
         }
+
+
     }
 }

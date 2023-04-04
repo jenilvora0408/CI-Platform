@@ -14,5 +14,6 @@ namespace Repository.Repository.Interface
         User GetUserById(long id);
         StoryMedium GetStoryMediaByStoryId(long id);
         void UpdateStory(Story story);
+
     }
 }
