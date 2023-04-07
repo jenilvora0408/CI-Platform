@@ -4,7 +4,12 @@
     <div class="edit-profile-page">
         <div class="edit-user-profile">
             <div class="edit-left">
-                <img id="user-avatar" src="@Model.Navbar_1.avatar" alt=""/>
+                @*<img id="user-avatar" src="@Model.Navbar_1.avatar" alt=""/>*@
+                <img class="UserAvtarPhoto" id="user-avatar" src="@Model.Navbar_1.avatar" alt="" title="Click To Change UserImage">
+@using (Html.BeginForm("UpdateUserImage", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<input type="file" name="inputFiles" id="inputFiles" style="display: none;" />
+}
                 <p class="user-name">@Model.FirstName @Model.LastName</p>
                 <a id="changePassword" href="">Change Password </a>
 
@@ -286,6 +291,46 @@
     
     <script>
 
+       
+$(document).ready(function () {
+// when the profile picture is clicked
+$('#user-avatar').click(function () {
+
+// display a file input dialog to choose a new picture
+$('#inputFiles').click();
+});
+
+// when a new picture is selected
+$('#inputFiles').change(function () {
+debugger
+var form = $('form')[0];
+var formData = new FormData(form);
+// send the new image to the server using AJAX
+$.ajax({
+url: '/Profile/UpdateUserImage',
+type: 'POST',
+data: formData,
+contentType: false,
+processData: false,
+success: function (data) {
+// show a success message if the picture was changed successfully
+if (data === 'success') {
+//alert('Profile picture changed successfully.');
+// refresh the page to show the new profile picture
+location.reload();
+}
+else
+{
+alert('An error occurred while changing the profile picture.');
+}
+},
+error: function () {
+alert('An error occurred while changing the profile picture.');
+}
+});
+});
+});
+
         const changePassword = $("#changePassword");
         const passwordCloseBtn = $("#closePasswordPopUp");
         const passwordCancelBtn = $("#changePasswordCencelButton");
@@ -404,23 +449,23 @@
             });
         });
 
-    $(document).ready(function() {
-$('#user-avatar').click(function() {
-var input = document.createElement('input');
-input.type = 'file';
+//    $(document).ready(function() {
+//$('#user-avatar').click(function() {
+//var input = document.createElement('input');
+//input.type = 'file';
 
-input.onchange = function() {
-var file = this.files[0];
-var reader = new FileReader();
+//input.onchange = function() {
+//var file = this.files[0];
+//var reader = new FileReader();
 
-reader.onload = function(event) {
-$('#user-avatar').attr('src', event.target.result);
-};
+//reader.onload = function(event) {
+//$('#user-avatar').attr('src', event.target.result);
+//};
 
-reader.readAsDataURL(file);
-};
-input.click();
-});
+//reader.readAsDataURL(file);
+//};
+//input.click();
+//});
 
-});
+//});
     </script>

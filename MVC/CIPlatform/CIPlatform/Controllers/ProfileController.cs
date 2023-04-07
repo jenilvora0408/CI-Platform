@@ -15,9 +15,10 @@ namespace CIPlatform.Controllers
         private readonly CiPlatformContext _ciPlatformContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
         public ProfileController(ILogger<AccountController> logger, ProfileInterface profileInterface, CiPlatformContext ciPlatformContext,
-            IHttpContextAccessor httpContextAccessor, IConfiguration configuration, MissionInterface missionInterface)
+            IHttpContextAccessor httpContextAccessor, IConfiguration configuration, MissionInterface missionInterface, IWebHostEnvironment env)
         {
             _logger = logger;
             _profileInterface = profileInterface;
@@ -25,6 +26,7 @@ namespace CIPlatform.Controllers
             _ciPlatformContext = ciPlatformContext;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -98,6 +100,33 @@ namespace CIPlatform.Controllers
             ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
             ModelState.AddModelError("Email", "Email sent successfully.");
             return RedirectToAction("EditProfile");
+
+        }
+
+        [HttpPost]
+        public IActionResult UpdateUserImage(IFormFile inputFiles)
+        {
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email);
+            if (inputFiles != null)
+            {
+                string fileName = Path.GetFileName(inputFiles.FileName);
+                var filePath = Path.Combine(_env.WebRootPath, "userAvatar", fileName);
+                var imgpath = "/userAvatar/" + fileName;
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    inputFiles.CopyTo(stream);
+                }
+                var userImgPath = _profileInterface.ChangeUserProfileImage(imgpath, user.UserId);
+
+                HttpContext.Session.SetString("Avatar", imgpath);
+                //TempData["Success"] = "User Image Upload Successfully";
+                return Content("success");
+            }
+            else
+            {
+                return Content("error");
+            }
 
         }
     }

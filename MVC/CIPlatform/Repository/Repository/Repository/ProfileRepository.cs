@@ -126,5 +126,15 @@ namespace Repository.Repository.Repository
             model.skills = _ciPlatformContext.Skills.ToList();
             return model;
         }
+
+        public bool ChangeUserProfileImage(string userImgPath, long userId)
+        {
+            User user = _ciPlatformContext.Users.Where(userid => userid.UserId.Equals(userId)).First();
+
+            user.Avatar = userImgPath;
+            _ciPlatformContext.Users.Update(user);
+            _ciPlatformContext.SaveChanges();
+            return true;
+        }
     }
 }

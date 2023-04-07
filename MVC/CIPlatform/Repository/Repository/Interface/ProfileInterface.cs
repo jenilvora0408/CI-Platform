@@ -15,5 +15,7 @@ namespace Repository.Repository.Interface
         public User SaveUserDetail(editProfile userEditProfile, string email);
 
         public editProfile PutUserDetails(editProfile model, string email);
+
+        public bool ChangeUserProfileImage(string userImgPath, long userId);
     }
 }
