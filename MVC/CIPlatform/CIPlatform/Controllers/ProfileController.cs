@@ -100,7 +100,6 @@ namespace CIPlatform.Controllers
             ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
             ModelState.AddModelError("Email", "Email sent successfully.");
             return RedirectToAction("EditProfile");
-
         }
 
         [HttpPost]
@@ -127,7 +126,23 @@ namespace CIPlatform.Controllers
             {
                 return Content("error");
             }
+        }
 
+        public IActionResult Policy()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            editProfile edit = new editProfile();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            edit.Navbar_1 = missionHomeModel;
+            return View(edit);
         }
     }
 }
