@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteering Timesheet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/Volunteering.css" />
+</head>
+
+<body>
+    <div class="vol-timesheet">
+        <div class="timesheet">
+            <h1>Volunteering Timesheet</h1>
+            <div class="timesheet-content">
+                <div class="timesheet-left">
+                    <div class="heading">
+                        <div class="timesheet-left-heading">Volunteering Hours</div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#timemodel"
+                            data-bs-whatever="@mdo">
+                            Add
+                        </button>
+                    </div>
+                    
+                    <table class="timesheet-left-table">
+                        <tr>
+                            <th>Mission</th>
+                            <th>Date</th>
+                            <th>Hours</th>
+                            <th>Minutes</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Environment Conservation</td>
+                            <td>22/02/2022</td>
+                            <td>1h</td>
+                            <td>30min</td>
+                            <td class="icons">
+                                <i id="edit-icon" class="bi bi-pencil-square"></i>
+                                <img src="./images/bin.png" alt="" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="timesheet-right">
+                    <div class="heading">
+                        <div class="timesheet-right-heading">Volunteering Goals</div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#goalmodel"
+                            data-bs-whatever="@mdo">
+                        Add
+                        </button>
+                    </div>
+                    
+                    <table class="timesheet-left-table">
+                        <tr>
+                            <th>Mission</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>Environment Conservation</td>
+                            <td>22/02/2022</td>
+                            <td>0</td>
+                            <td class="icons">
+                                <i id="edit-icon" class="bi bi-pencil-square"></i>
+                                <img src="./images/bin.png" alt="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Education Programme</td>
+                            <td>22/02/2022</td>
+                            <td>1</td>
+                            <td class="icons">
+                                <i id="edit-icon" class="bi bi-pencil-square"></i>
+                                <img src="./images/bin.png" alt="" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Time Modal -->
+    <div class="modal fade" id="timemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Please input below Volunteering Hours
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="">Mission</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Faith Community Fellowship</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Date Volunteered</label>
+                            <input type="date" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Hours</label>
+                                <input class="form-control" placeholder="Enter Spent Hours" type="text" />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Minutes</label>
+                                <input type="text" class="form-control" placeholder="Enter Spent Minutes" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"
+                                    placeholder="Enter your message"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goal Modal -->
+    <div class="modal fade" id="goalmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Please input below Volunteering Goal
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="">Mission</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Faith Community Fellowship</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Actions</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Date Volunteered</label>
+                            <input type="date" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"
+                                placeholder="Enter your message"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YWkNGxqkNdaM/U7jM7iNGMgK2D68rTCq6Plz3NLi26w=",
+  "Hash": "LnVZPDGwks/WXcSitZQIkCXZRXIMdrB7NuAX3X1xzfk=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -4010,6 +4010,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Volunteering-Rank.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\me.jfif",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "userAvatar/me.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\userAvatar\\me.jfif"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\volunteer1.png",
