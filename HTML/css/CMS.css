@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.cms-sidebar{
+    height: 100vh;
+    width: 300px;
+    background: #F88634;
+}
+.cms-sidebar ul{
+    padding-top: 3vh;
+    list-style-type: none;
+}
+.cms-sidebar ul li{
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 250px;
+}
+.cms-sidebar ul li:hover{
+    background: #fff;
+}
+.cms-sidebar ul li i{
+    font-size: 22px;
+    color: #fff;
+}
+.cms-sidebar ul li span{
+    padding-left: 8px;
+    font-size: 20px;
+    color: #fff;
+}
+.cms-sidebar .sidebar-heading{
+    font-size: 15px;
+}
+.cms-sidebar ul li.active {
+    background-color: #fff;
+}
+#sidebar-open, #sidebar-close{
+    font-size: 20px;
+    cursor: pointer;
+}

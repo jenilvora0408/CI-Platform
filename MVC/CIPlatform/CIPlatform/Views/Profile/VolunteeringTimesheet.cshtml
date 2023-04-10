@@ -92,21 +92,21 @@
                     <form method="post" asp-action="addTimesheetData" asp-controller="Profile">
                         <div class="mb-3">
                             <label for="">Mission</label>
-                            @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.time as List<SelectListItem>, "Select your Mission", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.time as List<SelectListItem>, "Select your Mission", new { @class = "form-control", @required = "required" })
                         </div>
                         <div class="mb-3">
                             <label>Date Volunteered</label>
-                            <input type="date" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
+                            <input required type="date" asp-for="VolTimesheet.DateVolunteered" class="form-control"  />
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="">Hours</label>
-                                <input asp-for="VolTimesheet.hours" class="form-control" placeholder="Enter Spent Hours" type="number" />
+                                <input required asp-for="VolTimesheet.hours" class="form-control" placeholder="Enter Spent Hours" type="number" />
                                         <span asp-validation-for="VolTimesheet.hours" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
                                 <label>Minutes</label>
-                                <input  type="number" asp-for="VolTimesheet.minutes" class="form-control" placeholder="Enter Spent Minutes" />
+                                <input required type="number" asp-for="VolTimesheet.minutes" class="form-control" placeholder="Enter Spent Minutes" />
                                         <span asp-validation-for="VolTimesheet.minutes" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
@@ -148,7 +148,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Date Volunteered</label>
-                            <input id="timedate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control" />
+                            <input id="timedate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control"  />
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -200,7 +200,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Date Volunteered</label>
-                            <input id="goaldate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control" />
+                            <input id="goaldate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control"  />
                         </div>
                         <div class="row">
                             <div class="mb-3">
@@ -240,16 +240,16 @@
                     <form method="post" asp-action="addTimesheetData" asp-controller="Profile">
                         <div class="mb-3">
                             <label for="">Mission</label>
-                            @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.goal as List<SelectListItem>, "Select your Mission", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.goal as List<SelectListItem>, "Select your Mission", new { @class = "form-control", @required = "required" })
                         </div>
 
                         <div class="mb-3">
                             <label>Actions</label>
-                            <input asp-for="VolTimesheet.Action" type="number" class="form-control" />
+                            <input required asp-for="VolTimesheet.Action" type="number" class="form-control" />
                         </div>
                         <div class="mb-3">
                             <label>Date Volunteered</label>
-                            <input type="date" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
+                            <input required type="date" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
                         </div>
 
                         <div class="mb-3">
@@ -303,8 +303,13 @@
             $("#timeminutes").val(minute);
             var date = $(this).attr("data-date");
             if (date) {
-            var d = new Date(date);
-            $("#timedate").val(d.toISOString().substr(0, 10));
+            var d = date;
+             var dateObj = new Date(d);
+            var year = dateObj.getFullYear();
+            var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+            var day = ("0" + dateObj.getDate()).slice(-2);
+            var formattedDate = `${year}-${day}-${month}`;
+            $("#timedate").val(formattedDate);
             }
         });
 
@@ -319,8 +324,13 @@
             $("#goalaction").val(action);
             var date = $(this).attr("data-date");
             if (date) {
-            var d = new Date(date);
-            $("#goaldate").val(d.toISOString().substr(0, 10));
+            var d = date;
+             var dateObj = new Date(d);
+            var year = dateObj.getFullYear();
+            var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+            var day = ("0" + dateObj.getDate()).slice(-2);
+            var formattedDate = `${year}-${day}-${month}`;
+            $("#goaldate").val(formattedDate);
             }
           });
     </script>

@@ -33,5 +33,6 @@ namespace Entities.ViewModels
 
         public string? Notes { get; set; }
 
+       
     }
 }
