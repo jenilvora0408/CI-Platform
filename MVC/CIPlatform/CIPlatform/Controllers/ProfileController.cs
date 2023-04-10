@@ -144,5 +144,58 @@ namespace CIPlatform.Controllers
             edit.Navbar_1 = missionHomeModel;
             return View(edit);
         }
+
+        public IActionResult VolunteeringTimesheet()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            var timeVol = _profileInterface.getTimesheet(userObj.UserId);
+            timeVol.Navbar_1 = missionHomeModel;
+
+            var a = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved" 
+            && x.Mission.MissionType == "time").Select(s => new SelectListItem { Value = s.MissionId.ToString(), Text = s.Mission.Title }).ToList();
+
+            var b = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved"
+            && x.Mission.MissionType == "goal").Select(s => new SelectListItem { Value = s.MissionId.ToString(), Text = s.Mission.Title }).ToList();
+
+            ViewBag.time = a;
+            ViewBag.goal = b;
+
+            return View(timeVol);
+        }
+
+        [HttpPost]
+        public IActionResult addTimesheetData(VolunteeringTimesheet volunteeringTimesheet)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if(volunteeringTimesheet.VolTimesheet.missionId != 0)
+            {
+                _profileInterface.addTimesheet(volunteeringTimesheet, userObj.UserId);
+            }
+            return RedirectToAction("VolunteeringTimesheet");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteVolunteeringTimesheet(long? timesheetId)
+        {
+            _profileInterface.deleteTimesheet(timesheetId);
+            return RedirectToAction("VolunteeringTimesheet");
+        }
+
+        [HttpPost]
+        public IActionResult updateTimesheetData(VolunteeringTimesheet volunteeringTimesheet)
+        {
+            _profileInterface.updateTimesheet(volunteeringTimesheet);
+            return RedirectToAction("VolunteeringTimesheet");
+        }
     }
 }

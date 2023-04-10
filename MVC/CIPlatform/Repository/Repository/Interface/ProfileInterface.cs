@@ -17,5 +17,13 @@ namespace Repository.Repository.Interface
         public editProfile PutUserDetails(editProfile model, string email);
 
         public bool ChangeUserProfileImage(string userImgPath, long userId);
+
+        public VolunteeringTimesheet getTimesheet(long UserId);
+
+        public void addTimesheet(VolunteeringTimesheet volunteeringTimesheet, long UserId);
+
+        public void deleteTimesheet(long? timesheetId);
+
+        public void updateTimesheet(VolunteeringTimesheet volunteeringTimesheet);
     }
 }

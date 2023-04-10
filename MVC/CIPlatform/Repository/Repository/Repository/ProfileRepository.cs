@@ -2,6 +2,7 @@
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Repository.Interface;
 using System;
@@ -135,6 +136,105 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.Users.Update(user);
             _ciPlatformContext.SaveChanges();
             return true;
+        }
+
+        public VolunteeringTimesheet getTimesheet(long UserId)
+        {
+            VolunteeringTimesheet timesheet = new VolunteeringTimesheet();
+            List<Timesheet> timesheets = _ciPlatformContext.Timesheets.Where(x => x.UserId == UserId && x.Mission.MissionType == "time").Include(x => x.Mission).ToList();
+            timesheet.timesheets = timesheets.Select(t => new VolTimesheet
+            {
+                DateVolunteered = t.DateVolunteered,
+                Time = t.Time,
+                missionTitle = t.Mission.Title,
+                missionId = t.MissionId,
+                UserId = UserId,
+                TimesheetId = t.TimesheetId,
+                Notes = t.Notes
+            }).ToList();
+
+            List<Timesheet> GoalTimesheets = _ciPlatformContext.Timesheets.Where(x => x.UserId == UserId && x.Mission.MissionType == "goal").Include(x => x.Mission).ToList();
+            timesheet.goalTimesheets = GoalTimesheets.Select(t => new VolTimesheet
+            {
+                DateVolunteered = t.DateVolunteered,
+                missionTitle = t.Mission.Title,
+                missionId = t.MissionId,
+                UserId = UserId,
+                TimesheetId = t.TimesheetId,
+                Action = t.Action,
+                Notes = t.Notes
+            }).ToList();
+
+            return timesheet;
+        }
+
+        public void addTimesheet(VolunteeringTimesheet volunteeringTimesheet, long UserId)
+        {
+            Timesheet timesheet = new Timesheet();
+            timesheet.UserId = UserId;
+            timesheet.MissionId = (long)volunteeringTimesheet.VolTimesheet.missionId;
+            timesheet.DateVolunteered = (DateTime)volunteeringTimesheet.VolTimesheet.DateVolunteered;
+
+            if (volunteeringTimesheet.VolTimesheet.Action == null)
+            {
+               if(volunteeringTimesheet.VolTimesheet.hours == null)
+               {
+                    volunteeringTimesheet.VolTimesheet.hours = 0;
+               }
+
+               if(volunteeringTimesheet.VolTimesheet.minutes == null)
+               {
+                    volunteeringTimesheet.VolTimesheet.minutes = 0;
+               }
+
+               timesheet.Time = new TimeSpan((int)volunteeringTimesheet.VolTimesheet.hours, 
+                   (int)volunteeringTimesheet.VolTimesheet.minutes, 0);
+                
+            }
+            else
+            {
+                timesheet.Action = volunteeringTimesheet.VolTimesheet.Action;
+            }
+
+            if(volunteeringTimesheet.VolTimesheet.Notes != null)
+            {
+                timesheet.Notes = volunteeringTimesheet.VolTimesheet.Notes;
+            }
+            
+            _ciPlatformContext.Add(timesheet);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public void deleteTimesheet(long? timesheetId)
+        {
+            Timesheet timesheet = _ciPlatformContext.Timesheets.Where(x => x.TimesheetId == timesheetId).FirstOrDefault();
+            if(timesheetId != null)
+            {
+                _ciPlatformContext.Remove(timesheet);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void updateTimesheet(VolunteeringTimesheet volunteeringTimesheet)
+        {
+            Timesheet timesheet = _ciPlatformContext.Timesheets.Where(x => x.TimesheetId == volunteeringTimesheet.VolTimesheet.TimesheetId).FirstOrDefault();
+            if(timesheet != null)
+            {
+                timesheet.DateVolunteered = (DateTime)volunteeringTimesheet.VolTimesheet.DateVolunteered;
+                timesheet.Notes = volunteeringTimesheet.VolTimesheet.Notes;
+                if(volunteeringTimesheet.VolTimesheet.Action != null)
+                {
+                    timesheet.Action = volunteeringTimesheet.VolTimesheet.Action;
+                }
+                else
+                {
+                    timesheet.Time = new TimeSpan((int)volunteeringTimesheet.VolTimesheet.hours,
+                   (int)volunteeringTimesheet.VolTimesheet.minutes, 0);
+                }
+                timesheet.UpdatedAt = DateTime.Now;
+                _ciPlatformContext.Update(timesheet);
+                _ciPlatformContext.SaveChanges();
+            }
         }
     }
 }

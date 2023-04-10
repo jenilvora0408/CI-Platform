@@ -1,0 +1,110 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.vol-timesheet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vol-timesheet i{
+    cursor: pointer;
+}
+.timesheet {
+    width: 80vw;
+    height: 100vh;
+}
+
+    .timesheet h1 {
+        font-weight: 400;
+        transform: translate(0px, 200px);
+    }
+
+.timesheet-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    gap: 2vw;
+}
+
+.timesheet-left,
+.timesheet-right {
+    width: 39vw;
+    height: 40vh;
+    border: 2px solid #adaaad;
+    padding: 30px 15px;
+}
+
+.timesheet-left-heading,
+.timesheet-right-heading {
+    color: #757575;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    font-weight: 400;
+}
+
+td {
+    color: #757575;
+}
+
+#edit-icon {
+    color: orange;
+    font-size: 20px;
+}
+
+.timesheet .icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.timesheet .heading {
+    display: flex;
+    justify-content: space-between;
+}
+/* =====================
+    Media Queries
+========================== */
+@media only screen and (max-width: 1084px) {
+    .timesheet-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .timesheet h1 {
+        transform: translate(0px, 30px);
+    }
+
+    .timesheet-left, .timesheet-right {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .timesheet {
+        width: 95vw;
+    }
+
+    .timesheet-left, .timesheet-right {
+        width: 95vw;
+    }
+}
