@@ -350,3 +350,4 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.MvcApplicationPartsAssemblyInfo.cs

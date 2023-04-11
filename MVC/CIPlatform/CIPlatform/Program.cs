@@ -16,6 +16,7 @@ builder.Services.AddScoped<RegisterInterface, RegisterRepository>();
 builder.Services.AddScoped<MissionInterface, MissionRepository>();
 builder.Services.AddScoped<StoryInterface, StoryRepository>();
 builder.Services.AddScoped<ProfileInterface, ProfileRepository>();
+builder.Services.AddScoped<AdminInterface, AdminRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie("Cookies", options =>
 {

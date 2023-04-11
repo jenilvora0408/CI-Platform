@@ -1,0 +1,26 @@
+﻿@model Entities.ViewModels.Navbar_1
+
+<header>
+            <nav class="admin-navbar">
+                <div class="admin-nav-left">
+                    <i id="sidebar-open" class="bi bi-list"></i>
+                    <span>Thursday, November 3, 2022, 10:06 AM</span>
+                </div>
+                <div class="admin-nav-right">
+                    <img src="@Model.avatar" alt="" />
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" style="color: #333333">
+                                @Model.username 
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Help</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>

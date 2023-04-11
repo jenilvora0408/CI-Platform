@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NnYM1Ey5tWP+tMQCkLnArmw7Z3AxFSaVGt4LJby0ayo=",
+  "Hash": "7zVgv8x40IleSEJtfEPRFWYHW7TUwK910Rz3GCl6lhE=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\Training Plan_2022-23_.net_Ahmedabad.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\CMS.css",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "css/CMS.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\CMS.css"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\EditProfile.css",

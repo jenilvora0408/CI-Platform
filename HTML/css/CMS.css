@@ -1,41 +1,273 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.cms-sidebar{
-    height: 100vh;
-    width: 300px;
-    background: #F88634;
+
+/* ------------------
+    Sidebar
+--------------------- */
+
+.cms-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 300px;
+  background: #f88634;
+  z-index: 1;
 }
-.cms-sidebar ul{
-    padding-top: 3vh;
-    list-style-type: none;
+.cms-sidebar ul {
+  padding-top: 3vh;
+  list-style-type: none;
 }
-.cms-sidebar ul li{
-    padding: 10px 15px;
-    cursor: pointer;
-    width: 250px;
+.cms-sidebar ul li {
+  padding: 10px 15px;
+  cursor: pointer;
+  width: 250px;
 }
-.cms-sidebar ul li:hover{
-    background: #fff;
+.cms-sidebar ul li:hover {
+  background: #fff;
 }
-.cms-sidebar ul li i{
-    font-size: 22px;
-    color: #fff;
+.cms-sidebar ul li i {
+  font-size: 22px;
+  color: #fff;
 }
-.cms-sidebar ul li span{
-    padding-left: 8px;
-    font-size: 20px;
-    color: #fff;
+.cms-sidebar ul li span {
+  padding-left: 8px;
+  font-size: 20px;
+  color: #fff;
 }
-.cms-sidebar .sidebar-heading{
-    font-size: 15px;
+.cms-sidebar .sidebar-heading {
+  color: #fff;
+  font-size: 15px;
 }
 .cms-sidebar ul li.active {
-    background-color: #fff;
+  background-color: #fff;
 }
-#sidebar-open, #sidebar-close{
-    font-size: 20px;
-    cursor: pointer;
+#sidebar-open,
+#sidebar-close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* -------------------
+     Navbar
+------------------------- */
+.admin-navbar {
+  position: absolute;
+  top: 0;
+  left: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100vw - 300px);
+  height: 80px;
+  box-shadow: 0 8px 10px -10px #adadad;
+}
+.admin-nav-left {
+  margin-left: 20px;
+}
+.admin-nav-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-right: 30px;
+}
+.admin-nav-right img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+/* =========================
+Media Queries for Navbar
+============================== */
+@media only screen and (max-width: 960px) {
+  .admin-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .admin-nav-right img {
+    display: none;
+  }
+  .admin-nav-left span {
+    font-size: 14px;
+  }
+}
+/* --------------------
+    Main Content
+------------------------ */
+.cms-content {
+  position: absolute;
+  top: 10vh;
+  left: 320px;
+  z-index: 0;
+}
+.cms-content .heading {
+  margin-top: 2vh;
+  width: calc(98vw - 320px);
+  padding-bottom: 4px;
+  border-bottom: 1px solid #adadad;
+}
+.cms-content .heading span {
+  font-size: 1.5rem;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+}
+.cms-content .add i {
+  color: #f88634;
+  font-size: 20px;
+}
+.cms-content .add button {
+  padding: 3px 15px;
+  border-radius: 23px;
+  background: #fff;
+  border: 2px solid #f88634;
+  color: #f88634;
+}
+.cms-content .content-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cms-content .search input {
+  border: none;
+  border-color: transparent;
+  outline: none;
+  padding: 8px 12px;
+  width: 200px;
+}
+.cms-content .search img {
+  height: 15px;
+  width: 15px;
+}
+.cms-content .search {
+  display: flex;
+  align-items: center;
+  border: 2px solid #adadad;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 250px;
+}
+/* =============================
+Media Queries for Search & Add
+================================ */
+@media only screen and (max-width: 960px) {
+  .cms-content {
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+    padding: 5px 15px;
+  }
+  .cms-content .heading {
+    width: 97vw;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .cms-content .search {
+    width: 200px;
+  }
+  .cms-content .search input {
+    width: 170px;
+  }
+}
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#edit-icon {
+  color: #f88634;
+}
+table .actives {
+  color: #14c506;
+}
+table th {
+  font-weight: 400;
+  font-size: 20px;
+}
+table thead {
+  background: #f8f9fc;
+}
+table {
+  border: 1px solid #adadad;
+  margin-top: 3vh;
+}
+.desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+
+/* -------------------
+    CMS Add
+------------------------ */
+.cms-content .cms-add{
+    margin-top: 3vh;
+    /* margin-left: 1vw;     */
+    width: calc(95vw - 300px);
+    height: 73vh;
+    border: 2px solid #00000014;
+}
+.cms-add .title{
+    font-size: 22px;
+    padding: 15px 30px;
+    height: 60px;
+    background: #f8f9fc;
+    width: calc(95vw - 303px);
+    border-bottom: 2px solid #00000014;
+}
+.cms-content form{
+    padding: 15px 30px;
+}
+.cms-add .layer-2, .cms-add label{
+    margin-top: 2vh;
+    margin-left: 2vw;
+}
+.ck-editor__editable{
+    height:30vh;
+}
+.cms-content form input{
+    width: 95%;
+    margin-left: 2vw;
+}
+.form-buttons{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: end;
+    margin-top: 2vh;
+}
+.form-buttons button{
+    padding: 8px 15px;
+    border-radius: 23px;
+}
+#saveBtn{
+    background: #fff;
+    border: 2px solid #f88634;
+    color: #f88634;
+}
+#cancelBtn{
+    background: #fff;
+    border: 2px solid #adadad;
+    color: #adadad;
+}
+/* =====================
+Media Queries for CMS Add
+======================== */
+@media only screen and (max-width: 960px){
+    .cms-content .cms-add{
+        width: 90vw;
+    }
+    .cms-add .title{
+        width: 89.5vw;
+    }
 }
