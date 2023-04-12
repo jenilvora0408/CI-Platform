@@ -12,5 +12,9 @@ namespace Entities.ViewModels
         public Navbar_1? Navbar_1 { get; set; }
 
         public List<CmsPage> cmsPage { get; set; }
+
+        public int PageCount { get; set; }
+        public int PageSize { get; set; }
+        public int CurrentPage { get; set; }
     }
 }

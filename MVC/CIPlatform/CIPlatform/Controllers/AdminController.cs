@@ -32,6 +32,7 @@ namespace CIPlatform.Controllers
             return View();
         }
 
+        
         public IActionResult CMS()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -41,14 +42,21 @@ namespace CIPlatform.Controllers
                 return RedirectToAction("Login", "Account");
             }
             CMS cms = new CMS();
-            bool status = true;
-            cms.cmsPage = _adminInterface.GetCmsPages(status);
+            //bool status = true;
+            //cms.cmsPage = _adminInterface.GetCmsPages(status, search);
             Navbar_1 missionHomeModel = new Navbar_1();
             missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
             return View(cms);
+        }
+
+        public IActionResult CmsTable(string Search, int pageNumber)
+        {
+            var a = _adminInterface.GetCmsPages(Search, pageNumber);
+            
+            return PartialView("_CMSList", a);
         }
 
         public IActionResult AddCms()
@@ -66,6 +74,13 @@ namespace CIPlatform.Controllers
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
             return View(cms);
+        }
+
+        [HttpPost]
+        public IActionResult AddCmsData(string Title, string Description, string Slug, string Status)
+        {
+            _adminInterface.AddCmsData(Title, Description, Slug, Status);
+            return Ok();
         }
     }
 }
