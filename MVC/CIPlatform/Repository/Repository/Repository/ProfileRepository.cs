@@ -2,6 +2,7 @@
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Repository.Interface;
@@ -236,5 +237,30 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
             }
         }
+
+
+        public List<SelectListItem> GetCountryList()
+        {
+            return _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+        }
+        public List<SelectListItem> GetSelectedSkills(int userId)
+        {
+            return _ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+        }
+
+        public List<SelectListItem> GetNotSelectedSkills(int userId)
+        {
+            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Select(us => us.SkillId).Contains(s.SkillId)).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+        }
+
+
+        public List<SelectListItem> GetMissionTitlesByUserIdAndType(long userId, string type)
+        {
+            return _ciPlatformContext.MissionApplications
+                .Where(x => x.UserId == userId && x.ApprovalStatus == "Approved" && x.Mission.MissionType == type)
+                .Select(s => new SelectListItem { Value = s.MissionId.ToString(), Text = s.Mission.Title })
+                .ToList();
+        }
+
     }
 }

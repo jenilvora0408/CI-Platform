@@ -327,3 +327,12 @@ Media Queries for CMS Add
 table tr {
     border-bottom: 1px solid #00000014;
 }
+#tblOverflow::-webkit-scrollbar {
+    display: none;
+}
+
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

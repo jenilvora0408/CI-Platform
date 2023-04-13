@@ -51,6 +51,33 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public CMS GetUserPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 9;
+            CMS cms = new CMS();
+            var user = new List<User>();
+            user = _ciPlatformContext.Users.ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                user = _ciPlatformContext.Users.Where(x => x.FirstName.ToLower().Contains(Search.ToLower()) ||
+                x.LastName.ToLower().Contains(Search.ToLower()) || x.Email.ToLower().Contains(Search.ToLower()) ).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)user.Count / pageSize);
+            List<User> pagedUsers = user
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.user = pagedUsers;
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+            return cms;
+        }
+
 
         public void AddCmsData(string Title, string Description, string Slug, string Status)
         {

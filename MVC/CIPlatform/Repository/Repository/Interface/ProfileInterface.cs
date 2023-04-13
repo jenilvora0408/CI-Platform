@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Entities.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,14 @@ namespace Repository.Repository.Interface
         public void deleteTimesheet(long? timesheetId);
 
         public void updateTimesheet(VolunteeringTimesheet volunteeringTimesheet);
+
+        public List<SelectListItem> GetCountryList();
+
+        public List<SelectListItem> GetSelectedSkills(int userId);
+
+        public List<SelectListItem> GetNotSelectedSkills(int userId);
+
+        List<SelectListItem> GetMissionTitlesByUserIdAndType(long userId, string type);
+
     }
 }

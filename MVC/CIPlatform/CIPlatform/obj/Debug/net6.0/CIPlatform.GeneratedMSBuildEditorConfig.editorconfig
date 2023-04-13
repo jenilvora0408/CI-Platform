@@ -39,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ01TLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Admin/User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -113,6 +117,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_StoryListingCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdG9yeUxpc3RpbmdDYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_UserTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_ValidationScriptsPartial.cshtml]

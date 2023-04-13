@@ -49,14 +49,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.userId = userObj.UserId;
             edit.Navbar_1 = missionHomeModel;
 
-            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            var country = _profileInterface.GetCountryList();
             ViewBag.Country = country;
             var email = HttpContext.Session.GetString("useremail");
             User user = _missionInterface.findUser(userSessionEmailId);
-            var selectedskills = _ciPlatformContext.UserSkills.Where(us => us.UserId == user.UserId).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            var userId = userObj.UserId;
+            var selectedskills = _profileInterface.GetSelectedSkills((int)user.UserId);
             ViewBag.selectedskills = selectedskills;
-            var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.UserSkills.Where(us => us.UserId == user.UserId).Select(us => us.SkillId).Contains(s.SkillId)).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
-
+            var notselectedskills = _profileInterface.GetNotSelectedSkills((int)user.UserId);
             ViewBag.notselectedskills = notselectedskills;
             var model = _profileInterface.PutUserDetails(edit, email);
 
@@ -159,12 +159,8 @@ namespace CIPlatform.Controllers
             missionHomeModel.userId = userObj.UserId;
             var timeVol = _profileInterface.getTimesheet(userObj.UserId);
             timeVol.Navbar_1 = missionHomeModel;
-
-            var a = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved" 
-            && x.Mission.MissionType == "time").Select(s => new SelectListItem { Value = s.MissionId.ToString(), Text = s.Mission.Title }).ToList();
-
-            var b = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved"
-            && x.Mission.MissionType == "goal").Select(s => new SelectListItem { Value = s.MissionId.ToString(), Text = s.Mission.Title }).ToList();
+            var a = _profileInterface.GetMissionTitlesByUserIdAndType(userObj.UserId, "time");
+            var b = _profileInterface.GetMissionTitlesByUserIdAndType(userObj.UserId, "goal");
 
             ViewBag.time = a;
             ViewBag.goal = b;

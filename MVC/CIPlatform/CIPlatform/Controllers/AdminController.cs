@@ -42,8 +42,6 @@ namespace CIPlatform.Controllers
                 return RedirectToAction("Login", "Account");
             }
             CMS cms = new CMS();
-            //bool status = true;
-            //cms.cmsPage = _adminInterface.GetCmsPages(status, search);
             Navbar_1 missionHomeModel = new Navbar_1();
             missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
             missionHomeModel.avatar = userObj.Avatar;
@@ -57,6 +55,12 @@ namespace CIPlatform.Controllers
             var a = _adminInterface.GetCmsPages(Search, pageNumber);
             
             return PartialView("_CMSList", a);
+        }
+
+        public IActionResult storyTable(string Search, int pageNumber)
+        {
+            var b = _adminInterface.GetUserPages(Search, pageNumber);
+            return PartialView("_UserTable", b);
         }
 
         public IActionResult AddCms()
@@ -81,6 +85,23 @@ namespace CIPlatform.Controllers
         {
             _adminInterface.AddCmsData(Title, Description, Slug, Status);
             return Ok();
+        }
+
+        public IActionResult User()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            CMS cms = new CMS();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            cms.Navbar_1 = missionHomeModel;
+            return View(cms);
         }
     }
 }
