@@ -25,7 +25,8 @@ namespace CIPlatform.Controllers
         private readonly IConfiguration _configuration;
         private readonly StoryInterface _storyInterface;
 
-        public StoryController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IConfiguration configuration, StoryInterface storyInterface)
+        public StoryController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, 
+            IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IConfiguration configuration, StoryInterface storyInterface)
         {
             _logger = logger;
             _missionInterface = missionInterface;
@@ -113,7 +114,6 @@ namespace CIPlatform.Controllers
             {
                 string mailmessage = "Welcome to CI Platform, <br/> your friend " + userfrom.FirstName + " " + userfrom.LastName + " " + "You can View Story Using Below link.. </br>";
                 string path = "<a href=\"" + "https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Story/StoryDetail?storyId=" + StoryId + "\"style=\"font-weight:500;color:blue;\">Invite to Story</a>";
-                //string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Mission/MissionVolunteering?token=" + MissionId + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
                 MailHelper mailHelper = new MailHelper(_configuration);
                 ViewBag.sendMail = mailHelper.Send(InviteEmail, mailmessage + path);
                 message = "You Successfully Invited";
@@ -125,14 +125,10 @@ namespace CIPlatform.Controllers
 
         public IActionResult StoryCard(int? pageNumber)
         {
-            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            StoryPage storyPage = new StoryPage();
-            storyPage.Stories  = _ciPlatformContext.StoryListings.FromSqlInterpolated($"exec StoryListing @pageNumber={pageNumber},  @TotalCount = {output} out").ToList();
-            storyPage.pageSize = 3;
-            storyPage.activePage = pageNumber;
-            storyPage.pageCount = long.Parse(output.Value.ToString());
+            StoryPage storyPage = _storyInterface.GetStoryListings(pageNumber ?? 1);
             return PartialView("_StoryListingCard", storyPage);
         }
+
 
         public IActionResult ShareStory()
         {
@@ -150,135 +146,50 @@ namespace CIPlatform.Controllers
             shareStory.Navbar_1 = missionHomeModel;
             return View(shareStory);
         }
-      
-        
+
+
         public IActionResult userAplliedMission()
         {
-           string userSessionEmailId = HttpContext.Session.GetString("useremail");
-           User userObj = _missionInterface.findUser(userSessionEmailId);
-           IEnumerable<MissionApplication> missionApplications = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userObj.UserId && x.ApprovalStatus == "Approved").Include(x => x.Mission).AsEnumerable();
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            IEnumerable<MissionApplication> missionApplications = _storyInterface.GetApprovedMissionApplicationsForUser((int)userObj.UserId);
             return Json(new { data = missionApplications });
         }
+
 
         [HttpPost]
         public async Task<IActionResult> UploadImages([FromForm] ImageUploadViewModel imageUploadViewModel)
         {
-            string imgName = "";
-            if (imageUploadViewModel.storyUrl != null)
-            {
-                StoryMedium storymedia = new StoryMedium();
-                storymedia.Path = imageUploadViewModel.storyUrl;
-                storymedia.Type = "URL";
-                storymedia.StoryId = imageUploadViewModel.StoryId;
-                _ciPlatformContext.StoryMedia.Add(storymedia);
-                _ciPlatformContext.SaveChangesAsync();
-            }
-            foreach (var file in imageUploadViewModel.files)
-            {
-                
-                    // Save the file to the desired folder
-                    var fileName = Path.GetFileName(file.FileName);
-                imgName += "/uploads/" + fileName + ",";
-                var filePath = Path.Combine(_env.WebRootPath, "uploads", fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-                if (!_ciPlatformContext.StoryMedia.Any(u => u.StoryId == imageUploadViewModel.StoryId))
-                {
-                    StoryMedium storymedia = new StoryMedium();
-                    storymedia.Path = "/uploads/" + fileName;
-                    int index = file.ContentType.IndexOf("/");
-                    string textAfterSlash = file.ContentType.Substring(index + 1);
-                    storymedia.Type = textAfterSlash;
-                    storymedia.StoryId = imageUploadViewModel.StoryId;
-
-                    _ciPlatformContext.StoryMedia.Add(storymedia);
-                    await _ciPlatformContext.SaveChangesAsync();
-                }
-                else
-                {
-                    StoryMedium storymedia = _ciPlatformContext.StoryMedia.Where(u => u.StoryId == imageUploadViewModel.StoryId).First();
-                    storymedia.Path = imgName;
-                    int index = file.ContentType.IndexOf("/");
-                    string textAfterSlash = file.ContentType.Substring(index + 1);
-                    storymedia.Type = textAfterSlash;
-                    storymedia.StoryId = imageUploadViewModel.StoryId;
-
-                    _ciPlatformContext.StoryMedia.Update(storymedia);
-                    await _ciPlatformContext.SaveChangesAsync();
-                }
-            }
+            await _storyInterface.UploadImages(imageUploadViewModel);
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult storyInsert(long DropdownItem,string TitleOfStory,string StoryDate,string EditorText)
+        public IActionResult storyInsert(long DropdownItem, string TitleOfStory, string StoryDate, string EditorText)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            if (!_ciPlatformContext.Stories.Any(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory))
-            {
-                Story story = new Story();
-                story.Title = TitleOfStory;
-                story.MissionId = DropdownItem;
-                story.CreatedAt = DateTime.Now;
-                story.Description = EditorText;
-                story.UserId = userObj.UserId;
-                _ciPlatformContext.Stories.Add(story);
-                _ciPlatformContext.SaveChanges();
-                return Ok(story.StoryId);
-            }
-            else
-            {
-                Story story = _ciPlatformContext.Stories.Where(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory).First();
-                story.Title = TitleOfStory;
-                story.MissionId = DropdownItem;
-                story.CreatedAt = DateTime.Now;
-                story.Description = EditorText;
-                story.UserId = userObj.UserId;
-                _ciPlatformContext.Stories.Update(story);
-                _ciPlatformContext.SaveChanges();
-                return Ok(story.StoryId);
-            }
+
+            var storyId = _storyInterface.InsertOrUpdateStory(DropdownItem, TitleOfStory, EditorText, userObj.UserId);
+
+            return Ok(storyId);
         }
+
 
         [HttpPost]
         public IActionResult submitStory(long DropdownItem, string TitleOfStory, string StoryDate, string EditorText)
         {
-            
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            if (!_ciPlatformContext.Stories.Any(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory))
-            {
-                Story story = new Story();
-                story.Title = TitleOfStory;
-                story.MissionId = DropdownItem;
-                story.CreatedAt = DateTime.Now;
-                story.Status = "Pending";
-                story.Description = EditorText;
-                story.UserId = userObj.UserId;
-                _ciPlatformContext.Stories.Add(story);
-                _ciPlatformContext.SaveChanges();
-                return Ok(story.StoryId);
-            }
-            else
-            {
-                Story story = _ciPlatformContext.Stories.Where(u => u.UserId == userObj.UserId && u.MissionId == DropdownItem && u.Title == TitleOfStory).First();
-                story.Title = TitleOfStory;
-                story.MissionId = DropdownItem;
-                story.CreatedAt = DateTime.Now;
-                story.Status = "Pending";
-                story.Description = EditorText;
-                story.UserId = userObj.UserId;
-                _ciPlatformContext.Stories.Update(story);
-                _ciPlatformContext.SaveChanges();
-                return Ok(story.StoryId);
-            }
+
+            var story = _storyInterface.SubmitStory(userObj.UserId, DropdownItem, TitleOfStory, EditorText);
+
+            return Ok(story.StoryId);
         }
+
         public IActionResult SearchUser(string name)
         {
-            List<User> user = _ciPlatformContext.Users.Where(x => x.FirstName.Contains(name) || x.LastName.Contains(name) || x.Email.Contains(name)).Take(10).ToList();
+            List<User> user = _storyInterface.SearchUsers(name);
             return PartialView("_RecommendUser", user);
         }
     }
