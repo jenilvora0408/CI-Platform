@@ -39,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ01TLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Admin/Mission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWlzc2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Admin/Story.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -109,6 +113,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_MissionTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NaXNzaW9uVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tatva/Desktop/CI - Platform BootStrap/MVC/CIPlatform/CIPlatform/Views/Shared/_Navbar_1.cshtml]

@@ -16,6 +16,8 @@ namespace Repository.Repository.Interface
 
         public CMS GetStoryPages(string Search, int pageNumber);
 
+        public CMS GetMissionPages(string Search, int pageNumber);
+
         public void AddCmsData(string Title, string Description, string Slug, string Status);
     }
 }

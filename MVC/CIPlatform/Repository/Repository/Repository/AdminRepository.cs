@@ -79,6 +79,32 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public CMS GetMissionPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 5;
+            CMS cms = new CMS();
+            var mission = _ciPlatformContext.Missions.ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                mission = mission.Where(x => x.Title.ToLower().Contains(Search.ToLower()) ||
+                x.MissionType.ToLower().Contains(Search.ToLower()) ).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)mission.Count / pageSize);
+            List<Mission> pagedUsers = mission
+                .Skip((pageNumber - 1) *pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.missions = pagedUsers;
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+            return cms;
+        }
+
         public CMS GetStoryPages(string Search, int pageNumber)
         {
             if(pageNumber == 0)
