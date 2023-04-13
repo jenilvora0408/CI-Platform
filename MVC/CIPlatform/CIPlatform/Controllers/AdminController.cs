@@ -57,10 +57,16 @@ namespace CIPlatform.Controllers
             return PartialView("_CMSList", a);
         }
 
-        public IActionResult storyTable(string Search, int pageNumber)
+        public IActionResult userTable(string Search, int pageNumber)
         {
             var b = _adminInterface.GetUserPages(Search, pageNumber);
             return PartialView("_UserTable", b);
+        }
+
+        public IActionResult storyTable(string Search, int pageNumber)
+        {
+            var c = _adminInterface.GetStoryPages(Search,pageNumber);
+            return PartialView("_StoryTable", c);
         }
 
         public IActionResult AddCms()
@@ -88,6 +94,23 @@ namespace CIPlatform.Controllers
         }
 
         public IActionResult User()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            CMS cms = new CMS();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            cms.Navbar_1 = missionHomeModel;
+            return View(cms);
+        }
+
+        public IActionResult Story()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);

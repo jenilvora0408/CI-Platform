@@ -24,7 +24,8 @@
                         <td class="desc">@item.Email</td>
                         <td>@item.EmployeeId</td>
                         <td>@item.Department</td>
-                        <td class="actives">Active</td>
+                        @*<td class="actives">Active</td>*@
+						<td style="color: @((bool)item.Status ? "#14C506" : "red")">@((bool)item.Status ? "Active" : "Inactive")</td>
                         <td class="icons">
                             <i id="edit-icon" class="bi bi-pencil-square"></i>
                             <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
@@ -36,7 +37,7 @@
         </div>
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
-	@if(Model.PageCount != 1){
+	@if(Model.PageCount > 0){
 	@if(Model.CurrentPage > 1){
 	<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn" >&laquo;</button>}
 	@for(int i = 1; i <= Model.PageCount; i++) {
@@ -88,16 +89,16 @@
 		
 		$(".page-btn").click(function () {
 			var page = $(this).text();
-			var text = $("#searchStoryData").val();
+			var text = $("#searchUserData").val();
 			if (page != currentPage) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/storyTable',
+					url: '/Admin/userTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:page},
 					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);searchUser();
+						$('#userTable').html("");
+						$('#userTable').html(data);searchUser();
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -108,16 +109,16 @@
 		
 		$("#prev-btn").click(function () {
 			var prevPage = currentPage - 1;
-			var text = $("#searchStoryData").val();
+			var text = $("#searchUserData").val();
 			if (prevPage >= 1) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/storyTable',
+					url: '/Admin/userTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:prevPage},
 					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);
+						$('#userTable').html("");
+						$('#userTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -128,16 +129,16 @@
 		
 		$("#next-btn").click(function () {
 			var nextPage = currentPage + 1;
-			var text = $("#searchStoryData").val();
+			var text = $("#searchUserData").val();
 			if (nextPage <= pageCount) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/storyTable',
+					url: '/Admin/userTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:nextPage},
 					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);
+						$('#userTable').html("");
+						$('#userTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

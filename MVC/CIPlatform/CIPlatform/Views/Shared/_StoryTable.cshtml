@@ -1,35 +1,35 @@
 ﻿@model Entities.ViewModels.CMS
 
-<div id="tblOverflow" style="overflow-x: scroll;">
-<table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var item in Model.cmsPage)
-                {
-                    <tr>
-                        <td class="desc">
-                            @item.Title
-                        </td>
-                        <td class="actives">Active</td>
-                        <td class="icons">
-                            <i id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img id="delete-icon" src="/images/bin.png" alt="" />
-                        </td>
-                    </tr>
-                }
-                
-                   
-                </tbody>
-            </table>
-			</div>
-
-
+<div id="tblOverflow" style="overflow-x: scroll">
+                <table class="table">
+                    <thead>
+                        <tr style="white-space: nowrap;">
+                            <th scope="col">Story Title</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Mission Title</th>
+                            <th scope="col">Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.stories)
+                        {
+                            <tr>
+                            <td>@item.Title</td>
+                            <td>@item.User.FirstName @item.User.LastName</td>
+                            <td>@item.Mission.Title</td>
+                            <td style="display: flex; align-items: center; gap: 10px;">
+                                <button style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; background: #fff;">View</button> 
+                                <i style="color: #14C506; font-size: 20px;" class="bi bi-check-circle"></i>
+                                <i style="color: red; font-size: 20px;" class="bi bi-x-circle"></i>
+                                <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            </td>
+                        </tr>
+                        }
+            
+                    </tbody>
+                </table>
+            </div>
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
 	@if(Model.PageCount > 0){
@@ -41,6 +41,7 @@
 	@if(Model.CurrentPage != Model.PageCount){<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>}
 	}
 </div>
+
 
 <script>
 	//$('.admin-delete-btn').on('click', function() {
@@ -83,16 +84,16 @@
 		
 		$(".page-btn").click(function () {
 			var page = $(this).text();
-			var text = $("#searchCmsData").val();
+			var text = $("#searchStoryData").val();
 			if (page != currentPage) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/CmsTable',
+					url: '/Admin/storyTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:page},
 					success: function (data) {
-						$('#cmsTable').html("");
-						$('#cmsTable').html(data);searchUser();
+						$('#storyTable').html("");
+						$('#storyTable').html(data);searchUser();
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -103,16 +104,16 @@
 		
 		$("#prev-btn").click(function () {
 			var prevPage = currentPage - 1;
-			var text = $("#searchCmsData").val();
+			var text = $("#searchStoryData").val();
 			if (prevPage >= 1) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/CmsTable',
+					url: '/Admin/storyTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:prevPage},
 					success: function (data) {
-						$('#cmsTable').html("");
-						$('#cmsTable').html(data);
+						$('#storyTable').html("");
+						$('#storyTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -123,16 +124,16 @@
 		
 		$("#next-btn").click(function () {
 			var nextPage = currentPage + 1;
-			var text = $("#searchCmsData").val();
+			var text = $("#searchStoryData").val();
 			if (nextPage <= pageCount) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/CmsTable',
+					url: '/Admin/storyTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:nextPage},
 					success: function (data) {
-						$('#cmsTable').html("");
-						$('#cmsTable').html(data);
+						$('#storyTable').html("");
+						$('#storyTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

@@ -15,6 +15,8 @@ namespace Entities.ViewModels
 
         public List<User> user { get; set; }
 
+        public List<Story> stories { get; set; }
+
         public int PageCount { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }

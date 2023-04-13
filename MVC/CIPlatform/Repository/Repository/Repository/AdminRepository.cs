@@ -2,6 +2,7 @@
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Repository.Interface;
 using System;
@@ -37,7 +38,7 @@ namespace Repository.Repository.Repository
             cmsPages = _ciPlatformContext.CmsPages.Where(x => x.Status == status).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
-                cmsPages = _ciPlatformContext.CmsPages.Where(x => x.Title.ToLower().Contains(Search.ToLower()) ).ToList();
+                cmsPages = cmsPages.Where(x => x.Title.ToLower().Contains(Search.ToLower()) ).ToList();
             }
             int totalCount = (int)Math.Ceiling((double)cmsPages.Count / pageSize);
             List<CmsPage> pagedUsers = cmsPages
@@ -63,7 +64,7 @@ namespace Repository.Repository.Repository
             user = _ciPlatformContext.Users.ToList();
             if (!string.IsNullOrEmpty(Search))
             {
-                user = _ciPlatformContext.Users.Where(x => x.FirstName.ToLower().Contains(Search.ToLower()) ||
+                user = user.Where(x => x.FirstName.ToLower().Contains(Search.ToLower()) ||
                 x.LastName.ToLower().Contains(Search.ToLower()) || x.Email.ToLower().Contains(Search.ToLower()) ).ToList();
             }
             int totalCount = (int)Math.Ceiling((double)user.Count / pageSize);
@@ -75,6 +76,38 @@ namespace Repository.Repository.Repository
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
             cms.CurrentPage = pageNumber;
+            return cms;
+        }
+
+        public CMS GetStoryPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 3;
+            CMS cms = new CMS();
+            var story = new List<Story>();
+            story = _ciPlatformContext.Stories.Where(x => x.Status == "Pending").Include(x => x.User).Include(x => x.Mission).ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                story = story.Where(x => x.Title.ToLower().Contains(Search.ToLower())).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)story.Count / pageSize);
+            List<Story> pagedUsers = story
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.stories = pagedUsers.Select(x => new Story()
+            {
+                Title = x.Title,
+                Mission = x.Mission,
+                User = x.User
+            }).ToList();    
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+
             return cms;
         }
 
