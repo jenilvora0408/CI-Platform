@@ -35,7 +35,7 @@ namespace Repository.Repository.Repository
             CMS cms = new CMS();
             bool status = true;
             var cmsPages = new List<CmsPage>();
-            cmsPages = _ciPlatformContext.CmsPages.Where(x => x.Status == status).ToList();
+            cmsPages = _ciPlatformContext.CmsPages.Where(x => x.Status == status && x.DeletedAt == null).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
                 cmsPages = cmsPages.Where(x => x.Title.ToLower().Contains(Search.ToLower()) ).ToList();
@@ -199,23 +199,93 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
-
-        public void AddCmsData(string Title, string Description, string Slug, string Status)
+        public CMS GetThemePages(string Search, int pageNumber)
         {
-            CmsPage cmsPage = new CmsPage();
-            cmsPage.Title = Title;
-            cmsPage.Description = Description;
-            cmsPage.Slug = Slug;
-            if(Status != null && Status == "True")
+            if(pageNumber == 0)
             {
-                cmsPage.Status = true;
+                pageNumber = 1;
             }
-            else
+            int pageSize = 4;
+            CMS cms = new CMS();
+            var theme = _ciPlatformContext.Missions.Include(x => x.Theme).ToList();
+            if (!string.IsNullOrEmpty(Search))
             {
-                cmsPage.Status = false;
+                theme = theme.Where(x => x.Title.ToLower().Contains(Search.ToLower()) || 
+                x.Theme.Title.ToLower().Contains(Search.ToLower()) ).ToList();
             }
-            _ciPlatformContext.CmsPages.Add(cmsPage);
-            _ciPlatformContext.SaveChanges();
+            int totalCount = (int)Math.Ceiling((double)theme.Count / pageSize);
+            List<Mission> pagedUsers = theme
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.missions = pagedUsers.Select(x => new Mission()
+            {
+                Title = x.Title,
+                Theme = x.Theme
+            }).ToList();
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+            return cms;
+        }
+
+
+        public void AddCmsData(string Title, string Description, string Slug, string Status, string demo, long cmsId)
+        {
+            if(demo == "add")
+            {
+                CmsPage cmsPage = new CmsPage();
+                cmsPage.Title = Title;
+                cmsPage.Description = Description;
+                cmsPage.Slug = Slug;
+                if (Status != null && Status == "True")
+                {
+                    cmsPage.Status = true;
+                }
+                else
+                {
+                    cmsPage.Status = false;
+                }
+                _ciPlatformContext.CmsPages.Add(cmsPage);
+                _ciPlatformContext.SaveChanges();
+            }
+            else if(demo =="update")
+            {
+                CmsPage cmsPage = _ciPlatformContext.CmsPages.Where(x => x.CmsPageId == cmsId).FirstOrDefault();
+                cmsPage.Title = Title;
+                cmsPage.Description = Description;
+                cmsPage.Slug = Slug;
+                if (Status != null && Status == "True")
+                {
+                    cmsPage.Status = true;
+                }
+                else
+                {
+                    cmsPage.Status = false;
+                }
+                _ciPlatformContext.CmsPages.Update(cmsPage);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void DeleteCmsPage(long cmsId)
+        {
+            if(cmsId != null && cmsId != 0)
+            {
+                CmsPage cmsPage = _ciPlatformContext.CmsPages.Where(x => x.CmsPageId == cmsId).FirstOrDefault();
+                cmsPage.DeletedAt = DateTime.Now;
+                _ciPlatformContext.CmsPages.Update(cmsPage);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public CMS GetCmsData(long cmsPageId)
+        {
+            CMS cms = new CMS();
+            CmsPage cmsPage = _ciPlatformContext.CmsPages.Where(x => x.CmsPageId == cmsPageId).First();
+            cms.CmsPage = cmsPage;
+
+            return cms;
         }
     }
 }

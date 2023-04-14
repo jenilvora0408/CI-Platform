@@ -18,16 +18,18 @@
                         </td>
                         <td class="actives">Active</td>
                         <td class="icons">
-                            <i id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img id="delete-icon" src="/images/bin.png" alt="" />
+                            <i onclick="return location.href=' @Url.Action("EditCms","Admin",new {cmsPageId=@item.CmsPageId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
+                            <img onclick="deleteCms(@item.CmsPageId)" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
+						
                     </tr>
                 }
-                
-                   
                 </tbody>
             </table>
 			</div>
+
+
+
 
 
 
@@ -43,38 +45,30 @@
 </div>
 
 <script>
-	//$('.admin-delete-btn').on('click', function() {
-	//	var userId = $(this).data('userid');
 		
-	//	$('.delete-container').show();
-	//	$('#confirm-btn').on('click', function() {
-	//		$.ajax({
-	//			type: "POST",
-	//			url: "/Admin/AdminUserDelete",
-	//			data: { userId: userId },
-	//			success: function (data) {
-	//				location.reload();
-	//				alert("Record Deleted.");
-	//			},
-	//			error: function (xhr, status, error) {
-	//				alert("Record Not Deleted.");
-	//			}
-	//		});
-	//		$('.delete-container').hide();
-	//	});
-	//	$('#cancel-btn').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	$('.close-delete-popup').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	const Popup = $(".delete-container");
-	//	$(window).click(function (event) {
-	//		if (event.target == Popup[0]) {
-	//			Popup.hide();
-	//		}
-	//	});
-	//});
+		
+            
+			function deleteCms(deleteId){
+				$("#deleteBtn").on("click", function(e){
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteCmsData",
+                data: {cmsId:deleteId},
+                success: function (data) {
+                    alert("CMS Data removed successfully");
+					//$("#hello").modal('hide');
+                     window.location.href = "/Admin/CMS";
+                },
+                error: function (xhr, status, error) {
+                    alert("Somwthing went wrong in adding data");
+                }
+           });
+				})
+			}
+
+            
+    
+			
 	
 	
 	$(function () {

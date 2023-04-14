@@ -22,6 +22,12 @@ namespace Repository.Repository.Interface
 
         public CMS GetApplicationPages(string Search, int pageNumber);
 
-        public void AddCmsData(string Title, string Description, string Slug, string Status);
+        public CMS GetThemePages(string Search, int pageNumber);
+
+        public void AddCmsData(string Title, string Description, string Slug, string Status, string demo, long cmsId);
+
+        public void DeleteCmsPage(long cmsId);
+
+        public CMS GetCmsData(long cmsPageId);
     }
 }

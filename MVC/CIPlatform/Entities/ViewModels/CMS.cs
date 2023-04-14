@@ -13,6 +13,8 @@ namespace Entities.ViewModels
 
         public List<CmsPage> cmsPage { get; set; }
 
+        public CmsPage CmsPage { get; set; }
+
         public List<User> user { get; set; }
 
         public List<Story> stories { get; set; }

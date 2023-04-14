@@ -1,35 +1,34 @@
 ﻿@model Entities.ViewModels.CMS
- 
+
 <div id="tblOverflow" style="overflow-x: scroll;">
             <table class="table">
                 <thead>
                     <tr style="white-space: nowrap;">
                         <th scope="col">Mission Title</th>
-                        <th scope="col">Mission Type</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
+                        <th scope="col">Theme Title</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach(var item in Model.missions)
                     {
                         <tr>
                         <td>
                             @item.Title
                         </td>
-                        <td >@item.MissionType</td>
-                        <td class="desc">@item.StartDate</td>
-                        <td>@item.EndDate</td>
+                        <td >@item.Theme.Title</td>
                         <td class="icons">
                             <i id="edit-icon" class="bi bi-pencil-square"></i>
                             <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
                     </tr>
                     }
+
                 </tbody>
             </table>
         </div>
+
 
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
@@ -85,16 +84,16 @@
 		
 		$(".page-btn").click(function () {
 			var page = $(this).text();
-			var text = $("#searchMissionData").val();
+			var text = $("#searchThemeData").val();
 			if (page != currentPage) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/missionTable',
+					url: '/Admin/themeTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:page},
 					success: function (data) {
-						$('#missionTable').html("");
-						$('#missionTable').html(data);searchUser();
+						$('#themeTable').html("");
+						$('#themeTable').html(data);searchUser();
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -105,16 +104,16 @@
 		
 		$("#prev-btn").click(function () {
 			var prevPage = currentPage - 1;
-			var text = $("#searchMissionData").val();
+			var text = $("#searchThemeData").val();
 			if (prevPage >= 1) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/missionTable',
+					url: '/Admin/themeTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:prevPage},
 					success: function (data) {
-						$('#missionTable').html("");
-						$('#missionTable').html(data);
+						$('#themeTable').html("");
+						$('#themeTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -125,16 +124,16 @@
 		
 		$("#next-btn").click(function () {
 			var nextPage = currentPage + 1;
-			var text = $("#searchMissionData").val();
+			var text = $("#searchThemeData").val();
 			if (nextPage <= pageCount) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/missionTable',
+					url: '/Admin/themeTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:nextPage},
 					success: function (data) {
-						$('#missionTable').html("");
-						$('#missionTable').html(data);
+						$('#themeTable').html("");
+						$('#themeTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
