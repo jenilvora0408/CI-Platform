@@ -1,33 +1,35 @@
-﻿@model Entities.ViewModels.CMS
+﻿@model Entities.ViewModels.CMS 
 
 <div id="tblOverflow" style="overflow-x: scroll;">
             <table class="table">
                 <thead>
                     <tr style="white-space: nowrap;">
-                        
                         <th scope="col">Mission Title</th>
-						<th scope="col">Skill Name</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Applied At</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in Model.missionSkills)
+                    @foreach(var item in Model.missionApplication)
                     {
-                        <tr>
-							<td >@item.Mission.Title</td>
+                       <tr>
                         <td>
-                            @item.Skill.SkillName
+                            @item.Mission.Title
                         </td>
-                        
+                        <td >@item.User.FirstName @item.User.LastName</td>
+                        <td>@item.AppliedAt.ToString("d")</td>
                         <td class="icons">
-                            @*<i id="edit-icon" class="bi bi-pencil-square"></i>*@
-                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <i style="color: #14C506; font-size: 20px;" class="bi bi-check-circle"></i>
+                                <i style="color: red; font-size: 20px;" class="bi bi-x-circle"></i>
+                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="./images/bin.png" alt="" />
                         </td>
-                    </tr>
+                    </tr> 
                     }
                 </tbody>
             </table>
         </div>
+
 
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
@@ -83,16 +85,16 @@
 		
 		$(".page-btn").click(function () {
 			var page = $(this).text();
-			var text = $("#searchSkillData").val();
+			var text = $("#searchApplicationData").val();
 			if (page != currentPage) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/skillTable',
+					url: '/Admin/applicationTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:page},
 					success: function (data) {
-						$('#skillTable').html("");
-						$('#skillTable').html(data);searchUser();
+						$('#applicationTable').html("");
+						$('#applicationTable').html(data);searchUser();
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -103,16 +105,16 @@
 		
 		$("#prev-btn").click(function () {
 			var prevPage = currentPage - 1;
-			var text = $("#searchSkillData").val();
+			var text = $("#searchApplicationData").val();
 			if (prevPage >= 1) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/skillTable',
+					url: '/Admin/applicationTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:prevPage},
 					success: function (data) {
-						$('#skillTable').html("");
-						$('#skillTable').html(data);
+						$('#applicationTable').html("");
+						$('#applicationTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -123,16 +125,16 @@
 		
 		$("#next-btn").click(function () {
 			var nextPage = currentPage + 1;
-			var text = $("#searchSkillData").val();
+			var text = $("#searchApplicationData").val();
 			if (nextPage <= pageCount) {
 				$.ajax({
 					type: 'GET',
-					url: '/Admin/skillTable',
+					url: '/Admin/applicationTable',
 					dataType: 'html',
 					data: {search:text,pageNumber:nextPage},
 					success: function (data) {
-						$('#skillTable').html("");
-						$('#skillTable').html(data);
+						$('#applicationTable').html("");
+						$('#applicationTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

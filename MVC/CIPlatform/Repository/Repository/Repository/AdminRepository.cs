@@ -168,6 +168,37 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public CMS GetApplicationPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 4;
+            CMS cms = new CMS();
+            var application = _ciPlatformContext.MissionApplications.Include(x => x.Mission).Include(x => x.User).ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                application = application.Where(x =>x.Mission.Title.ToLower().Contains(Search.ToLower()) ||
+                x.User.FirstName.ToLower().Contains(Search.ToLower()) || x.User.LastName.ToLower().Contains(Search.ToLower()) ).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)application.Count / pageSize);
+            List<MissionApplication> pagedUsers = application
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.missionApplication = pagedUsers.Select(x => new MissionApplication()
+            {
+                Mission = x.Mission,
+                User = x.User,
+                AppliedAt = x.AppliedAt,
+            }).ToList();
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+            return cms;
+        }
+
 
         public void AddCmsData(string Title, string Description, string Slug, string Status)
         {

@@ -31,6 +31,7 @@
 
             .cms-sidebar ul li:hover {
                 background: #fff;
+                border-radius: 5px;
             }
 
             .cms-sidebar ul li i {
