@@ -45,7 +45,7 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<MissionRating> MissionRatings { get; set; }
 
-    public virtual DbSet<MissionSkill> MissionSkills { get; set; }
+    public virtual DbSet<MissionSkills> MissionSkills { get; set; }
 
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
@@ -558,7 +558,7 @@ public partial class CiPlatformContext : DbContext
                 .HasConstraintName("FK__mission_r__user___123EB7A3");
         });
 
-        modelBuilder.Entity<MissionSkill>(entity =>
+        modelBuilder.Entity<MissionSkills>(entity =>
         {
             entity.HasKey(e => e.MissionSkillId).HasName("PK__mission___827120085131C03C");
 

@@ -19,6 +19,8 @@ namespace Entities.ViewModels
 
         public List<Mission> missions { get; set; }
 
+        public List<MissionSkills> missionSkills { get; set;}
+
         public int PageCount { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }

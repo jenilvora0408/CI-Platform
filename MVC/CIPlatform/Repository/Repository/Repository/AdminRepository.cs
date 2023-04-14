@@ -137,6 +137,37 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public CMS GetSkillPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 4;
+            CMS cms = new CMS();
+            var skill = _ciPlatformContext.MissionSkills.Include(x => x.Skill).Include(x => x.Mission).ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                skill = skill.Where(x => x.Skill.SkillName.ToLower().Contains(Search.ToLower()) || 
+                x.Mission.Title.ToLower().Contains(Search.ToLower()) ).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)skill.Count / pageSize);
+            List<MissionSkills> pagedUsers = skill
+                .Skip((pageNumber - 1) *pageSize)
+                .Take(pageSize)
+                .ToList();
+            cms.missionSkills = pagedUsers.Select(x => new MissionSkills()
+            {
+                Mission = x.Mission,
+                Skill = x.Skill
+            }).ToList();
+            cms.PageCount = totalCount;
+            cms.PageSize = pageSize;
+            cms.CurrentPage = pageNumber;
+
+            return cms;
+        }
+
 
         public void AddCmsData(string Title, string Description, string Slug, string Status)
         {

@@ -1,0 +1,145 @@
+﻿@model Entities.ViewModels.CMS
+
+<div id="tblOverflow" style="overflow-x: scroll;">
+            <table class="table">
+                <thead>
+                    <tr style="white-space: nowrap;">
+                        
+                        <th scope="col">Mission Title</th>
+						<th scope="col">Skill Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.missionSkills)
+                    {
+                        <tr>
+							<td >@item.Mission.Title</td>
+                        <td>
+                            @item.Skill.SkillName
+                        </td>
+                        
+                        <td class="icons">
+                            @*<i id="edit-icon" class="bi bi-pencil-square"></i>*@
+                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+<div class="pagination justify-content-end mt-3" style="gap:7px;">
+	@if(Model.PageCount > 0){
+	@if(Model.CurrentPage > 1){
+	<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn" >&laquo;</button>}
+	@for(int i = 1; i <= Model.PageCount; i++) {
+		<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){<text>disabled</text>}>@i</button>
+	}
+	@if(Model.CurrentPage != Model.PageCount){<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>}
+	}
+</div>
+
+
+<script>
+	//$('.admin-delete-btn').on('click', function() {
+	//	var userId = $(this).data('userid');
+		
+	//	$('.delete-container').show();
+	//	$('#confirm-btn').on('click', function() {
+	//		$.ajax({
+	//			type: "POST",
+	//			url: "/Admin/AdminUserDelete",
+	//			data: { userId: userId },
+	//			success: function (data) {
+	//				location.reload();
+	//				alert("Record Deleted.");
+	//			},
+	//			error: function (xhr, status, error) {
+	//				alert("Record Not Deleted.");
+	//			}
+	//		});
+	//		$('.delete-container').hide();
+	//	});
+	//	$('#cancel-btn').on('click', function() {
+	//		$('.delete-container').hide();
+	//	});
+	//	$('.close-delete-popup').on('click', function() {
+	//		$('.delete-container').hide();
+	//	});
+	//	const Popup = $(".delete-container");
+	//	$(window).click(function (event) {
+	//		if (event.target == Popup[0]) {
+	//			Popup.hide();
+	//		}
+	//	});
+	//});
+	
+	
+	$(function () {
+		var currentPage = @Model.CurrentPage;
+		var pageCount = @Model.PageCount;
+		
+		$(".page-btn").click(function () {
+			var page = $(this).text();
+			var text = $("#searchSkillData").val();
+			if (page != currentPage) {
+				$.ajax({
+					type: 'GET',
+					url: '/Admin/skillTable',
+					dataType: 'html',
+					data: {search:text,pageNumber:page},
+					success: function (data) {
+						$('#skillTable').html("");
+						$('#skillTable').html(data);searchUser();
+					},
+					error: function (xhr, status, error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+		
+		$("#prev-btn").click(function () {
+			var prevPage = currentPage - 1;
+			var text = $("#searchSkillData").val();
+			if (prevPage >= 1) {
+				$.ajax({
+					type: 'GET',
+					url: '/Admin/skillTable',
+					dataType: 'html',
+					data: {search:text,pageNumber:prevPage},
+					success: function (data) {
+						$('#skillTable').html("");
+						$('#skillTable').html(data);
+					},
+					error: function (xhr, status, error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+		
+		$("#next-btn").click(function () {
+			var nextPage = currentPage + 1;
+			var text = $("#searchSkillData").val();
+			if (nextPage <= pageCount) {
+				$.ajax({
+					type: 'GET',
+					url: '/Admin/skillTable',
+					dataType: 'html',
+					data: {search:text,pageNumber:nextPage},
+					success: function (data) {
+						$('#skillTable').html("");
+						$('#skillTable').html(data);
+					},
+					error: function (xhr, status, error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+	});
+	
+</script>

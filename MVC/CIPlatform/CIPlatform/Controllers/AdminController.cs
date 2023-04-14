@@ -75,6 +75,12 @@ namespace CIPlatform.Controllers
             return PartialView("_MissionTable", d);
         }
 
+        public IActionResult skillTable(string Search, int pageNumber)
+        {
+            var e = _adminInterface.GetSkillPages(Search,pageNumber);
+            return PartialView("_SkillTable", e);
+        }
+
         public IActionResult AddCms()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -134,6 +140,23 @@ namespace CIPlatform.Controllers
         }
 
         public IActionResult Mission()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            CMS cms = new CMS();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            cms.Navbar_1 = missionHomeModel;
+            return View(cms);
+        }
+
+        public IActionResult MissionSkill()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
