@@ -33,6 +33,7 @@ namespace Entities.ViewModels
 
         public string? Notes { get; set; }
 
-       
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
     }
 }

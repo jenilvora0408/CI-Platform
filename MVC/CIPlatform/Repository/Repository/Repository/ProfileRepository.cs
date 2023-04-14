@@ -145,6 +145,8 @@ namespace Repository.Repository.Repository
             List<Timesheet> timesheets = _ciPlatformContext.Timesheets.Where(x => x.UserId == UserId && x.Mission.MissionType == "time").Include(x => x.Mission).ToList();
             timesheet.timesheets = timesheets.Select(t => new VolTimesheet
             {
+                startDate=t.Mission.StartDate,
+                endDate=t.Mission.EndDate,
                 DateVolunteered = t.DateVolunteered,
                 Time = t.Time,
                 missionTitle = t.Mission.Title,
@@ -157,6 +159,8 @@ namespace Repository.Repository.Repository
             List<Timesheet> GoalTimesheets = _ciPlatformContext.Timesheets.Where(x => x.UserId == UserId && x.Mission.MissionType == "goal").Include(x => x.Mission).ToList();
             timesheet.goalTimesheets = GoalTimesheets.Select(t => new VolTimesheet
             {
+                startDate = t.Mission.StartDate,
+                endDate = t.Mission.EndDate,
                 DateVolunteered = t.DateVolunteered,
                 missionTitle = t.Mission.Title,
                 missionId = t.MissionId,

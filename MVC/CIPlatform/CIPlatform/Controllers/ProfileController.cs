@@ -193,5 +193,11 @@ namespace CIPlatform.Controllers
             _profileInterface.updateTimesheet(volunteeringTimesheet);
             return RedirectToAction("VolunteeringTimesheet");
         }
+
+        public IActionResult getMissionDateById(int missionID)
+        {
+            var mission = _missionInterface.GetMissionByMissionId(missionID);
+            return Json(mission);
+        }
     }
 }
