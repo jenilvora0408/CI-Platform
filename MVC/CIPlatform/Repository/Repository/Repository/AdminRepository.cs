@@ -232,7 +232,7 @@ namespace Repository.Repository.Repository
 
         public void AddCmsData(string Title, string Description, string Slug, string Status, string demo, long cmsId)
         {
-            if(demo == "add")
+            if(demo == "add" && Title != null && Description != null && Slug != null && Status != null)
             {
                 CmsPage cmsPage = new CmsPage();
                 cmsPage.Title = Title;
