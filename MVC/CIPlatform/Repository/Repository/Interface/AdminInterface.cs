@@ -26,6 +26,8 @@ namespace Repository.Repository.Interface
 
         public void AddCmsData(string Title, string Description, string Slug, string Status, string demo, long cmsId);
 
+        public void AddUserData(CMS cms);
+
         public void DeleteCmsPage(long cmsId);
 
         public CMS GetCmsData(long cmsPageId);

@@ -268,6 +268,16 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void AddUserData(CMS cms)
+        {
+            if(cms != null)
+            {
+                User user = new User();
+                user = cms.User;
+                _ciPlatformContext.Users.Add(user);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
         public void DeleteCmsPage(long cmsId)
         {
             if(cmsId != null && cmsId != 0)

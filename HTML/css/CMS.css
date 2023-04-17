@@ -291,3 +291,23 @@ table tr {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ----------------------
+    Add User
+---------------------------- */
+
+.cms-content .user-admin input{
+  width: 100%;
+}
+#user-add-cancel-btn, #user-add-save-btn{
+  padding: 8px 15px;
+  border-radius: 23px;
+  background: #fff;
+}
+#user-add-cancel-btn{
+  border: 2px solid #adadad;
+}
+#user-add-save-btn{
+  border: 2px solid #f88634;
+  color: #f88634;
+}

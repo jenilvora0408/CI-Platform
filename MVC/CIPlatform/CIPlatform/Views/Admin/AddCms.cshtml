@@ -38,11 +38,8 @@
         // AJAX Call
         $("#saveBtn").on("click", function(e){
             var title = $(".cms-title").val();
-            console.log("title: ", title);
             var description = $(".ck-editor__main p").text();
-            console.log("desc: ", description);
             var slug = $(".cms-slug").val();
-            console.log("slug: ", slug);
             var status = $(".cms-status").val();
             var demo = $(this).attr("data-status");
             

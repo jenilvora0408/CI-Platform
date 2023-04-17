@@ -18,6 +18,8 @@ namespace Entities.ViewModels
 
         public List<User> user { get; set; }
 
+        public User User { get; set; }
+
         public List<Story> stories { get; set; }
 
         public List<Mission> missions { get; set; }
