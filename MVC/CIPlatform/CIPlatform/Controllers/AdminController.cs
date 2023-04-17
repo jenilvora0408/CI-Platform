@@ -127,6 +127,24 @@ namespace CIPlatform.Controllers
             return View(cms);
         }
 
+        public IActionResult EditUser(long UserId)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var editUser = _adminInterface.GetUserData(UserId);
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            editUser.Navbar_1 = missionHomeModel;
+
+            return View(editUser);
+        }
+
         public IActionResult EditCms(long cmsPageId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -156,6 +174,41 @@ namespace CIPlatform.Controllers
         public IActionResult AddUserData(CMS cms)
         {
             _adminInterface.AddUserData(cms);
+            return RedirectToAction("User", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult EditUserData(CMS cms)
+        {
+            _adminInterface.UpdateUserData(cms);
+            return RedirectToAction("User", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult approveStory(long storyId)
+        {
+            _adminInterface.approveStory(storyId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult rejectStory(long storyId)
+        {
+            _adminInterface.rejectStory(storyId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult deleteStory(long storyId)
+        {
+            _adminInterface.deleteStory(storyId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUserData(long userId)
+        {
+            _adminInterface.DeteleUserData(userId);
             return RedirectToAction("User", "Admin");
         }
 

@@ -28,8 +28,20 @@ namespace Repository.Repository.Interface
 
         public void AddUserData(CMS cms);
 
+        public void UpdateUserData(CMS cms);
+
+        public void DeteleUserData(long userId);
+
         public void DeleteCmsPage(long cmsId);
 
         public CMS GetCmsData(long cmsPageId);
+
+        public CMS GetUserData(long UserId);
+
+        public void approveStory(long storyId);
+
+        public void rejectStory(long storyId);
+
+        public void deleteStory(long storyId);
     }
 }

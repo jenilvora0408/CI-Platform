@@ -27,8 +27,8 @@
                         @*<td class="actives">Active</td>*@
 						<td style="color: @((bool)item.Status ? "#14C506" : "red")">@((bool)item.Status ? "Active" : "Inactive")</td>
                         <td class="icons">
-                            <i id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <i onclick="return location.href=' @Url.Action("EditUser","Admin",new {UserId=@item.UserId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
+                            <img onclick="deleteUser(@item.UserId)" data-bs-toggle="modal" data-bs-target="#hello" id="deleteBtn" src="/images/bin.png" alt="" />
                         </td>
                     </tr>
             }
@@ -49,38 +49,25 @@
 
 
 <script>
-	//$('.admin-delete-btn').on('click', function() {
-	//	var userId = $(this).data('userid');
+
+	function deleteUser(deleteId){
 		
-	//	$('.delete-container').show();
-	//	$('#confirm-btn').on('click', function() {
-	//		$.ajax({
-	//			type: "POST",
-	//			url: "/Admin/AdminUserDelete",
-	//			data: { userId: userId },
-	//			success: function (data) {
-	//				location.reload();
-	//				alert("Record Deleted.");
-	//			},
-	//			error: function (xhr, status, error) {
-	//				alert("Record Not Deleted.");
-	//			}
-	//		});
-	//		$('.delete-container').hide();
-	//	});
-	//	$('#cancel-btn').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	$('.close-delete-popup').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	const Popup = $(".delete-container");
-	//	$(window).click(function (event) {
-	//		if (event.target == Popup[0]) {
-	//			Popup.hide();
-	//		}
-	//	});
-	//});
+				//$("#deleteBtn").on("click", function(e){
+				//	alert("Hello");
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteUserData",
+                data: {userId:deleteId},
+                success: function (data) {
+                    alert("User Data removed successfully");
+                     window.location.href = "/Admin/User";
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong in adding data");
+                }
+           });
+				//})
+			}
 	
 	
 	$(function () {

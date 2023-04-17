@@ -61,7 +61,7 @@ namespace Repository.Repository.Repository
             int pageSize = 9;
             CMS cms = new CMS();
             var user = new List<User>();
-            user = _ciPlatformContext.Users.ToList();
+            user = _ciPlatformContext.Users.Where(x => x.DeletedAt == null).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
                 user = user.Where(x => x.FirstName.ToLower().Contains(Search.ToLower()) ||
@@ -114,7 +114,7 @@ namespace Repository.Repository.Repository
             int pageSize = 3;
             CMS cms = new CMS();
             var story = new List<Story>();
-            story = _ciPlatformContext.Stories.Where(x => x.Status == "Pending").Include(x => x.User).Include(x => x.Mission).ToList();
+            story = _ciPlatformContext.Stories.Where(x => x.Status == "Pending" && x.DeletedAt == null).Include(x => x.User).Include(x => x.Mission).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
                 story = story.Where(x => x.Title.ToLower().Contains(Search.ToLower())).ToList();
@@ -128,7 +128,8 @@ namespace Repository.Repository.Repository
             {
                 Title = x.Title,
                 Mission = x.Mission,
-                User = x.User
+                User = x.User,
+                StoryId = x.StoryId,
             }).ToList();    
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
@@ -176,7 +177,8 @@ namespace Repository.Repository.Repository
             }
             int pageSize = 4;
             CMS cms = new CMS();
-            var application = _ciPlatformContext.MissionApplications.Include(x => x.Mission).Include(x => x.User).ToList();
+            var application = _ciPlatformContext.MissionApplications.Where(x => x.ApprovalStatus == "Pending" && x.DeletedAt == null)
+                .Include(x => x.Mission).Include(x => x.User).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
                 application = application.Where(x =>x.Mission.Title.ToLower().Contains(Search.ToLower()) ||
@@ -278,6 +280,66 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
             }
         }
+
+        public void UpdateUserData(CMS cms)
+        {
+            
+            User user = _ciPlatformContext.Users.Where(x => x.UserId == cms.User.UserId).FirstOrDefault();               
+            user.FirstName = cms.User.FirstName;
+            user.LastName = cms.User.LastName;
+            user.Email = cms.User.Email;
+            user.Password = cms.User.Password;
+            user.WhyIVolunteer = cms.User.WhyIVolunteer;
+            user.Department = cms.User.Department;
+            user.EmployeeId = cms.User.EmployeeId;
+            _ciPlatformContext.Users.Update(user);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public void DeteleUserData(long userId)
+        {
+            if(userId != null && userId != 0)
+            {
+                User user = _ciPlatformContext.Users.Where(x => x.UserId == userId).FirstOrDefault();
+                user.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(user);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void approveStory(long storyId)
+        {
+            if(storyId != null && storyId != 0)
+            {
+                Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).FirstOrDefault();
+                story.Status = "Approved";
+                _ciPlatformContext.Update(story);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void rejectStory(long storyId)
+        {
+            if(storyId != null && storyId != 0)
+            {
+                Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
+                story.Status = "Declined";
+                _ciPlatformContext.Update(story);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void deleteStory(long storyId)
+        {
+            if(storyId != null && storyId != 0)
+            {
+                Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
+                story.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(story);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void DeleteCmsPage(long cmsId)
         {
             if(cmsId != null && cmsId != 0)
@@ -294,6 +356,15 @@ namespace Repository.Repository.Repository
             CMS cms = new CMS();
             CmsPage cmsPage = _ciPlatformContext.CmsPages.Where(x => x.CmsPageId == cmsPageId).First();
             cms.CmsPage = cmsPage;
+
+            return cms;
+        }
+
+        public CMS GetUserData(long UserId)
+        {
+            CMS cms = new CMS();
+            User user = _ciPlatformContext.Users.Where(user => user.UserId == UserId).FirstOrDefault();
+            cms.User = user;
 
             return cms;
         }
