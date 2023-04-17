@@ -20,9 +20,9 @@
                         <td >@item.User.FirstName @item.User.LastName</td>
                         <td>@item.AppliedAt.ToString("d")</td>
                         <td class="icons">
-                            <i style="color: #14C506; font-size: 20px;" class="bi bi-check-circle"></i>
-                                <i style="color: red; font-size: 20px;" class="bi bi-x-circle"></i>
-                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="./images/bin.png" alt="" />
+                            <i id="@item.MissionApplicationId" style="color: #14C506; font-size: 20px;" class="approveApplication bi bi-check-circle"></i>
+                                <i id="@item.MissionApplicationId" style="color: red; font-size: 20px;" class="rejectApplication bi bi-x-circle"></i>
+                            <img data-id="@item.MissionApplicationId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
                     </tr> 
                     }
@@ -45,38 +45,59 @@
 
 
 <script>
-	//$('.admin-delete-btn').on('click', function() {
-	//	var userId = $(this).data('userid');
+	$(".approveApplication").on("click", function(e){
+		var approveID = this.id;
+		console.log(approveID);
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/approveApplication",
+                data: {applicationId:approveID},
+                success: function (data) {
+                    alert("Application Approved successfully");
+					window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong in adding data");
+                }
+          
+			});
+	});
+
+	$("#deleteBtn").on("click", function(e){
+		var deleteID = $("#delete-icon").attr("data-id");
+		alert(deleteID);
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/deleteApplication",
+                data: {applicationId:deleteID},
+                success: function (data) {
+                    alert("Application Deleted successfully");
+					window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong in adding data");
+                }
+          
+			});
+	});
+
+	$(".rejectApplication").on("click", function(e){
+		var rejectID = this.id;
 		
-	//	$('.delete-container').show();
-	//	$('#confirm-btn').on('click', function() {
-	//		$.ajax({
-	//			type: "POST",
-	//			url: "/Admin/AdminUserDelete",
-	//			data: { userId: userId },
-	//			success: function (data) {
-	//				location.reload();
-	//				alert("Record Deleted.");
-	//			},
-	//			error: function (xhr, status, error) {
-	//				alert("Record Not Deleted.");
-	//			}
-	//		});
-	//		$('.delete-container').hide();
-	//	});
-	//	$('#cancel-btn').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	$('.close-delete-popup').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	const Popup = $(".delete-container");
-	//	$(window).click(function (event) {
-	//		if (event.target == Popup[0]) {
-	//			Popup.hide();
-	//		}
-	//	});
-	//});
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/rejectApplication",
+                data: {applicationId:rejectID},
+                success: function (data) {
+                    alert("Application Rejected successfully");
+					window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong in adding data");
+                }
+          
+			});
+	});
 	
 	
 	$(function () {

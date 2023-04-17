@@ -43,5 +43,11 @@ namespace Repository.Repository.Interface
         public void rejectStory(long storyId);
 
         public void deleteStory(long storyId);
+
+        public void approveApplication(long applicationId);
+
+        public void rejectApplication(long applicationId);
+
+        public void deleteApplication(long applicationId);
     }
 }

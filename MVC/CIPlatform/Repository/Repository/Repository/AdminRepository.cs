@@ -194,6 +194,7 @@ namespace Repository.Repository.Repository
                 Mission = x.Mission,
                 User = x.User,
                 AppliedAt = x.AppliedAt,
+                MissionApplicationId = x.MissionApplicationId,
             }).ToList();
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
@@ -336,6 +337,39 @@ namespace Repository.Repository.Repository
                 Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
                 story.DeletedAt = DateTime.Now;
                 _ciPlatformContext.Update(story);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void approveApplication(long applicationId)
+        {
+            if(applicationId != null && applicationId != 0)
+            {
+                MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
+                missionApplication.ApprovalStatus = "Approved";
+                _ciPlatformContext.Update(missionApplication);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void rejectApplication(long applicationId)
+        {
+            if(applicationId != null && applicationId != 0)
+            {
+                MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
+                missionApplication.ApprovalStatus = "Declined";
+                _ciPlatformContext.Update(missionApplication);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void deleteApplication(long applicationId)
+        {
+            if(applicationId != null && applicationId != 0)
+            {
+                MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
+                missionApplication.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(missionApplication);
                 _ciPlatformContext.SaveChanges();
             }
         }

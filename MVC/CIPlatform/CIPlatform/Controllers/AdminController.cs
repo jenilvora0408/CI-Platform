@@ -206,6 +206,27 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
+        public IActionResult approveApplication(long applicationId)
+        {
+            _adminInterface.approveApplication(applicationId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult rejectApplication(long applicationId)
+        {
+            _adminInterface.rejectApplication(applicationId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult deleteApplication(long applicationId)
+        {
+            _adminInterface.deleteApplication(applicationId);
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult DeleteUserData(long userId)
         {
             _adminInterface.DeteleUserData(userId);
