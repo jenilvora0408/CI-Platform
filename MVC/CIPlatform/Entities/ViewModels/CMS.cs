@@ -28,6 +28,10 @@ namespace Entities.ViewModels
 
         public List<MissionApplication> missionApplication { get; set; }
 
+        public List<Skill> Skills { get; set; }
+
+        public Skill skill { get; set; }
+
         public int PageCount { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }

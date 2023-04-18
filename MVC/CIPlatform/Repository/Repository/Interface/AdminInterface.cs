@@ -38,6 +38,8 @@ namespace Repository.Repository.Interface
 
         public CMS GetUserData(long UserId);
 
+        public CMS GetSkillData(long SkillId);
+
         public void approveStory(long storyId);
 
         public void rejectStory(long storyId);
@@ -49,5 +51,11 @@ namespace Repository.Repository.Interface
         public void rejectApplication(long applicationId);
 
         public void deleteApplication(long applicationId);
+
+        public void AddSkill(CMS cms);
+
+        public void UpdateSkillData(CMS cms);
+
+        public void deleteSkill(long skillId);
     }
 }

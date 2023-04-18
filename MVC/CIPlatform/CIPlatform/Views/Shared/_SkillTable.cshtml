@@ -5,23 +5,24 @@
                 <thead>
                     <tr style="white-space: nowrap;">
                         
-                        <th scope="col">Mission Title</th>
+                        
 						<th scope="col">Skill Name</th>
+						
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in Model.missionSkills)
+                    @foreach(var item in Model.Skills)
                     {
                         <tr>
-							<td >@item.Mission.Title</td>
+							
                         <td>
-                            @item.Skill.SkillName
+                            @item.SkillName
                         </td>
                         
                         <td class="icons">
-                            @*<i id="edit-icon" class="bi bi-pencil-square"></i>*@
-                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <i onclick="return location.href=' @Url.Action("EditSkill","Admin",new {SkillId=@item.SkillId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
+                            <img data-id="@item.SkillId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
                     </tr>
                     }
@@ -43,38 +44,24 @@
 
 
 <script>
-	//$('.admin-delete-btn').on('click', function() {
-	//	var userId = $(this).data('userid');
-		
-	//	$('.delete-container').show();
-	//	$('#confirm-btn').on('click', function() {
-	//		$.ajax({
-	//			type: "POST",
-	//			url: "/Admin/AdminUserDelete",
-	//			data: { userId: userId },
-	//			success: function (data) {
-	//				location.reload();
-	//				alert("Record Deleted.");
-	//			},
-	//			error: function (xhr, status, error) {
-	//				alert("Record Not Deleted.");
-	//			}
-	//		});
-	//		$('.delete-container').hide();
-	//	});
-	//	$('#cancel-btn').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	$('.close-delete-popup').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	const Popup = $(".delete-container");
-	//	$(window).click(function (event) {
-	//		if (event.target == Popup[0]) {
-	//			Popup.hide();
-	//		}
-	//	});
-	//});
+	
+	function deleteSkill(){
+		var deleteID = $("#delete-icon").attr("data-id");
+		alert(deleteID);
+					 $.ajax({
+                type: "POST",
+                url: "/Admin/deleteSkill",
+                data: {skillId:deleteID},
+                success: function (data) {
+                    alert("Skill Deleted successfully");
+					window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong in adding data");
+                }
+          
+			});
+	}
 	
 	
 	$(function () {

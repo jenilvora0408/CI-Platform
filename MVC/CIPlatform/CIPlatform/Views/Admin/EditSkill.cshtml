@@ -1,0 +1,82 @@
+﻿@model Entities.ViewModels.CMS
+
+    <div class="cms">
+        <!-- Navbar -->
+       <partial name="_AdminNavbar" model="Model.Navbar_1" />
+
+        <!-- Sidebar -->
+        <partial name="_AdminSidebar" />
+
+        <div class="cms-content">
+            <p class="heading"><span>Edit Skill Page</span></p>
+            
+            <form method="post" asp-action="EditSkillData" asp-controller="Admin" class="user-admin">
+                <label>Skill Name</label>
+                <input asp-for="@Model.skill.SkillName" type="text" class="form-control m-0">
+                <input type="hidden" asp-for="@Model.skill.SkillId" />
+               <div class="user-add-btns mt-3 d-flex justify-content-between">
+                    <div></div>
+                    <div>
+                        <button id="user-add-cancel-btn" type="reset">Cancel</button>
+                        <button id="user-add-save-btn" type="submit">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    
+
+    
+    <script>
+        $(document).ready(function () {
+            // Color Change - Sidebar
+            $(".cms-sidebar ul li").on("mouseenter", function () {
+                $(this).find("i").css("color", "#F88634");
+                $(this).find("span").css("color", "#F88634");
+            });
+            $(".cms-sidebar ul li").on("mouseleave", function () {
+                if (!$(this).hasClass("active")) {
+                    $(this).find("i").css("color", "#fff");
+                    $(this).find("span").css("color", "#fff");
+                }
+            });
+            $(".cms-sidebar ul li").on("click", function () {
+                $(".cms-sidebar ul li").removeClass("active");
+                $(".cms-sidebar ul li i").css("color", "#fff");
+                $(".cms-sidebar ul li span").css("color", "#fff");
+                $(this).addClass("active");
+                $(this).find("i").css("color", "#F88634");
+                $(this).find("span").css("color", "#F88634");
+            });
+            
+            // Hide & Show Sidebar
+            $("#sidebar-open").hide();
+            $("#sidebar-close").hide();
+
+            $(window).resize(function () {
+                if ($(window).width() < 960) {
+                    $(".cms-sidebar").hide();
+                    $("#sidebar-open").show();
+                    $("#sidebar-close").hide();
+                } else {
+                    $(".cms-sidebar").show();
+                    $("#sidebar-open").hide();
+                }
+            });
+        });
+
+        // Open & Close Button - Sidebar
+        $("#sidebar-open").on("click", function (e) {
+            $(".cms-sidebar").show();
+            $("#sidebar-open").hide();
+            $("#sidebar-close").show();
+        });
+
+        $("#sidebar-close").on("click", function (e) {
+            $(".cms-sidebar").hide();
+            $("#sidebar-close").hide();
+            $("#sidebar-open").show();
+        });
+    </script>

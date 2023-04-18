@@ -145,6 +145,24 @@ namespace CIPlatform.Controllers
             return View(editUser);
         }
 
+        public IActionResult EditSkill(long SkillId)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var editSkill = _adminInterface.GetSkillData(SkillId);
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            editSkill.Navbar_1 = missionHomeModel;
+
+            return View(editSkill);
+        }
+
         public IActionResult EditCms(long cmsPageId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -178,10 +196,24 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
+        public IActionResult addSkill(CMS cms)
+        {
+            _adminInterface.AddSkill(cms);
+            return RedirectToAction("MissionSkill", "Admin");
+        }
+
+        [HttpPost]
         public IActionResult EditUserData(CMS cms)
         {
             _adminInterface.UpdateUserData(cms);
             return RedirectToAction("User", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult EditSkillData(CMS cms)
+        {
+            _adminInterface.UpdateSkillData(cms);
+            return RedirectToAction("MissionSkill", "Admin");
         }
 
         [HttpPost]
@@ -223,6 +255,13 @@ namespace CIPlatform.Controllers
         public IActionResult deleteApplication(long applicationId)
         {
             _adminInterface.deleteApplication(applicationId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult deleteSkill(long skillId)
+        {
+            _adminInterface.deleteSkill(skillId);
             return Ok();
         }
 

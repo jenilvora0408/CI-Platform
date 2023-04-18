@@ -146,21 +146,22 @@ namespace Repository.Repository.Repository
             }
             int pageSize = 4;
             CMS cms = new CMS();
-            var skill = _ciPlatformContext.MissionSkills.Include(x => x.Skill).Include(x => x.Mission).ToList();
+            var skill = new List<Skill>();
+            skill = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
-                skill = skill.Where(x => x.Skill.SkillName.ToLower().Contains(Search.ToLower()) || 
-                x.Mission.Title.ToLower().Contains(Search.ToLower()) ).ToList();
+                skill = skill.Where(x => x.SkillName.ToLower().Contains(Search.ToLower())).ToList();
             }
             int totalCount = (int)Math.Ceiling((double)skill.Count / pageSize);
-            List<MissionSkills> pagedUsers = skill
+            List<Skill> pagedUsers = skill
                 .Skip((pageNumber - 1) *pageSize)
                 .Take(pageSize)
                 .ToList();
-            cms.missionSkills = pagedUsers.Select(x => new MissionSkills()
+            cms.Skills = pagedUsers.Select(x => new Skill
             {
-                Mission = x.Mission,
-                Skill = x.Skill
+                SkillName = x.SkillName,
+                SkillId = x.SkillId,
+                
             }).ToList();
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
@@ -271,6 +272,18 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void AddSkill(CMS cms)
+        {
+            if(cms != null)
+            {
+                Skill skill = new Skill();
+                skill = cms.skill;
+                skill.Status = 1;
+                _ciPlatformContext.Skills.Add(skill);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void AddUserData(CMS cms)
         {
             if(cms != null)
@@ -306,6 +319,15 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.Update(user);
                 _ciPlatformContext.SaveChanges();
             }
+        }
+
+        public void UpdateSkillData(CMS cms)
+        {
+            Skill skill = _ciPlatformContext.Skills.Where(x => x.SkillId == cms.skill.SkillId).FirstOrDefault();
+            skill.SkillName = cms.skill.SkillName;
+            skill.SkillId = cms.skill.SkillId;
+            _ciPlatformContext.Skills.Update(skill);
+            _ciPlatformContext.SaveChanges();
         }
 
         public void approveStory(long storyId)
@@ -374,6 +396,17 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void deleteSkill(long skillId)
+        {
+            if(skillId != null && skillId != 0)
+            {
+                Skill skill = _ciPlatformContext.Skills.Where(x => x.SkillId == skillId).First();
+                skill.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(skill);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void DeleteCmsPage(long cmsId)
         {
             if(cmsId != null && cmsId != 0)
@@ -399,6 +432,15 @@ namespace Repository.Repository.Repository
             CMS cms = new CMS();
             User user = _ciPlatformContext.Users.Where(user => user.UserId == UserId).FirstOrDefault();
             cms.User = user;
+
+            return cms;
+        }
+
+        public CMS GetSkillData(long SkillId)
+        {
+            CMS cms = new CMS();
+            Skill skill = _ciPlatformContext.Skills.Where(x => x.SkillId == SkillId).First();
+            cms.skill = skill;
 
             return cms;
         }
