@@ -163,6 +163,24 @@ namespace CIPlatform.Controllers
             return View(editSkill);
         }
 
+        public IActionResult EditTheme(long missionThemeId)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var editTheme = _adminInterface.GetThemeData(missionThemeId);
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            editTheme.Navbar_1 = missionHomeModel;
+
+            return View(editTheme);
+        }
+
         public IActionResult EditCms(long cmsPageId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -203,6 +221,13 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
+        public IActionResult addTheme(CMS cms)
+        {
+            _adminInterface.AddTheme(cms);
+            return RedirectToAction("MissionTheme", "Admin");
+        }
+
+        [HttpPost]
         public IActionResult EditUserData(CMS cms)
         {
             _adminInterface.UpdateUserData(cms);
@@ -214,6 +239,13 @@ namespace CIPlatform.Controllers
         {
             _adminInterface.UpdateSkillData(cms);
             return RedirectToAction("MissionSkill", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult EditThemeData(CMS cms)
+        {
+            _adminInterface.UpdateThemeData(cms);
+            return RedirectToAction("MissionTheme", "Admin");
         }
 
         [HttpPost]
@@ -262,6 +294,13 @@ namespace CIPlatform.Controllers
         public IActionResult deleteSkill(long skillId)
         {
             _adminInterface.deleteSkill(skillId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult deleteTheme(long themeId)
+        {
+            _adminInterface.deleteTheme(themeId);
             return Ok();
         }
 

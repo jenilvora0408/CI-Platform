@@ -211,21 +211,21 @@ namespace Repository.Repository.Repository
             }
             int pageSize = 4;
             CMS cms = new CMS();
-            var theme = _ciPlatformContext.Missions.Include(x => x.Theme).ToList();
+            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
-                theme = theme.Where(x => x.Title.ToLower().Contains(Search.ToLower()) || 
-                x.Theme.Title.ToLower().Contains(Search.ToLower()) ).ToList();
+                theme = theme.Where(x =>  
+                x.Title.ToLower().Contains(Search.ToLower()) ).ToList();
             }
             int totalCount = (int)Math.Ceiling((double)theme.Count / pageSize);
-            List<Mission> pagedUsers = theme
+            List<MissionTheme> pagedUsers = theme
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
-            cms.missions = pagedUsers.Select(x => new Mission()
+            cms.MissionTheme = pagedUsers.Select(x => new MissionTheme()
             {
+                MissionThemeId = x.MissionThemeId,
                 Title = x.Title,
-                Theme = x.Theme
             }).ToList();
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
@@ -284,6 +284,18 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void AddTheme(CMS cms)
+        {
+            if(cms != null)
+            {
+                MissionTheme theme = new MissionTheme();
+                theme = cms.missionTheme;
+                theme.Status = 1;
+                _ciPlatformContext.MissionThemes.Add(theme);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void AddUserData(CMS cms)
         {
             if(cms != null)
@@ -327,6 +339,15 @@ namespace Repository.Repository.Repository
             skill.SkillName = cms.skill.SkillName;
             skill.SkillId = cms.skill.SkillId;
             _ciPlatformContext.Skills.Update(skill);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public void UpdateThemeData(CMS cms)
+        {
+            MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.MissionThemeId == cms.missionTheme.MissionThemeId).FirstOrDefault();
+            missionTheme.Title = cms.missionTheme.Title;
+            missionTheme.MissionThemeId = cms.missionTheme.MissionThemeId;
+            _ciPlatformContext.MissionThemes.Update(missionTheme);
             _ciPlatformContext.SaveChanges();
         }
 
@@ -407,6 +428,17 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void deleteTheme(long themeId)
+        {
+            if(themeId != null && themeId != 0)
+            {
+                MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.MissionThemeId == themeId).First();
+                missionTheme.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(missionTheme);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void DeleteCmsPage(long cmsId)
         {
             if(cmsId != null && cmsId != 0)
@@ -441,6 +473,15 @@ namespace Repository.Repository.Repository
             CMS cms = new CMS();
             Skill skill = _ciPlatformContext.Skills.Where(x => x.SkillId == SkillId).First();
             cms.skill = skill;
+
+            return cms;
+        }
+
+        public CMS GetThemeData(long missionThemeId)
+        {
+            CMS cms = new CMS();
+            MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.MissionThemeId == missionThemeId).FirstOrDefault();
+            cms.missionTheme = missionTheme;
 
             return cms;
         }

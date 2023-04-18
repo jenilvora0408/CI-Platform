@@ -32,6 +32,10 @@ namespace Entities.ViewModels
 
         public Skill skill { get; set; }
 
+        public List<MissionTheme> MissionTheme { get; set; }
+
+        public MissionTheme missionTheme { get; set; }
+
         public int PageCount { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }

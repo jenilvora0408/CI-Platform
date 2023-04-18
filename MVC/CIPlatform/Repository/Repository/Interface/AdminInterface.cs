@@ -57,5 +57,13 @@ namespace Repository.Repository.Interface
         public void UpdateSkillData(CMS cms);
 
         public void deleteSkill(long skillId);
+
+        public void AddTheme(CMS cms);
+
+        public CMS GetThemeData(long missionThemeId);
+
+        public void UpdateThemeData(CMS cms);
+
+        public void deleteTheme(long themeId);
     }
 }
