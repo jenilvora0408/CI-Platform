@@ -2,6 +2,7 @@
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Repository.Interface;
 
 namespace CIPlatform.Controllers
@@ -132,6 +133,97 @@ namespace CIPlatform.Controllers
             cms.Navbar_1 = missionHomeModel;
             return View(cms);
         }
+
+        public IActionResult AddMission()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            MissionCrud missionCrud = new MissionCrud();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            missionCrud.Navbar_1 = missionHomeModel;
+            var missionskills = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+            ViewBag.missionskills = missionskills;
+            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            ViewBag.Country = country;
+            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            ViewBag.theme = theme;
+            return View(missionCrud);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
+        {
+            if (ModelState.IsValid)
+            {
+                var missionId = _adminInterface.AddMission(model);
+                if (fileImg != null && fileImg.Count() > 0)
+                {
+                    string uploadsFolderPath = Path.Combine(_env.WebRootPath, "uploads");
+                    foreach (var file in fileImg)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                        string fileExtension = Path.GetExtension(file.FileName);
+                        if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
+                        {
+                            fileName = fileName + "_" + DateTime.Now.Ticks.ToString() + fileExtension;
+                            string filePath = Path.Combine(uploadsFolderPath, fileName);
+                            using (var fileImgtream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileImgtream);
+                            }
+                            string imagepath = "/uploads/" + fileName;
+                            
+                            _adminInterface.AddMissionMedia(missionId, imagepath, fileName, fileExtension);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Image", "Please select png, jpg or jpeg file to upload.");
+                        }
+                    }
+                    if (fileDoc != null && fileDoc.Count() > 0)
+                    {
+                        foreach (var file in fileDoc)
+                        {
+                            string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                            string fileExtension = Path.GetExtension(file.FileName);
+                            if (fileExtension == ".pdf" || fileExtension == ".doc" || fileExtension == ".xlsx")
+                            {
+                                fileName = fileName + "_" + DateTime.Now.Ticks.ToString() + fileExtension;
+                                string filePath = Path.Combine(uploadsFolderPath, fileName);
+                                using (var fileImgtream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    await file.CopyToAsync(fileImgtream);
+                                }
+                                string imagepath = "/uploads/" + fileName;
+                                _adminInterface.AddMissionDocument(missionId, imagepath, fileName, fileExtension);
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("Image", "Please select png, jpg or jpeg file to upload.");
+                            }
+                        }
+                    }
+                    return RedirectToAction("Mission");
+                }
+            }
+            return View(model);
+
+        }
+
+        public JsonResult GetCitiesOfCountry(long country)
+        {
+            var cities = _adminInterface.GetCitiesOfCountry(country);
+            return Json(cities);
+        }
+
+
 
         public IActionResult AddBanner()
         {

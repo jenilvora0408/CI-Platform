@@ -384,20 +384,6 @@ alert('An error occurred while changing the profile picture.');
                     $(this).toggleClass("selected");
                 });
 
-                //$(".user-edit-save-btn").on("click", function (event) {
-                //    event.preventDefault(); // prevent default behavior
-                //    $("#addSkillForUser").empty();
-                //    $(".selected-skills .skill-list li").each(function () {
-                //        var skillId = $(this).val();
-                //        var skillName = $(this).text().trim();
-                //        $("<li>")
-                //            .text(skillName)
-                //            .val(skillId)
-                //            .appendTo($("#addSkillForUser"));
-                //    });
-                //    $(".popup-container").hide();
-                //});
-
                 
             $(".user-edit-save-btn").on("click", function () {
                  event.preventDefault(); // prevent default behavior
@@ -467,3 +453,12 @@ alert('An error occurred while changing the profile picture.');
 
 //});
     </script>
+
+    
+@if (TempData.ContainsKey("error"))
+{
+<script>
+alert("Password does not match")
+</script>
+TempData.Remove("error");
+}

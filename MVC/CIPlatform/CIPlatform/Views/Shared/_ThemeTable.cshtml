@@ -1,5 +1,9 @@
 ﻿@model Entities.ViewModels.CMS
 
+@if(Model.MissionTheme.Count == 0){
+	<div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
+}
+else{
 <div id="tblOverflow" style="overflow-x: scroll;">
             <table class="table">
                 <thead>
@@ -27,7 +31,7 @@
                 </tbody>
             </table>
         </div>
-
+}
 
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">

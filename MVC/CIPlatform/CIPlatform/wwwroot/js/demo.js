@@ -1,13 +1,4 @@
-﻿////$(".close-chips").on("click", function (e) {
-////    $(".home-chips .chip").remove();
-////    $(this).hide();
-////    loadCard();
-////    loadList();
-////});
-
-// $(".close-chips").on("click", function(e){
-// $(".close-chips").remove();
-// });
+﻿
 function showChip() {
     $(".selection .dropdown-menu li a").on("click", function (e) {
         var filterType = $(this).attr('data-filter-type');
@@ -23,14 +14,9 @@ function showChip() {
         
         $(".close-chips").show();
 
-        //$(".closebtn").on("click", function (e) {
-        //    loadCard();
-        //    loadList();
-        //})
+       
     });
 }
-
-
 
 
 function removeChip(btn) {

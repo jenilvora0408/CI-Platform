@@ -72,9 +72,11 @@ namespace CIPlatform.Controllers
                 if (!a)
                 {
                     ModelState.AddModelError("oldPassword", "Incorrect old password.");
-                }
-            
-            
+                    TempData["error"] = "Password does not match";
+
+            }
+
+
             return RedirectToAction("EditProfile");
         }
 

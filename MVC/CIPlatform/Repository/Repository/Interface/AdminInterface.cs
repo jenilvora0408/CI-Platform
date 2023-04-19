@@ -72,5 +72,10 @@ namespace Repository.Repository.Interface
         public void deleteBanner(long bannerId);
 
         public void deleteMission(long missionId);
+
+        public List<City> GetCitiesOfCountry(long country);
+        public long AddMission(MissionCrud model);
+        public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension);
+        public void AddMissionDocument(long missionId, string imagepath, string fileName, string fileExtension);
     }
 }
