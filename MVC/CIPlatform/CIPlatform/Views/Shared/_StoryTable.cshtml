@@ -18,14 +18,18 @@
                             <td>@item.Title</td>
                             <td>@item.User.FirstName @item.User.LastName</td>
                             <td>@item.Mission.Title</td>
-                            <td style="display: flex; align-items: center; gap: 10px;">
-                                <button onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyID=@item.StoryId}) '"
-								style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; 
-background: #fff;">View</button> 
-                                <i id="@item.StoryId" style="color: #14C506; font-size: 20px;" class="approve bi bi-check-circle"></i>
-                                <i id="@item.StoryId" style="color: red; font-size: 20px;" class="reject bi bi-x-circle"></i>
-                                <img data-id="@item.StoryId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
-                            </td>
+                           <td style="display: flex; align-items: center; gap: 10px;">
+							<button onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyID=@item.StoryId}) '"
+							    style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; 
+							        background: #fff;">View</button> 
+
+							<i id="@item.StoryId" style="color: #14C506; font-size: 20px;" class="approve bi bi-check-circle"></i>
+							
+							<i id="@item.StoryId" style="color: red; font-size: 20px;" class="reject bi bi-x-circle"></i>
+							
+							<img  data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img" src="/images/bin.png" alt="Delete" />
+						</td>
+
                         </tr>
                         }
             
@@ -64,23 +68,26 @@ background: #fff;">View</button>
 			});
 	});
 
-	$("#deleteBtn").on("click", function(e){
-		var deleteID = $("#delete-icon").attr("data-id");
-		console.log(deleteID);
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/deleteStory",
-                data: {storyId:deleteID},
-                success: function (data) {
-                    alert("Story Deleted successfully");
-					window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
-                }
-          
-			});
-	});
+	
+
+	$('table').on('click', '.delete-img', function () {
+    var deleteID = $(this).data('id');
+    $('#confirm-delete').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/deleteStory",
+            data: { storyId: deleteID },
+            success: function (data) {
+                location.reload();
+                alert("Record Deleted.");
+            },
+            error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+            }
+        });
+    });
+});
+
 
 	$(".reject").on("click", function(e){
 		var rejectID = this.id;
@@ -115,7 +122,7 @@ background: #fff;">View</button>
 					data: {search:text,pageNumber:page},
 					success: function (data) {
 						$('#storyTable').html("");
-						$('#storyTable').html(data);searchUser();
+						$('#storyTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);
@@ -164,5 +171,5 @@ background: #fff;">View</button>
 			}
 		});
 	});
-	
+	//});
 </script>

@@ -10,6 +10,7 @@ namespace Repository.Repository.Interface
 {
     public interface AdminInterface
     {
+        public CMS GetBannerPages(string Search, int pageNumber);
         public CMS GetCmsPages(string Search, int pageNumber);
 
         public CMS GetUserPages(string Search, int pageNumber);
@@ -65,5 +66,11 @@ namespace Repository.Repository.Interface
         public void UpdateThemeData(CMS cms);
 
         public void deleteTheme(long themeId);
+
+        public void addBanner(Banner banner);
+
+        public void deleteBanner(long bannerId);
+
+        public void deleteMission(long missionId);
     }
 }

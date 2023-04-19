@@ -311,3 +311,30 @@ table tr {
   border: 2px solid #f88634;
   color: #f88634;
 }
+
+.banner-table td{
+  white-space: unset !important;
+}
+@media only screen and (max-width: 700px){
+  .banner-table .banner-desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+  }
+}
+.banner-add-form{
+  width: 80vw;
+}
+#preview-banner img{
+  width: 300px !important;
+  height: 200px !important;
+}
+.banner-add-form input{
+  width: 100% !important;
+}
+.banner-add-form .banner-save{
+  width: unset !important;
+}

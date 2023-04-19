@@ -18,7 +18,8 @@
                         <td >@item.Title</td>
                         <td class="icons">
                             <i onclick="return location.href=' @Url.Action("EditTheme","Admin",new {missionThemeId=@item.MissionThemeId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img data-id="@item.MissionThemeId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <img data-id="@item.MissionThemeId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" class="delete-img"
+							src="/images/bin.png" alt="" />
                         </td>
                     </tr>
                     }
@@ -42,24 +43,26 @@
 
 
 <script>
-	function deleteTheme(){
-		var deleteID = $("#delete-icon").attr("data-id");
-		alert(deleteID);
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/deleteTheme",
-                data: {themeId:deleteID},
-                success: function (data) {
-                    alert("Theme Deleted successfully");
-					window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
-                }
-          
-			});
-	}
 	
+	
+	
+	$('table').on('click', '.delete-img', function () {
+    var deleteID = $(this).data('id');
+    $('#confirm-delete').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/deleteTheme",
+            data: { themeId: deleteID },
+            success: function (data) {
+                location.reload();
+                alert("Record Deleted.");
+            },
+            error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+            }
+        });
+    });
+});
 	
 	$(function () {
 		var currentPage = @Model.CurrentPage;
@@ -76,7 +79,7 @@
 					data: {search:text,pageNumber:page},
 					success: function (data) {
 						$('#themeTable').html("");
-						$('#themeTable').html(data);searchUser();
+						$('#themeTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

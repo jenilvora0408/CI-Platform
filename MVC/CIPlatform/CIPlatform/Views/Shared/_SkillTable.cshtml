@@ -22,7 +22,8 @@
                         
                         <td class="icons">
                             <i onclick="return location.href=' @Url.Action("EditSkill","Admin",new {SkillId=@item.SkillId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img data-id="@item.SkillId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <img data-id="@item.SkillId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" class="delete-img"
+							src="/images/bin.png" alt="" />
                         </td>
                     </tr>
                     }
@@ -45,23 +46,25 @@
 
 <script>
 	
-	function deleteSkill(){
-		var deleteID = $("#delete-icon").attr("data-id");
-		alert(deleteID);
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/deleteSkill",
-                data: {skillId:deleteID},
-                success: function (data) {
-                    alert("Skill Deleted successfully");
-					window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
-                }
-          
-			});
-	}
+	
+
+	$('table').on('click', '.delete-img', function () {
+    var deleteID = $(this).data('id');
+    $('#confirm-delete').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/deleteSkill",
+            data: { skillId: deleteID },
+            success: function (data) {
+                location.reload();
+                alert("Record Deleted.");
+            },
+            error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+            }
+        });
+    });
+});
 	
 	
 	$(function () {
@@ -79,7 +82,7 @@
 					data: {search:text,pageNumber:page},
 					success: function (data) {
 						$('#skillTable').html("");
-						$('#skillTable').html(data);searchUser();
+						$('#skillTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

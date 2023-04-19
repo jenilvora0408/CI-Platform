@@ -52,6 +52,34 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public CMS GetBannerPages(string Search, int pageNumber)
+        {
+            if(pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+            int pageSize = 2;
+            CMS cms = new CMS();
+            var bannerPages = new List<Banner>();
+            bannerPages = _ciPlatformContext.Banners.Where(x => x.DeletedAt == null).ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                bannerPages = bannerPages.Where(x => x.Text.ToLower().Contains(Search.ToLower()) || x.SortOrder.ToString() == Search ).ToList();
+            }
+            int totalCount = (int)Math.Ceiling((double)bannerPages.Count / pageSize);
+            List<Banner> pagedUsers = bannerPages
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            
+            cms.Banner = pagedUsers;
+            cms.PageCount = totalCount;
+            cms.PageSize =pageSize;
+            cms.CurrentPage = pageNumber;
+
+            return cms;
+        }
+
         public CMS GetUserPages(string Search, int pageNumber)
         {
             if(pageNumber == 0)
@@ -87,7 +115,7 @@ namespace Repository.Repository.Repository
             }
             int pageSize = 5;
             CMS cms = new CMS();
-            var mission = _ciPlatformContext.Missions.ToList();
+            var mission = _ciPlatformContext.Missions.Where(x => x.DeletedAt == null).ToList();
             if (!string.IsNullOrEmpty(Search))
             {
                 mission = mission.Where(x => x.Title.ToLower().Contains(Search.ToLower()) ||
@@ -98,6 +126,14 @@ namespace Repository.Repository.Repository
                 .Skip((pageNumber - 1) *pageSize)
                 .Take(pageSize)
                 .ToList();
+            cms.missions = pagedUsers.Select(x => new Mission()
+            {
+                Title = x.Title,
+                MissionId = x.MissionId,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                MissionType = x.MissionType,
+            }).ToList();
             cms.missions = pagedUsers;
             cms.PageCount = totalCount;
             cms.PageSize = pageSize;
@@ -417,6 +453,17 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void deleteMission(long missionId)
+        {
+            if(missionId != null && missionId != 0)
+            {
+                Mission mission = _ciPlatformContext.Missions.Where(x => x.MissionId == missionId).First();
+                mission.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(mission);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
         public void deleteSkill(long skillId)
         {
             if(skillId != null && skillId != 0)
@@ -435,6 +482,17 @@ namespace Repository.Repository.Repository
                 MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.MissionThemeId == themeId).First();
                 missionTheme.DeletedAt = DateTime.Now;
                 _ciPlatformContext.Update(missionTheme);
+                _ciPlatformContext.SaveChanges();
+            }
+        }
+
+        public void deleteBanner(long bannerId)
+        {
+            if(bannerId != null && bannerId != 0)
+            {
+                Banner banner = _ciPlatformContext.Banners.Where(x => x.BannerId == bannerId).First();
+                banner.DeletedAt = DateTime.Now;
+                _ciPlatformContext.Update(banner);
                 _ciPlatformContext.SaveChanges();
             }
         }
@@ -484,6 +542,12 @@ namespace Repository.Repository.Repository
             cms.missionTheme = missionTheme;
 
             return cms;
+        }
+
+        void AdminInterface.addBanner(Banner banner)
+        {
+            _ciPlatformContext.Add(banner);
+            _ciPlatformContext.SaveChanges();
         }
     }
 }

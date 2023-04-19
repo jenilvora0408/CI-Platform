@@ -50,11 +50,34 @@ namespace CIPlatform.Controllers
             return View(cms);
         }
 
+        public IActionResult Banner()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            CMS cms = new CMS();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            cms.Navbar_1 = missionHomeModel;
+            return View(cms);
+        }
+
         public IActionResult CmsTable(string Search, int pageNumber)
         {
             var a = _adminInterface.GetCmsPages(Search, pageNumber);
             
             return PartialView("_CMSList", a);
+        }
+
+        public IActionResult BannerTable(string Search, int pageNumber)
+        {
+            var banner = _adminInterface.GetBannerPages(Search, pageNumber);
+            return PartialView("_BannerTable", banner);
         }
 
         public IActionResult userTable(string Search, int pageNumber)
@@ -110,6 +133,47 @@ namespace CIPlatform.Controllers
             return View(cms);
         }
 
+        public IActionResult AddBanner()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            CMS cms = new CMS();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            cms.Navbar_1 = missionHomeModel;
+            return View(cms);
+        }
+        [HttpPost]
+        public IActionResult AddBanner(CMS adminBannerModel, IFormFile Image)
+        {
+          
+                Banner banner = new Banner();
+
+                string wwwRootPath = _env.WebRootPath;
+                if (Image != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"banners");
+                    var extension = Path.GetExtension(Image.FileName);
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        Image.CopyTo(fileStreams);
+                    }
+                    banner.Image = @"\banners\" + fileName + extension;
+                }
+           
+                banner.Text = adminBannerModel.banner.Text;
+                banner.SortOrder = adminBannerModel.banner.SortOrder;
+                _adminInterface.addBanner(banner);
+                return RedirectToAction("Banner");
+           
+        }
         public IActionResult AddUser()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -291,6 +355,13 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
+        public IActionResult deleteMission(long missionId)
+        {
+            _adminInterface.deleteMission(missionId);
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult deleteSkill(long skillId)
         {
             _adminInterface.deleteSkill(skillId);
@@ -301,6 +372,13 @@ namespace CIPlatform.Controllers
         public IActionResult deleteTheme(long themeId)
         {
             _adminInterface.deleteTheme(themeId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult deleteBanner(long bannerId)
+        {
+            _adminInterface.deleteBanner(bannerId);
             return Ok();
         }
 

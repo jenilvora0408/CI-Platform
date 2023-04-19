@@ -1,0 +1,116 @@
+﻿@model Entities.ViewModels.CMS
+    <div class="cms">
+        <!-- Navbar -->
+       <partial name="_AdminNavbar" model="Model.Navbar_1" />
+
+        <!-- Sidebar -->
+        <partial name="_AdminSidebar" />
+        
+        <div class="cms-content">
+            <form method="post" class="banner-add-form" enctype="multipart/form-data">
+                <div class="border px-1 p-sm-3 ">
+                    <div class="py-2">
+                        <label class="form-label">Banner</label>
+                        <input type="file" name="Image" id="admin-banner" class="form-control m-0">
+                        <div class="mt-1" id="preview-banner"></div>
+                    </div> 
+                    <div class="py-2">
+                        <label for="" class="form-label">Banner text</label>
+                        <textarea asp-for="@Model.banner.Text" id="" class="form-control" rows="5"></textarea>
+                    </div> 
+                    <div class="py-2">
+                        <label for="" class="form-label">Sort Order</label>
+                        <input asp-for="@Model.banner.SortOrder" type="number" class="form-control m-0">
+                    </div>
+                </div>
+                    <div class="pt-3 d-flex justify-content-end align-items-center">
+                        <button class=" border border-2 border-secondary bg-white rounded-5 px-4 p-2">Cancel</button>
+                        <input type="submit" class="banner-save ms-2 btn-orange bg-white rounded-5 px-4 p-2" value="Save">
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    
+    
+    
+    <script>
+      $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $("#preview-banner").html("")
+                    $($.parseHTML('<img>')).attr('src', event.target.result).css("height","400px").css("width","500px").appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#admin-banner').on('change', function() {
+        imagesPreview(this, 'div#preview-banner');
+    });
+});
+    </script>
+    
+    <script>
+        
+        $(document).ready(function () {
+            // Color Change - Sidebar
+            $(".cms-sidebar ul li").on("mouseenter", function () {
+                $(this).find("i").css("color", "#F88634");
+                $(this).find("span").css("color", "#F88634");
+            });
+            $(".cms-sidebar ul li").on("mouseleave", function () {
+                if (!$(this).hasClass("active")) {
+                    $(this).find("i").css("color", "#fff");
+                    $(this).find("span").css("color", "#fff");
+                }
+            });
+            $(".cms-sidebar ul li").on("click", function () {
+                $(".cms-sidebar ul li").removeClass("active");
+                $(".cms-sidebar ul li i").css("color", "#fff");
+                $(".cms-sidebar ul li span").css("color", "#fff");
+                $(this).addClass("active");
+                $(this).find("i").css("color", "#F88634");
+                $(this).find("span").css("color", "#F88634");
+            });
+
+            // Hide & Show Sidebar
+            $("#sidebar-open").hide();
+            $("#sidebar-close").hide();
+
+            $(window).resize(function () {
+                if ($(window).width() < 960) {
+                    $(".cms-sidebar").hide();
+                    $("#sidebar-open").show();
+                    $("#sidebar-close").hide();
+                } else {
+                    $(".cms-sidebar").show();
+                    $("#sidebar-open").hide();
+                }
+            });
+        });
+
+        // Open & Close Button - Sidebar
+        $("#sidebar-open").on("click", function (e) {
+            $(".cms-sidebar").show();
+            $("#sidebar-open").hide();
+            $("#sidebar-close").show();
+        });
+
+        $("#sidebar-close").on("click", function (e) {
+            $(".cms-sidebar").hide();
+            $("#sidebar-close").hide();
+            $("#sidebar-open").show();
+        });
+    </script>

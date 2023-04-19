@@ -1,9 +1,9 @@
-﻿$(".close-chips").on("click", function (e) {
-    $(".home-chips .chip").remove();
-    $(this).hide();
-    loadCard();
-    loadList();
-});
+﻿////$(".close-chips").on("click", function (e) {
+////    $(".home-chips .chip").remove();
+////    $(this).hide();
+////    loadCard();
+////    loadList();
+////});
 
 // $(".close-chips").on("click", function(e){
 // $(".close-chips").remove();
@@ -12,19 +12,42 @@ function showChip() {
     $(".selection .dropdown-menu li a").on("click", function (e) {
         var filterType = $(this).attr('data-filter-type');
         var dataID = $(this).parent().val();
-        $(".home-chips .chips").append(
-            '<div data-filter-type='+filterType+' data-id='+dataID+' class="chip">' +
-            $(this).text() +
-            '<span class="closebtn" onclick="this.parentElement.style.display=\'none\'">&times;</span>'
-        );
+        var existingChip = $(".home-chips .chip[data-filter-type='" + filterType + "'][data-id='" + dataID + "']");
+        if (existingChip.length === 0) {
+            $(".home-chips .chips").append(
+                '<div data-filter-type=' + filterType + ' data-id=' + dataID + ' class="chip">' +
+                $(this).text() +
+                '<span class="closebtn" onclick="removeChip(this)">&times;</span>'
+            );
+        }
+        
         $(".close-chips").show();
 
-        $(".closebtn").on("click", function (e) {
-            loadCard();
-            loadList();
-        })
+        //$(".closebtn").on("click", function (e) {
+        //    loadCard();
+        //    loadList();
+        //})
     });
 }
+
+
+
+
+function removeChip(btn) {
+    $(btn).parent().removeAttr("data-id").hide();
+    $(".close-chips").hide();
+    loadCard();
+    loadList();
+}
+
+
+$(".close-chips").on("click", function (e) {
+    $(".home-chips .chip").remove();
+    $(this).hide();
+    selectedFilters = [];
+    loadCard();
+    loadList();
+});
 
 
 

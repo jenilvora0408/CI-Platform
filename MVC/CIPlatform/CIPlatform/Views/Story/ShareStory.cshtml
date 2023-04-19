@@ -1,4 +1,4 @@
-﻿@model Entities.ViewModels.ShareStory
+﻿    @model Entities.ViewModels.ShareStory
 
 <partial name="_Navbar_1" model="Model.Navbar_1"/>
 
@@ -244,16 +244,22 @@
     });
 
 
-        $('body').on('click', ".upload__img-close", function(e) {
-            var file = $(this).parent().data("file");
-            for (var i = 0; i < imgArray.length; i++) {
-                if (imgArray[i].name === file) {
-                    imgArray.splice(i, 1);
-                    break;
-                }
-            }
-            $(this).parent().parent().remove();
-        });
+        $('body').on('click', ".upload__img-close", function (e) {
+var file = $(this).parent().data("file");
+for (var i = 0; i < imgArray.length; i++) {
+if (imgArray[i].name === file) {
+imgArray.splice(i, 1);
+break;
+}
+}
+$(this).parent().parent().remove();
+
+// Update formData with remaining files
+formData = new FormData();
+imgArray.forEach(function (f) {
+formData.append("files", f);
+});
+});
 
 
         $('.upload__box').on('dragover', function(e) {

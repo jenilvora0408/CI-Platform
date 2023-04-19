@@ -23,7 +23,8 @@
                         <td>@item.EndDate</td>
                         <td class="icons">
                             <i id="edit-icon" class="bi bi-pencil-square"></i>
-                            <img data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <img data-id="@item.MissionId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" class="delete-img" 
+							src="/images/bin.png" alt="" />
                         </td>
                     </tr>
                     }
@@ -45,38 +46,23 @@
 
 
 <script>
-	//$('.admin-delete-btn').on('click', function() {
-	//	var userId = $(this).data('userid');
-		
-	//	$('.delete-container').show();
-	//	$('#confirm-btn').on('click', function() {
-	//		$.ajax({
-	//			type: "POST",
-	//			url: "/Admin/AdminUserDelete",
-	//			data: { userId: userId },
-	//			success: function (data) {
-	//				location.reload();
-	//				alert("Record Deleted.");
-	//			},
-	//			error: function (xhr, status, error) {
-	//				alert("Record Not Deleted.");
-	//			}
-	//		});
-	//		$('.delete-container').hide();
-	//	});
-	//	$('#cancel-btn').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	$('.close-delete-popup').on('click', function() {
-	//		$('.delete-container').hide();
-	//	});
-	//	const Popup = $(".delete-container");
-	//	$(window).click(function (event) {
-	//		if (event.target == Popup[0]) {
-	//			Popup.hide();
-	//		}
-	//	});
-	//});
+	$('table').on('click', '.delete-img', function () {
+    var deleteID = $(this).data('id');
+    $('#confirm-delete').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/deleteMission",
+            data: { missionId: deleteID },
+            success: function (data) {
+                location.reload();
+                alert("Record Deleted.");
+            },
+            error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+            }
+        });
+    });
+});
 	
 	
 	$(function () {
@@ -94,7 +80,7 @@
 					data: {search:text,pageNumber:page},
 					success: function (data) {
 						$('#missionTable').html("");
-						$('#missionTable').html(data);searchUser();
+						$('#missionTable').html(data);
 					},
 					error: function (xhr, status, error) {
 						console.log(error);

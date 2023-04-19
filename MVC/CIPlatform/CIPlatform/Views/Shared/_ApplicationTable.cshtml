@@ -22,7 +22,8 @@
                         <td class="icons">
                             <i id="@item.MissionApplicationId" style="color: #14C506; font-size: 20px;" class="approveApplication bi bi-check-circle"></i>
                                 <i id="@item.MissionApplicationId" style="color: red; font-size: 20px;" class="rejectApplication bi bi-x-circle"></i>
-                            <img data-id="@item.MissionApplicationId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" src="/images/bin.png" alt="" />
+                            <img data-id="@item.MissionApplicationId" data-bs-toggle="modal" data-bs-target="#hello" class="delete-img"
+							id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
                     </tr> 
                     }
@@ -63,23 +64,25 @@
 			});
 	});
 
-	$("#deleteBtn").on("click", function(e){
-		var deleteID = $("#delete-icon").attr("data-id");
-		alert(deleteID);
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/deleteApplication",
-                data: {applicationId:deleteID},
-                success: function (data) {
-                    alert("Application Deleted successfully");
-					window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
-                }
-          
-			});
-	});
+	
+	
+	$('table').on('click', '.delete-img', function () {
+    var deleteID = $(this).data('id');
+    $('#confirm-delete').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/deleteApplication",
+            data: { applicationId: deleteID },
+            success: function (data) {
+                location.reload();
+                alert("Record Deleted.");
+            },
+            error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+            }
+        });
+    });
+});
 
 	$(".rejectApplication").on("click", function(e){
 		var rejectID = this.id;
