@@ -24,5 +24,7 @@ namespace Repository.Repository.Interface
         public void addResetPasswordToken(PasswordReset obj);
         public void removeResetPasswordToekn(PasswordReset obj);
 
+        public List<Banner> GetBanners();
+
     }
 }

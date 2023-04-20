@@ -27,15 +27,21 @@ namespace CIPlatform.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            Login login = new Login();
+            login.banners = _registerInterface.GetBanners();
+            return View(login);
         }
         public IActionResult ForgotPassword()
         {
-            return View();
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.banners = _registerInterface.GetBanners();
+            return View(forgotPassword);
         }
         public IActionResult Register()
         {
-            return View();
+            Register register = new Register();
+            register.banners = _registerInterface.GetBanners();
+            return View(register);
         }
         public IActionResult NewPassword(string? token)
         {
@@ -52,6 +58,7 @@ namespace CIPlatform.Controllers
             }
             NewPassword newPasswordModel = new NewPassword();
             newPasswordModel.token = token;
+            newPasswordModel.banners = _registerInterface.GetBanners();
             return View(newPasswordModel);
         }
 
@@ -60,7 +67,8 @@ namespace CIPlatform.Controllers
         public IActionResult Register(Register user)
         {
             var emailExist = _registerInterface.isEmailAvailable(user.email);
-
+            Register newRegister = new Register();
+            newRegister.banners = _registerInterface.GetBanners();
 
             if (emailExist)
             {
@@ -74,13 +82,15 @@ namespace CIPlatform.Controllers
             u.PhoneNumber = user.phone_number;
             u.Password = user.password;
             _registerInterface.InsertUser(u);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", newRegister);
         }
  
 
         [HttpPost]
         public IActionResult ValidateLogin(Login N)
         {
+            Login login = new Login();
+            login.banners = _registerInterface.GetBanners();
             if (ModelState.IsValid)
             {
                 var emailExist = _registerInterface.isEmailAvailable(N.email);
@@ -102,16 +112,18 @@ namespace CIPlatform.Controllers
                 else
                 {
                     ModelState.AddModelError("email", "Enter correct email address");
-                    return View("Login");
+                    return View("Login", login);
                 }
             }
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", login);
         }
 
 
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPassword obj)
         {
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.banners = _registerInterface.GetBanners();
             if (!_registerInterface.isEmailAvailable(obj.email))
             {
                 ModelState.AddModelError("Email", "Email not found");
@@ -135,15 +147,17 @@ namespace CIPlatform.Controllers
                 MailHelper mailHelper = new MailHelper(_configuration);
                 ViewBag.sendMail = mailHelper.Send(obj.email, welcomeMessage + path); 
                 ViewBag.Alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>An email has been sent to your account. <b>Click on the link in received email to reset the password.</b><button type= 'button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-                return View();
+                return View(forgotPassword);
             }
-            return View();
+            return View(forgotPassword);
         }
 
         
         [HttpPost]
         public IActionResult NewPassword(NewPassword obj)
         {
+            NewPassword newPassword = new NewPassword();
+            newPassword.banners = _registerInterface.GetBanners();
             string token = obj.token;
             if (token != null)
             {
@@ -169,7 +183,7 @@ namespace CIPlatform.Controllers
                     ModelState.AddModelError("ConfirmPassword", "Confirm password does not match to new password");
                 }
             }
-            return View();
+            return View(newPassword);
         }
         public IActionResult logout()
         {

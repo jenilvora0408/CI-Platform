@@ -4,7 +4,8 @@
 }
 <div class="container-fluid">
         <div class="row">
-            @Html.Partial("_AccountCarousel")
+            
+            <partial name="_AccountCarousel" model="Model.banners" />
             <div id="registercontent" class="col-md-4 col-sm-12 logincontent">
 
                 <form asp-controller="Account" asp-action="Register">
@@ -25,7 +26,7 @@
                     <span asp-validation-for="email" class="text-danger"></span>
 
                     <label for="registerpass">Password</label>
-                    <input asp-for="password" type="password" id="registerpass" placeholder="**********">
+                    <input asp-for="password" type="password" id="registerpass" placeholder="**********" autocomplete="new-password">
                     <span asp-validation-for="password" class="text-danger"></span>
 
                     <label for="registercpass">Confirm Password</label>

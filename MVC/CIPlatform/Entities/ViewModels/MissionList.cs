@@ -27,6 +27,7 @@ namespace Entities.ViewModels
         public int? goalValue { get; set; }
         public DateTime? deadline { get; set; }
         public long? favMissionId { get; set; }
+        public string? approvalStatus { get; set; }
 
 
     }

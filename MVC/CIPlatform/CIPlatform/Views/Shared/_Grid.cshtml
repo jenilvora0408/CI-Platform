@@ -17,11 +17,11 @@
    @foreach(var item in Model.missions) {
        
          <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
-          <div class="card" style="box-shadow:none; border: 1px solid #D9D9D9; white-space: nowrap">
+          <div class="card h-100" style="box-shadow:none; border: 1px solid #D9D9D9; white-space: nowrap">
             <div class="card-image">
-                    @if(item.endDate == null && item.goalValue == 100)
+                    @if(item.approvalStatus == "Approved")
                     {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
+                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
                     }
                     else if(DateTime.Now > item.endDate ){
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
@@ -102,8 +102,10 @@
             }
             else
             {
+   
                 <p class="mission-date">
-                    <span class="time-span">@item.startDate?.ToString("dd-mm-yyyy") until @item.endDate?.ToString("dd-mm-yyyy")</span>
+                    <span class="time-span">@item.startDate.Value.ToString("d")
+ until @item.endDate.Value.ToString("d")</span>
                 </p>
             }
 
@@ -158,7 +160,7 @@
             else
             {
                 <div class="card-body-right-text">
-                  <span class="figure">@item.deadline?.ToString("dd-mm-yyyy")</span>
+                  <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
                   <span class="deadline">Deadline</span>
                 </div>
             }

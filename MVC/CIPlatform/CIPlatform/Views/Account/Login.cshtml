@@ -5,7 +5,8 @@
 
     <div class="container-fluid">
         <div class="row">
-             @Html.Partial("_AccountCarousel")  
+             @*@Html.Partial("_AccountCarousel") *@
+             <partial name="_AccountCarousel" model="Model.banners" />
             <div id="logincontent" class="col-md-4 col-sm-12 logincontent">
 
                 <form asp-controller="Account" asp-action="ValidateLogin" >

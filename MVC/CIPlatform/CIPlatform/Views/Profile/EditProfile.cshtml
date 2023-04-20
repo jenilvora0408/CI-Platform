@@ -61,12 +61,14 @@
                             <div class="edit-name">
                                 <label for="name">Name*</label>
                                 <input type="text" asp-for="FirstName" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter your Name" />
+                                    aria-describedby="emailHelp" placeholder="Enter your Name"  />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="edit-surname">
                                 <label for="surname">Surname*</label>
                                 <input type="text" asp-for="LastName" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="Enter your Surname" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="layer-part-2">
@@ -74,11 +76,13 @@
                                 <label for="employee-id">Employee ID</label>
                                 <input type="text" asp-for="EmployeeID" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="Enter your Employee ID" />
+                                    <span asp-validation-for="EmployeeID" class="text-danger"></span>
                             </div>
                             <div class="edit-surname">
                                 <label for="surname">Manager</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="Enter your Manager Details" />
+
                             </div>
                         </div>
                         <div class="layer-part-3">
@@ -86,11 +90,13 @@
                                 <label for="title">Title</label>
                                 <input type="text" asp-for="Title" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="Enter" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                             <div class="edit-surname">
                                 <label for="department">Department</label>
                                 <input type="text" asp-for="Department" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="Enter your Department" />
+                                    <span asp-validation-for="Department" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

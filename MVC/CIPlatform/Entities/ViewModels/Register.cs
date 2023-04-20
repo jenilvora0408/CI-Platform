@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Models;
+using System.ComponentModel.DataAnnotations;
 namespace Entities.ViewModels
 {
     public class Register
@@ -25,5 +26,7 @@ namespace Entities.ViewModels
         [Required]
         [Compare("password", ErrorMessage = "Password does not match")]
         public string confirm_password { get; set; }
+
+        public List<Banner>? banners { get; set; }
     }
 }

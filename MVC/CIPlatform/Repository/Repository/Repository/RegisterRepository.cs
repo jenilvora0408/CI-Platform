@@ -20,6 +20,7 @@ namespace Repository.Repository.Repository
         {
             _ciPlatformContext = ciPlatformContext;
         }
+
         public List<User> GetUsersList()
         {
             List<User> lstUsers = _ciPlatformContext.Users.ToList();
@@ -120,6 +121,11 @@ namespace Repository.Repository.Repository
 
                 return false;
             }
+        }
+
+        List<Banner> RegisterInterface.GetBanners()
+        {
+            return _ciPlatformContext.Banners.ToList();
         }
     }
 

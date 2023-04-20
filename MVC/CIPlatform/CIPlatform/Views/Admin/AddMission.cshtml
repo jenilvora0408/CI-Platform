@@ -96,7 +96,7 @@
                     <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
                 </div>
                 <div class="row mt-3 ">
-                    <button style="width: 8vw; padding:5px 12px; border-radius:23px; background:#fff; border: 2px solid #adadad;"
+                    <button style="white-space:nowrap;width: fit-content; padding:5px 15px; border-radius:23px; background:#fff; border: 2px solid #adadad;"
 					type="button" class="user-edit-add-skill-btn">Add Skills</button>
                 </div>
                                 
@@ -118,8 +118,11 @@
                                 </div>
                                 </div>
                                 <div class="d-flex m-5 justify-content-end" style="gap:10px">
-                                  <button type="button" class="add-story-cencel" onclick="location.href='@Url.Action("Mission", "Admin")'">Cencel</button>
-                                  <button type="submit" class="add-story-submit">Save</button>
+                                  <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button"
+								  type="button" class="add-story-cencel" onclick="location.href='@Url.Action("Mission", "Admin")'">Cancel</button>
+
+                                  <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px"
+								  type="submit" class="add-story-submit">Save</button>
                                 </div>
                                 </div>
                                 }
@@ -155,8 +158,11 @@
 </div>
 <div>
 <div class="d-flex flex-row mt-3" style="gap:10px;">
-<button type="button" class="user-edit-add-skill-btn user-edit-close-btn">Cencel</button>
-<button type="button" class="user-edit-save-btn" id="skillsSaveButton">Save</button>
+<button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button" 
+class="user-edit-add-skill-btn user-edit-close-btn">Cancel</button>
+
+<button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px" type="button" 
+class="user-edit-save-btn" id="skillsSaveButton">Save</button>
 </div>
 </div>
 </div>

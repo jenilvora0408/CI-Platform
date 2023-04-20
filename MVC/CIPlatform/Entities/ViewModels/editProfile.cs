@@ -11,33 +11,66 @@ namespace Entities.ViewModels
     public class editProfile
     {
         public Navbar_1? Navbar_1 { get; set; }
+
         [Required]
         public string oldPassword { get; set; }
+
         [Required]
         public string newPassword { get; set; }
+
         [Required]
         [Compare("newPassword", ErrorMessage = "Password does not match")]
         public string confirmPassword { get; set; }
+
         public long? CountryID { get; set; }
 
         public long UserID { get; set; }
+
         public string UserName { get; set; }
+        
+        [Required]
+        [StringLength(16, MinimumLength =0, ErrorMessage = "First Name cannot be more than 16 characters")]
         public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(16, MinimumLength = 0, ErrorMessage = "Last Name cannot be more than 16 characters")]
         public string LastName { get; set; }
+
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(16, MinimumLength = 0, ErrorMessage = "Employee ID cannot be more than 16 characters")]
+
         public string? EmployeeID { get; set; }
+
         public string Avatar { get; set; }
+
+        [Required]
+        [StringLength(255, MinimumLength = 0, ErrorMessage = "Title cannot be more than 255 characters")]
         public string? Title { get; set; }
+
+        [Required]
+        [StringLength(16, MinimumLength = 0, ErrorMessage = "Department Name cannot be more than 16 characters")]
         public string? Department { get; set; }
+
         public string? MyProfile { get; set; }
+
         public string? WhyIVolunteer { get; set; }
+
         public string? CityName { get; set; }
+
         public string CountryName { get; set; }
+
         public string? Availability { get; set; }
+
         public string? LinkedInURL { get; set; }
+
         public string? SkillIDs { get; set; }
+
         public string? Message { get; set; }
+
         public string? Subject { get; set; }
+
         public List<Skill> skills { get; set; }
     }
 }

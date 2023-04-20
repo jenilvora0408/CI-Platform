@@ -5,6 +5,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333333;
 }
+.text-danger{
+    color: red !important;
+}
 
 /* --------------------
     Navbar - 1
