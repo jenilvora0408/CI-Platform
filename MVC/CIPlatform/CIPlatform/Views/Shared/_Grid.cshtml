@@ -23,7 +23,7 @@
                     {
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
                     }
-                    else if(item.endDate >= item.deadline ){
+                    else if(DateTime.Now > item.endDate ){
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
                     }
                     @{
@@ -166,7 +166,7 @@
             </div>
             <hr />
             <div class="apply-btn">
-                    @if(item.endDate >= item.deadline || (item.endDate == null && item.goalValue == 100))
+                    @if(DateTime.Now >= item.deadline || item.goalValue == 100)
                     {
                         <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                             View Details <img src="/images/right-arrow.png" alt="" />

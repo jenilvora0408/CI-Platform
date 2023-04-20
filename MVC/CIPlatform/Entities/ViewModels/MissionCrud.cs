@@ -49,5 +49,9 @@ namespace Entities.ViewModels
         public DateTime? Deadline { get; set; }
 
         public string? Availability { get; set; }
+
+        public string? missionDocument { get; set; }
+
+        public string? missionMedia { get; set; }
     }
 }

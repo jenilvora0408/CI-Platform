@@ -162,9 +162,10 @@ namespace CIPlatform.Controllers
         {
             if (ModelState.IsValid)
             {
-                var missionId = _adminInterface.AddMission(model);
+                
                 if (fileImg != null && fileImg.Count() > 0)
                 {
+                    var missionId = _adminInterface.AddMission(model);
                     string uploadsFolderPath = Path.Combine(_env.WebRootPath, "uploads");
                     foreach (var file in fileImg)
                     {
@@ -184,7 +185,7 @@ namespace CIPlatform.Controllers
                         }
                         else
                         {
-                            ModelState.AddModelError("Image", "Please select png, jpg or jpeg file to upload.");
+                            ModelState.AddModelError("missionMedia", "Please select png, jpg or jpeg file to upload.");
                         }
                     }
                     if (fileDoc != null && fileDoc.Count() > 0)
@@ -206,14 +207,37 @@ namespace CIPlatform.Controllers
                             }
                             else
                             {
-                                ModelState.AddModelError("Image", "Please select png, jpg or jpeg file to upload.");
+                                ModelState.AddModelError("missionDocument", "Please select pdf, doc or xlsx file to upload.");
                             }
                         }
                     }
+                    
                     return RedirectToAction("Mission");
                 }
+                else
+                {
+                    ModelState.AddModelError("missionMedia", "Please select at least 1 image");
+                }
             }
-            return View(model);
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            MissionCrud missionCrud = new MissionCrud();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            missionCrud.Navbar_1 = missionHomeModel;
+            var missionskills = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+            ViewBag.missionskills = missionskills;
+            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            ViewBag.Country = country;
+            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            ViewBag.theme = theme;
+            return View(missionCrud);
 
         }
 
