@@ -1,86 +1,6 @@
 ﻿@model Entities.ViewModels.MissionCrud
 
-<style>
-	.popup-container {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: rgba(0, 0, 0, 0.5);
-z-index: 999;
-display: none;
-}
 
-.popup-content {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 50%;
-height: fit-content;
-background-color: #fff;
-padding: 20px;
-display: flex;
-}
-
-.available-skills,
-.selected-skills {
-flex-basis: 50%;
-padding: 10px;
-border: 1px solid #ccc;
-margin-right: 10px;
-}
-
-.available-skills h3,
-.selected-skills h3 {
-font-size: 20px;
-margin-top: 0;
-}
-
-.skill-list {
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
-.skill-list li {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 10px;
-cursor: pointer;
-}
-
-.skill-list li:hover {
-background-color: #f4f4f4;
-}
-
-.add-skill {
-background: white;
-border: none;
-}
-
-.remove-skill {
-background: white;
-border: none;
-}
-
-.selected-skills li {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 10px;
-}
-
-.selected-skills li:hover {
-background-color: #f4f4f4;
-}
-
-.skill-list li.selected {
-background-color: #ccc;
-}
-</style>
 
 <div class="cms">
         <!-- Navbar -->
@@ -94,13 +14,13 @@ background-color: #ccc;
   @using (Html.BeginForm("AddMission","Admin",FormMethod.Post,new{ @enctype="multipart/form-data"})){
   <div class="d-flex flex-column" style="height: fit-content;width: -webkit-fill-available;">
     @*<partial name="AdminHeader">*@
-      <div class="m-5 d-flex flex-column" style="border: 1px solid #efefef">
+      <div class="addMiss m-5 d-flex flex-column" style="border: 1px solid #efefef">
         <div class="p-3 col-12" style="border-bottom: 1px solid #efefef;background-color:#F8F9FC">
           Add Mission
         </div>
         <div class="p-5 d-flex flex-column">
           <label>Title</label>
-          @Html.TextBoxFor(model => model.Title, "", new { @class = "form-control", @placeholder="Enter title..." })
+          @Html.TextBoxFor(model => model.Title, "", new { @class = "form-control m-0", @placeholder="Enter title..." })
           @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
           <label class="mt-3">Short Description</label>
           @Html.TextBoxFor(model => model.ShortDescription, "", new { @class = "form-control", @placeholder="Enter Short Description..." })
@@ -170,13 +90,14 @@ background-color: #ccc;
                                   <p class="h5" style="font-weight: normal;">Mission Skills</p>
                                 </div>
                                  <div class="row mt-3 user-edit-selected-skill-div p-2">
-                    <ul class="user-edit-selected-skill">
+                    <ul style="list-style-type:none;" class="user-edit-selected-skill">
                         
                     </ul>
                     <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
                 </div>
                 <div class="row mt-3 ">
-                    <button type="button" class="user-edit-add-skill-btn">Add Skills</button>
+                    <button style="width: 8vw; padding:5px 12px; border-radius:23px; background:#fff; border: 2px solid #adadad;"
+					type="button" class="user-edit-add-skill-btn">Add Skills</button>
                 </div>
                                 
                                 <label class="mt-3">Oraganization Name</label>
@@ -190,7 +111,7 @@ background-color: #ccc;
                                 <label class="mt-3">Mission Documents</label>
                                 <input name="fileDoc" multiple="" data-max_length="10" type='file' class="form-control" placeholder="Upload Documents..." />
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                                <div class="overflow-auto mt-2" style="height:150px;">
+                                <div class="overflow-auto mt-2">
                                   <img id="bannerImgPreview" src="#" alt="your image" />
                                 </div>
                                 </div>
@@ -212,7 +133,7 @@ background-color: #ccc;
 </div>
 <div class="d-flex flex-row">
 <div class="available-skills">
-<ul class="skill-list" id="uesrskills">
+<ul  class="skill-list" id="uesrskills">
 @foreach (var skill in ViewBag.missionskills)
 {
 <li value="@skill.Value" >@skill.Text</li>

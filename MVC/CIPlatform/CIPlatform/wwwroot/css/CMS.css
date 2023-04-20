@@ -392,3 +392,88 @@ table tr {
 .cms-content .banner-add-form .banner-save {
     width: unset !important;
 }
+
+/*Add Mission*/
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: fit-content;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+}
+
+.available-skills,
+.selected-skills {
+    flex-basis: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+    .available-skills h3,
+    .selected-skills h3 {
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+.skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .skill-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .skill-list li:hover {
+            background-color: #f4f4f4;
+        }
+
+.add-skill {
+    background: white;
+    border: none;
+}
+
+.remove-skill {
+    background: white;
+    border: none;
+}
+
+.selected-skills li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+    .selected-skills li:hover {
+        background-color: #f4f4f4;
+    }
+
+.skill-list li.selected {
+    background-color: #ccc;
+}
+.cms-content .addMiss input{
+    margin:0 !important;
+    width: 100% !important;
+}

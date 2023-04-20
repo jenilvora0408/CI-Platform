@@ -614,14 +614,34 @@ namespace Repository.Repository.Repository
             return mission.MissionId;
         }
 
+        //public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension)
+        //{
+        //    MissionMedium missionMedium = new MissionMedium();
+        //    missionMedium.MissionId = missionId;
+        //    missionMedium.MediaPath = "/uploads/";
+        //    missionMedium.MediaName = Path.GetFileNameWithoutExtension(fileName);
+        //    missionMedium.MediaType = fileExtension.TrimStart('.');
+        //    _ciPlatformContext.MissionMedia.Add(missionMedium);
+        //    _ciPlatformContext.SaveChanges();
+        //}
+
         public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension)
         {
-            MissionMedium missionMedium = new MissionMedium();
-            missionMedium.MissionId = missionId;
-            missionMedium.MediaPath = "/uploads/";
-            missionMedium.MediaName = Path.GetFileNameWithoutExtension(fileName);
-            missionMedium.MediaType = fileExtension.TrimStart('.');
-            _ciPlatformContext.MissionMedia.Add(missionMedium);
+            MissionMedium media = _ciPlatformContext.MissionMedia.Where(mm => mm.MissionId == missionId).FirstOrDefault();
+            if (media == null)
+            {
+                MissionMedium missionMedium = new MissionMedium();
+                missionMedium.MissionId = missionId;
+                missionMedium.MediaPath = "/uploads/";
+                missionMedium.MediaName = Path.GetFileNameWithoutExtension(fileName);
+                missionMedium.MediaType = fileExtension.TrimStart('.');
+                _ciPlatformContext.MissionMedia.Add(missionMedium);
+            }
+            else
+            {
+                media.MediaName = media.MediaName + "," + Path.GetFileNameWithoutExtension(fileName);
+                _ciPlatformContext.MissionMedia.Update(media);
+            }
             _ciPlatformContext.SaveChanges();
         }
 
@@ -631,7 +651,7 @@ namespace Repository.Repository.Repository
             missionDocument.MissionId = missionId;
             missionDocument.DocumentName = Path.GetFileNameWithoutExtension(fileName);
             missionDocument.DocumentType = fileExtension.TrimStart('.');
-            missionDocument.DocumentPath = "/uploads/";
+            missionDocument.DocumentPath = "/assets/";
             _ciPlatformContext.MissionDocuments.Add(missionDocument);
             _ciPlatformContext.SaveChanges();
         }
