@@ -634,19 +634,19 @@ namespace Repository.Repository.Repository
             {
                 string[] skillIDStrings = model.SkillIDs.Split(',');
                 int[] skillIDs = Array.ConvertAll(skillIDStrings, int.Parse);
-                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
-                List<MissionSkills> skillsToRemove = missionSkills.Where(x => !skillIDs.Contains(x.SkillId)).ToList();
-                foreach (MissionSkills skill in skillsToRemove)
+                List<MissionSkill> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                List<MissionSkill> skillsToRemove = missionSkills.Where(x => !skillIDs.Contains(x.SkillId)).ToList();
+                foreach (MissionSkill skill in skillsToRemove)
                 {
                     _ciPlatformContext.MissionSkills.Remove(skill);
                     _ciPlatformContext.SaveChanges();
                 }
                 foreach (int skillID in skillIDs)
                 {
-                    MissionSkills missionSkill = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId && x.SkillId == skillID).FirstOrDefault();
+                    MissionSkill missionSkill = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId && x.SkillId == skillID).FirstOrDefault();
                     if (missionSkill == null)
                     {
-                        missionSkill = new MissionSkills();
+                        missionSkill = new MissionSkill();
                         missionSkill.MissionId = mission.MissionId;
                         missionSkill.SkillId = skillID;
                         _ciPlatformContext.MissionSkills.Add(missionSkill);
@@ -656,8 +656,8 @@ namespace Repository.Repository.Repository
             }
             else
             {
-                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
-                foreach (MissionSkills skill in missionSkills)
+                List<MissionSkill> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                foreach (MissionSkill skill in missionSkills)
                 {
                     _ciPlatformContext.MissionSkills.Remove(skill);
                     _ciPlatformContext.SaveChanges();
@@ -690,19 +690,19 @@ namespace Repository.Repository.Repository
             {
                 string[] skillIDStrings = model.SkillIDs.Split(',');
                 int[] skillIDs = Array.ConvertAll(skillIDStrings, int.Parse);
-                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
-                List<MissionSkills> skillsToRemove = missionSkills.Where(x => !skillIDs.Contains(x.SkillId)).ToList();
-                foreach (MissionSkills skill in skillsToRemove)
+                List<MissionSkill> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                List<MissionSkill> skillsToRemove = missionSkills.Where(x => !skillIDs.Contains(x.SkillId)).ToList();
+                foreach (MissionSkill skill in skillsToRemove)
                 {
                     _ciPlatformContext.MissionSkills.Remove(skill);
                     _ciPlatformContext.SaveChanges();
                 }
                 foreach (int skillID in skillIDs)
                 {
-                    MissionSkills missionSkill = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId && x.SkillId == skillID).FirstOrDefault();
+                    MissionSkill missionSkill = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId && x.SkillId == skillID).FirstOrDefault();
                     if (missionSkill == null)
                     {
-                        missionSkill = new MissionSkills();
+                        missionSkill = new MissionSkill();
                         missionSkill.MissionId = mission.MissionId;
                         missionSkill.SkillId = skillID;
                         _ciPlatformContext.MissionSkills.Add(missionSkill);
@@ -712,8 +712,8 @@ namespace Repository.Repository.Repository
             }
             else
             {
-                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
-                foreach (MissionSkills skill in missionSkills)
+                List<MissionSkill> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                foreach (MissionSkill skill in missionSkills)
                 {
                     _ciPlatformContext.MissionSkills.Remove(skill);
                     _ciPlatformContext.SaveChanges();

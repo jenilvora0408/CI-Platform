@@ -45,7 +45,7 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<MissionRating> MissionRatings { get; set; }
 
-    public virtual DbSet<MissionSkills> MissionSkills { get; set; }
+    public virtual DbSet<MissionSkill> MissionSkills { get; set; }
 
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
@@ -64,6 +64,7 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
+
 
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
@@ -558,7 +559,7 @@ public partial class CiPlatformContext : DbContext
                 .HasConstraintName("FK__mission_r__user___123EB7A3");
         });
 
-        modelBuilder.Entity<MissionSkills>(entity =>
+        modelBuilder.Entity<MissionSkill>(entity =>
         {
             entity.HasKey(e => e.MissionSkillId).HasName("PK__mission___827120085131C03C");
 
@@ -798,6 +799,7 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.Avatar)
                 .HasMaxLength(2048)
                 .IsUnicode(false)
+                .HasDefaultValueSql("('/images/user1.png')")
                 .HasColumnName("avatar");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
@@ -837,6 +839,10 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.ProfileText)
                 .IsUnicode(false)
                 .HasColumnName("profile_text");
+            entity.Property(e => e.Role)
+                .HasMaxLength(10)
+                .HasDefaultValueSql("(N'volunteer')")
+                .HasColumnName("role");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("status");

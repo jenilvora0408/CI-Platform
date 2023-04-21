@@ -22,12 +22,12 @@
                             <button id="closePasswordPopUp"><i class="bi bi-x"></i></button>
                         </div>
                         <form method="post" asp-action="changePasswordForProfile" asp-controller="Profile">
-                            <input asp-for="oldPassword" type="password" class="form-control mt-3" id="exampleInputEmail1"
+                            <input asp-for="oldPassword" type="password" class="old-pass form-control mt-3" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" placeholder="Enter old Password" />
                                 <span asp-validation-for="oldPassword" class="text-danger"></span>
 
                                
-                            <input asp-for="newPassword" type="password" class="form-control mt-3" id="exampleInputEmail2"
+                            <input asp-for="newPassword" type="password" class="new-pass form-control mt-3" id="exampleInputEmail2"
                                 aria-describedby="emailHelp" placeholder="Enter new Password" />
                                 <span asp-validation-for="newPassword" class="text-danger"></span>
 
@@ -274,10 +274,12 @@
           <div class="mb-3">
             <label for="subject" class="form-label">Subject</label>
             <input asp-for="Subject" type="text" class="form-control" id="subject">
+            <span asp-validation-for="Subject" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Message</label>
             <textarea asp-for="Message" class="form-control" id="message" rows="5"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -294,6 +296,15 @@
      
     
     <script>
+
+$(".user-edit-changepassword").on("click", function(e){
+    var oldPassword = $(".old-pass").val();
+    var newPassword = $(".new-pass").val();
+
+    if(oldPassword == newPassword){
+        alert("You cannot enter your old password as New Password");
+    }
+})
 
        
 $(document).ready(function () {

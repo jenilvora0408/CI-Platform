@@ -31,15 +31,15 @@
                             <td>@item.DateVolunteered.Value.ToString("d")</td>
                             <td>@if (@item.Time != null)
                                 {
-                                    @item.Time.Value.Hours.ToString("0")
+                                    @item.Time.Value.Hour.ToString("0")
                                 }h</td>
                             <td>@if (@item.Time != null)
                                 {
-                                    @item.Time.Value.Minutes.ToString("0")
+                                    @item.Time.Value.Minute.ToString("0")
                                 }min</td>
                             <td class="icons">
                                 <i value="@item.TimesheetId" id="edit-icon" class="bi bi-pencil-square timeEdit" data-bs-toggle="modal" data-bs-target="#editmodel"
-                               data-note="@item.Notes" data-minute="@item.Time.Value.Minutes.ToString("0")" data-hour="@item.Time.Value.Hours.ToString("0")" data-date="@item.DateVolunteered" data-title="@item.missionTitle"></i>
+                               data-note="@item.Notes" data-minute="@item.Time.Value.Minute.ToString("0")" data-hour="@item.Time.Value.Hour.ToString("0")" data-date="@item.DateVolunteered" data-title="@item.missionTitle"></i>
                                 <img src="/images/bin.png" alt="" class="deleteTimesheet" data-id="@item.TimesheetId" />
                                 <input type="hidden" id="TstartDate" value="@item.startDate.Value.ToString("d")">
                                 <input type="hidden" id="TendDate" value="@item.endDate.Value.ToString("d")">

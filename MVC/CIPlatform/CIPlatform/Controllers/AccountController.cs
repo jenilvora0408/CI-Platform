@@ -1,4 +1,6 @@
 ﻿using CI_PLATFORM_MAIN_ENTITIES.Models.ViewModels;
+using CIPlatform.Auth;
+using Entities.Auth;
 using Entities.Data;
 using Entities.Models;
 using Entities.ViewModels;
@@ -94,17 +96,37 @@ namespace CIPlatform.Controllers
             if (ModelState.IsValid)
             {
                 var emailExist = _registerInterface.isEmailAvailable(N.email);
+                SessionDetailsViewModel sessionDetailsViewModel = new SessionDetailsViewModel();
                 if (emailExist)
                 {
                     
                     var password = _registerInterface.isPasswordAvailable(N.password, N.email);
                     if(password != null)
                     {
+                        sessionDetailsViewModel.Email = password.Email;
+                        sessionDetailsViewModel.Avatar = password.Avatar;
+                        sessionDetailsViewModel.UserId = password.UserId;
+                        sessionDetailsViewModel.FullName = password.FirstName + " " + password.LastName;
+                        sessionDetailsViewModel.Role = password.Role;
+                        var jwtSetting = _configuration.GetSection(nameof(JwtSetting)).Get<JwtSetting>();
+                        var token = JwtTokenHelper.GenerateToken(jwtSetting, sessionDetailsViewModel);
+                        if (string.IsNullOrWhiteSpace(token))
+                        {
+                            ModelState.AddModelError("email", "Enter correct email");
+                            return View("Login");
+                        }
+                       
+                        HttpContext.Session.SetString("Token", token);
                         HttpContext.Session.SetString("useremail", N.email);
                         HttpContext.Session.SetString("firstName", password.FirstName);
                         HttpContext.Session.SetString("lastname", password.LastName);
                         HttpContext.Session.SetString("userId", password.UserId.ToString());
                         HttpContext.Session.SetString("avatar", password.Avatar);
+                        if (password.Role == "volunteer")
+                            return RedirectToAction("MissionListing", "Mission");
+                        if (password.Role == "admin")
+                            return RedirectToAction("User", "Admin");
+
 
                         return RedirectToAction("MissionListing", "Mission");
                     }

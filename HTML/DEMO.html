@@ -1,184 +1,152 @@
-<!DOCTYPE html>
-<html lang="en">
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+options.TokenValidationParameters = new TokenValidationParameters
+{
+ValidIssuer = builder.Configuration["JwtSetting:Issuer"],
+ValidAudience = builder.Configuration["JwtSetting:Audience"],
+IssuerSigningKey = new SymmetricSecurityKey
+(Encoding.UTF8.GetBytes(builder.Configuration["JwtSetting:Key"])),
+ValidateIssuer = true,
+ValidateAudience = true,
+ValidateLifetime = true,
+ValidateIssuerSigningKey = true,
+RequireExpirationTime = true,
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+};
+});
 
-<body>
-    <div class="cms-content" style="width: calc(100vw - 320px);">
-        @using (Html.BeginForm("AdminAddMission","Admin",FormMethod.Post,new{ @enctype="multipart/form-data"})){
-        <div class="d-flex flex-column" style="height: fit-content;width: -webkit-fill-available;">
-            @*<partial name="AdminHeader">*@
-                <div class="m-5 d-flex flex-column" style="border: 1px solid #efefef">
-                    <div class="p-3 col-12" style="border-bottom: 1px solid #efefef;background-color:#F8F9FC">
-                        Add Mission
-                    </div>
-                    <div class="p-5 d-flex flex-column">
-                        <label>Title</label>
-                        @Html.TextBoxFor(model => model.Title, "", new { @class = "form-control", @placeholder="Enter
-                        title..." })
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                        <label class="mt-3">Short Description</label>
-                        @Html.TextBoxFor(model => model.ShortDescription, "", new { @class = "form-control",
-                        @placeholder="Enter Short Description..." })
-                        @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
-                        <label class="mt-3">Description</label>
-                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder="Enter
-                        Description..." })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                        <label class="mt-3">Seats</label>
-                        @Html.TextBoxFor(model => model.TotalSeats, "", new { @class = "form-control",@type="number",
-                        @placeholder="Enter Short Description..." })
-                        @Html.ValidationMessageFor(model => model.TotalSeats, "", new { @class = "text-danger" })
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Start Date</label>
-                                @Html.TextBoxFor(model => model.StartDate, "", new { @class =
-                                "form-control",@type="date", @placeholder="Enter Start Date..." })
-                                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>End Date</label>
-                                @Html.TextBoxFor(model => model.EndDate, "", new { @class = "form-control",@type="date",
-                                @placeholder="Enter End Date..." })
-                                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Mission Type</label>
-                                @Html.DropDownListFor(model => model.MissionType, new SelectList(new[] {
-                                new { Value = "goal", Text = "goal" },
-                                new { Value = "time", Text = "time" }
-                                }, "Value", "Text"),"Select your mission type", new { @class = "form-control",
-                                @placeholder="Select mission type..." })
-                                @Html.ValidationMessageFor(model => model.MissionType, "", new { @class = "text-danger"
-                                })
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Theme</label>
-                                @Html.DropDownListFor(m => m.ThemeId,ViewBag.theme as List<SelectListItem>, "Select your
-                                    theme", new { @class = "form-control ",required = "required" })
-                                    @Html.ValidationMessageFor(model => model.ThemeId, "", new { @class = "text-danger"
-                                    })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Country</label>
-                                @*@Html.DropDownListFor(m => m.CountryId,ViewBag.Country as List<SelectListItem>,
-                                    "Select your country", new { @class = "form-control ",required = "required" })*@
-                                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class =
-                                    "text-danger" })
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>City</label>
-                                @Html.DropDownListFor(m => m.CityId,Enumerable.Empty<SelectListItem>(), "Select your
-                                    city", new { @class = "form-control ",required = "required" })
-                                    @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger"})
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Avialbility</label>
-                                @Html.DropDownListFor(model => model.Availability, new SelectList(new[] {
-                                new { Value = "Daily", Text = "Daily" },
-                                new { Value = "Week Days", Text = "Week Days" },
-                                new { Value = "Weekend", Text = "Weekend" }
-                                }, "Value", "Text"),"Select your mission type", new { @class = "form-control",
-                                @placeholder="Select mission type..." })
-                                @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger"
-                                })
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                                <label>Status</label>
-                                @Html.DropDownListFor(model => model.Status, new SelectList(new Dictionary<bool, string>
-                                    { {false, "Inactive" }, {true, "Active"} }, "Key", "Value"), "Select status", new {
-                                    @class = "form-control", @required="required" })
-                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger"
-                                    })
-                            </div>
-                        </div>
-                        <div class="row mt-3" style="border-bottom: 1px solid #efefef;">
-                            <p class="h5" style="font-weight: normal;">Mission Skills</p>
-                        </div>
-                        <div class="row mt-3 user-edit-selected-skill-div p-2">
-                            <ul class="user-edit-selected-skill">
+app.UseSession();
+app.Use(async (context, next) =>
+{
+var token = context.Session.GetString("Token");
+if (!string.IsNullOrWhiteSpace(token))
+{
+context.Request.Headers.Add("Authorization", "Bearer " + token);
+}
+await next();
+});
 
-                            </ul>
-                            <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
-                        </div>
-                        <div class="row mt-3 ">
-                            <button type="button" class="user-edit-add-skill-btn">Add Skills</button>
-                        </div>
+program cs
 
-                        <label class="mt-3">Oraganization Name</label>
-                        @Html.TextBoxFor(model => model.OrganizationName, "", new { @class = "form-control",
-                        @placeholder="Enter Oraganization Name..." })
-                        @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
-                        <label class="mt-3">Oraganization Deatils</label>
-                        @Html.TextAreaFor(model => model.OrganizationDetail, new { @class = "form-control",
-                        @placeholder="Enter Oraganization Name..." })
-                        @Html.ValidationMessageFor(model => model.OrganizationDetail, "", new { @class = "text-danger"
-                        })
-                        <label class="mt-3">Mission Images</label>
-                        <input name="fileImg" multiple="" data-max_length="20" class="upload_images" accept="image/*"
-                            type='file' placeholder="Upload Image..." id="bannerImg" />
-                        <label class="mt-3">Mission Documents</label>
-                        <input name="fileDoc" multiple="" data-max_length="10" type='file' class="form-control"
-                            placeholder="Upload Documents..." />
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                        <div class="overflow-auto mt-2" style="height:150px;">
-                            <img id="bannerImgPreview" src="#" alt="your image" />
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex m-5 justify-content-end" style="gap:10px">
-                    <!-- <button type="button" class="add-story-cencel" onclick="location.href='@Url.Action("AdminMission", "Admin")'">Cencel</button> -->
-                    <button type="submit" class="add-story-submit">Save</button>
-                </div>
-        </div>
-        }
-    </div>
-    </div>
+,
+"JwtSetting": {
+"Issuer": "https://localhost:7130",
+"Audience": "https://localhost:7130",
+"Key": "ACDt1vR3lXToPQ1g3MyN"
+}
 
-    <div class="popup-container">
-        <div class="popup-content d-flex flex-column">
-            <div class="d-flex justify-content-between">
-                <h5>Add your Skills</h5>
-                <button type="button" class="close-popup-btn remove-skill"><i class="bi bi-x"></i></button>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="available-skills">
-                    <ul class="skill-list" id="uesrskills">
-                        @foreach (var skill in ViewBag.missionskills)
-                        {
-                        <li value="@skill.Value">@skill.Text</li>
-                        }
-                    </ul>
-                </div>
-                <div class="d-flex flex-column justify-content-center" style="margin-right:8px;gap:5px;">
-                    <button type="button" class="add-skill"><i class="bi bi-chevron-right"></i></button>
-                    <button type="button" class="remove-skill"><i class="bi bi-chevron-left"></i></button>
-                </div>
-                <div class="selected-skills">
-                    <ul class="skill-list" id="uesrskillsRight">
+appsetting
 
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <div class="d-flex flex-row mt-3" style="gap:10px;">
-                    <button type="button" class="user-edit-add-skill-btn user-edit-close-btn">Cencel</button>
-                    <button type="button" class="user-edit-save-btn" id="skillsSaveButton">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+public class JwtSetting
+{
+public string Key { get; set; }
+public string Issuer { get; set; }
+public string Audience { get; set; }
 
-</html>
+}
+
+entities auth folder
+
+public static class JwtTokenHelper
+{
+
+public static string GenerateToken(JwtSetting jwtSetting, SessionDetailsViewModel volunteer)
+{
+if (jwtSetting == null)
+return string.Empty;
+
+var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSetting.Key));
+var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+var claims = new[] {
+
+new Claim(ClaimTypes.Name, volunteer.FullName),
+
+new Claim(ClaimTypes.NameIdentifier, volunteer.FullName),
+new Claim(ClaimTypes.Role, volunteer.Role),
+
+new Claim("CustomClaimForUser", JsonSerializer.Serialize(volunteer))
+}; // Additional Claims
+
+var token = new JwtSecurityToken(
+
+jwtSetting.Issuer,
+
+jwtSetting.Audience,
+
+claims,
+
+expires: DateTime.UtcNow.AddMinutes(15),
+
+signingCredentials: credentials);
+
+return new JwtSecurityTokenHandler().WriteToken(token);
+}
+
+in main projecy auth folde
+
+public class SessionDetailsViewModel
+{
+
+
+public string Email { get; set; }
+public string Avatar { get; set; }
+public long UserId { get; set; }
+public string FullName { get; set; }
+public string Role { get; set; }
+}
+
+viewmodel
+
+[HttpPost]
+public IActionResult ValidatedLoginDetails(LoginModel loginModel)
+{
+
+if (ModelState.IsValid)
+{
+var emailExist = _loginrepositories.validateEmail(loginModel.Email);
+SessionDetailsViewModel sessionDetailsViewModel = new SessionDetailsViewModel();
+
+if (emailExist)
+{
+var user = _loginrepositories.validateEmailpassword(loginModel.Email, loginModel.Password);
+if (user != null)
+
+{
+sessionDetailsViewModel.Email = user.Email;
+sessionDetailsViewModel.Avatar = user.Avatar;
+sessionDetailsViewModel.UserId = user.UserId;
+sessionDetailsViewModel.FullName = user.FirstName + " " + user.LastName;
+sessionDetailsViewModel.Role = user.Role;
+var jwtSetting = configuration.GetSection(nameof(JwtSetting)).Get<JwtSetting>();
+var token = JwtTokenHelper.GenerateToken(jwtSetting, sessionDetailsViewModel);
+if (string.IsNullOrWhiteSpace(token))
+{
+ModelState.AddModelError("email", "Enter correct email");
+return View("Login");
+}
+HttpContext.Session.SetString("usersessionemail", loginModel.Email);
+HttpContext.Session.SetString("Token", token);
+if (user.Role == "volunteer")
+return RedirectToAction("MissionListing", "MissionListing");
+if(user.Role=="admin")
+return RedirectToAction("User", "Admin");
+
+}
+else
+{
+ModelState.AddModelError("Password", "Enter correct password");
+}
+return View("Login");
+}
+else
+{
+ModelState.AddModelError("email", "Enter correct email");
+return View("Login");
+}
+
+}
+
+return View();
+}
+
+login controller

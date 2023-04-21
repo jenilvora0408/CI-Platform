@@ -1,12 +1,14 @@
 ﻿using Entities.Data;
 using Entities.Models;
 using Entities.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Repository.Interface;
 
 namespace CIPlatform.Controllers
 {
+    [Authorize(Roles="admin")]
     public class AdminController : Controller
     {
         private readonly ILogger<AccountController> _logger;

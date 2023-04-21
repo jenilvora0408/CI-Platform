@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1I97aX+1jHRmvQrOlOVDLnT/goCX4GGsAvQKc/Ol779RHQKU+tCxHka0s/w/UO7HSWZIWFbpNBZug0UIEigLmA==",
+  "dgSpecHash": "zvjuRBzIMTD3wz64327hsHJsvN/3lAaXKA5azf4LbnKC94v2jEPVduMmITl+DsTu6e4X/18/rKeUmlOBZ9GaNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\tatva\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.15\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.15.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",

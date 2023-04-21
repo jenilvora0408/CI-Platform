@@ -24,7 +24,7 @@ namespace Entities.ViewModels
 
         public List<Mission> missions { get; set; }
 
-        public List<MissionSkills> missionSkills { get; set;}
+        public List<MissionSkill> missionSkills { get; set;}
 
         public List<MissionApplication> missionApplication { get; set; }
 

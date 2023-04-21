@@ -192,7 +192,7 @@ namespace Repository.Repository.Repository
                     volunteeringTimesheet.VolTimesheet.minutes = 0;
                }
 
-               timesheet.Time = new TimeSpan((int)volunteeringTimesheet.VolTimesheet.hours, 
+               timesheet.Time = new ((int)volunteeringTimesheet.VolTimesheet.hours, 
                    (int)volunteeringTimesheet.VolTimesheet.minutes, 0);
                 
             }
@@ -233,7 +233,7 @@ namespace Repository.Repository.Repository
                 }
                 else
                 {
-                    timesheet.Time = new TimeSpan((int)volunteeringTimesheet.VolTimesheet.hours,
+                    timesheet.Time = new ((int)volunteeringTimesheet.VolTimesheet.hours,
                    (int)volunteeringTimesheet.VolTimesheet.minutes, 0);
                 }
                 timesheet.UpdatedAt = DateTime.Now;

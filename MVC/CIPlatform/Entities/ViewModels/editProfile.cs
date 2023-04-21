@@ -16,6 +16,7 @@ namespace Entities.ViewModels
         public string oldPassword { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,14}$", ErrorMessage = "Password must be between 6 and 14 characters and contain one uppercase letter, one lowercase letter, one digit and one special character.")]
         public string newPassword { get; set; }
 
         [Required]
@@ -67,8 +68,12 @@ namespace Entities.ViewModels
 
         public string? SkillIDs { get; set; }
 
+        [Required]
+        [StringLength(60000, MinimumLength = 0, ErrorMessage = "Message cannot be more than 60000 characters")]
         public string? Message { get; set; }
 
+        [Required]
+        [StringLength(255, MinimumLength = 0, ErrorMessage = "Subject cannot be more than 255 characters")]
         public string? Subject { get; set; }
 
         public List<Skill> skills { get; set; }

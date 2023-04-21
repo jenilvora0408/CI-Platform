@@ -3,382 +3,391 @@
 
 
 <div class="cms">
-        <!-- Navbar -->
-        <partial name="_AdminNavbar" model="Model.Navbar_1" />
-     
-        <!-- Sidebar -->
+    <!-- Navbar -->
+    <partial name="_AdminNavbar" model="Model.Navbar_1" />
 
-        <partial name="_AdminSidebar" />
-       
-<div class="cms-content add-mission" >
-  @using (Html.BeginForm("AddMission","Admin",FormMethod.Post,new{ @enctype="multipart/form-data"})){
-  <div class="d-flex flex-column" style="height: fit-content;width: -webkit-fill-available;">
-    @*<partial name="AdminHeader">*@
-      <div class="addMiss m-3 d-flex flex-column" style="border: 1px solid #efefef">
-        <div class="p-3 col-12" style="border-bottom: 1px solid #efefef;background-color:#F8F9FC">
-          Add Mission
-        </div>
-        <div class="p-3 d-flex flex-column">
-          <label>Title</label>
-          @Html.TextBoxFor(model => model.Title, "", new { @class = "form-control m-0", @placeholder="Enter title..." })
-          @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-          <label class="mt-3">Short Description</label>
-          @Html.TextBoxFor(model => model.ShortDescription, "", new { @class = "form-control", @placeholder="Enter Short Description..." })
-          @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
-          <label class="mt-3">Description</label>
-          @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder="Enter Description..." })
-          @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-          <label class="mt-3">Seats</label>
-          @Html.TextBoxFor(model => model.TotalSeats, "", new { @class = "form-control",@type="number", @placeholder="Enter Short Description..." })
-          @Html.ValidationMessageFor(model => model.TotalSeats, "", new { @class = "text-danger" })
-          <div class="row">
-            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-              <label>Start Date</label>
-              @Html.TextBoxFor(model => model.StartDate, "", new { @class = "form-control",@type="date", @placeholder="Enter Start Date..." })
-              @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-              <label>End Date</label>
-              @Html.TextBoxFor(model => model.EndDate, "", new { @class = "form-control",@type="date", @placeholder="Enter End Date..." })
-              @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-              <label>Mission Type</label>
-              @Html.DropDownListFor(model => model.MissionType, new SelectList(new[] {
-              new { Value = "goal", Text = "goal" },
-              new { Value = "time", Text = "time" }
-              }, "Value", "Text"),"Select your mission type", new { @class = "form-control", @placeholder="Select mission type..." })
-              @Html.ValidationMessageFor(model => model.MissionType, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-xl-6 col-lg-6 col-12 mt-3">
-              <label>Theme</label>
-              @Html.DropDownListFor(m => m.ThemeId,ViewBag.theme as List<SelectListItem>, "Select your theme", new { @class = "form-control ",required = "required" })
-                @Html.ValidationMessageFor(model => model.ThemeId, "", new { @class = "text-danger" })
-                </div>
-                </div>
-                <div class="row">
-                  <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                    <label>Country</label>
-                    @Html.DropDownListFor(m => m.CountryId,ViewBag.Country as List<SelectListItem>, "Select your country", new { @class = "form-control ",required = "required" })
-                      @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                        <label>City</label>
-                        @Html.DropDownListFor(m => m.CityId,Enumerable.Empty<SelectListItem>(), "Select your city", new { @class = "form-control ",required = "required" })
-                          @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger"})
-                          </div>
-                          </div>
-                          <div class="row">
+    <!-- Sidebar -->
+
+    <partial name="_AdminSidebar" />
+
+    <div class="cms-content add-mission">
+        @using (Html.BeginForm("AddMission", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            <div class="d-flex flex-column" style="height: fit-content;width: -webkit-fill-available;">
+                @*<partial name="AdminHeader">*@
+                <div class="addMiss m-3 d-flex flex-column" style="border: 1px solid #efefef">
+                    <div class="p-3 col-12" style="border-bottom: 1px solid #efefef;background-color:#F8F9FC">
+                        Add Mission
+                    </div>
+                    <div class="p-3 d-flex flex-column">
+                        <label>Title</label>
+                        @Html.TextBoxFor(model => model.Title, "", new { @class = "form-control m-0", @placeholder="Enter title..." })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        <label class="mt-3">Short Description</label>
+                        @Html.TextBoxFor(model => model.ShortDescription, "", new { @class = "form-control", @placeholder="Enter Short Description..." })
+                        @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                        <label class="mt-3">Description</label>
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder="Enter Description..." })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        <label class="mt-3">Seats</label>
+                        @Html.TextBoxFor(model => model.TotalSeats, "", new { @class = "form-control",@type="number", @placeholder="Enter Short Description..." })
+                        @Html.ValidationMessageFor(model => model.TotalSeats, "", new { @class = "text-danger" })
+                        <div class="row">
                             <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                              <label>Avialbility</label>
-                              @Html.DropDownListFor(model => model.Availability, new SelectList(new[] {
-                              new { Value = "Daily", Text = "Daily" },
-                              new { Value = "Week Days", Text = "Week Days" },
-                              new { Value = "Weekend", Text = "Weekend" }
-                              }, "Value", "Text"),"Select your mission type", new { @class = "form-control", @placeholder="Select mission type..." })
-                              @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
+                                <label>Start Date</label>
+                                @Html.TextBoxFor(model => model.StartDate, "", new { @class = "form-control",@type="date", @placeholder="Enter Start Date..." })
+                                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-xl-6 col-lg-6 col-12 mt-3">
-                              <label>Status</label>
-                              @Html.DropDownListFor(model => model.Status, new SelectList(new Dictionary<bool, string> { {false, "Inactive" }, {true, "Active"} }, "Key", "Value"), "Select status", new { @class = "form-control", @required="required" })
+                                <label>End Date</label>
+                                @Html.TextBoxFor(model => model.EndDate, "", new { @class = "form-control",@type="date", @placeholder="Enter End Date..." })
+                                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>Mission Type</label>
+                                @Html.DropDownListFor(model => model.MissionType, new SelectList(new[] {
+                            new { Value = "goal", Text = "goal" },
+                            new { Value = "time", Text = "time" }
+                            }, "Value", "Text"),"Select your mission type", new { @class = "form-control", @placeholder="Select mission type..." })
+                                @Html.ValidationMessageFor(model => model.MissionType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>Theme</label>
+                                @Html.DropDownListFor(m => m.ThemeId,ViewBag.theme as List<SelectListItem>, "Select your theme", new { @class = "form-control ",required = "required" })
+                                @Html.ValidationMessageFor(model => model.ThemeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>Country</label>
+                                @Html.DropDownListFor(m => m.CountryId,ViewBag.Country as List<SelectListItem>, "Select your country", new { @class = "form-control ",required = "required" })
+                                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>City</label>
+                                @Html.DropDownListFor(m => m.CityId,Enumerable.Empty<SelectListItem>(), "Select your city", new { @class = "form-control ",required = "required" })
+                                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger"})
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>Avialbility</label>
+                                @Html.DropDownListFor(model => model.Availability, new SelectList(new[] {
+                            new { Value = "Daily", Text = "Daily" },
+                            new { Value = "Week Days", Text = "Week Days" },
+                            new { Value = "Weekend", Text = "Weekend" }
+                            }, "Value", "Text"),"Select your mission type", new { @class = "form-control", @placeholder="Select mission type..." })
+                                @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                                <label>Status</label>
+                                @Html.DropDownListFor(model => model.Status, new SelectList(new Dictionary<bool, string> { {false, "Inactive" }, {true, "Active"} }, "Key", "Value"), "Select status", new { @class = "form-control", @required="required" })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                                </div>
-                                </div>
-                                <div class="row mt-3" style="border-bottom: 1px solid #efefef;">
-                                  <p class="h5" style="font-weight: normal;">Mission Skills</p>
-                                </div>
-                                 <div class="row mt-3 user-edit-selected-skill-div p-2">
-                    <ul style="list-style-type:none;" class="user-edit-selected-skill">
-                        
-                    </ul>
-                    <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
-                </div>
-                <div class="row mt-3 ">
-                    <button style="white-space:nowrap;width: fit-content; padding:5px 15px; border-radius:23px; background:#fff; border: 2px solid #adadad;"
-					type="button" class="user-edit-add-skill-btn">Add Skills</button>
-                </div>
-                                
-                                <label class="mt-3">Oraganization Name</label>
-                                @Html.TextBoxFor(model => model.OrganizationName, "", new { @class = "form-control", @placeholder="Enter Oraganization Name..." })
-                                @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
-                                <label class="mt-3">Oraganization Deatils</label>
-                                @Html.TextAreaFor(model => model.OrganizationDetail, new { @class = "form-control", @placeholder="Enter Oraganization Name..." })
-                                @Html.ValidationMessageFor(model => model.OrganizationDetail, "", new { @class = "text-danger" })
-                                <label class="mt-3">Mission Images</label>
-                                <input name="fileImg" multiple="" data-max_length="20" class="upload_images" accept="image/*" type='file' placeholder="Upload Image..." id="bannerImg" />
-                                @Html.ValidationMessageFor(model => model.missionMedia, "", new { @class = "text-danger" })
-								<label class="mt-3">Mission Documents</label>
-                                <input name="fileDoc" multiple="" data-max_length="10" type='file' class="form-control" placeholder="Upload Documents..." />
-                                @Html.ValidationMessageFor(model => model.missionDocument, "", new { @class = "text-danger" })
-                                <div class="overflow-auto mt-2">
-                                  <img id="bannerImgPreview" src="#" alt="your image" />
-                                </div>
-                                </div>
-                                </div>
-                                <div class="d-flex m-5 justify-content-end" style="gap:10px">
-                                  <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button"
-								  type="button" class="add-story-cencel" onclick="location.href='@Url.Action("Mission", "Admin")'">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3" style="border-bottom: 1px solid #efefef;">
+                            <p class="h5" style="font-weight: normal;">Mission Skills</p>
+                        </div>
+                        <div class="row mt-3 user-edit-selected-skill-div p-2">
+                            <ul style="list-style-type:none;" class="user-edit-selected-skill">
+                            </ul>
+                            <input type="hidden" asp-for="SkillIDs" id="userSelectedSkills">
+                        </div>
+                        <div class="row mt-3 ">
+                            <button style="white-space:nowrap;width: fit-content; padding:5px 15px; border-radius:23px; background:#fff; border: 2px solid #adadad;"
+                                type="button" class="user-edit-add-skill-btn">
+                                Add Skills
+                            </button>
+                        </div>
 
-                                  <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px"
-								  type="submit" class="add-story-submit">Save</button>
-                                </div>
-                                </div>
-                                }
-                                </div>
-                                </div>
-                                
-                        <div class="popup-container">
-<div class="popup-content d-flex flex-column">
-<div class="d-flex justify-content-between">
-<h5>Add your Skills</h5>
-<button type="button" class="close-popup-btn remove-skill"><i class="bi bi-x"></i></button>
+                        <label class="mt-3">Oraganization Name</label>
+                        @Html.TextBoxFor(model => model.OrganizationName, "", new { @class = "form-control", @placeholder="Enter Oraganization Name..." })
+                        @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+                        <label class="mt-3">Oraganization Deatils</label>
+                        @Html.TextAreaFor(model => model.OrganizationDetail, new { @class = "form-control", @placeholder="Enter Oraganization Name..." })
+                        @Html.ValidationMessageFor(model => model.OrganizationDetail, "", new { @class = "text-danger" })
+                        <label class="mt-3">Mission Images</label>
+                        <input name="fileImg" multiple="" data-max_length="20" class="upload_images" accept="image/*" type='file' placeholder="Upload Image..." id="bannerImg" />
+                        @Html.ValidationMessageFor(model => model.missionMedia, "", new { @class = "text-danger" })
+                        <label class="mt-3">Mission Documents</label>
+                        <input name="fileDoc" multiple="" data-max_length="10" type='file' class="form-control" placeholder="Upload Documents..." />
+                        @Html.ValidationMessageFor(model => model.missionDocument, "", new { @class = "text-danger" })
+                        <div class="overflow-auto mt-2">
+                            <img id="bannerImgPreview" src="#" alt="your image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex m-5 justify-content-end" style="gap:10px">
+                    <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button"
+                        type="button" class="add-story-cencel" onclick="location.href='@Url.Action("Mission", "Admin")'">
+                        Cancel
+                    </button>
+
+                    <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px"
+                        type="submit" class="add-story-submit">
+                        Save
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
 </div>
-<div class="d-flex flex-row">
-<div style="max-height: 400px;
+
+<div class="popup-container">
+    <div class="popup-content d-flex flex-column">
+        <div class="d-flex justify-content-between">
+            <h5>Add your Skills</h5>
+            <button type="button" class="close-popup-btn remove-skill"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="d-flex flex-row">
+            <div style="max-height: 400px;
     overflow-y: auto;" class="available-skills">
-<ul  class="skill-list" id="uesrskills">
-@foreach (var skill in ViewBag.missionskills)
-{
-<li value="@skill.Value" >@skill.Text</li>
-}
-</ul>
-</div>
-<div class="d-flex flex-column justify-content-center" style="margin-right:8px;gap:5px;">
-<button type="button" class="add-skill"><i class="bi bi-chevron-right"></i></button>
-<button type="button" class="remove-skill"><i class="bi bi-chevron-left"></i></button>
-</div>
-<div style="max-height: 400px;
+                <ul class="skill-list" id="uesrskills">
+                    @foreach (var skill in ViewBag.missionskills)
+                    {
+                        <li value="@skill.Value">@skill.Text</li>
+                    }
+                </ul>
+            </div>
+            <div class="d-flex flex-column justify-content-center" style="margin-right:8px;gap:5px;">
+                <button type="button" class="add-skill"><i class="bi bi-chevron-right"></i></button>
+                <button type="button" class="remove-skill"><i class="bi bi-chevron-left"></i></button>
+            </div>
+            <div style="max-height: 400px;
     overflow-y: auto;" class="selected-skills">
-<ul class="skill-list" id="uesrskillsRight">
+                <ul class="skill-list" id="uesrskillsRight">
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="d-flex flex-row mt-3" style="gap:10px;">
+                <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button"
+                        class="user-edit-add-skill-btn user-edit-close-btn">
+                    Cancel
+                </button>
 
-</ul>
-</div>
-</div>
-<div>
-<div class="d-flex flex-row mt-3" style="gap:10px;">
-<button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #adadad; border-radius:23px" type="button" 
-class="user-edit-add-skill-btn user-edit-close-btn">Cancel</button>
-
-<button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px" type="button" 
-class="user-edit-save-btn" id="skillsSaveButton">Save</button>
-</div>
-</div>
-</div>
+                <button style="padding:5px 15px; white-space:nowrap; background:#fff; border: 2px solid #f88634; border-radius:23px" type="button"
+                        class="user-edit-save-btn" id="skillsSaveButton">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-    
-	bannerImg.onchange = evt => {
-		const [file] = bannerImg.files
-		if (file) {
-			bannerImgPreview.src = URL.createObjectURL(file)
-		}
-	}
-	function getCityOfCountry(){
-		var country = $('#CountryId').val();
-			$.ajax({
-				url: '@Url.Action("GetCitiesOfCountry", "Admin")',
-				type: 'GET',
-				data: { country: country },
-				success: function(data) {
-					// Populate the city dropdown with the returned data
-					var cityDropdown = $('#CityId');
-					cityDropdown.empty();
-					$.each(data, function(index, item) {
-						cityDropdown.append('<option value="' + item.cityId + '">' + item.name + '</option>');
-					});
-				}
-			});
-	} 
-	
-	$(document).ready(function () {
-		getCityOfCountry();
-		$(".user-edit-add-skill-btn").on("click", function () {
-			$(".popup-container").show();
-		});
-		
-		$(".user-edit-close-btn").on("click", function () {
-			$(".popup-container").hide();
-		});
-		
-		$(".close-popup-btn").click(function () {
-			$(".popup-container").hide();
-		});
-		
-		$(window).click(function (event) {
-			const skillpopup = $(".popup-container");
-			if (event.target == skillpopup[0]) {
-				skillpopup.hide();
-			}
-		});
-		
-		$(".add-skill").on("click", function () {
-			var selectedSkill = $(".available-skills .skill-list li.selected");
-			if (selectedSkill.length > 0) {
-				var skillValue = selectedSkill.attr("value");
-				selectedSkill.appendTo($(".selected-skills .skill-list"));
-				selectedSkill.removeClass("selected");
-			}
-		});
-		
-		$(".remove-skill").on("click", function () {
-			var selectedSkill = $(".selected-skills .skill-list li.selected");
-			if (selectedSkill.length > 0) {
-				var skillValue = selectedSkill.attr("value");
-				selectedSkill.appendTo($(".available-skills .skill-list"));
-				selectedSkill.removeClass("selected");
-			}
-		});
-		
-		$('#uesrskillsRight').on('click', 'li', function() {
-			$(this).toggleClass('selected');
-		});
-		
-		$('#uesrskills').on('click', 'li', function() {
-			$(this).toggleClass('selected');
-		});
-		
-		
-		$(".user-edit-save-btn").on("click", function () {
-			$(".user-edit-selected-skill").empty();
-			var selectedSkills = [];
-			$(".selected-skills .skill-list li").each(function () {
-				var skillId = $(this).val();
-				var skillName = $(this).text().trim();
-				$("<li>").text(skillName).val(skillId).appendTo($(".user-edit-selected-skill"));
-				selectedSkills.push(skillId);
-			});
-			var skills = selectedSkills.join(',');
-			$('#userSelectedSkills').val(skills);
-			$(".popup-container").hide();
-		});
-		
-		$('#CountryId').change(function() {
-			getCityOfCountry();
-		});
-		
-		
-		//$('.upload_images').each(function() {
-		//	$(this).on('change', function(e) {
-		//		imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-		//		var maxLength = $(this).attr('data-max_length');
-		//		var files = e.target.files;
-		//		var filesArr = Array.prototype.slice.call(files);
-		//		var iterator = 0;
-				
-		//		filesArr.forEach(function(f, index) {
-		//			if (!f.type.match('image.(png|jpe?g)')) {
-		//				alert('Please select only .png, .jpg, or .jpeg images.');
-		//				return;
-		//			}
-					
-		//			if (f.size > 2*1024*1024) {
-		//				alert('Please select an image that is less than 2 MB.');
-		//				return;
-		//			}
-					
-		//			formData.append("files", f);
-					
-		//			if (imgArray.length > maxLength) {
-		//				return false;
-		//			} else {
-		//				var len = 0;
-		//				for (var i = 0; i < imgArray.length; i++) {
-		//					if (imgArray[i] !== undefined) {
-		//						len++;
-		//					}
-		//				}
-		//				if (len > maxLength) {
-		//					return false;
-		//				} else {
-		//					imgArray.push(f);
-							
-		//					var reader = new FileReader();
-		//					reader.onload = function(e) {
-		//						var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-		//						imgWrap.append(html);
-		//						iterator++;
-		//					}
-		//					reader.readAsDataURL(f);
-		//				}
-		//			}
-		//		});
-		//	});
-		//});
-		
-		
-		//$('body').on('click', ".upload__img-close", function (e) {
-		//	var file = $(this).parent().data("file");
-		//	for (var i = 0; i < imgArray.length; i++) {
-		//		if (imgArray[i].name === file) {
-		//			imgArray.splice(i, 1);
-		//			break;
-		//		}
-		//	}
-		//	$(this).parent().parent().remove();
-			
-		//	// Update formData with remaining files
-		//	formData = new FormData();
-		//	imgArray.forEach(function (f) {
-		//		formData.append("files", f);
-		//	});
-		//});
-	})
-	
 
-	
+    bannerImg.onchange = evt => {
+        const [file] = bannerImg.files
+        if (file) {
+            bannerImgPreview.src = URL.createObjectURL(file)
+        }
+    }
+    function getCityOfCountry(){
+        var country = $('#CountryId').val();
+            $.ajax({
+                url: '@Url.Action("GetCitiesOfCountry", "Admin")',
+                type: 'GET',
+                data: { country: country },
+                success: function(data) {
+                    // Populate the city dropdown with the returned data
+                    var cityDropdown = $('#CityId');
+                    cityDropdown.empty();
+                    $.each(data, function(index, item) {
+                        cityDropdown.append('<option value="' + item.cityId + '">' + item.name + '</option>');
+                    });
+                }
+            });
+    }
 
-	
-	
-	// Color Change - Sidebar
-	$(".cms-sidebar ul li").on("mouseenter", function () {
-		$(this).find("i").css("color", "#F88634");
-		$(this).find("span").css("color", "#F88634");
-	});
-	$(".cms-sidebar ul li").on("mouseleave", function () {
-		if (!$(this).hasClass("active")) {
-			$(this).find("i").css("color", "#fff");
-			$(this).find("span").css("color", "#fff");
-		}
-	});
-	$(".cms-sidebar ul li").on("click", function () {
-		$(".cms-sidebar ul li").removeClass("active");
-		$(".cms-sidebar ul li i").css("color", "#fff");
-		$(".cms-sidebar ul li span").css("color", "#fff");
-		$(this).addClass("active");
-		$(this).find("i").css("color", "#F88634");
-		$(this).find("span").css("color", "#F88634");
-	});
-	
-	// Hide & Show Sidebar
-	$("#sidebar-open").hide();
-	$("#sidebar-close").hide();
-	
-	$(window).resize(function () {
-		if ($(window).width() < 960) {
-			$(".cms-sidebar").hide();
-			$("#sidebar-open").show();
-			$("#sidebar-close").hide();
-		} else {
-			$(".cms-sidebar").show();
-			$("#sidebar-open").hide();
-		}
-	});
-	
-	
-	// Open & Close Button - Sidebar
-	$("#sidebar-open").on("click", function (e) {
-		$(".cms-sidebar").show();
-		$("#sidebar-open").hide();
-		$("#sidebar-close").show();
-	});
-	
-	$("#sidebar-close").on("click", function (e) {
-		$(".cms-sidebar").hide();
-		$("#sidebar-close").hide();
-		$("#sidebar-open").show();
-	});
+    $(document).ready(function () {
+        getCityOfCountry();
+        $(".user-edit-add-skill-btn").on("click", function () {
+            $(".popup-container").show();
+        });
+
+        $(".user-edit-close-btn").on("click", function () {
+            $(".popup-container").hide();
+        });
+
+        $(".close-popup-btn").click(function () {
+            $(".popup-container").hide();
+        });
+
+        $(window).click(function (event) {
+            const skillpopup = $(".popup-container");
+            if (event.target == skillpopup[0]) {
+                skillpopup.hide();
+            }
+        });
+
+        $(".add-skill").on("click", function () {
+            var selectedSkill = $(".available-skills .skill-list li.selected");
+            if (selectedSkill.length > 0) {
+                var skillValue = selectedSkill.attr("value");
+                selectedSkill.appendTo($(".selected-skills .skill-list"));
+                selectedSkill.removeClass("selected");
+            }
+        });
+
+        $(".remove-skill").on("click", function () {
+            var selectedSkill = $(".selected-skills .skill-list li.selected");
+            if (selectedSkill.length > 0) {
+                var skillValue = selectedSkill.attr("value");
+                selectedSkill.appendTo($(".available-skills .skill-list"));
+                selectedSkill.removeClass("selected");
+            }
+        });
+
+        $('#uesrskillsRight').on('click', 'li', function() {
+            $(this).toggleClass('selected');
+        });
+
+        $('#uesrskills').on('click', 'li', function() {
+            $(this).toggleClass('selected');
+        });
+
+
+        $(".user-edit-save-btn").on("click", function () {
+            $(".user-edit-selected-skill").empty();
+            var selectedSkills = [];
+            $(".selected-skills .skill-list li").each(function () {
+                var skillId = $(this).val();
+                var skillName = $(this).text().trim();
+                $("<li>").text(skillName).val(skillId).appendTo($(".user-edit-selected-skill"));
+                selectedSkills.push(skillId);
+            });
+            var skills = selectedSkills.join(',');
+            $('#userSelectedSkills').val(skills);
+            $(".popup-container").hide();
+        });
+
+        $('#CountryId').change(function() {
+            getCityOfCountry();
+        });
+
+
+        //$('.upload_images').each(function() {
+        //	$(this).on('change', function(e) {
+        //		imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+        //		var maxLength = $(this).attr('data-max_length');
+        //		var files = e.target.files;
+        //		var filesArr = Array.prototype.slice.call(files);
+        //		var iterator = 0;
+
+        //		filesArr.forEach(function(f, index) {
+        //			if (!f.type.match('image.(png|jpe?g)')) {
+        //				alert('Please select only .png, .jpg, or .jpeg images.');
+        //				return;
+        //			}
+
+        //			if (f.size > 2*1024*1024) {
+        //				alert('Please select an image that is less than 2 MB.');
+        //				return;
+        //			}
+
+        //			formData.append("files", f);
+
+        //			if (imgArray.length > maxLength) {
+        //				return false;
+        //			} else {
+        //				var len = 0;
+        //				for (var i = 0; i < imgArray.length; i++) {
+        //					if (imgArray[i] !== undefined) {
+        //						len++;
+        //					}
+        //				}
+        //				if (len > maxLength) {
+        //					return false;
+        //				} else {
+        //					imgArray.push(f);
+
+        //					var reader = new FileReader();
+        //					reader.onload = function(e) {
+        //						var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+        //						imgWrap.append(html);
+        //						iterator++;
+        //					}
+        //					reader.readAsDataURL(f);
+        //				}
+        //			}
+        //		});
+        //	});
+        //});
+
+
+        //$('body').on('click', ".upload__img-close", function (e) {
+        //	var file = $(this).parent().data("file");
+        //	for (var i = 0; i < imgArray.length; i++) {
+        //		if (imgArray[i].name === file) {
+        //			imgArray.splice(i, 1);
+        //			break;
+        //		}
+        //	}
+        //	$(this).parent().parent().remove();
+
+        //	// Update formData with remaining files
+        //	formData = new FormData();
+        //	imgArray.forEach(function (f) {
+        //		formData.append("files", f);
+        //	});
+        //});
+    })
+
+
+
+
+
+
+    // Color Change - Sidebar
+    $(".cms-sidebar ul li").on("mouseenter", function () {
+        $(this).find("i").css("color", "#F88634");
+        $(this).find("span").css("color", "#F88634");
+    });
+    $(".cms-sidebar ul li").on("mouseleave", function () {
+        if (!$(this).hasClass("active")) {
+            $(this).find("i").css("color", "#fff");
+            $(this).find("span").css("color", "#fff");
+        }
+    });
+    $(".cms-sidebar ul li").on("click", function () {
+        $(".cms-sidebar ul li").removeClass("active");
+        $(".cms-sidebar ul li i").css("color", "#fff");
+        $(".cms-sidebar ul li span").css("color", "#fff");
+        $(this).addClass("active");
+        $(this).find("i").css("color", "#F88634");
+        $(this).find("span").css("color", "#F88634");
+    });
+
+    // Hide & Show Sidebar
+    $("#sidebar-open").hide();
+    $("#sidebar-close").hide();
+
+    $(window).resize(function () {
+        if ($(window).width() < 960) {
+            $(".cms-sidebar").hide();
+            $("#sidebar-open").show();
+            $("#sidebar-close").hide();
+        } else {
+            $(".cms-sidebar").show();
+            $("#sidebar-open").hide();
+        }
+    });
+
+
+    // Open & Close Button - Sidebar
+    $("#sidebar-open").on("click", function (e) {
+        $(".cms-sidebar").show();
+        $("#sidebar-open").hide();
+        $("#sidebar-close").show();
+    });
+
+    $("#sidebar-close").on("click", function (e) {
+        $(".cms-sidebar").hide();
+        $("#sidebar-close").hide();
+        $("#sidebar-open").show();
+    });
 
 </script>
