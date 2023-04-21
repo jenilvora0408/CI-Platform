@@ -216,6 +216,8 @@ $('#userSelectedSkills').val(selectedSkills);
                     $.each(data, function(index, item) {
                         cityDropdown.append('<option value="' + item.cityId + '">' + item.name + '</option>');
                     });
+                    var selectedCityId = '@Model.CityId';
+$('#CityId').val(selectedCityId);
                 }
             });
     }

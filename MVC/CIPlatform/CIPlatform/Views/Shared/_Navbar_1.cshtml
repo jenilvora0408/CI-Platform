@@ -1,4 +1,5 @@
 ﻿@using Entities.ViewModels
+@inject IHttpContextAccessor HttpContextAccessor
 
     @*@model Pagination*@
  @model Navbar_1    
@@ -23,12 +24,12 @@
           </ul>
         </div>
         <div class="home-nav1-right">
-          <img src="@Model.avatar"  alt="" />
+          <img src=" @HttpContextAccessor.HttpContext.Session.GetString("avatar")"  alt="" />
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a id="@Model.userId" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              <a id="@HttpContextAccessor.HttpContext.Session.GetString("userId")" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                 style="color: #333333">
-                @Model.username
+                @HttpContextAccessor.HttpContext.Session.GetString("firstName") @HttpContextAccessor.HttpContext.Session.GetString("lastname") 
               </a>
               <ul class="dropdown-menu">
                 <li onclick="return location.href=' @Url.Action("EditProfile","Profile") '"><a class="dropdown-item" href="#">Edit Profile</a></li>

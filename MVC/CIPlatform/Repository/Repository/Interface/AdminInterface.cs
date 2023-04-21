@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Entities.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,12 +75,29 @@ namespace Repository.Repository.Interface
         public void deleteMission(long missionId);
 
         public List<City> GetCitiesOfCountry(long country);
+
         public long AddMission(MissionCrud model);
+
         public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension);
+
         public void AddMissionDocument(long missionId, string imagepath, string fileName, string fileExtension);
+
         public MissionCrud GetMissionData(long MissionId);
+
         public long EditMission(MissionCrud model);
+
         public void RemoveMissionDocument(long missionId);
+
         public void RemoveMissionMedia(long missionId);
+
+        public List<SelectListItem> GetSkills();
+
+        public List<SelectListItem> GetCountries();
+
+        public List<SelectListItem> GetThemes();
+
+        public List<SelectListItem> GetSelectedSkills(long MissionId);
+
+        public List<SelectListItem> GetNotSelectedSkills(long MissionId);
     }
 }

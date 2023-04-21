@@ -1,4 +1,5 @@
 ﻿@model Entities.ViewModels.Navbar_1
+@inject IHttpContextAccessor HttpContextAccessor
 
 <header>
             <nav class="admin-navbar">
@@ -7,12 +8,12 @@
                     <span id="current-time" class="d-flex align-items-center">@DateTime.Now.ToString("dddd, MMMM dd, yyyy h:mm tt")</span>
                 </div>
                 <div class="admin-nav-right">
-                    <img src="@Model.avatar" alt="" />
+                    <img src=" @HttpContextAccessor.HttpContext.Session.GetString("avatar")" alt="" />
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" style="color: #333333">
-                                @Model.username 
+                                @HttpContextAccessor.HttpContext.Session.GetString("firstName") @HttpContextAccessor.HttpContext.Session.GetString("lastname") 
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>

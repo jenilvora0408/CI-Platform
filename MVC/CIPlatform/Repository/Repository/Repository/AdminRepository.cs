@@ -2,6 +2,7 @@
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Repository.Interface;
@@ -581,6 +582,32 @@ namespace Repository.Repository.Repository
         {
             List<City> city = _ciPlatformContext.Cities.Where(x => x.Country.CountryId == country).ToList();
             return city;
+        }
+
+        public List<SelectListItem> GetSkills()
+        {
+
+            return _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+        }
+
+        public List<SelectListItem> GetCountries()
+        {
+            return _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+        }
+
+        public List<SelectListItem> GetThemes()
+        {
+            return _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+        }
+
+        public List<SelectListItem> GetSelectedSkills(long MissionId)
+        {
+            return _ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+        }
+
+        public List<SelectListItem> GetNotSelectedSkills(long MissionId)
+        {
+            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
         public long AddMission(MissionCrud model)

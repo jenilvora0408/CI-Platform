@@ -30,7 +30,7 @@ namespace Repository.Repository.Repository
         }
         public User findUser(string email)
         {
-            return _ciPlatformContext.Users.Where(u => u.Email.Equals(email)).First();
+            return _ciPlatformContext.Users.Where(u => u.Email == email).First();
         }
         public List<Country> GetCountries()
         {

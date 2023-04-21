@@ -148,11 +148,11 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             missionCrud.Navbar_1 = missionHomeModel;
-            var missionskills = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+            var missionskills = _adminInterface.GetSkills();
             ViewBag.missionskills = missionskills;
-            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            var country = _adminInterface.GetCountries();
             ViewBag.Country = country;
-            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
             return View(missionCrud);
         }
@@ -233,11 +233,11 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             missionCrud.Navbar_1 = missionHomeModel;
-            var missionskills = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+            var missionskills = _adminInterface.GetSkills();
             ViewBag.missionskills = missionskills;
-            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            var country = _adminInterface.GetCountries();
             ViewBag.Country = country;
-            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
             return View(missionCrud);
 
@@ -341,13 +341,13 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             editMission.Navbar_1 = missionHomeModel;
-            var selectedskills = _ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            var selectedskills = _adminInterface.GetSelectedSkills(MissionId);
             ViewBag.selectedskills = selectedskills;
-            var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            var notselectedskills = _adminInterface.GetNotSelectedSkills(MissionId);
             ViewBag.notselectedskills = notselectedskills;
-            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            var country = _adminInterface.GetCountries();
             ViewBag.Country = country;
-            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
             return View(editMission);
         }
@@ -416,16 +416,28 @@ namespace CIPlatform.Controllers
                     ModelState.AddModelError("missionMedia", "Please select at least 1 image");
                 }
             }
-          
-            var selectedskills = _ciPlatformContext.MissionSkills.Where(us => us.MissionId == model.MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            MissionCrud missionCrud = new MissionCrud();
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            missionCrud.Navbar_1 = missionHomeModel;
+
+            var selectedskills = _adminInterface.GetSelectedSkills(model.MissionId);
             ViewBag.selectedskills = selectedskills;
-            var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == model.MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            var notselectedskills = _adminInterface.GetNotSelectedSkills(model.MissionId);
             ViewBag.notselectedskills = notselectedskills;
-            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            var country = _adminInterface.GetCountries();
             ViewBag.Country = country;
-            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
-            return View(model);
+            return View(missionCrud);
 
         }
 

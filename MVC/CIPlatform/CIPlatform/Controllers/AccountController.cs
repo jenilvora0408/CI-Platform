@@ -101,6 +101,11 @@ namespace CIPlatform.Controllers
                     if(password != null)
                     {
                         HttpContext.Session.SetString("useremail", N.email);
+                        HttpContext.Session.SetString("firstName", password.FirstName);
+                        HttpContext.Session.SetString("lastname", password.LastName);
+                        HttpContext.Session.SetString("userId", password.UserId.ToString());
+                        HttpContext.Session.SetString("avatar", password.Avatar);
+
                         return RedirectToAction("MissionListing", "Mission");
                     }
                     else
