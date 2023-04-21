@@ -526,6 +526,31 @@ namespace Repository.Repository.Repository
             return cms;
         }
 
+        public MissionCrud GetMissionData(long MissionId)
+        {
+            MissionCrud missionCrud = new MissionCrud();
+            Mission mission = _ciPlatformContext.Missions.Where(x => x.MissionId == MissionId).FirstOrDefault();
+            missionCrud.MissionId = MissionId;
+            missionCrud.OrganizationName = mission.OrganizationName;
+            missionCrud.OrganizationDetail = mission.OrganizationDetail;
+            missionCrud.ShortDescription = mission.ShortDescription;
+            missionCrud.StartDate = mission.StartDate;
+            missionCrud.Status = mission.Status;
+            missionCrud.ThemeId = mission.ThemeId;
+            missionCrud.EndDate = mission.EndDate;
+            missionCrud.Description = mission.Description;
+            missionCrud.CityId = mission.CityId;
+            missionCrud.CountryId = mission.CountryId;
+            missionCrud.Availability = mission.Availability;
+            missionCrud.TotalSeats = mission.TotalSeats;
+            missionCrud.MissionType = mission.MissionType;
+            missionCrud.Title = mission.Title;
+
+            return missionCrud;
+        }
+
+        
+
         public CMS GetSkillData(long SkillId)
         {
             CMS cms = new CMS();
@@ -614,16 +639,75 @@ namespace Repository.Repository.Repository
             return mission.MissionId;
         }
 
-        //public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension)
-        //{
-        //    MissionMedium missionMedium = new MissionMedium();
-        //    missionMedium.MissionId = missionId;
-        //    missionMedium.MediaPath = "/uploads/";
-        //    missionMedium.MediaName = Path.GetFileNameWithoutExtension(fileName);
-        //    missionMedium.MediaType = fileExtension.TrimStart('.');
-        //    _ciPlatformContext.MissionMedia.Add(missionMedium);
-        //    _ciPlatformContext.SaveChanges();
-        //}
+        public long EditMission(MissionCrud model)
+        {
+            Mission mission = _ciPlatformContext.Missions.Where(x => x.MissionId == model.MissionId).FirstOrDefault();
+            mission.Title = model.Title;
+            mission.MissionType = model.MissionType;
+            mission.Description = model.Description;
+            mission.CountryId = model.CountryId;
+            mission.ThemeId = model.ThemeId;
+            mission.CityId = model.CityId;
+            mission.CountryId = model.CountryId;
+            mission.StartDate = model.StartDate;
+            mission.EndDate = model.EndDate;
+            mission.Status = model.Status;
+            mission.OrganizationDetail = model.OrganizationDetail;
+            mission.OrganizationName = model.OrganizationName;
+            mission.TotalSeats = model.TotalSeats;
+            mission.Availability = model.Availability;
+            mission.ShortDescription = model.ShortDescription;
+            _ciPlatformContext.Missions.Update(mission);
+            _ciPlatformContext.SaveChanges();
+            if (model.SkillIDs != null)
+            {
+                string[] skillIDStrings = model.SkillIDs.Split(',');
+                int[] skillIDs = Array.ConvertAll(skillIDStrings, int.Parse);
+                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                List<MissionSkills> skillsToRemove = missionSkills.Where(x => !skillIDs.Contains(x.SkillId)).ToList();
+                foreach (MissionSkills skill in skillsToRemove)
+                {
+                    _ciPlatformContext.MissionSkills.Remove(skill);
+                    _ciPlatformContext.SaveChanges();
+                }
+                foreach (int skillID in skillIDs)
+                {
+                    MissionSkills missionSkill = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId && x.SkillId == skillID).FirstOrDefault();
+                    if (missionSkill == null)
+                    {
+                        missionSkill = new MissionSkills();
+                        missionSkill.MissionId = mission.MissionId;
+                        missionSkill.SkillId = skillID;
+                        _ciPlatformContext.MissionSkills.Add(missionSkill);
+                        _ciPlatformContext.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                List<MissionSkills> missionSkills = _ciPlatformContext.MissionSkills.Where(x => x.MissionId == mission.MissionId).ToList();
+                foreach (MissionSkills skill in missionSkills)
+                {
+                    _ciPlatformContext.MissionSkills.Remove(skill);
+                    _ciPlatformContext.SaveChanges();
+                }
+            }
+            return mission.MissionId;
+        }
+
+        public void RemoveMissionMedia(long missionId)
+        {
+            var missionMedia = _ciPlatformContext.MissionMedia.Where(mm => mm.MissionId == missionId);
+            _ciPlatformContext.MissionMedia.RemoveRange(missionMedia);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public void RemoveMissionDocument(long missionId)
+        {
+            var missionMedia = _ciPlatformContext.MissionDocuments.Where(mm => mm.MissionId == missionId);
+            _ciPlatformContext.MissionDocuments.RemoveRange(missionMedia);
+            _ciPlatformContext.SaveChanges();
+        }
 
         public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension)
         {

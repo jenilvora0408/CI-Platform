@@ -77,5 +77,9 @@ namespace Repository.Repository.Interface
         public long AddMission(MissionCrud model);
         public void AddMissionMedia(long missionId, string imagepath, string fileName, string fileExtension);
         public void AddMissionDocument(long missionId, string imagepath, string fileName, string fileExtension);
+        public MissionCrud GetMissionData(long MissionId);
+        public long EditMission(MissionCrud model);
+        public void RemoveMissionDocument(long missionId);
+        public void RemoveMissionMedia(long missionId);
     }
 }

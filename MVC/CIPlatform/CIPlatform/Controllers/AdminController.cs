@@ -157,6 +157,8 @@ namespace CIPlatform.Controllers
             return View(missionCrud);
         }
 
+        
+
         [HttpPost]
         public async Task<IActionResult> AddMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
         {
@@ -323,6 +325,108 @@ namespace CIPlatform.Controllers
             editUser.Navbar_1 = missionHomeModel;
 
             return View(editUser);
+        }
+
+        public IActionResult EditMission(long MissionId)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            if (userSessionEmailId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var editMission = _adminInterface.GetMissionData(MissionId);
+            Navbar_1 missionHomeModel = new Navbar_1();
+            missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
+            missionHomeModel.avatar = userObj.Avatar;
+            missionHomeModel.userId = userObj.UserId;
+            editMission.Navbar_1 = missionHomeModel;
+            var selectedskills = _ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            ViewBag.selectedskills = selectedskills;
+            var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            ViewBag.notselectedskills = notselectedskills;
+            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            ViewBag.Country = country;
+            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            ViewBag.theme = theme;
+            return View(editMission);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (fileImg != null && fileImg.Count() > 0)
+                {
+                    var missionId = _adminInterface.EditMission(model);
+                    _adminInterface.RemoveMissionMedia(missionId);
+                    string uploadsFolderPath = Path.Combine(_env.WebRootPath, "uploads");
+                    foreach (var file in fileImg)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                        string fileExtension = Path.GetExtension(file.FileName);
+                        if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
+                        {
+                            fileName = fileName + "_" + DateTime.Now.Ticks.ToString() + fileExtension;
+                            string filePath = Path.Combine(uploadsFolderPath, fileName);
+                            using (var fileImgtream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileImgtream);
+                            }
+                            string imagepath = "/uploads/" + fileName;
+
+                            _adminInterface.AddMissionMedia(missionId, imagepath, fileName, fileExtension);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("missionMedia", "Please select png, jpg or jpeg file to upload.");
+                        }
+                    }
+                    if (fileDoc != null && fileDoc.Count() > 0)
+                    {
+                        _adminInterface.RemoveMissionDocument(missionId);
+                        foreach (var file in fileDoc)
+                        {
+                            string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                            string fileExtension = Path.GetExtension(file.FileName);
+                            if (fileExtension == ".pdf" || fileExtension == ".doc" || fileExtension == ".xlsx")
+                            {
+                                fileName = fileName + "_" + DateTime.Now.Ticks.ToString() + fileExtension;
+                                string filePath = Path.Combine(uploadsFolderPath, fileName);
+                                using (var fileImgtream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    await file.CopyToAsync(fileImgtream);
+                                }
+                                string imagepath = "/uploads/" + fileName;
+                                _adminInterface.AddMissionDocument(missionId, imagepath, fileName, fileExtension);
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("missionDocument", "Please select pdf, doc or xlsx file to upload.");
+                            }
+                        }
+                    }
+
+                    return RedirectToAction("Mission");
+                }
+                else
+                {
+                    ModelState.AddModelError("missionMedia", "Please select at least 1 image");
+                }
+            }
+          
+            var selectedskills = _ciPlatformContext.MissionSkills.Where(us => us.MissionId == model.MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            ViewBag.selectedskills = selectedskills;
+            var notselectedskills = _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == model.MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            ViewBag.notselectedskills = notselectedskills;
+            var country = _ciPlatformContext.Countries.Select(x => new SelectListItem { Value = x.CountryId.ToString(), Text = x.Name }).ToList();
+            ViewBag.Country = country;
+            var theme = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            ViewBag.theme = theme;
+            return View(model);
+
         }
 
         public IActionResult EditSkill(long SkillId)
