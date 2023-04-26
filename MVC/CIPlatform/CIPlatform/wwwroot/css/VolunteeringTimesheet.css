@@ -108,3 +108,6 @@ td {
         width: 95vw;
     }
 }
+.timesheet-left-table tr, .timesheet-left-table  td{
+    white-space: nowrap;
+}

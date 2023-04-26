@@ -8,7 +8,7 @@
     <div class="timesheet">
         <h1>Volunteering Timesheet</h1>
         <div class="timesheet-content">
-            <div class="timesheet-left">
+            <div class="timesheet-left" style="overflow:auto;">
                 <div class="heading">
                     <div class="timesheet-left-heading">Volunteering Hours</div>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#timemodel">
@@ -16,7 +16,7 @@
                     </button>
                 </div>
 
-                <table class="timesheet-left-table">
+                <table class="timesheet-left-table" style="border:2px solid #adadad">
                     <tr>
                         <th>Mission</th>
                         <th>Date</th>
@@ -29,14 +29,18 @@
                         <tr>
                             <td>@item.missionTitle</td>
                             <td>@item.DateVolunteered.Value.ToString("d")</td>
-                            <td>@if (@item.Time != null)
+                            <td>
+                                @if (@item.Time != null)
                                 {
                                     @item.Time.Value.Hour.ToString("0")
-                                }h</td>
-                            <td>@if (@item.Time != null)
+                                }h
+                            </td>
+                            <td>
+                                @if (@item.Time != null)
                                 {
                                     @item.Time.Value.Minute.ToString("0")
-                                }min</td>
+                                }min
+                            </td>
                             <td class="icons">
                                 <i value="@item.TimesheetId" id="edit-icon" class="bi bi-pencil-square timeEdit" data-bs-toggle="modal" data-bs-target="#editmodel"
                                data-note="@item.Notes" data-minute="@item.Time.Value.Minute.ToString("0")" data-hour="@item.Time.Value.Hour.ToString("0")" data-date="@item.DateVolunteered" data-title="@item.missionTitle"></i>
@@ -49,7 +53,7 @@
 
                 </table>
             </div>
-            <div class="timesheet-right">
+            <div class="timesheet-right" style="overflow:auto">
                 <div class="heading">
                     <div class="timesheet-right-heading">Volunteering Goals</div>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#goalmodel">
@@ -57,7 +61,7 @@
                     </button>
                 </div>
 
-                <table class="timesheet-left-table">
+                <table class="timesheet-left-table" style="border:2px solid #adadad">
                     <tr>
                         <th>Mission</th>
                         <th>Date</th>
@@ -77,6 +81,8 @@
                                data-bs-target="#editGoalmodel" data-note="@item.Notes" data-action="@item.Action"
                                data-date="@item.DateVolunteered" data-title="@item.missionTitle"></i>
                                 <img src="/images/bin.png" alt="" class="deleteTimesheet" data-id="@item.TimesheetId" />
+                                <input type="hidden" id="GstartDate" value="@item.startDate.Value.ToString("d")">
+                                <input type="hidden" id="GendDate" value="@item.endDate.Value.ToString("d")">
                             </td>
                         </tr>
                     }
@@ -122,8 +128,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea asp-for="VolTimesheet.Notes" class="form-control" id="message-text"
+                            <textarea required asp-for="VolTimesheet.Notes" class="form-control" id="message-text"
                                       placeholder="Enter your message"></textarea>
+                            <span asp-validation-for="VolTimesheet.Notes" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -159,8 +166,8 @@
                     </div>
                     <div class="mb-3">
                         <label>Date Volunteered</label>
-                        <input id="timedate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" min="2015-01-01" max="2023-01-01" class="form-control" />
-                          <span asp-validation-for="VolTimesheet.DateVolunteered" class="text-danger"></span>
+                        <input id="timedate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control" />
+                        <span asp-validation-for="VolTimesheet.DateVolunteered" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -175,8 +182,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea id="timenote" asp-for="@Model.VolTimesheet.Notes" class="form-control" id="message-text"
+                            <textarea required id="timenote" asp-for="@Model.VolTimesheet.Notes" class="form-control" id="message-text"
                                       placeholder="Enter your message"></textarea>
+                            <span asp-validation-for="VolTimesheet.Notes" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -212,17 +220,20 @@
                     </div>
                     <div class="mb-3">
                         <label>Date Volunteered</label>
-                        <input id="goaldate" type="date" asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control" />
+                        <input required id="goaldate" type="date"  asp-for="@Model.VolTimesheet.DateVolunteered" class="form-control" />
+                        <span asp-validation-for="VolTimesheet.DateVolunteered" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="mb-3">
                             <label>Actions</label>
-                            <input id="goalaction" asp-for="VolTimesheet.Action" type="number" class="form-control" />
+                            <input required id="goalaction" asp-for="VolTimesheet.Action" type="number" class="form-control" />
+                            <span asp-validation-for="VolTimesheet.Action" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea id="goalnote" asp-for="@Model.VolTimesheet.Notes" class="form-control" id="message-text"
+                            <textarea required id="goalnote" asp-for="@Model.VolTimesheet.Notes" class="form-control" id="message-text"
                                       placeholder="Enter your message"></textarea>
+                            <span asp-validation-for="VolTimesheet.Notes" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -252,22 +263,25 @@
                 <form method="post" asp-action="addTimesheetData" asp-controller="Profile">
                     <div class="mb-3">
                         <label for="">Mission</label>
-                        @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.goal as List<SelectListItem>, "Select your Mission", new { @class = "form-control", @required = "required" })
+                        @Html.DropDownListFor(m => m.VolTimesheet.missionId,ViewBag.goal as List<SelectListItem>, "Select your Mission", new { @class = "form-control goalchange", @required = "required" })
                     </div>
 
                     <div class="mb-3">
                         <label>Actions</label>
-                        <input required asp-for="VolTimesheet.Action" type="number" class="form-control" />
+                        <input required asp-for="VolTimesheet.Action"  type="number" class="form-control" />
+                        <span asp-validation-for="VolTimesheet.Action" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label>Date Volunteered</label>
-                        <input required type="date" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
+                        <input required="" type="date"  id="goaldates" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
+                        <span asp-validation-for="VolTimesheet.DateVolunteered" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea asp-for="VolTimesheet.Notes" class="form-control" id="message-text"
+                        <textarea required asp-for="VolTimesheet.Notes" class="form-control" id="message-text"
                                   placeholder="Enter your message"></textarea>
+                        <span asp-validation-for="VolTimesheet.Notes" class="text-danger"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -284,105 +298,145 @@
 
 
 <script>
-            $(document).ready(function(e){
-                $(".deleteTimesheet").on("click", function(e){
-                    var a = $(this).attr("data-id");
-                    $.ajax({
-                        type: "POST",
-                        url: "/Profile/DeleteVolunteeringTimesheet",
-                        data: { timesheetId: a },
-                        success: function (data) {
-                        location.reload();},
-                        error: function (xhr, status, error) {
-                        alert("Record Not Deleted.");
-                        }
-                        });
-                })
-            })
-
-
-
-            $(".timeEdit").click(function () {
-                var id = $(this).attr("value");
-                $("#gettimesheetid").val(id);
-                var title = $(this).attr("data-title");
-                $("#getmissiontitleoftime").val(title);
-                var note = $(this).attr("data-note");
-
-                var startdate = $("#TstartDate").val();
-                 var enddate = $("#TendDate").val();
-                   var startDateParts = startdate.split('-');
-            var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
-                            var endDateParts = enddate.split('-');
-            var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
-                 var input = document.getElementById("timedate");
-                            input.setAttribute("min",outputStartDate);
-                            input.setAttribute("max",outputEndDate);
-
-                $("#timenote").val(note);
-                var hour = $(this).attr("data-hour");
-                $("#timehours").val(hour);
-                var minute = $(this).attr("data-minute");
-                $("#timeminutes").val(minute);
-                var date = $(this).attr("data-date");
-                if (date) {
-                var d = date;
-                 var dateObj = new Date(d);
-                var year = dateObj.getFullYear();
-                var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-                var day = ("0" + dateObj.getDate()).slice(-2);
-                var formattedDate = `${year}-${day}-${month}`;
-                $("#timedate").val(formattedDate);
+    $(document).ready(function(e){
+        $(".deleteTimesheet").on("click", function(e){
+            var a = $(this).attr("data-id");
+            $.ajax({
+                type: "POST",
+                url: "/Profile/DeleteVolunteeringTimesheet",
+                data: { timesheetId: a },
+                success: function (data) {
+                location.reload();},
+                error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
                 }
-            });
+                });
+        })
+    })
 
-            $(".goalEdit").click(function () {
-                var id = $(this).attr("value");
-                $("#getgoalsheetid").val(id);
-                var title = $(this).attr("data-title");
-                $("#getmissiontitle").val(title);
-                var note = $(this).attr("data-note");
-                $("#goalnote").val(note);
-                var action = $(this).attr("data-action");
-                $("#goalaction").val(action);
-                var date = $(this).attr("data-date");
-                if (date) {
-                var d = date;
-                 var dateObj = new Date(d);
-                var year = dateObj.getFullYear();
-                var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-                var day = ("0" + dateObj.getDate()).slice(-2);
-                var formattedDate = `${year}-${day}-${month}`;
-                $("#goaldate").val(formattedDate);
+
+
+    $(".timeEdit").click(function () {
+        var id = $(this).attr("value");
+        $("#gettimesheetid").val(id);
+        var title = $(this).attr("data-title");
+        $("#getmissiontitleoftime").val(title);
+        var note = $(this).attr("data-note");
+
+        var startdate = $("#TstartDate").val();
+        var enddate = $("#TendDate").val();
+        var startDateParts = startdate.split('-');
+        var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
+        var endDateParts = enddate.split('-');
+        var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
+        var input = document.getElementById("timedate");
+        input.setAttribute("min",outputStartDate);
+        input.setAttribute("max",outputEndDate);
+
+        $("#timenote").val(note);
+        var hour = $(this).attr("data-hour");
+        $("#timehours").val(hour);
+        var minute = $(this).attr("data-minute");
+        $("#timeminutes").val(minute);
+        var date = $(this).attr("data-date");
+        if (date) {
+        var d = date;
+         var dateObj = new Date(d);
+        var year = dateObj.getFullYear();
+        var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+        var day = ("0" + dateObj.getDate()).slice(-2);
+        var formattedDate = `${year}-${day}-${month}`;
+        $("#timedate").val(formattedDate);
+        }
+    });
+
+    $(".goalEdit").click(function () {
+        var id = $(this).attr("value");
+        $("#getgoalsheetid").val(id);
+        var title = $(this).attr("data-title");
+        $("#getmissiontitle").val(title);
+
+        var startdate = $("#GstartDate").val();
+        var enddate = $("#GendDate").val();
+        var startDateParts = startdate.split('-');
+        var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
+        var endDateParts = enddate.split('-');
+        var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
+        var input = document.getElementById("goaldate");
+        input.setAttribute("min",outputStartDate);
+        input.setAttribute("max",outputEndDate);
+
+        var note = $(this).attr("data-note");
+        $("#goalnote").val(note);
+        var action = $(this).attr("data-action");
+        $("#goalaction").val(action);
+        var date = $(this).attr("data-date");
+        if (date) {
+        var d = date;
+         var dateObj = new Date(d);
+        var year = dateObj.getFullYear();
+        var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+        var day = ("0" + dateObj.getDate()).slice(-2);
+        var formattedDate123 = `${year}-${day}-${month}`;
+       
+
+        }
+      });
+
+      $(".missionChange").change(function () {
+          var missionid = $(this).val();
+          $.ajax({
+                type: "Get",
+                url: "/Profile/getMissionDateById",
+                data: { missionID: missionid },
+                success: function (data) {
+                    const dateObj = new Date(data.startDate);
+                    const day = dateObj.getDate().toString().padStart(2, '0');
+                    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                    const year = dateObj.getFullYear().toString();
+                    const formattedDate = `${year}-${month}-${day}`;
+                    const dateObj1 = new Date(data.endDate);
+                    const day1 = dateObj1.getDate().toString().padStart(2, '0');
+                    const month1 = (dateObj1.getMonth() + 1).toString().padStart(2, '0');
+                    const year1 = dateObj1.getFullYear().toString();
+                    const formattedDate1 = `${year1}-${month1}-${day1}`;
+                    var input = document.getElementById("misDate");
+                    input.setAttribute("min",formattedDate);
+                    input.setAttribute("max",formattedDate1);
+
+                },
+                error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
                 }
-              });
+                });
 
-              $(".missionChange").change(function () {
-                  var missionid = $(this).val();
-                  $.ajax({
-                        type: "Get",
-                        url: "/Profile/getMissionDateById",
-                        data: { missionID: missionid },
-                        success: function (data) {
-                            const dateObj = new Date(data.startDate);
-                            const day = dateObj.getDate().toString().padStart(2, '0');
-                            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-                            const year = dateObj.getFullYear().toString();
-                            const formattedDate = `${year}-${month}-${day}`;
-                            const dateObj1 = new Date(data.endDate);
-                            const day1 = dateObj1.getDate().toString().padStart(2, '0');
-                            const month1 = (dateObj1.getMonth() + 1).toString().padStart(2, '0');
-                            const year1 = dateObj1.getFullYear().toString();
-                            const formattedDate1 = `${year1}-${month1}-${day1}`;
-                            var input = document.getElementById("misDate");
-                            input.setAttribute("min",formattedDate);
-                            input.setAttribute("max",formattedDate1);
+      });
+       $(".goalchange").change(function () {
+          var missionid = $(this).val();
+          $.ajax({
+                type: "Get",
+                url: "/Profile/getMissionDateById",
+                data: { missionID: missionid },
+                success: function (data) {
+                    const dateObj = new Date(data.startDate);
+                    const day = dateObj.getDate().toString().padStart(2, '0');
+                    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                    const year = dateObj.getFullYear().toString();
+                    const formattedDate = `${year}-${month}-${day}`;
+                    const dateObj1 = new Date(data.endDate);
+                    const day1 = dateObj1.getDate().toString().padStart(2, '0');
+                    const month1 = (dateObj1.getMonth() + 1).toString().padStart(2, '0');
+                    const year1 = dateObj1.getFullYear().toString();
+                    const formattedDate1 = `${year1}-${month1}-${day1}`;
+                    var input = document.getElementById("goaldates");
+                    input.setAttribute("min",formattedDate);
+                    input.setAttribute("max",formattedDate1);
 
-                        },
-                        error: function (xhr, status, error) {
-                        alert("Record Not Deleted.");
-                        }
-                        });
+                },
+                error: function (xhr, status, error) {
+                alert("Record Not Deleted.");
+                }
+                });
 
-              });
+      });
 </script>
