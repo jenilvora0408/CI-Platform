@@ -30,7 +30,7 @@ namespace Repository.Repository.Repository
         }
         public User findUser(string email)
         {
-            return _ciPlatformContext.Users.Where(u => u.Email == email).First();
+            return _ciPlatformContext.Users.Where(u => u.Email == email).Include(x => x.Country).Include(x => x.City).First();
         }
         public List<Country> GetCountries()
         {
@@ -150,7 +150,8 @@ namespace Repository.Repository.Repository
 
         public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID)
         {
-            return _ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}");
+            var mission = _ciPlatformContext.Missions.Where(x => x.MissionId == missionID).First();
+            return _ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}, @cityid={mission.CityId}, @countryid={mission.CountryId}");
         }
 
         public Pagination GetMissionsByUtilities(Utilities utilities, int userId)

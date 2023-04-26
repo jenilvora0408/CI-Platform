@@ -50,6 +50,10 @@ namespace CIPlatform.Controllers
             missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
+            HttpContext.Session.SetString("UserCountryName", userObj.Country.Name);
+            HttpContext.Session.SetInt32("UserCountryId", (int)userObj.CountryId);
+            HttpContext.Session.SetString("UserCityName", userObj.City.Name);
+            HttpContext.Session.SetInt32("UserCityId", (int)userObj.CityId);
 
             return View(missionHomeModel);
         }

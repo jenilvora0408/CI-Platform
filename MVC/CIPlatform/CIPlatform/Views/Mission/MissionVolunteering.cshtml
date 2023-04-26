@@ -65,9 +65,6 @@
                         <span class="time-span">@Model.Volunteering.startDate?.ToString("dd-mm-yyyy") until @Model.Volunteering.endDate?.ToString("dd-mm-yyyy")</span>
                     </p>
                 }
-                @* <p class="mission-date">
-                <span class="time-span">@Model.goalObjective</span>
-                </p>*@
             </div>
             <div>
                 <div class="card-body insight">
@@ -101,7 +98,7 @@
                             <div class="card-body-right-text">
                                 <div class="progress" style="width: 7vw; height: 13px;  ">
                                     <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@Model.Volunteering.goalValue" aria-valuemin="0"
-                                         aria-valuemax="100"></div>
+                                     aria-valuemax="100"></div>
                                 </div>
                                 <span class="seats-left">@Model.Volunteering.goalValue achieved</span>
                             </div>
@@ -113,15 +110,6 @@
                                 <span class="deadline">Deadline</span>
                             </div>
                         }
-                        @*
-                        <div class="card-body-right-text">
-                        <div class="progress" style="width: 10vw; height: 13px">
-
-                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="@Model.goalValue" aria-valuemin="0"
-                        aria-valuemax="100"></div>
-                        </div>
-                        <span class="seats-left">@Model.goalValue achieved</span>
-                        </div>*@
                     </div>
                 </div>
                 <hr />
@@ -142,18 +130,10 @@
 
                     }
 
-
-
                     <button class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border-radius: 25px;" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                         <img src="/images/add1.png" alt="" />
                         <span>Recommend to a Co-Worker</span>
                     </button>
-
-
-                    @*  <div type="button" class="text-center vplbtnGap border rounded-pill" style="font-size:calc(13px + 0.1vw);" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                    <img src="/Assets/add1.png" alt="" class="mb-1" style="height:15px ;">
-                    Recommend to a Co-Worker
-                    </div>*@
 
                     <!-- Modal -->
 
@@ -188,12 +168,6 @@
                 <div>
                     <hr class="ratings" />
                     <p class="mission-date" style="margin-top:-40px">
-
-                        @*<i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>*@
                         <div id="stars-rating" class="d-flex justify-content-center align-items-center position-relative z-1">
                             <input id="user_rating" type="text" class="rating text-center d-none" data-size="sm" />
                         </div>
@@ -238,32 +212,38 @@
                         </div>
                     </div>
                 </div>
-                @if (Model.Volunteering.endDate <= Model.Volunteering.deadline || Model.Volunteering.endDate == null && Model.Volunteering.goalValue == 100 || Model.Volunteering.endDate == null)
+
+                @if (Model.Volunteering.approvalStatus == "Approved")
                 {
-                    @if (Model.Volunteering.approvalStatus == 1)
-                    {
-                        <div class="vol-apply-btn">
-                            <button id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
-                                Approved <img src="/images/right.png" alt="" />
-                            </button>
-                        </div>
-                    }
-                    else if (Model.Volunteering.approvalStatus == 0)
-                    {
-                        <div class="vol-apply-btn">
-                            <button id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
-                                Pending <img src="/images/right-arrow.png" alt="" />
-                            </button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="vol-apply-btn">
-                            <button id="APPLYBTN" type="button" class="btn btn-light">
-                                Apply Now <img src="/images/right-arrow.png" alt="" />
-                            </button>
-                        </div>
-                    }
+                    <div class="vol-apply-btn">
+                        <button disabled id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
+                            Approved <img src="/images/right.png" alt="" />
+                        </button>
+                    </div>
+                }
+                @if (Model.Volunteering.approvalStatus == "Pending")
+                {
+                    <div class="vol-apply-btn">
+                        <button disabled id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
+                            Pending <img src="/images/right-arrow.png" alt="" />
+                        </button>
+                    </div>
+                }
+                @if (Model.Volunteering.approvalStatus == "Declined")
+                {
+                    <div class="vol-apply-btn">
+                        <button id="APPLYBTN" type="button" class="btn btn-light">
+                            Declined <img src="/images/right-arrow.png" alt="" />
+                        </button>
+                    </div>
+                }
+                @if (Model.Volunteering.approvalStatus == null)
+                {
+                    <div class="vol-apply-btn">
+                        <button id="APPLYBTN" type="button" class="btn btn-success">
+                            Apply <img src="/images/right.png" alt="" />
+                        </button>
+                    </div>
                 }
 
 
@@ -362,22 +342,7 @@
                                 </span>
                             </a>
                         }
-
                     }
-
-
-                    @*  <a class="download-doc" href="/assets/Training Plan_2022-23_.net_Ahmedabad.pdf" download>
-                    <img src="/images/pdf.png" alt="" />
-                    <span>Training-Plan.pdf</span>
-                    </a>
-                    <a href="/assets/Quick Guide-.net.docx" class="download-doc" download>
-                    <img src="/images/doc.png" alt="" />
-                    <span>.NET-Guide.doc</span>
-                    </a>
-                    <a href="/assets/CI Platform - DB.xlsx" class="download-doc" download>
-                    <img src="/images/xlsx.png" alt="" />
-                    <span>CI-Database.xlsx</span>
-                    </a>*@
                 </div>
             </div>
 
@@ -385,14 +350,6 @@
 
                 @Model.Volunteering.organizationDetail
             </div>
-            @*<div class="tab-pane tab-bar fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
-            tenetur, temporibus illo libero magnam ea vitae voluptate
-            accusantium voluptatibus excepturi nesciunt sapiente fugiat, quis,
-            laborum veritatis animi nisi doloremque fugit iusto! Soluta, natus
-            provident! Pariatur id labore unde excepturi tempora qui commodi et,
-            iusto nemo!
-            </div>*@
 
             <div class="tab-pane tab-bar fade comments" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <textarea class="comment-box" id="commentText" name="" cols="100" rows="5"></textarea>
@@ -417,8 +374,6 @@
                 <tr>
                     <td>Rating</td>
                     <td class="d-flex flex-column">
-                        @*<i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i
-                        class="bi bi-star"></i> *@
                         <div title="Rating">
                             @if (true)
                             {
@@ -456,42 +411,6 @@
                         </div>
                     }
 
-                    @*<div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer1.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Jenil Vora</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer2.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Sizuka</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer3.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Shinchen Nohara</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer4.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Naini</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer5.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Nobita nobie</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer6.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Mixie Nohara</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer7.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Doraemon</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer8.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Wonder woman</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center p-1 p-md-2 flex-column volunteer-images-div">
-                    <img src="/images/volunteer9.png" class="rounded-circle volunteer-images" alt="" />
-                    <span class="fs-6 volunteer-names">Smriti Mandhana</span>
-                    </div>*@
                 </div>
                 <div id="volunteer-scroll-bar"
                      class="d-flex justify-content-center align-items-center border border-1 m-0 w-100">
@@ -523,32 +442,6 @@
 
 
 <script>
-    //document.getElementById("add").onclick = function () {
-    //  var text = document.getElementById("idea").value;
-    //  var a = document.createElement("li");
-    //  a.innerHTML = text;
-    //  if(text == ""){
-    //    alert("Please enter something to add comment");
-    //  }
-    //  else{
-    //    document.getElementById("list").appendChild(a);
-    //  }
-
-    //  $("#idea").val("");
-    //};
-
-    //$(".tab-3").on("click", function(){
-    //    if("#contact-tab"){
-    //        $("idea").show();
-    //    }
-    //    else{
-    //        $("#idea").hide();
-    //    }
-    //})
-
-
-
-
 
     $('#RecommandtoUser').on("click", function (e) {
         var MissionId = $('#MissionID').val();

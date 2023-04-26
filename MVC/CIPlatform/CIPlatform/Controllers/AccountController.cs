@@ -150,7 +150,16 @@ namespace CIPlatform.Controllers
                         HttpContext.Session.SetString("userId", password.UserId.ToString());
                         HttpContext.Session.SetString("avatar", password.Avatar);
                         if (password.Role == "volunteer")
-                            return RedirectToAction("MissionListing", "Mission");
+                        {
+                            if(password.CountryId != null && password.CityId != null)
+                            {
+                                return RedirectToAction("MissionListing", "Mission");
+                            }
+                            else
+                            {
+                                return RedirectToAction("EditProfile", "Profile");
+                            }
+                        }
                         if (password.Role == "admin")
                             return RedirectToAction("User", "Admin");
 

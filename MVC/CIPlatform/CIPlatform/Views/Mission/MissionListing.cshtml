@@ -81,16 +81,8 @@
 -------------------------- -->
 <div class="home-chips">
     <div class="chips d-flex flex-wrap" style="gap:1vw;">
-        @* <div class="chip">
-        Tree Plantation
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        <div class="chip">
-        Canada
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>*@
     </div>
-    <a class="close-chips d-none" href="#">Clear All</a>
+    <a class="close-chips" href="#">Clear All</a>
 </div>
 <!-----------------------
         Heading
@@ -160,207 +152,224 @@
 </footer>
 
 <script>
-    // JS for Grid View
-    function loadCard(sortColumn, paging) {
+        // JS for Grid View
+        function loadCard(sortColumn, paging) {
 
-        if (!paging)
-            paging = 1;
-        var countryIds = [];
-        var cityIds = [];
-        var themeIds = [];
-        var skillIds = [];
-        var searchText = $("#searchText").val();
+            if (!paging)
+                paging = 1;
+            var countryIds = [];
+            var cityIds = [];
+            var themeIds = [];
+            var skillIds = [];
+            var searchText = $("#searchText").val();
 
-        $(".chip").each(function () {
-            if ($(this).is(':visible')) {
-                if ($(this).attr('data-filter-type') == 'country')
-                    countryIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'city')
-                    cityIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'theme')
-                    themeIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'skill')
-                    skillIds.push($(this).attr('data-id'))
+            $(".chip").each(function () {
+                if ($(this).is(':visible')) {
+                    if ($(this).attr('data-filter-type') == 'country')
+                        countryIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'city')
+                        cityIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'theme')
+                        themeIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'skill')
+                        skillIds.push($(this).attr('data-id'))
+                }
+            })
+            if (!sortColumn) {
+                sortColumn = localStorage.getItem("sortColumn");
             }
-        })
-        if (!sortColumn) {
-            sortColumn = localStorage.getItem("sortColumn");
+            // AJAX Call for Grid View
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("gridSP","Mission")",
+                dataType: "html",
+                cache: false,
+                data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
+                success: function (data) {
+                    $("#grid-items").html("");
+                    $('#grid-items').html(data);
+                    favouriteMissions();
+                    loadPagination(null, paging);
+                    console.warn("hello");
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
         }
-        // AJAX Call for Grid View
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("gridSP","Mission")",
-            dataType: "html",
-            cache: false,
-            data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
-            success: function (data) {
-                $("#grid-items").html("");
-                $('#grid-items').html(data);
-                favouriteMissions();
-                loadPagination(null, paging);
-                console.warn("hello");
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-    }
 
-    // JS for List View
-    function loadList(sortColumn, paging) {
-        if (!paging)
-            paging = 1;
-        var countryIds = [];
-        var cityIds = [];
-        var themeIds = [];
-        var skillIds = [];
-        var searchText = $("#searchText").val();
+        // JS for List View
+        function loadList(sortColumn, paging) {
+            if (!paging)
+                paging = 1;
+            var countryIds = [];
+            var cityIds = [];
+            var themeIds = [];
+            var skillIds = [];
+            var searchText = $("#searchText").val();
 
-        $(".chip").each(function () {
-            if ($(this).is(':visible')) {
-                if ($(this).attr('data-filter-type') == 'country')
-                    countryIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'city')
-                    cityIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'theme')
-                    themeIds.push($(this).attr('data-id'))
-                else if ($(this).attr('data-filter-type') == 'skill')
-                    skillIds.push($(this).attr('data-id'))
+            $(".chip").each(function () {
+                if ($(this).is(':visible')) {
+                    if ($(this).attr('data-filter-type') == 'country')
+                        countryIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'city')
+                        cityIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'theme')
+                        themeIds.push($(this).attr('data-id'))
+                    else if ($(this).attr('data-filter-type') == 'skill')
+                        skillIds.push($(this).attr('data-id'))
+                }
+            })
+            if (!sortColumn) {
+                sortColumn = localStorage.getItem("sortColumn");
             }
-        })
-        if (!sortColumn) {
-            sortColumn = localStorage.getItem("sortColumn");
+            // AJAX call for List View
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("listSP","Mission")",
+                dataType: "html",
+                cache: false,
+                data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
+                success: function (data) {
+                    $("#mission-list").html("");
+                    $('#mission-list').html(data);
+                    console.warn("list has called");
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            })
         }
-        // AJAX call for List View
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("listSP","Mission")",
-            dataType: "html",
-            cache: false,
-            data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
-            success: function (data) {
-                $("#mission-list").html("");
-                $('#mission-list').html(data);
-                console.warn("list has called");
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        })
-    }
 
-    $(document).ready(function () {
-        loadCard(null, 1);
-        loadList(null, 1);
-        $("#searchText").on("keyup", function (e) {
+        $(document).ready(function () {
+
+            var countryName = "@HttpContextAccessor.HttpContext.Session.GetString("UserCountryName")";
+            var countryId = "@HttpContextAccessor.HttpContext.Session.GetInt32("UserCountryId")";
+            $(".home-chips .chips").append(
+            '<div class="chip" data-filter-type="country" data-id=' + countryId + '>' +
+            countryName +
+            '<span class="closebtn" onclick="removeChip(this)">&times;</span>'
+            );
+            var cityName = "@HttpContextAccessor.HttpContext.Session.GetString("UserCityName")";
+            var cityId = "@HttpContextAccessor.HttpContext.Session.GetInt32("UserCityId")";
+            $(".home-chips .chips").append(
+            '<div class="chip" data-filter-type="city" data-id=' + cityId + '>' +
+            cityName +
+            '<span class="closebtn" onclick="removeChip(this)">&times;</span>'
+            );
+            $(".close-chips").show();
+
+            loadCard(null, 1);
+            loadList(null, 1);
+            $("#searchText").on("keyup", function (e) {
+                loadCard();
+                loadList();
+            })
+            var sortColumn = "";
+            $("#sort-menu li a").on("click", function (e) {
+                sortColumn = $(this).text();
+                localStorage.setItem("sortColumn", sortColumn);
+                loadCard(sortColumn, 1);
+                loadList(sortColumn, 1);
+            })
+            $(window).on('beforeunload', function () {
+                localStorage.removeItem("sortColumn");
+            });
             loadCard();
-            loadList();
-        })
-        var sortColumn = "";
-        $("#sort-menu li a").on("click", function (e) {
-            sortColumn = $(this).text();
-            localStorage.setItem("sortColumn", sortColumn);
-            loadCard(sortColumn, 1);
-            loadList(sortColumn, 1);
-        })
-        $(window).on('beforeunload', function () {
-            localStorage.removeItem("sortColumn");
+            getFavouriteMissions();
         });
-        loadCard();
-        getFavouriteMissions();
-    });
 
-    function favouriteMissions() {
-        $("#GridView .favourite-mission-div").on("click", function (event) {
-            event.preventDefault();
-            // Add to favourites
-            if (this.style.backgroundColor == "black") {
-                this.style.opacity = 1;
-                var missionId = this.id.slice(18,);
-                var userId = $(".home-nav1-right .user-btn")[0].id;
-                console.warn(userId);
-                console.warn(missionId);
-                $.ajax({
-                    type: "POST",
-                    url: '/Mission/addFavouriteMissions',
-                    data: { userId: userId, missionId: missionId },
-                    success: function (data) {
-                        loadCard();
-                        //location.reload();
-                        //getFavouriteMissions();
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
-            // Remove from favourites
-            else {
-                var missionId = this.id.slice(18,);
-                var userId = $(".home-nav1-right .user-btn")[0].id;
-                $.ajax({
-                    type: "POST",
-                    url: '/Mission/removeFavouriteMissions',
-                    data: { userId: userId, missionId: missionId },
-                    success: function (data) {
-                        console.log("remove fav");
-                        loadCard();
-                        //location.reload();
-                        //getFavouriteMissions();
-                        console.log("remove fav2");
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-
-            }
-        });
-    }
-
-    // Check whether the mission is favourite or not
-    function getFavouriteMissions() {
-        var userId = $(".home-nav1-right .user-btn")[0].id;
-        console.log("In get fav");
-        $.ajax({
-            type: "GET",
-            url: '/Mission/getFavouriteMissionsOfUser',
-            data: { userid: userId },
-            success: function (data) {
-                var dataArr = data["data"].split(",");
-                console.log(dataArr);
-                setTimeout(() => {
-                    $("#GridView .favourite-mission-div").each(function (index) {
-                        var id = this.id.slice(18);
-
-                        console.log("In get fav:" + this.id);
-                        var temp = false;
-                        Loop1:
-                        for (var i = 0; i < dataArr.length; i++) {
-                            if (dataArr[i] == id) {
-                                temp = true;
-
-                                break Loop1;
-                            }
-                        }
-                        if (temp == true) {
-                            console.log("test");
-                            this.style.backgroundColor = "red";
-                            this.style.opacity = 1;
-                            //console.log("True", dataArr, id, dataArr[i] == id);
-                        }
-                        else {
-                            //console.log("False", dataArr, id, dataArr[i] == id);
-
-                            this.style.backgroundColor = "black";
-                            this.style.opacity = 0.4;
+        function favouriteMissions() {
+            $("#GridView .favourite-mission-div").on("click", function (event) {
+                event.preventDefault();
+                // Add to favourites
+                if (this.style.backgroundColor == "black") {
+                    this.style.opacity = 1;
+                    var missionId = this.id.slice(18,);
+                    var userId = $(".home-nav1-right .user-btn")[0].id;
+                    console.warn(userId);
+                    console.warn(missionId);
+                    $.ajax({
+                        type: "POST",
+                        url: '/Mission/addFavouriteMissions',
+                        data: { userId: userId, missionId: missionId },
+                        success: function (data) {
+                            loadCard();
+                            //location.reload();
+                            //getFavouriteMissions();
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
                         }
                     });
-                }, 250);
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-    }
+                }
+                // Remove from favourites
+                else {
+                    var missionId = this.id.slice(18,);
+                    var userId = $(".home-nav1-right .user-btn")[0].id;
+                    $.ajax({
+                        type: "POST",
+                        url: '/Mission/removeFavouriteMissions',
+                        data: { userId: userId, missionId: missionId },
+                        success: function (data) {
+                            console.log("remove fav");
+                            loadCard();
+                            //location.reload();
+                            //getFavouriteMissions();
+                            console.log("remove fav2");
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+
+                }
+            });
+        }
+
+        // Check whether the mission is favourite or not
+        function getFavouriteMissions() {
+            var userId = $(".home-nav1-right .user-btn")[0].id;
+            console.log("In get fav");
+            $.ajax({
+                type: "GET",
+                url: '/Mission/getFavouriteMissionsOfUser',
+                data: { userid: userId },
+                success: function (data) {
+                    var dataArr = data["data"].split(",");
+                    console.log(dataArr);
+                    setTimeout(() => {
+                        $("#GridView .favourite-mission-div").each(function (index) {
+                            var id = this.id.slice(18);
+
+                            console.log("In get fav:" + this.id);
+                            var temp = false;
+                            Loop1:
+                            for (var i = 0; i < dataArr.length; i++) {
+                                if (dataArr[i] == id) {
+                                    temp = true;
+
+                                    break Loop1;
+                                }
+                            }
+                            if (temp == true) {
+                                console.log("test");
+                                this.style.backgroundColor = "red";
+                                this.style.opacity = 1;
+                                //console.log("True", dataArr, id, dataArr[i] == id);
+                            }
+                            else {
+                                //console.log("False", dataArr, id, dataArr[i] == id);
+
+                                this.style.backgroundColor = "black";
+                                this.style.opacity = 0.4;
+                            }
+                        });
+                    }, 250);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
 </script>

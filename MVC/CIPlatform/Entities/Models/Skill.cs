@@ -9,7 +9,7 @@ public partial class Skill
 
     public string SkillName { get; set; } = null!;
 
-    public byte Status { get; set; }
+    public bool? Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

@@ -26,7 +26,7 @@ else
                             @item.SkillName
                         </td>
                         
-                        <td style="color: @((item.Status == 1) ? "#14C506" : "red")">@((item.Status == 0) ? "Inactive" : "Active")</td>
+                           <td style="color: @((bool)item.Status ? "#14C506" : "red")">@((bool)item.Status ? "Active" : "Inactive")</td>
 
                         <td class="icons">
                             <i onclick="return location.href=' @Url.Action("EditSkill","Admin",new {SkillId=@item.SkillId}) '" id="edit-icon" class="bi bi-pencil-square"></i>

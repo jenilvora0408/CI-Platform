@@ -262,6 +262,7 @@ namespace Repository.Repository.Repository
                 .ToList();
             cms.MissionTheme = pagedUsers.Select(x => new MissionTheme()
             {
+                Status = x.Status,
                 MissionThemeId = x.MissionThemeId,
                 Title = x.Title,
             }).ToList();
@@ -327,7 +328,6 @@ namespace Repository.Repository.Repository
             {
                 MissionTheme theme = new MissionTheme();
                 theme = cms.missionTheme;
-                theme.Status = 1;
                 _ciPlatformContext.MissionThemes.Add(theme);
                 _ciPlatformContext.SaveChanges();
             }
@@ -377,6 +377,7 @@ namespace Repository.Repository.Repository
         {
             Skill skill = _ciPlatformContext.Skills.Where(x => x.SkillId == cms.skill.SkillId).FirstOrDefault();
             skill.SkillName = cms.skill.SkillName;
+            skill.Status = cms.skill.Status;
             skill.SkillId = cms.skill.SkillId;
             _ciPlatformContext.Skills.Update(skill);
             _ciPlatformContext.SaveChanges();
@@ -386,6 +387,7 @@ namespace Repository.Repository.Repository
         {
             MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.MissionThemeId == cms.missionTheme.MissionThemeId).FirstOrDefault();
             missionTheme.Title = cms.missionTheme.Title;
+            missionTheme.Status = cms.missionTheme.Status;
             missionTheme.MissionThemeId = cms.missionTheme.MissionThemeId;
             _ciPlatformContext.MissionThemes.Update(missionTheme);
             _ciPlatformContext.SaveChanges();
@@ -430,6 +432,9 @@ namespace Repository.Repository.Repository
             {
                 MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
                 missionApplication.ApprovalStatus = "Approved";
+                Mission mission = _ciPlatformContext.Missions.Where(x => x.MissionId == missionApplication.MissionId).FirstOrDefault();
+                mission.TotalSeats = mission.TotalSeats - 1;
+                _ciPlatformContext.Update(mission);
                 _ciPlatformContext.Update(missionApplication);
                 _ciPlatformContext.SaveChanges();
             }
@@ -542,6 +547,7 @@ namespace Repository.Repository.Repository
             missionCrud.Status = mission.Status;
             missionCrud.ThemeId = mission.ThemeId;
             missionCrud.EndDate = mission.EndDate;
+            missionCrud.Deadline = mission.Deadline;
             missionCrud.Description = mission.Description;
             missionCrud.CityId = mission.CityId;
             missionCrud.CountryId = mission.CountryId;
@@ -625,6 +631,7 @@ namespace Repository.Repository.Repository
             mission.CountryId = model.CountryId;
             mission.StartDate = model.StartDate;
             mission.EndDate = model.EndDate;
+            mission.Deadline = model.Deadline;
             mission.Status = model.Status;
             mission.OrganizationDetail = model.OrganizationDetail;
             mission.OrganizationName = model.OrganizationName;
@@ -681,6 +688,7 @@ namespace Repository.Repository.Repository
             mission.CountryId = model.CountryId;
             mission.StartDate = model.StartDate;
             mission.EndDate = model.EndDate;
+            mission.Deadline = model.Deadline;
             mission.Status = model.Status;
             mission.OrganizationDetail = model.OrganizationDetail;
             mission.OrganizationName = model.OrganizationName;

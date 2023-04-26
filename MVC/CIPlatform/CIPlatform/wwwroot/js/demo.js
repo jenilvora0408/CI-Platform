@@ -50,7 +50,6 @@ $("#select-grid-style").on("click", function (e) {
 
 
 $(document).ready(function () {
-
     /*AJAX Call for Countries - Dropdown*/
 
     var ddlCountry = $('#mission-countries');
