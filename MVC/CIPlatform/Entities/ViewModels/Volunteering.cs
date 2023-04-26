@@ -17,7 +17,7 @@ namespace Entities.ViewModels
         public string? missionShortDesc { get; set; }
         public string? organizationName { get; set; }
         public DateTime? startDate { get; set; }
-        public DateTime? endDate { get; set; }
+        public DateTime? endDate { get; set; }        
         public long? availableSeats { get; set; }
         public string? goalObjective { get; set; }
         public int? goalValue { get; set; }
