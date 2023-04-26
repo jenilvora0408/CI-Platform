@@ -32,5 +32,6 @@ namespace Repository.Repository.Interface
         public Pagination GetMissionsByUtilities(Utilities utilities, int userId);
         public Pagination GetMissionByUtilitiesForList(Utilities utilities, int userId);
         public List<Comment> GetCommentsByMissionId(int missionId);
+        public List<City> GetCitiesByCountryId(int countryId);
     }
 }

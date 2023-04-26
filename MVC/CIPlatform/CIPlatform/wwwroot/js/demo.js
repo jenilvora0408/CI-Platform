@@ -1,22 +1,4 @@
-﻿// Create chips when an item is selected from dropdown
-function showChip() {
-    $(".selection .dropdown-menu li a").on("click", function (e) {
-        var filterType = $(this).attr('data-filter-type');
-        var dataID = $(this).parent().val();
-        // Prevent same chip from being created more than once
-        var existingChip = $(".home-chips .chip[data-filter-type='" + filterType + "'][data-id='" + dataID + "']");
-        if (existingChip.length === 0) {
-            $(".home-chips .chips").append(
-                '<div data-filter-type=' + filterType + ' data-id=' + dataID + ' class="chip">' +
-                $(this).text() +
-                '<span class="closebtn" onclick="removeChip(this)">&times;</span>'
-            );
-        }
-        $(".close-chips").show();
-    });
-}
-
-// Remove chips 
+﻿// Remove chips 
 function removeChip(btn) {
     $(btn).parent().removeAttr("data-id").hide();
     $(".close-chips").hide();
@@ -31,6 +13,71 @@ $(".close-chips").on("click", function (e) {
     loadCard();
     loadList();
 });
+
+// Create Chips
+function showChip() {
+    $(".selection .dropdown-menu li a").on("click", function (e) {
+        var filtertype = $(this).attr("data-filter-type");
+        var dataID = $(this).parent().val();
+        // Doesn't allow same chip to create multiple times
+        var existingChip = $(".home-chips .chips")
+            .find(
+                '[data-filter-type="' + filtertype + '"][data-id="' + dataID + '"]'
+            )
+            .first();
+        if (existingChip.length) {
+            existingChip.remove();
+        }
+        $(".home-chips .chips").append(
+            '<div data-filter-type="' +
+            filtertype +
+            '" data-id="' +
+            dataID +
+            '" class="chip">' +
+            $(this).text() +
+            '<span class="closebtn" onclick="this.parentElement.style.display=\'none\'">&times;</span></div>'
+        );
+        $(".close-chips").show();
+
+        $(".closebtn").on("click", function (e) {
+            loadCard();
+            loadList();
+        });
+    });
+
+    // Fill city dropdown based on country selected
+    $(".countryItem").on("click", function (e) {
+        var countryId = $(this).val();
+        getCities(countryId, function (data) {
+            var ddlCity = $("#mission-cities");
+            ddlCity.empty();
+            $.each(data, function (i, city) {
+                var cityItem =
+                    '<li class="cityItem" value="' +
+                    city.cityId +
+                    '"><a data-filter-type="city" class="dropdown-item" href="#">' +
+                    city.name +
+                    "</a></li>";
+                ddlCity.append(cityItem);
+            });
+
+            $(".cityItem").on("click", function (e) {
+                loadCard();
+                loadList();
+            });
+
+            showChip();
+            loadCard();
+            loadList();
+        });
+    });
+
+    $(".cityItem").on("click", function (e) {
+        showChip();
+        loadCard();
+        loadList();
+    });
+}
 
 
 // Switch between grid & list view

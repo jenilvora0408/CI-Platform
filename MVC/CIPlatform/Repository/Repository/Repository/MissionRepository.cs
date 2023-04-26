@@ -197,5 +197,10 @@ namespace Repository.Repository.Repository
             return _ciPlatformContext.Comments.Where(x => x.MissionId == missionId).Include(x => x.User).AsEnumerable().ToList();
         }
 
+
+        public List<City> GetCitiesByCountryId(int countryId)
+        {
+            return _ciPlatformContext.Cities.Where(c => c.CountryId == countryId).ToList();
+        }
     }
 }

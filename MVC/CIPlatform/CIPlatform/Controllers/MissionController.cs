@@ -281,5 +281,15 @@ namespace CIPlatform.Controllers
         }
 
 
+        
+
+        [HttpGet]
+        public JsonResult GetCities(int countryId)
+        {
+            var cities = _missionInterface.GetCitiesByCountryId(countryId)
+                                        .Select(c => new { c.CityId, c.Name })
+                                        .ToList();
+            return Json(cities);
+        }
     }
 }

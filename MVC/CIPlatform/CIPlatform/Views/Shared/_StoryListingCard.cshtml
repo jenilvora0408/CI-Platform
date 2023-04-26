@@ -49,22 +49,7 @@
     }
 </div>
 
-
-@*
-      <div class="Pagination my-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center" id="pagination">
-            @for (int i = 1; i <= Model.pageCount; i++)
-            {
-                <li class="page-item">
-                    <a class="page-link pageUp" href='#top'>@i</a>
-                </li>
-            }
-            </ul>
-        </nav>
-    </div>*@
-
-    <div class="Pagination my-3 ">
+    <div class="Pagination my-5 ">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center" id="pagination">
             @if (Model.pageCount > 1)

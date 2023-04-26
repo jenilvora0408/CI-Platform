@@ -80,7 +80,6 @@
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* / color: #fff; / */
 }
 
     .grid-view .grid-items .grid-item .filter span {
@@ -124,10 +123,6 @@
 }
 
 .grid-view .grid-items .grid-item .card-body .card-body-left {
-    /* align-items: flex-end;
-       justify-content: flex-end;
-       align-items: self-end; */
-    /* margin-left: 9vw; */
     width: 13vw;
 }
 
@@ -157,7 +152,6 @@
 .grid-view .grid-items .grid-item .insight {
     padding: 0;
     display: flex;
-    /* gap: 10vw; */
     margin-left: 2vw;
     width: 100%;
 }
@@ -166,7 +160,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 5vh; */
 }
 
 .grid-view .grid-items .grid-item button {

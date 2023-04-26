@@ -35,7 +35,7 @@
                 <div class="selection">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="missionCity nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                aria-expanded="false" style="color: #333333">
                                 City
                             </a>
@@ -154,6 +154,19 @@
 </footer>
 
 <script>
+    function getCities(countryId, callback) {
+$.ajax({
+url: 'https://localhost:7165/Mission/GetCities?countryId=' + countryId,
+type: 'GET',
+dataType: 'json',
+success: function(data) {
+callback(data);
+},
+error: function() {
+alert('Error!');
+}
+});
+}
         // JS for Grid View
         function loadCard(sortColumn, paging) {
 
