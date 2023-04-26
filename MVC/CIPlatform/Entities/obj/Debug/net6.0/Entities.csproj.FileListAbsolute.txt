@@ -12,3 +12,17 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.pdb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.genruntimeconfig.cache
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.deps.json
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.runtimeconfig.json
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\bin\Debug\net6.0\Entities.pdb
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\refint\Entities.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.pdb
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\Entities.genruntimeconfig.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Entities\obj\Debug\net6.0\ref\Entities.dll

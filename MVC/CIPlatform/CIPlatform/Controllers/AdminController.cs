@@ -35,7 +35,10 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        
+        /// <summary>
+        /// View - CMS Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult CMS()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -50,9 +53,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Banner Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Banner()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -67,9 +75,16 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// Shows list of CMS Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult CmsTable(string Search, int pageNumber)
         {
             var a = _adminInterface.GetCmsPages(Search, pageNumber);
@@ -77,48 +92,101 @@ namespace CIPlatform.Controllers
             return PartialView("_CMSList", a);
         }
 
+        /// <summary>
+        /// Shows list of Banner Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult BannerTable(string Search, int pageNumber)
         {
             var banner = _adminInterface.GetBannerPages(Search, pageNumber);
+
             return PartialView("_BannerTable", banner);
         }
 
+        /// <summary>
+        /// Shows list of User Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult userTable(string Search, int pageNumber)
         {
             var b = _adminInterface.GetUserPages(Search, pageNumber);
+
             return PartialView("_UserTable", b);
         }
 
+        /// <summary>
+        /// Shows list of Story Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult storyTable(string Search, int pageNumber)
         {
             var c = _adminInterface.GetStoryPages(Search,pageNumber);
+
             return PartialView("_StoryTable", c);
         }
 
+        /// <summary>
+        /// Shows list of Mission Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult missionTable(string Search, int pageNumber)
         {
             var d = _adminInterface.GetMissionPages(Search,pageNumber);
+
             return PartialView("_MissionTable", d);
         }
 
+        /// <summary>
+        /// Shows list of Skill Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult skillTable(string Search, int pageNumber)
         {
             var e = _adminInterface.GetSkillPages(Search,pageNumber);
+
             return PartialView("_SkillTable", e);
         }
 
+        /// <summary>
+        /// Shows list of Mission Application Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult applicationTable(string Search, int pageNumber)
         {
             var f = _adminInterface.GetApplicationPages(Search,pageNumber);
+
             return PartialView("_ApplicationTable", f);
         }
 
+        /// <summary>
+        /// Shows list of Mission Theme Data
+        /// </summary>
+        /// <param name="Search"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public IActionResult themeTable(string Search, int pageNumber)
         {
             var g = _adminInterface.GetThemePages(Search,pageNumber);
+
             return PartialView("_ThemeTable", g);
         }
 
+        /// <summary>
+        /// View - Add CMS Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddCms()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -133,9 +201,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Add Mission Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddMission()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -156,17 +229,24 @@ namespace CIPlatform.Controllers
             ViewBag.Country = country;
             var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
+
             return View(missionCrud);
         }
 
         
-
+        /// <summary>
+        /// Add mission, user can insert record in Mission, Mission Media, Mission Document, 
+        /// Mission Skill & Mission Theme
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="fileImg"></param>
+        /// <param name="fileDoc"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
         {
             if (ModelState.IsValid)
             {
-                
                 if (fileImg != null && fileImg.Count() > 0)
                 {
                     var missionId = _adminInterface.AddMission(model);
@@ -241,18 +321,26 @@ namespace CIPlatform.Controllers
             ViewBag.Country = country;
             var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
-            return View(missionCrud);
 
+            return View(missionCrud);
         }
 
+        /// <summary>
+        /// Get Cities in Dropdown corresponding to selected Country
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
         public JsonResult GetCitiesOfCountry(long country)
         {
             var cities = _adminInterface.GetCitiesOfCountry(country);
+
             return Json(cities);
         }
 
-
-
+        /// <summary>
+        /// View - Add Banner Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddBanner()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -267,8 +355,16 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
+
+        /// <summary>
+        /// Admin can add Banner which would be displayed on Login Page 
+        /// </summary>
+        /// <param name="adminBannerModel"></param>
+        /// <param name="Image"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddBanner(CMS adminBannerModel, IFormFile Image)
         {
@@ -291,9 +387,14 @@ namespace CIPlatform.Controllers
                 banner.Text = adminBannerModel.banner.Text;
                 banner.SortOrder = adminBannerModel.banner.SortOrder;
                 _adminInterface.addBanner(banner);
+
                 return RedirectToAction("Banner");
-           
         }
+
+        /// <summary>
+        /// View - Add User Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddUser()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -308,9 +409,17 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+            var country = _adminInterface.GetCountries();
+            ViewBag.countries = country;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// Autofill data in Edit User Page
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public IActionResult EditUser(long UserId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -325,10 +434,17 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             editUser.Navbar_1 = missionHomeModel;
+            var country = _adminInterface.GetCountries();
+            ViewBag.countries = country;
 
             return View(editUser);
         }
 
+        /// <summary>
+        /// Autofill data in Edit Mission Page
+        /// </summary>
+        /// <param name="MissionId"></param>
+        /// <returns></returns>
         public IActionResult EditMission(long MissionId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -351,9 +467,17 @@ namespace CIPlatform.Controllers
             ViewBag.Country = country;
             var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
+
             return View(editMission);
         }
 
+        /// <summary>
+        /// Edit Missions 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="fileImg"></param>
+        /// <param name="fileDoc"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> EditMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
         {
@@ -439,10 +563,15 @@ namespace CIPlatform.Controllers
             ViewBag.Country = country;
             var theme = _adminInterface.GetThemes();
             ViewBag.theme = theme;
-            return View(missionCrud);
 
+            return View(missionCrud);
         }
 
+        /// <summary>
+        /// Autofill data in Edit Skill Page
+        /// </summary>
+        /// <param name="SkillId"></param>
+        /// <returns></returns>
         public IActionResult EditSkill(long SkillId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -461,6 +590,11 @@ namespace CIPlatform.Controllers
             return View(editSkill);
         }
 
+        /// <summary>
+        /// Autofill data in Edit Theme Page
+        /// </summary>
+        /// <param name="missionThemeId"></param>
+        /// <returns></returns>
         public IActionResult EditTheme(long missionThemeId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -479,6 +613,11 @@ namespace CIPlatform.Controllers
             return View(editTheme);
         }
 
+        /// <summary>
+        /// Autofill Data in Edit CMS Page
+        /// </summary>
+        /// <param name="cmsPageId"></param>
+        /// <returns></returns>
         public IActionResult EditCms(long cmsPageId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -497,139 +636,267 @@ namespace CIPlatform.Controllers
             return View(editCms);
         }
 
+        /// <summary>
+        /// Add CMS records to database
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <param name="Description"></param>
+        /// <param name="Slug"></param>
+        /// <param name="Status"></param>
+        /// <param name="demo"></param>
+        /// <param name="cmsId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddCmsData(string Title, string Description, string Slug, string Status, string demo, long cmsId)
         {
             _adminInterface.AddCmsData(Title, Description, Slug, Status, demo, cmsId);
+
             return RedirectToAction("CMS", "Admin");
         }
 
+        /// <summary>
+        /// Add User records to database
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddUserData(CMS cms)
         {
+            var country = _adminInterface.GetCountries();
+            ViewBag.CountrieS = country;
             _adminInterface.AddUserData(cms);
+
+
             return RedirectToAction("User", "Admin");
         }
 
+        /// <summary>
+        /// Add skill records to database
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult addSkill(CMS cms)
         {
             _adminInterface.AddSkill(cms);
+
             return RedirectToAction("MissionSkill", "Admin");
         }
 
+        /// <summary>
+        /// Add Mission Theme records to database
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult addTheme(CMS cms)
         {
             _adminInterface.AddTheme(cms);
+
             return RedirectToAction("MissionTheme", "Admin");
         }
 
+        /// <summary>
+        /// Edit records to User Table
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult EditUserData(CMS cms)
         {
+            var country = _adminInterface.GetCountries();
+            ViewBag.CountrieS = country;
             _adminInterface.UpdateUserData(cms);
+
             return RedirectToAction("User", "Admin");
         }
 
+        /// <summary>
+        /// Edit records of Skill Table
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult EditSkillData(CMS cms)
         {
             _adminInterface.UpdateSkillData(cms);
+
             return RedirectToAction("MissionSkill", "Admin");
         }
 
+        /// <summary>
+        /// Edit records of Mission Theme Table
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult EditThemeData(CMS cms)
         {
             _adminInterface.UpdateThemeData(cms);
+
             return RedirectToAction("MissionTheme", "Admin");
         }
 
+        /// <summary>
+        /// Approve story 
+        /// </summary>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult approveStory(long storyId)
         {
             _adminInterface.approveStory(storyId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Reject Story
+        /// </summary>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult rejectStory(long storyId)
         {
             _adminInterface.rejectStory(storyId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Story
+        /// </summary>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteStory(long storyId)
         {
             _adminInterface.deleteStory(storyId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Approve application of a user
+        /// </summary>
+        /// <param name="applicationId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult approveApplication(long applicationId)
         {
             _adminInterface.approveApplication(applicationId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Reject application of a user
+        /// </summary>
+        /// <param name="applicationId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult rejectApplication(long applicationId)
         {
             _adminInterface.rejectApplication(applicationId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete application of a user
+        /// </summary>
+        /// <param name="applicationId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteApplication(long applicationId)
         {
             _adminInterface.deleteApplication(applicationId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Mission
+        /// </summary>
+        /// <param name="missionId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteMission(long missionId)
         {
             _adminInterface.deleteMission(missionId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Skill
+        /// </summary>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteSkill(long skillId)
         {
             _adminInterface.deleteSkill(skillId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Theme
+        /// </summary>
+        /// <param name="themeId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteTheme(long themeId)
         {
             _adminInterface.deleteTheme(themeId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Banner
+        /// </summary>
+        /// <param name="bannerId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult deleteBanner(long bannerId)
         {
             _adminInterface.deleteBanner(bannerId);
+
             return Ok();
         }
 
+        /// <summary>
+        /// Delete user record from User Table
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult DeleteUserData(long userId)
         {
             _adminInterface.DeteleUserData(userId);
+
             return RedirectToAction("User", "Admin");
         }
 
+        /// <summary>
+        /// Delete CMS record from CMS Table
+        /// </summary>
+        /// <param name="cmsId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult DeleteCmsData(long cmsId)
         {
             _adminInterface.DeleteCmsPage(cmsId);
+
             return RedirectToAction("CMS", "Admin");
         }
 
+        /// <summary>
+        /// View - User
+        /// </summary>
+        /// <returns></returns>
         public IActionResult User()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -644,9 +911,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Story
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Story()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -661,9 +933,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Mission
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Mission()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -678,9 +955,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Mission Skill
+        /// </summary>
+        /// <returns></returns>
         public IActionResult MissionSkill()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -695,9 +977,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Mission Application
+        /// </summary>
+        /// <returns></returns>
         public IActionResult MissionApplication()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -712,9 +999,14 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
 
+        /// <summary>
+        /// View - Mission Theme
+        /// </summary>
+        /// <returns></returns>
         public IActionResult MissionTheme()
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
@@ -729,6 +1021,7 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             cms.Navbar_1 = missionHomeModel;
+
             return View(cms);
         }
     }

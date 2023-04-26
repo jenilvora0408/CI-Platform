@@ -1,110 +1,146 @@
 ﻿@model Entities.ViewModels.CMS
 
-    <div class="cms">
-        <!-- Navbar -->
-        <partial name="_AdminNavbar" model="Model.Navbar_1" />
+<div class="cms">
+    <!-- Navbar -->
+    <partial name="_AdminNavbar" model="Model.Navbar_1" />
 
-        <!-- Sidebar -->
-        <partial name="_AdminSidebar" />
+    <!-- Sidebar -->
+    <partial name="_AdminSidebar" />
 
-        <div class="cms-content">
-            <p class="heading"><span>Add User Page</span></p>
-            
-            <form method="post" asp-action="AddUserData" asp-controller="Admin" class="user-admin">
-                <label>First Name</label>
-                <input asp-for="@Model.User.FirstName" type="text" class="form-control m-0 firstName" required>
-                <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
+    <div class="cms-content">
+        <p class="heading"><span>Add User Page</span></p>
 
-                <label class="mt-3">Last Name</label>
-                <input asp-for="@Model.User.LastName" type="text" class="form-control m-0 lastName" required>
-                <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
+        <form method="post" asp-action="AddUserData" asp-controller="Admin" class="user-admin">
+            <label>First Name</label>
+            <input asp-for="@Model.User.FirstName" type="text" class="form-control m-0 firstName" required>
+            <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
 
-                <label class="mt-3">Email</label>
-                <input asp-for="@Model.User.Email" id="emailInput" type="email" class="form-control m-0" autocomplete="off" required>
-                <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+            <label class="mt-3">Last Name</label>
+            <input asp-for="@Model.User.LastName" type="text" class="form-control m-0 lastName" required>
+            <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
 
-                <label class="mt-3">Password</label>
-                <input asp-for="@Model.User.Password" id="passwordInput" type="password" class="form-control m-0" autocomplete="new-password" required>
-                <span asp-validation-for="@Model.User.Password" class="text-danger"></span>
+            <label class="mt-3">Email</label>
+            <input asp-for="@Model.User.Email" id="emailInput" type="email" class="form-control m-0" autocomplete="off" required>
+            <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
 
-                <label class="mt-3">Employee ID</label>
-                <input asp-for="@Model.User.EmployeeId" type="text" class="form-control m-0 employeeId">
+            <label class="mt-3">Status</label>
+            @Html.DropDownListFor(model => Model.User.Status, new SelectList(new Dictionary<bool, string> { {false, "Inactive" }, {true, "Active"} }, "Key", "Value"), "Select status", new { @class = "form-control", @required="required" })
+            @Html.ValidationMessageFor(model => model.User.Status, "", new { @class = "text-danger" })
 
-                <label class="mt-3">Department</label>
-                <input asp-for="@Model.User.Department" type="text" class="form-control m-0 dept">
+            <label class="mt-3">Password</label>
+            <input asp-for="@Model.User.Password" id="passwordInput" type="password" class="form-control m-0" autocomplete="new-password" required>
+            <span asp-validation-for="@Model.User.Password" class="text-danger"></span>
 
-                <label class="mt-3">Why I Volunteer?</label>
-                <textarea asp-for="@Model.User.WhyIVolunteer" class="form-control txt volunteer" id="exampleFormControlTextarea1" rows="7"></textarea>
-
-                <div class="user-add-btns mt-3 d-flex justify-content-between">
-                    <div></div>
-                    <div>
-                        <button id="user-add-cancel-btn" type="reset">Cancel</button>
-                       
-                            <button data-status="add" id="user-add-save-btn" type="submit">Save</button>
-                        
-                        
-                    </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                    <label>Country</label>
+                    @Html.DropDownListFor(m => m.User.CountryId,ViewBag.countries as List<SelectListItem>, "Select your country", new { @class = "form-control ",required = "required" })
+                    @Html.ValidationMessageFor(model => model.User.CountryId, "", new { @class = "text-danger" })
                 </div>
-            </form>
-        </div>
+                <div class="col-xl-6 col-lg-6 col-12 mt-3">
+                    <label>City</label>
+                    @Html.DropDownListFor(m => m.User.CityId,Enumerable.Empty<SelectListItem>(), "Select your city", new { @class = "form-control ",required = "required" })
+                    @Html.ValidationMessageFor(model => model.User.CityId, "", new { @class = "text-danger"})
+                </div>
+            </div>
+
+            <label class="mt-3">Employee ID</label>
+            <input asp-for="@Model.User.EmployeeId" type="text" class="form-control m-0 employeeId">
+
+            <label class="mt-3">Department</label>
+            <input asp-for="@Model.User.Department" type="text" class="form-control m-0 dept">
+
+            <label class="mt-3">Why I Volunteer?</label>
+            <textarea asp-for="@Model.User.WhyIVolunteer" class="form-control txt volunteer" id="exampleFormControlTextarea1" rows="7"></textarea>
+
+            <div class="user-add-btns mt-3 d-flex justify-content-between">
+                <div></div>
+                <div>
+                    <button id="user-add-cancel-btn" type="reset">Cancel</button>
+
+                    <button data-status="add" id="user-add-save-btn" type="submit">Save</button>
+
+
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 
-    
 
-   
-    <script>
 
-        
-        $(document).ready(function () {
-            
-            // Color Change - Sidebar
-            $(".cms-sidebar ul li").on("mouseenter", function () {
-                $(this).find("i").css("color", "#F88634");
-                $(this).find("span").css("color", "#F88634");
-            });
-            $(".cms-sidebar ul li").on("mouseleave", function () {
-                if (!$(this).hasClass("active")) {
-                    $(this).find("i").css("color", "#fff");
-                    $(this).find("span").css("color", "#fff");
-                }
-            });
-            $(".cms-sidebar ul li").on("click", function () {
-                $(".cms-sidebar ul li").removeClass("active");
-                $(".cms-sidebar ul li i").css("color", "#fff");
-                $(".cms-sidebar ul li span").css("color", "#fff");
-                $(this).addClass("active");
-                $(this).find("i").css("color", "#F88634");
-                $(this).find("span").css("color", "#F88634");
-            });
-            
-            // Hide & Show Sidebar
-            $("#sidebar-open").hide();
-            $("#sidebar-close").hide();
 
-            $(window).resize(function () {
-                if ($(window).width() < 960) {
-                    $(".cms-sidebar").hide();
-                    $("#sidebar-open").show();
-                    $("#sidebar-close").hide();
-                } else {
-                    $(".cms-sidebar").show();
-                    $("#sidebar-open").hide();
-                }
-            });
+<script>
+    function getCityOfCountry() {
+        var country = $('#User_CountryId').val();
+        $.ajax({
+            url: '@Url.Action("GetCitiesOfCountry", "Admin")',
+            type: 'GET',
+            data: { country: country },
+            success: function (data) {
+                // Populate the city dropdown with the returned data
+                var cityDropdown = $('#User_CityId');
+                cityDropdown.empty();
+                $.each(data, function (index, item) {
+                    cityDropdown.append('<option value="' + item.cityId + '">' + item.name + '</option>');
+                });
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('#User_CountryId').change(function () {
+            getCityOfCountry();
         });
 
-        // Open & Close Button - Sidebar
-        $("#sidebar-open").on("click", function (e) {
-            $(".cms-sidebar").show();
-            $("#sidebar-open").hide();
-            $("#sidebar-close").show();
+        // Color Change - Sidebar
+        $(".cms-sidebar ul li").on("mouseenter", function () {
+            $(this).find("i").css("color", "#F88634");
+            $(this).find("span").css("color", "#F88634");
+        });
+        $(".cms-sidebar ul li").on("mouseleave", function () {
+            if (!$(this).hasClass("active")) {
+                $(this).find("i").css("color", "#fff");
+                $(this).find("span").css("color", "#fff");
+            }
+        });
+        $(".cms-sidebar ul li").on("click", function () {
+            $(".cms-sidebar ul li").removeClass("active");
+            $(".cms-sidebar ul li i").css("color", "#fff");
+            $(".cms-sidebar ul li span").css("color", "#fff");
+            $(this).addClass("active");
+            $(this).find("i").css("color", "#F88634");
+            $(this).find("span").css("color", "#F88634");
         });
 
-        $("#sidebar-close").on("click", function (e) {
-            $(".cms-sidebar").hide();
-            $("#sidebar-close").hide();
-            $("#sidebar-open").show();
+        // Hide & Show Sidebar
+        $("#sidebar-open").hide();
+        $("#sidebar-close").hide();
+
+        $(window).resize(function () {
+            if ($(window).width() < 960) {
+                $(".cms-sidebar").hide();
+                $("#sidebar-open").show();
+                $("#sidebar-close").hide();
+            } else {
+                $(".cms-sidebar").show();
+                $("#sidebar-open").hide();
+            }
         });
-    </script>
+    });
+
+    // Open & Close Button - Sidebar
+    $("#sidebar-open").on("click", function (e) {
+        $(".cms-sidebar").show();
+        $("#sidebar-open").hide();
+        $("#sidebar-close").show();
+    });
+
+    $("#sidebar-close").on("click", function (e) {
+        $(".cms-sidebar").hide();
+        $("#sidebar-close").hide();
+        $("#sidebar-open").show();
+    });
+</script>

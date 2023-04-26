@@ -198,6 +198,7 @@ namespace Repository.Repository.Repository
             {
                 SkillName = x.SkillName,
                 SkillId = x.SkillId,
+                Status = x.Status,
                 
             }).ToList();
             cms.PageCount = totalCount;
@@ -315,7 +316,6 @@ namespace Repository.Repository.Repository
             {
                 Skill skill = new Skill();
                 skill = cms.skill;
-                skill.Status = 1;
                 _ciPlatformContext.Skills.Add(skill);
                 _ciPlatformContext.SaveChanges();
             }
@@ -354,6 +354,9 @@ namespace Repository.Repository.Repository
             user.Password = cms.User.Password;
             user.WhyIVolunteer = cms.User.WhyIVolunteer;
             user.Department = cms.User.Department;
+            user.Status = cms.User.Status;
+            user.CountryId = cms.User.CountryId;
+            user.CityId = cms.User.CityId;
             user.EmployeeId = cms.User.EmployeeId;
             _ciPlatformContext.Users.Update(user);
             _ciPlatformContext.SaveChanges();

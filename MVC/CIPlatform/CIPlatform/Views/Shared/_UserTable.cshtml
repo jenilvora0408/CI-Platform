@@ -1,144 +1,156 @@
 ﻿@model Entities.ViewModels.CMS
 
-@if(Model.user.Count == 0){
-	<div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
+@if (Model.user.Count == 0)
+{
+    <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
 }
-else{
-<div id="tblOverflow" style="overflow-x: scroll;">
-            <table class="table">
-                <thead>
-                    <tr style="white-space: nowrap;">
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Employee ID</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var item in Model.user)
-            {
-                <tr>
+else
+{
+    <div id="tblOverflow" style="overflow-x: scroll;">
+        <table class="table">
+            <thead>
+                <tr style="white-space: nowrap;">
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.user)
+                {
+                    <tr>
                         <td>
                             @item.FirstName
                         </td>
-                        <td >@item.LastName</td>
+                        <td>@item.LastName</td>
                         <td class="desc">@item.Email</td>
                         <td>@item.EmployeeId</td>
                         <td>@item.Department</td>
                         @*<td class="actives">Active</td>*@
-						<td style="color: @((bool)item.Status ? "#14C506" : "red")">@((bool)item.Status ? "Active" : "Inactive")</td>
+                        <td style="color: @((bool)item.Status ? "#14C506" : "red")">@((bool)item.Status ? "Active" : "Inactive")</td>
                         <td class="icons">
                             <i onclick="return location.href=' @Url.Action("EditUser","Admin",new {UserId=@item.UserId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
                             <img data-id="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello" id="deleteBtn" class="delete-img"
-							src="/images/bin.png" alt="" />
+                                 src="/images/bin.png" alt="" />
                         </td>
                     </tr>
-            }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
-	@if(Model.PageCount > 0){
-	@if(Model.CurrentPage > 1){
-	<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn" >&laquo;</button>}
-	@for(int i = 1; i <= Model.PageCount; i++) {
-		<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){<text>disabled</text>}>@i</button>
-	}
-	@if(Model.CurrentPage != Model.PageCount){<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>}
-	}
+    @if (Model.PageCount > 0)
+    {
+        @if (Model.CurrentPage > 1)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn">&laquo;</button>
+        }
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if (Model.CurrentPage == i)
+            {
+                <text>disabled</text>
+            }>@i</button>
+        }
+        @if (Model.CurrentPage != Model.PageCount)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>
+        }
+    }
 </div>
 
 
 <script>
 
 
-	
-	$('table').on('click', '.delete-img', function () {
-    var deleteID = $(this).data('id');
-    $('#confirm-delete').on('click', function () {
-        $.ajax({
-            type: "POST",
-            url: "/Admin/DeleteUserData",
-            data: { userId: deleteID },
-            success: function (data) {
-                location.reload();
-                alert("Record Deleted.");
-            },
-            error: function (xhr, status, error) {
-                alert("Record Not Deleted.");
+
+    $('table').on('click', '.delete-img', function () {
+        var deleteID = $(this).data('id');
+        $('#confirm-delete').on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteUserData",
+                data: { userId: deleteID },
+                success: function (data) {
+                    location.reload();
+                    alert("Record Deleted.");
+                },
+                error: function (xhr, status, error) {
+                    alert("Record Not Deleted.");
+                }
+            });
+        });
+    });
+
+    $(function () {
+        var currentPage = @Model.CurrentPage;
+        var pageCount = @Model.PageCount;
+
+        $(".page-btn").click(function () {
+            var page = $(this).text();
+            var text = $("#searchUserData").val();
+            if (page != currentPage) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/userTable',
+                    dataType: 'html',
+                    data: { search: text, pageNumber: page },
+                    success: function (data) {
+                        $('#userTable').html("");
+                        $('#userTable').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
+        $("#prev-btn").click(function () {
+            var prevPage = currentPage - 1;
+            var text = $("#searchUserData").val();
+            if (prevPage >= 1) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/userTable',
+                    dataType: 'html',
+                    data: { search: text, pageNumber: prevPage },
+                    success: function (data) {
+                        $('#userTable').html("");
+                        $('#userTable').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
+        $("#next-btn").click(function () {
+            var nextPage = currentPage + 1;
+            var text = $("#searchUserData").val();
+            if (nextPage <= pageCount) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/userTable',
+                    dataType: 'html',
+                    data: { search: text, pageNumber: nextPage },
+                    success: function (data) {
+                        $('#userTable').html("");
+                        $('#userTable').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
             }
         });
     });
-});
-	
-	$(function () {
-		var currentPage = @Model.CurrentPage;
-		var pageCount = @Model.PageCount;
-		
-		$(".page-btn").click(function () {
-			var page = $(this).text();
-			var text = $("#searchUserData").val();
-			if (page != currentPage) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/userTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:page},
-					success: function (data) {
-						$('#userTable').html("");
-						$('#userTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#prev-btn").click(function () {
-			var prevPage = currentPage - 1;
-			var text = $("#searchUserData").val();
-			if (prevPage >= 1) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/userTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:prevPage},
-					success: function (data) {
-						$('#userTable').html("");
-						$('#userTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#next-btn").click(function () {
-			var nextPage = currentPage + 1;
-			var text = $("#searchUserData").val();
-			if (nextPage <= pageCount) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/userTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:nextPage},
-					success: function (data) {
-						$('#userTable').html("");
-						$('#userTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-	});
-	
+
 </script>

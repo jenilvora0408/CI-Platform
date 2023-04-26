@@ -75,307 +75,292 @@
         </div>
         <div class="home-nav2-end"></div>
     </header>
-    <!---------------------
-              Chips
-    -------------------------- -->
-    <div class="home-chips">
-        <div class="chips d-flex flex-wrap" style="gap:1vw;">
-            @* <div class="chip">
-                Tree Plantation
-                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                </div>
-                <div class="chip">
-                Canada
-                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                </div>*@
+</div>
+<!---------------------
+          Chips
+-------------------------- -->
+<div class="home-chips">
+    <div class="chips d-flex flex-wrap" style="gap:1vw;">
+        @* <div class="chip">
+        Tree Plantation
+        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
         </div>
-        <a class="close-chips d-none" href="#">Clear All</a>
+        <div class="chip">
+        Canada
+        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>*@
     </div>
-    <!-----------------------
-            Heading
-    -------------------------- -->
-   <div class="home-heading">
-        <div class="heading-left">
-            <p>Explore <span id="totalMissionCount"></span> missions</p>
+    <a class="close-chips d-none" href="#">Clear All</a>
+</div>
+<!-----------------------
+        Heading
+-------------------------- -->
+<div class="home-heading">
+    <div class="heading-left">
+        <p>Explore <span id="totalMissionCount"></span> missions</p>
+    </div>
+    <div class="heading-right">
+        <div class="selections">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       style="color: #333333">
+                        sort by
+                    </a>
+                    <ul class="dropdown-menu" id="sort-menu">
+                        <li><a class="dropdown-item">newest</a></li>
+                        <li><a class="dropdown-item">oldest</a></li>
+                        <li><a class="dropdown-item">lowest seats</a></li>
+                        <li><a class="dropdown-item">highest seats</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="heading-right">
-            <div class="selections">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                           style="color: #333333">
-                            sort by
-                        </a>
-                        <ul class="dropdown-menu" id="sort-menu">
-                            <li><a class="dropdown-item" >newest</a></li>
-                            <li><a class="dropdown-item" >oldest</a></li>
-                            <li><a class="dropdown-item" >lowest seats</a></li>
-                            <li><a class="dropdown-item" >highest seats</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        <div class="images">
+            <div class="circle-bg-img switch-view">
+                <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
             </div>
-            <div class="images">
-                <div class="circle-bg-img switch-view">
-                    <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
-    </div>
-                <a style="cursor: pointer;" id="select-list-style"><img src="/images/list.png" alt="" /></a>
-            </div>
+            <a style="cursor: pointer;" id="select-list-style"><img src="/images/list.png" alt="" /></a>
         </div>
     </div>
+</div>
 
-    <!-- ------------
-        Grid View
-    ---------------- -->
-    <div class=" grid-view container">
-        <div class="grid-items" id="grid-items"></div>
-    </div>
-    
-    <!-- ------------
-        List View
-    ---------------- -->
+<!-- ------------
+    Grid View
+---------------- -->
+<div class=" grid-view container">
+    <div class="grid-items" id="grid-items"></div>
+</div>
 
-    <div class="listmain-2 mx-auto">
-        <div class="container-fluid d-flex align-items-center justify-content-center">
-            <div id="mission-list" class="mt-5 p-0">
-                @*<partial name="_List"/>*@
-            </div>  
+<!-- ------------
+    List View
+---------------- -->
+
+<div class="listmain-2 mx-auto">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div id="mission-list" class="mt-5 p-0">
+            @*<partial name="_List"/>*@
         </div>
     </div>
-    <!-- ------------
-        Pagination
-      ---------------- -->
-   
-    <footer>
-        <div class="Footer container">
-            <div class="Footer-left">
-                <p>This website makes use of cookies to enhance browsing experience & provide additional functionality.</p>
-                <a href="/Profile/Policy">Privacy Policy</a>
-            </div>
-            <div class="Footer-right">
-                <button>I Agree</button>
-            </div>
+</div>
+<!-- ------------
+    Pagination
+  ---------------- -->
+
+<footer>
+    <div class="Footer container">
+        <div class="Footer-left">
+            <p>This website makes use of cookies to enhance browsing experience & provide additional functionality.</p>
+            <a href="/Profile/Policy">Privacy Policy</a>
         </div>
-    </footer>
+        <div class="Footer-right">
+            <button>I Agree</button>
+        </div>
+    </div>
+</footer>
 
+<script>
+    // JS for Grid View
+    function loadCard(sortColumn, paging) {
 
+        if (!paging)
+            paging = 1;
+        var countryIds = [];
+        var cityIds = [];
+        var themeIds = [];
+        var skillIds = [];
+        var searchText = $("#searchText").val();
 
-
-
-    <script>
-
-
-        
-        function loadCard(sortColumn, paging){
-
-            if(!paging)
-                paging = 1;
-            var countryIds = [];
-            var cityIds  = [];
-            var themeIds  = [];
-            var skillIds  = [];
-            var searchText = $("#searchText").val();
-
-            
-
-            $(".chip").each(function(){
-                if($(this).is(':visible')){
-                    if($(this).attr('data-filter-type')=='country')
-                        countryIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='city')
-                        cityIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='theme')
-                        themeIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='skill')
-                        skillIds.push($(this).attr('data-id'))
-                }
-            })
-            if(!sortColumn) {
-sortColumn = localStorage.getItem("sortColumn");
-}
-
-            $.ajax({
+        $(".chip").each(function () {
+            if ($(this).is(':visible')) {
+                if ($(this).attr('data-filter-type') == 'country')
+                    countryIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'city')
+                    cityIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'theme')
+                    themeIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'skill')
+                    skillIds.push($(this).attr('data-id'))
+            }
+        })
+        if (!sortColumn) {
+            sortColumn = localStorage.getItem("sortColumn");
+        }
+        // AJAX Call for Grid View
+        $.ajax({
             type: "POST",
             url: "@Url.Action("gridSP","Mission")",
             dataType: "html",
             cache: false,
-            data:{country:countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging},
+            data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
             success: function (data) {
-                //console.warn(data);
                 $("#grid-items").html("");
                 $('#grid-items').html(data);
-                  favouriteMissions();
-                  loadPagination(null, paging);
-              console.warn("hello");
+                favouriteMissions();
+                loadPagination(null, paging);
+                console.warn("hello");
             },
             error: function (xhr, status, error) {
-                // Handle error
                 console.log(error);
             }
         });
+    }
 
+    // JS for List View
+    function loadList(sortColumn, paging) {
+        if (!paging)
+            paging = 1;
+        var countryIds = [];
+        var cityIds = [];
+        var themeIds = [];
+        var skillIds = [];
+        var searchText = $("#searchText").val();
 
-
+        $(".chip").each(function () {
+            if ($(this).is(':visible')) {
+                if ($(this).attr('data-filter-type') == 'country')
+                    countryIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'city')
+                    cityIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'theme')
+                    themeIds.push($(this).attr('data-id'))
+                else if ($(this).attr('data-filter-type') == 'skill')
+                    skillIds.push($(this).attr('data-id'))
+            }
+        })
+        if (!sortColumn) {
+            sortColumn = localStorage.getItem("sortColumn");
         }
-        function loadList(sortColumn, paging){
-            if(!paging)
-                paging = 1;
-            var countryIds = [];
-            var cityIds  = [];
-            var themeIds  = [];
-            var skillIds  = [];
-            var searchText = $("#searchText").val();
-
-            
-
-            $(".chip").each(function(){
-                if($(this).is(':visible')){
-                    if($(this).attr('data-filter-type')=='country')
-                        countryIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='city')
-                        cityIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='theme')
-                        themeIds.push($(this).attr('data-id'))
-                    else if($(this).attr('data-filter-type')=='skill')
-                        skillIds.push($(this).attr('data-id'))
-                }
-            })
-            if(!sortColumn) {
-sortColumn = localStorage.getItem("sortColumn");
-}
-            $.ajax({
-                type:"POST",
-                url: "@Url.Action("listSP","Mission")",
-                dataType: "html",
-                cache: false,
-            data:{country:countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging},
+        // AJAX call for List View
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("listSP","Mission")",
+            dataType: "html",
+            cache: false,
+            data: { country: countryIds.toString(), city: cityIds.toString(), theme: themeIds.toString(), skill: skillIds.toString(), search: searchText, sortBy: sortColumn, pageNumber: paging },
             success: function (data) {
-                //console.warn(data);
                 $("#mission-list").html("");
                 $('#mission-list').html(data);
-              console.warn("list has called");
+                console.warn("list has called");
             },
             error: function (xhr, status, error) {
-                // Handle error
                 console.log(error);
             }
-            })
-        }
-        
-            $(document).ready(function () {
-                 loadCard(null, 1);
-                 loadList(null, 1);
-                 $("#searchText").on("keyup", function(e) {
-                    loadCard();
-                    loadList();
-                 })
-                 var sortColumn = "";
-                 $("#sort-menu li a").on("click", function(e){
-                      sortColumn = $(this).text();
-                      localStorage.setItem("sortColumn",sortColumn);
-                      loadCard(sortColumn, 1);
-                      loadList(sortColumn, 1);
-                 })
-                 $(window).on('beforeunload', function () {
-                     localStorage.removeItem("sortColumn");
-                });
-                loadCard();
-              getFavouriteMissions();
-            });
+        })
+    }
 
-        function favouriteMissions() {
-            $("#GridView .favourite-mission-div").on("click", function (event) {
+    $(document).ready(function () {
+        loadCard(null, 1);
+        loadList(null, 1);
+        $("#searchText").on("keyup", function (e) {
+            loadCard();
+            loadList();
+        })
+        var sortColumn = "";
+        $("#sort-menu li a").on("click", function (e) {
+            sortColumn = $(this).text();
+            localStorage.setItem("sortColumn", sortColumn);
+            loadCard(sortColumn, 1);
+            loadList(sortColumn, 1);
+        })
+        $(window).on('beforeunload', function () {
+            localStorage.removeItem("sortColumn");
+        });
+        loadCard();
+        getFavouriteMissions();
+    });
+
+    function favouriteMissions() {
+        $("#GridView .favourite-mission-div").on("click", function (event) {
             event.preventDefault();
+            // Add to favourites
             if (this.style.backgroundColor == "black") {
-            this.style.opacity = 1;
-            var missionId =this.id.slice(18,);
-            var userId =$(".home-nav1-right .user-btn")[0].id;
-            console.warn(userId);
-            console.warn(missionId);
-            $.ajax({
-            type: "POST",
-            url: '/Mission/addFavouriteMissions',
-            data: { userId: userId, missionId: missionId },
-            success: function (data) {
-                loadCard();
-            //getFavouriteMissions();
-            
-            },
-            error: function (xhr, status, error) {
-            // Handle error
-            console.log(error);
+                this.style.opacity = 1;
+                var missionId = this.id.slice(18,);
+                var userId = $(".home-nav1-right .user-btn")[0].id;
+                console.warn(userId);
+                console.warn(missionId);
+                $.ajax({
+                    type: "POST",
+                    url: '/Mission/addFavouriteMissions',
+                    data: { userId: userId, missionId: missionId },
+                    success: function (data) {
+                        loadCard();
+                        //location.reload();
+                        //getFavouriteMissions();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
             }
-            });
-            
-            }
+            // Remove from favourites
             else {
-            
-            var missionId = this.id.slice(18,); 
-            
-            var userId = $(".home-nav1-right .user-btn")[0].id;
-            $.ajax({
-            type: "POST",
-            url: '/Mission/removeFavouriteMissions',
-            data: { userId: userId, missionId: missionId },
-            success: function (data) {
-                console.log("remove fav");
-                loadCard();
-            //getFavouriteMissions();
-                console.log("remove fav2");
-            },
-            error: function (xhr, status, error) {
-            // Handle error
-            console.log(error);
-            }
-            });
-            
-            }
-            });
-            }
-   
-          
+                var missionId = this.id.slice(18,);
+                var userId = $(".home-nav1-right .user-btn")[0].id;
+                $.ajax({
+                    type: "POST",
+                    url: '/Mission/removeFavouriteMissions',
+                    data: { userId: userId, missionId: missionId },
+                    success: function (data) {
+                        console.log("remove fav");
+                        loadCard();
+                        //location.reload();
+                        //getFavouriteMissions();
+                        console.log("remove fav2");
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
 
-        function getFavouriteMissions() {
+            }
+        });
+    }
+
+    // Check whether the mission is favourite or not
+    function getFavouriteMissions() {
         var userId = $(".home-nav1-right .user-btn")[0].id;
         console.log("In get fav");
-    $.ajax({
-        type: "GET",
-        url: '/Mission/getFavouriteMissionsOfUser',
-        data: { userid: userId },
-        success: function (data) {
-            var dataArr = data["data"].split(",");
-        $("#GridView .favourite-mission-div").each(function (index) {
-                var id = this.id.slice(18);
+        $.ajax({
+            type: "GET",
+            url: '/Mission/getFavouriteMissionsOfUser',
+            data: { userid: userId },
+            success: function (data) {
+                var dataArr = data["data"].split(",");
                 console.log(dataArr);
-                console.log("In get fav:",id);
-                var temp=false;
-                Loop1: 
+                setTimeout(() => {
+                    $("#GridView .favourite-mission-div").each(function (index) {
+                        var id = this.id.slice(18);
 
-                for (var i = 0; i < dataArr.length ; i++) {
-                    if (dataArr[i] == id) {                        
-                        temp=true;
-                        break Loop1;
-                    }
-                }
-                    if(temp){
-                        this.style.backgroundColor = "red";
-                        this.style.opacity = 1;
-                        console.log("True",dataArr,id,dataArr[i] == id);
-                    }
-                    else{
-                        console.log("False",dataArr,id,dataArr[i] == id);
+                        console.log("In get fav:" + this.id);
+                        var temp = false;
+                        Loop1:
+                        for (var i = 0; i < dataArr.length; i++) {
+                            if (dataArr[i] == id) {
+                                temp = true;
 
-                    this.style.backgroundColor = "black";
-                    this.style.opacity = 0.4;
-                    }
-                    
-                
-            });
-        },
-        error: function (xhr, status, error) {
-            // Handle error
-            console.log(error);
-        }
-    });
-}
-    </script>
+                                break Loop1;
+                            }
+                        }
+                        if (temp == true) {
+                            console.log("test");
+                            this.style.backgroundColor = "red";
+                            this.style.opacity = 1;
+                            //console.log("True", dataArr, id, dataArr[i] == id);
+                        }
+                        else {
+                            //console.log("False", dataArr, id, dataArr[i] == id);
+
+                            this.style.backgroundColor = "black";
+                            this.style.opacity = 0.4;
+                        }
+                    });
+                }, 250);
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

@@ -125,7 +125,7 @@ namespace Repository.Repository.Repository
 
         List<Banner> RegisterInterface.GetBanners()
         {
-            return _ciPlatformContext.Banners.ToList();
+            return _ciPlatformContext.Banners.OrderBy(x => x.SortOrder).ToList();
         }
     }
 

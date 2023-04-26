@@ -27,27 +27,46 @@ namespace CIPlatform.Controllers
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
         }
+        /// <summary>
+        /// View - Login Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Login()
         {
             Login login = new Login();
             login.banners = _registerInterface.GetBanners();
             return View(login);
         }
+
+        /// <summary>
+        /// View - Forgot Password Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ForgotPassword()
         {
             ForgotPassword forgotPassword = new ForgotPassword();
             forgotPassword.banners = _registerInterface.GetBanners();
             return View(forgotPassword);
         }
+
+        /// <summary>
+        /// View - Register Page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Register()
         {
             Register register = new Register();
             register.banners = _registerInterface.GetBanners();
             return View(register);
         }
+
+        /// <summary>
+        /// View - Reset Password Page
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public IActionResult NewPassword(string? token)
         {
-
             var resetObj = _registerInterface.findUserByToken(token);
             TimeSpan remainingTime = DateTime.Now - resetObj.CreatedAt;
 
@@ -64,7 +83,11 @@ namespace CIPlatform.Controllers
             return View(newPasswordModel);
         }
 
-
+        /// <summary>
+        /// Allows user to Register on CI - Platform
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Register(Register user)
         {
@@ -87,7 +110,11 @@ namespace CIPlatform.Controllers
             return RedirectToAction("Index", "Home", newRegister);
         }
  
-
+        /// <summary>
+        /// Allows Registeres User to Login 
+        /// </summary>
+        /// <param name="N"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ValidateLogin(Login N)
         {
@@ -127,7 +154,6 @@ namespace CIPlatform.Controllers
                         if (password.Role == "admin")
                             return RedirectToAction("User", "Admin");
 
-
                         return RedirectToAction("MissionListing", "Mission");
                     }
                     else
@@ -145,7 +171,12 @@ namespace CIPlatform.Controllers
             return RedirectToAction("Login", login);
         }
 
-
+        /// <summary>
+        /// User gets a link on their registered Email to reset a password
+        /// Link to Reset Password will expire after 4 hours
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPassword obj)
         {
@@ -179,7 +210,11 @@ namespace CIPlatform.Controllers
             return View(forgotPassword);
         }
 
-        
+        /// <summary>
+        /// Allows user to Reset Password
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult NewPassword(NewPassword obj)
         {
@@ -212,12 +247,16 @@ namespace CIPlatform.Controllers
             }
             return View(newPassword);
         }
+
+        /// <summary>
+        /// Logout from CI - Platform
+        /// </summary>
+        /// <returns></returns>
         public IActionResult logout()
         {
             HttpContext.Session.Remove("useremail");
             HttpContext.Session.Clear();
             return RedirectToAction("Login","Account");
-
         }
         
     }

@@ -1,125 +1,118 @@
 ﻿@using Entities.ViewModels
-    @model Pagination
-   
+@model Pagination
 
 @{
-    int missionTotal =(int) Model.totalMissionCount;
+    int missionTotal = (int)Model.totalMissionCount;
 }
-@if (missionTotal==0)
+@if (missionTotal == 0)
 {
-        <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Mission Found</p></div>
-    
+    <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Mission Found</p></div>
 }
-
-
 
 <div id="GridView" class="row" style="margin-bottom:3vh;">
-   @foreach(var item in Model.missions) {
-       
-         <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
-          <div class="card h-100" style="box-shadow:none; border: 1px solid #D9D9D9; white-space: nowrap">
-            <div class="card-image">
-                    @if(item.approvalStatus == "Approved")
+    @foreach (var item in Model.missions)
+    {
+        <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
+            <div class="card h-100" style="box-shadow:none; border: 1px solid #D9D9D9; white-space: nowrap">
+                <div class="card-image">
+                    @if (item.approvalStatus == "Approved")
                     {
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
                     }
-                    else if(DateTime.Now > item.endDate ){
+                    else if (DateTime.Now > item.endDate)
+                    {
                         <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
                     }
                     @{
                         string[] mediaNames = @item.missionImage.ToString().Split(",");
                     }
                     <img class="card-img-top" src="@item.mediaPath@mediaNames[0].@item.mediaType"
-                alt="Card image cap" />
-              <div class="location">
-                <img class="country-pin" src="/images/pin.png" alt="" />
-                <span class="country">@item.cityName</span>
-              </div>
-                    @if(item.favMissionId != null)
+                         alt="Card image cap" />
+                    <div class="location">
+                        <img class="country-pin" src="/images/pin.png" alt="" />
+                        <span class="country">@item.cityName</span>
+                    </div>
+                    @if (item.favMissionId != null)
                     {
-                         <div class="feature favourite-mission-div" style="background-color:red;" id="favourite-mission-@item.MissionId">
-                      <img  id="heart" src="/images/heart.png" alt="" />
-                      <img src="/images/user.png" alt="" />
-              </div>
+                        <div class="feature favourite-mission-div" style="background-color:red;" id="favourite-mission-@item.MissionId">
+                            <img id="heart" src="/images/heart.png" alt="" />
+                            <img src="/images/user.png" alt="" />
+                        </div>
                     }
-                    else{
-                         <div class="feature favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId">
-                      <img id="heart" src="/images/heart.png" alt="" />
-                      <img src="/images/user.png" alt="" />
-              </div>
-                    }
-             
-              <p class="filter"><span>@item.themeName</span></p>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title" style="overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;">
-                @item.missionTitle
-              </h5>
-              <div class="text-1">
-                <p class="card-text" style="overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;">
-                  @item.missionShortDesc
-                </p>
-              </div>
-              <div class="ratings">
-                <span>@item.organizationName</span>
-                <div class="rating">
-                  @*<i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>*@
-                    <div title="Rating">
-                    @if (true)
+                    else
                     {
-                        for (var i = 0; i < (@item.Rating); i++)
-                        {
-                            <i class="fa fa-star rating-color checked"></i>
-                        }
-                        for (var i = 0; i < 5 - (@item.Rating); i++)
-                        {
-                            <i class="fa fa-star"></i>
-                        }
+                        <div class="feature favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId">
+                            <img id="heart" src="/images/heart.png" alt="" />
+                            <img src="/images/user.png" alt="" />
+                        </div>
                     }
-                </div>
-                </div>
-              
-              </div>
-            </div>
-            <hr />
-            @if (item.startDate == null)
-            {
-                <p class="mission-date">
-                    <span class="time-span">@item.goalObjective</span>
-                </p>
-            }
-            else
-            {
-   
-                <p class="mission-date">
-                    <span class="time-span">@item.startDate.Value.ToString("d")
- until @item.endDate.Value.ToString("d")</span>
-                </p>
-            }
 
-            <div class="card-body insight">
-              <div class="card-body-left">
-                
-                        @if(item.availableSeats > 0)
+                    <p class="filter"><span>@item.themeName</span></p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;">
+                        @item.missionTitle
+                    </h5>
+                    <div class="text-1">
+                        <p class="card-text" style="overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;">
+                            @item.missionShortDesc
+                        </p>
+                    </div>
+                    <div class="ratings">
+                        <span>@item.organizationName</span>
+                        <div class="rating">
+                            <div title="Rating">
+                                @if (true)
+                                {
+                                    for (var i = 0; i < (@item.Rating); i++)
+                                    {
+                                        <i class="fa fa-star rating-color checked"></i>
+                                    }
+                                    for (var i = 0; i < 5 - (@item.Rating); i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                @if (item.startDate == null)
+                {
+                    <p class="mission-date">
+                        <span class="time-span">@item.goalObjective</span>
+                    </p>
+                }
+                else
+                {
+                    <p class="mission-date">
+                        <span class="time-span">
+                            @item.startDate.Value.ToString("d")
+                            until @item.endDate.Value.ToString("d")
+                        </span>
+                    </p>
+                }
+
+                <div class="card-body insight">
+                    <div class="card-body-left">
+
+                        @if (item.availableSeats > 0)
                         {
                             <div class="card-body-left-img">
-                  <img src="/images/Seats-left.png" alt="" />
-                </div>
+                                <img src="/images/Seats-left.png" alt="" />
+                            </div>
                             <div class="card-body-left-text">
-                  <span class="figure">@item.availableSeats</span>
-                  <span class="seats-left">Seats left</span>
+                                <span class="figure">@item.availableSeats</span>
+                                <span class="seats-left">Seats left</span>
                             </div>
                         }
                         else
@@ -127,10 +120,10 @@
                             <div>No Seats Left</div>
                         }
 
-              </div>
-              <div class="card-body-right">
-                <div class="card-body-right-img">
-                            @if(item.endDate == null)
+                    </div>
+                    <div class="card-body-right">
+                        <div class="card-body-right-img">
+                            @if (item.endDate == null)
                             {
                                 <img src="/images/achieved.png" alt="" />
                             }
@@ -138,37 +131,33 @@
                             {
                                 <img src="/images/deadline.png" alt="" />
                             }
-                            
+
+                        </div>
+                        
+                        @if (item.endDate == null)
+                        {
+                            var progress = @item.goalValue;
+
+                            <div class="card-body-right-text">
+                                <div class="progress" style="width: 7vw; height: 13px;  ">
+                                    <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@item.goalValue" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                                <span class="seats-left">@item.goalValue achieved</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-body-right-text">
+                                <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
+                                <span class="deadline">Deadline</span>
+                            </div>
+                        }
+                    </div>
                 </div>
-               @* <div class="card-body-right-text">
-                  <span class="figure">@item.endDate?.ToString("dd-mm-yyyy")</span>
-                  <span class="deadline">Deadline</span>
-                </div>*@
-                @if (item.endDate == null)
-            {
-             
-                                var progress = @item.goalValue;
-                       
-                <div class="card-body-right-text">
-                <div class="progress" style="width: 7vw; height: 13px;  ">
-                  <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@item.goalValue" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <span class="seats-left">@item.goalValue achieved</span>
-              </div>
-            }
-            else
-            {
-                <div class="card-body-right-text">
-                  <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
-                  <span class="deadline">Deadline</span>
-                </div>
-            }
-              </div>
-            </div>
-            <hr />
-            <div class="apply-btn">
-                    @if(DateTime.Now >= item.deadline || item.goalValue == 100)
+                <hr />
+                <div class="apply-btn">
+                    @if (DateTime.Now >= item.deadline || item.goalValue == 100)
                     {
                         <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                             View Details <img src="/images/right-arrow.png" alt="" />
@@ -176,20 +165,18 @@
                     }
                     else
                     {
-                        <button  style="width: fit-content !important; white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
-                           Apply  <img src="/images/right-arrow.png" alt="" />
-                        </button>  
+                        <button style="width: fit-content !important; white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                            Apply  <img src="/images/right-arrow.png" alt="" />
+                        </button>
                     }
                     <br /><br />
+                </div>
             </div>
-          </div>
         </div>
-        }
-        </div>
+    }
+</div>
 
-
-
- <div class="Pagination my-3">
+<div class="Pagination my-3">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center" id="pagination">
             @if (Model.pageCount > 1)
@@ -217,44 +204,39 @@
     </nav>
 </div>
 
-    
-
-
-    <script>
-       loadPagination();
+<script>
+    loadPagination();
     function loadPagination() {
-       var paging = "";
-      
+        var paging = "";
 
-    $("#pagination li a").on("click", function (e) {
-        e.preventDefault();
-        paging = $(this).data("page");
-        loadList(null, paging);
-        loadCard(null, paging);
-    });
 
-    $("#pagePrev").on("click", function (e) {
-        e.preventDefault();
-        if ($(this).parent().hasClass("disabled")) {
-            return;
-        }
-        paging = parseInt($("#pagination li.active a").data("page"));
-        paging--;
-        loadList(null, paging);
-        loadCard(null, paging);
-    });
+        $("#pagination li a").on("click", function (e) {
+            e.preventDefault();
+            paging = $(this).data("page");
+            loadList(null, paging);
+            loadCard(null, paging);
+        });
 
-    $("#pageNext").on("click", function (e) {
-        e.preventDefault();
-        if ($(this).parent().hasClass("disabled")) {
-            return;
-        }
-        paging = parseInt($("#pagination li.active a").data("page"));   
-        paging++;
-        loadList(null, paging);
-        loadCard(null, paging);
-    });
-}
+        $("#pagePrev").on("click", function (e) {
+            e.preventDefault();
+            if ($(this).parent().hasClass("disabled")) {
+                return;
+            }
+            paging = parseInt($("#pagination li.active a").data("page"));
+            paging--;
+            loadList(null, paging);
+            loadCard(null, paging);
+        });
 
-        
-    </script>
+        $("#pageNext").on("click", function (e) {
+            e.preventDefault();
+            if ($(this).parent().hasClass("disabled")) {
+                return;
+            }
+            paging = parseInt($("#pagination li.active a").data("page"));
+            paging++;
+            loadList(null, paging);
+            loadCard(null, paging);
+        });
+    }
+</script>

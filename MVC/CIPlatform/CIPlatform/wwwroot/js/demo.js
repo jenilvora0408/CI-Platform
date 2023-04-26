@@ -1,8 +1,9 @@
-﻿
+﻿// Create chips when an item is selected from dropdown
 function showChip() {
     $(".selection .dropdown-menu li a").on("click", function (e) {
         var filterType = $(this).attr('data-filter-type');
         var dataID = $(this).parent().val();
+        // Prevent same chip from being created more than once
         var existingChip = $(".home-chips .chip[data-filter-type='" + filterType + "'][data-id='" + dataID + "']");
         if (existingChip.length === 0) {
             $(".home-chips .chips").append(
@@ -11,21 +12,17 @@ function showChip() {
                 '<span class="closebtn" onclick="removeChip(this)">&times;</span>'
             );
         }
-        
         $(".close-chips").show();
-
-       
     });
 }
 
-
+// Remove chips 
 function removeChip(btn) {
     $(btn).parent().removeAttr("data-id").hide();
     $(".close-chips").hide();
     loadCard();
     loadList();
 }
-
 
 $(".close-chips").on("click", function (e) {
     $(".home-chips .chip").remove();
@@ -36,7 +33,7 @@ $(".close-chips").on("click", function (e) {
 });
 
 
-
+// Switch between grid & list view
 $("#mission-list").hide();
 $("#select-list-style").on("click", function (e) {
     $(".grid-view").hide();
@@ -51,10 +48,11 @@ $("#select-grid-style").on("click", function (e) {
 
 })
 
-    /*AJAX Call for Countries - Dropdown*/
 
 $(document).ready(function () {
-    /*debugger*/
+
+    /*AJAX Call for Countries - Dropdown*/
+
     var ddlCountry = $('#mission-countries');
     ddlCountry.append($("<ul></ul>").val(''));
     var ajaxRequest1 = $.ajax({
@@ -62,11 +60,9 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (d) {
-            /*debugger*/
             var a = "";
             $.each(d, function (i, country) {
-                /*console.warn(country);*/
-                a += '<li class="countryItem" value="'+country.countryId+'"><a data-filter-type="country" class= "dropdown-item" href = "#" >' + country.name + '</a></li>';
+                a += '<li class="countryItem" value="' + country.countryId + '"><a data-filter-type="country" class= "dropdown-item" href = "#" >' + country.name + '</a></li>';
             });
             ddlCountry.append(a);
             $(".countryItem").on("click", function (e) {
@@ -79,8 +75,6 @@ $(document).ready(function () {
         }
     });
 
-    
-
     /*AJAX Call for Cities - Dropdown*/
 
     var ddlCity = $('#mission-cities');
@@ -92,7 +86,7 @@ $(document).ready(function () {
         success: function (d) {
             var b = "";
             $.each(d, function (i, city) {
-                b += '<li class="cityItem" value="' + city.cityId+'"><a data-filter-type="city" class= "dropdown-item" href = "#" >' + city.name + '</a></li>';
+                b += '<li class="cityItem" value="' + city.cityId + '"><a data-filter-type="city" class= "dropdown-item" href = "#" >' + city.name + '</a></li>';
             });
             ddlCity.append(b);
             $(".cityItem").on("click", function (e) {
@@ -117,7 +111,7 @@ $(document).ready(function () {
             var c = "";
             $.each(d, function (i, theme) {
                 /*console.log(theme.missionThemeId);*/
-                c += '<li class="themeItem" value="' + theme.missionThemeId +'"><a data-filter-type="theme" class= "dropdown-item" href = "#" >' + theme.title + '</a></li>';
+                c += '<li class="themeItem" value="' + theme.missionThemeId + '"><a data-filter-type="theme" class= "dropdown-item" href = "#" >' + theme.title + '</a></li>';
             });
             ddltheme.append(c);
             $(".themeItem").on("click", function (e) {
@@ -141,7 +135,7 @@ $(document).ready(function () {
         success: function (d) {
             var skills = "";
             $.each(d, function (i, skill) {
-                skills += '<li class="skillItem" value="' + skill.skillId +'"><a data-filter-type="skill" class= "dropdown-item" href = "#" >' + skill.skillName + '</a></li>';
+                skills += '<li class="skillItem" value="' + skill.skillId + '"><a data-filter-type="skill" class= "dropdown-item" href = "#" >' + skill.skillName + '</a></li>';
             });
             ddlSkill.append(skills);
             $(".skillItem").on("click", function (e) {
@@ -158,24 +152,18 @@ $(document).ready(function () {
         showChip();
     });
 });
-    
-  
-//---Convet-Grid-List---
+
+
+// Covert List View to Grid View if width of window is less than 1400 px
 localStorage.setItem("lastVisible", "grid");
 var windowWidth = $(window).width();
-// Check if the window width is less than 1440px
 if (windowWidth < 1400) {
-    // Hide the list view and show the gird view
     $('#mission-list').hide();
     $('.grid-view').show();
 }
 $(window).resize(function (e) {
-    // Get the new window width
     var newWindowWidth = $(window).width();
-
-    // Check if the window width is less than 1440px
     if (newWindowWidth < 1400) {
-        // Hide the list view and show the gird view
         $('#mission-list').hide();
         $('.grid-view').show();
         $(".switch-view").hide();
@@ -184,7 +172,6 @@ $(window).resize(function (e) {
     else {
         $(".switch-view").show();
         $("#select-list-style").show();
-        // Show the list view and hide the gird view
         if (localStorage.getItem("lastVisible") == "list") {
             $('.grid-view').hide();
             $('#mission-list').show();

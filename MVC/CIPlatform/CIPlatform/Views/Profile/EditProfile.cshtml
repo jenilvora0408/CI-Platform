@@ -4,7 +4,6 @@
     <div class="edit-profile-page">
         <div class="edit-user-profile">
             <div class="edit-left">
-                @*<img id="user-avatar" src="@Model.Navbar_1.avatar" alt=""/>*@
                 <img class="UserAvtarPhoto" id="user-avatar" src="@Model.Navbar_1.avatar" alt="" title="Click To Change UserImage">
 @using (Html.BeginForm("UpdateUserImage", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -169,10 +168,10 @@
                         <div class="layer-5-part-skill">
                             <ul style="height: 5vh;" id="addSkillForUser">
                                 
-@foreach (var skill in ViewBag.selectedskills)
-{
-<li value="@skill.Value" >@skill.Text</li>
-}
+                                @foreach (var skill in ViewBag.selectedskills)
+                                {
+                                <li value="@skill.Value" >@skill.Text</li>
+                                }
 
                             </ul>
                         </div>

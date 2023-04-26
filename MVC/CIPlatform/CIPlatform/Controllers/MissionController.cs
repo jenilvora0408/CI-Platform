@@ -32,6 +32,7 @@ namespace CIPlatform.Controllers
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -46,26 +47,23 @@ namespace CIPlatform.Controllers
             }
             Navbar_1 missionHomeModel = new Navbar_1();
             User userObj = _missionInterface.findUser(userSessionEmailId);
-
             missionHomeModel.username = userObj.FirstName + " " + userObj.LastName;
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
-          
+
             return View(missionHomeModel);
         }
 
-            public IActionResult MissionVolunteering(int? missionId)
-            {
-                string userSessionEmailId = HttpContext.Session.GetString("useremail");
-                User userObj = _missionInterface.findUser(userSessionEmailId);
+        public IActionResult MissionVolunteering(int? missionId)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
             if (userSessionEmailId == null)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
+            {
+                return RedirectToAction("Login", "Account");
+            }
             int userId = (int)userObj.UserId;
-            MissionVol missionVol =_missionInterface.getMissionVolData(missionId,userId);
-            //missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
-            //missionVol.Volunteering = _ciPlatformContext.Volunteerings.FromSqlInterpolated($"exec GetMissionVolData @missionId={missionId}, @userId={userObj.UserId}").AsEnumerable().First();
+            MissionVol missionVol = _missionInterface.getMissionVolData(missionId, userId);
             Navbar_1 navbar1 = new Navbar_1();
             missionVol.Navbar_1 = new Navbar_1();
             missionVol.Navbar_1.username = userObj.FirstName + " " + userObj.LastName;
@@ -74,22 +72,14 @@ namespace CIPlatform.Controllers
             missionVol.recentVolunteer = _missionInterface.getRelatedMissions(missionId);
 
             return View(missionVol);
-            }
+        }
 
-            //public IActionResult RecentVolunteers(int? missionId)
-            //{
-            //    MissionVol missionVol = new MissionVol();
-            //    missionVol.recentVolunteer = _ciPlatformContext.MissionVols.FromSqlInterpolated($"exec recentVolunteer").ToList();
-            //    return View(missionVol);
-            //}
-
-
-            [HttpPost]
-            public IActionResult relatedMissions(string theme, int? missionID)
-            {
-                IEnumerable<RelatedMission> relatedMission=_ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}");
-                return PartialView("RelatedMission",relatedMission);
-            }
+        [HttpPost]
+        public IActionResult relatedMissions(string theme, int? missionID)
+        {
+            IEnumerable<RelatedMission> relatedMission = _missionInterface.GetRelatedMissions(theme, missionID);
+            return PartialView("RelatedMission", relatedMission);
+        }
 
         public IActionResult listCountries()
         {
@@ -103,7 +93,7 @@ namespace CIPlatform.Controllers
         }
         public IActionResult listTheme()
         {
-            IEnumerable<MissionTheme> missionThemes = _missionInterface.GetMissionThemes(); 
+            IEnumerable<MissionTheme> missionThemes = _missionInterface.GetMissionThemes();
             return Json(missionThemes);
         }
         public IActionResult listSkill()
@@ -127,24 +117,14 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-
-
         [HttpPost]
         public IActionResult gridSP(Utilities utilities)
         {
-
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            // make explicit SQL Parameter
-            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            Pagination pagination = new Pagination();
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out,@userId={userObj.UserId}").ToList();
-            pagination.missions = test;
-            pagination.pageSize = 9;
-            pagination.pageCount = long.Parse(output.Value.ToString());
-            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
-            pagination.activePage = utilities.pageNumber;
+
+            Pagination pagination = _missionInterface.GetMissionsByUtilities(utilities,(int) userObj.UserId);
+
             return PartialView("_Grid", pagination);
         }
 
@@ -153,18 +133,10 @@ namespace CIPlatform.Controllers
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
-            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
-            Pagination pagination = new Pagination();
-            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated($"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out, @userId={userObj.UserId}").ToList();
-            pagination.missions = test;
-            pagination.pageSize = 9;
-            pagination.pageCount = long.Parse(output.Value.ToString());
-            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
-            pagination.activePage = utilities.pageNumber;
+            
+            Pagination pagination = _missionInterface.GetMissionByUtilitiesForList(utilities,(int) userObj.UserId);
             return PartialView("_List", pagination);
         }
-
 
         public void addFavouriteMissions(string userId, string missionId)
         {
@@ -173,6 +145,7 @@ namespace CIPlatform.Controllers
             favouriteMissionObj.MissionId = Int64.Parse(missionId);
             _missionInterface.addFavouriteMission(favouriteMissionObj);
         }
+
         public void removeFavouriteMissions(string userId, string missionId)
         {
             FavouriteMission favouriteMissionObj = new FavouriteMission();
@@ -181,6 +154,7 @@ namespace CIPlatform.Controllers
             FavouriteMission favouriteMission = _missionInterface.getFavouriteMission(favouriteMissionObj);
             _missionInterface.removeFavouriteMission(favouriteMission);
         }
+
         public IActionResult getFavouriteMissionsOfUser(int userid)
         {
             IEnumerable<FavouriteMission> favouriteMissions = _missionInterface.getFavouriteMissionsOfUser(userid);
@@ -192,15 +166,13 @@ namespace CIPlatform.Controllers
             return Json(new { data = arr });
         }
 
-
         [HttpPost]
         public IActionResult RecommandtoCoWorker(string InviteEmail, long MissionId)
         {
-            
             string email = HttpContext.Session.GetString("useremail");
             var userfrom = _missionInterface.findUser((string)email);
             var userto = _missionInterface.findUser((string)InviteEmail);
-            
+
             bool shareMessage = _missionInterface.RecommandtoCoWorker((long)userfrom.UserId, (int)MissionId, (long)userto.UserId);
             string message = "";
             if (shareMessage)
@@ -212,7 +184,6 @@ namespace CIPlatform.Controllers
             {
                 string mailmessage = "Welcome to CI Platform, <br/> your friend " + userfrom.FirstName + " " + userfrom.LastName + " " + "You can Join Mission Using Below link.. </br>";
                 string path = "<a href=\"" + "https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Mission/MissionVolunteering?MissionId=" + MissionId + "\"style=\"font-weight:500;color:blue;\">Invite to Mission</a>";
-                //string path = "<a href=\"" + " https://" + _httpContextAccessor.HttpContext.Request.Host.Value + "/Mission/MissionVolunteering?token=" + MissionId + " \"  style=\"font-weight:500;color:blue;\" > Reset Password </a>";
                 MailHelper mailHelper = new MailHelper(_configuration);
                 ViewBag.sendMail = mailHelper.Send(InviteEmail, mailmessage + path);
                 message = "You Successfully Invited";
@@ -225,45 +196,41 @@ namespace CIPlatform.Controllers
 
         public IActionResult MissionUserRating(float ratingCount, long? missionid)
         {
-            //var missionid = HttpContext.Session.GetInt32("missionid");
             var Email = HttpContext.Session.GetString("useremail");
             User user = _missionInterface.findUser((string)Email);
-            //MissionRating missionRating = new MissionRating();
             var findUserRating = _ciPlatformContext.MissionRatings.Where(x => x.UserId == user.UserId && x.MissionId == missionid).FirstOrDefault();
-            if (findUserRating == null)
-            {
-                if (ratingCount == 0.5)
+                if (findUserRating == null)
                 {
-                    ratingCount = 1;
+                    if (ratingCount == 0.5)
+                    {
+                        ratingCount = 1;
+                    }
+                    MissionRating missionRating = new MissionRating();
+                    missionRating.UserId = user.UserId;
+                    missionRating.MissionId = (long)missionid;
+                    missionRating.Rating = (int)ratingCount;
+                    var entry = _ciPlatformContext.MissionRatings.Add(missionRating);
+                    _ciPlatformContext.SaveChanges();
                 }
-                MissionRating missionRating = new MissionRating();
-                missionRating.UserId = user.UserId;
-                missionRating.MissionId = (long)missionid;
-                missionRating.Rating = (int)ratingCount;
-                var entry = _ciPlatformContext.MissionRatings.Add(missionRating);
-                _ciPlatformContext.SaveChanges();
-            }
-            else
-            {
-                if (ratingCount == 0.5)
+                else
                 {
-                    ratingCount = 1;
+                    if (ratingCount == 0.5)
+                    {
+                        ratingCount = 1;
+                    }
+                    findUserRating.UserId = user.UserId;
+                    findUserRating.MissionId = (long)missionid;
+                    findUserRating.Rating = (int)ratingCount;
+                    findUserRating.UpdatedAt = DateTime.Now;
+                    _ciPlatformContext.MissionRatings.Update(findUserRating);
+                    _ciPlatformContext.SaveChanges();
                 }
-                findUserRating.UserId = user.UserId;
-                findUserRating.MissionId = (long)missionid;
-                findUserRating.Rating = (int)ratingCount;
-                findUserRating.UpdatedAt = DateTime.Now;
-                _ciPlatformContext.MissionRatings.Update(findUserRating);
-                _ciPlatformContext.SaveChanges();
-            }
             return Ok();
         }
 
         [HttpPost]
         public IActionResult ApplyNow(long? missionID, long? userID)
         {
-            //var Email = HttpContext.Session.GetString("useremail");
-            //User user = _missionInterface.findUser((string)Email);
             var applyNow = _ciPlatformContext.MissionApplications.Where(x => x.UserId == userID && x.MissionId == missionID).FirstOrDefault();
             if (applyNow == null)
             {
@@ -289,15 +256,15 @@ namespace CIPlatform.Controllers
 
 
         [HttpPost]
-        public void PostComments(String MissionID, String comment)
+        public IActionResult PostComments(String MissionID, String comment)
         {
             string userSession = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSession);
             long misid = Int64.Parse(MissionID);
             int missid = Int32.Parse(MissionID);
             _missionInterface.addComments(misid, userObj.UserId, comment);
-            //List<Comment> comment1 = _context.Comments.Where(x => x.MissionId == missid).AsEnumerable().ToList();
 
+            return Ok();
         }
         public IActionResult ListComments(String MissionID)
         {
@@ -305,8 +272,7 @@ namespace CIPlatform.Controllers
             User userObj = _missionInterface.findUser(userSession);
             long misid = Int64.Parse(MissionID);
             int missid = Int32.Parse(MissionID);
-            //_missionListingRepository.addComments(misid, userObj.UserId, comment);
-            List<Comment> comment1 = _ciPlatformContext.Comments.Where(x => x.MissionId == missid).Include(x => x.User).AsEnumerable().ToList();
+            List<Comment> comment1 = _missionInterface.GetCommentsByMissionId(missid);
             return PartialView("_Comments", comment1);
         }
 

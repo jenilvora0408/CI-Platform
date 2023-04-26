@@ -80,8 +80,13 @@ namespace CIPlatform.Controllers
             return RedirectToAction("EditProfile");
         }
 
-        
+        /// <summary>
+        /// Functionality to save profile of User
+        /// </summary>
+        /// <param name="N"></param>
+        /// <returns></returns>
         [HttpPost]
+        
         public IActionResult SaveUserEditProfile(editProfile N)
         {
             var email = HttpContext.Session.GetString("useremail");

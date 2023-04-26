@@ -15,3 +15,20 @@ C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Repository\obj\Deb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Repository\obj\Debug\net6.0\ref\Repository.dll
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.pdb
 C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.genruntimeconfig.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Repository.deps.json
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Repository.runtimeconfig.json
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Repository.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Repository.pdb
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Entities.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\bin\Debug\net6.0\Entities.pdb
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\refint\Repository.dll
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.pdb
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\Repository.genruntimeconfig.cache
+D:\TatvaSoft\CI-Platform\MVC\CIPlatform\Repository\obj\Debug\net6.0\ref\Repository.dll

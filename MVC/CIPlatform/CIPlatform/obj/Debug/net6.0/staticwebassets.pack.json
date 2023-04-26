@@ -1,0 +1,1261 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CIPlatform.bundle.scp.css",
+      "PackagePath": "staticwebassets\\CIPlatform.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\assets\\CI Platform - DB.xlsx",
+      "PackagePath": "staticwebassets\\assets\\CI Platform - DB.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\assets\\Quick Guide-.net.docx",
+      "PackagePath": "staticwebassets\\assets\\Quick Guide-.net.docx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\assets\\Training Plan_2022-23_.net_Ahmedabad.pdf",
+      "PackagePath": "staticwebassets\\assets\\Training Plan_2022-23_.net_Ahmedabad.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\58ecbf99-1630-4f23-869f-440213fa88c4.png",
+      "PackagePath": "staticwebassets\\banners\\58ecbf99-1630-4f23-869f-440213fa88c4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Animal-welfare-_-save-birds-campaign-1.png",
+      "PackagePath": "staticwebassets\\banners\\Animal-welfare-_-save-birds-campaign-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Animal-welfare-_-save-birds-campaign.png",
+      "PackagePath": "staticwebassets\\banners\\Animal-welfare-_-save-birds-campaign.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png",
+      "PackagePath": "staticwebassets\\banners\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png",
+      "PackagePath": "staticwebassets\\banners\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png",
+      "PackagePath": "staticwebassets\\banners\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png",
+      "PackagePath": "staticwebassets\\banners\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Grow-Trees-On-the-path-to-environment-sustainability-1.png",
+      "PackagePath": "staticwebassets\\banners\\Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Grow-Trees-On-the-path-to-environment-sustainability.png",
+      "PackagePath": "staticwebassets\\banners\\Grow-Trees-On-the-path-to-environment-sustainability.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Nourish-the-Children-in--African-country.png",
+      "PackagePath": "staticwebassets\\banners\\Nourish-the-Children-in--African-country.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\Plantation-and-Afforestation-programme.png",
+      "PackagePath": "staticwebassets\\banners\\Plantation-and-Afforestation-programme.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\ad108bcf-4417-4c2e-bbf7-0d8fb1ffdf9e.png",
+      "PackagePath": "staticwebassets\\banners\\ad108bcf-4417-4c2e-bbf7-0d8fb1ffdf9e.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\image.png",
+      "PackagePath": "staticwebassets\\banners\\image.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\image2.png",
+      "PackagePath": "staticwebassets\\banners\\image2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\img.png",
+      "PackagePath": "staticwebassets\\banners\\img.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\img2.png",
+      "PackagePath": "staticwebassets\\banners\\img2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\banners\\img33.png",
+      "PackagePath": "staticwebassets\\banners\\img33.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\CMS.css",
+      "PackagePath": "staticwebassets\\css\\CMS.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\EditProfile.css",
+      "PackagePath": "staticwebassets\\css\\EditProfile.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\MissionListing.css",
+      "PackagePath": "staticwebassets\\css\\MissionListing.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\MissionListingList.css",
+      "PackagePath": "staticwebassets\\css\\MissionListingList.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\MissionVolunteering.css",
+      "PackagePath": "staticwebassets\\css\\MissionVolunteering.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\Policy.css",
+      "PackagePath": "staticwebassets\\css\\Policy.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\ShareStory.css",
+      "PackagePath": "staticwebassets\\css\\ShareStory.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\StoryDetails.css",
+      "PackagePath": "staticwebassets\\css\\StoryDetails.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\StoryListing.css",
+      "PackagePath": "staticwebassets\\css\\StoryListing.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\VolunteeringTimesheet.css",
+      "PackagePath": "staticwebassets\\css\\VolunteeringTimesheet.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\404-Page-image.png",
+      "PackagePath": "staticwebassets\\images\\404-Page-image.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Already-volunteered.png",
+      "PackagePath": "staticwebassets\\images\\Already-volunteered.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Animal-welfare-_-save-birds-campaign-1.png",
+      "PackagePath": "staticwebassets\\images\\Animal-welfare-_-save-birds-campaign-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Animal-welfare-_-save-birds-campaign.png",
+      "PackagePath": "staticwebassets\\images\\Animal-welfare-_-save-birds-campaign.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png",
+      "PackagePath": "staticwebassets\\images\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png",
+      "PackagePath": "staticwebassets\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png",
+      "PackagePath": "staticwebassets\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png",
+      "PackagePath": "staticwebassets\\images\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-1.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-2.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-3.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-4.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-5.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-5.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability-login.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Grow-Trees-On-the-path-to-environment-sustainability.png",
+      "PackagePath": "staticwebassets\\images\\Grow-Trees-On-the-path-to-environment-sustainability.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Nourish-the-Children-in--African-country-1.png",
+      "PackagePath": "staticwebassets\\images\\Nourish-the-Children-in--African-country-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Nourish-the-Children-in--African-country.png",
+      "PackagePath": "staticwebassets\\images\\Nourish-the-Children-in--African-country.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Open-Volunteering-Requests.png",
+      "PackagePath": "staticwebassets\\images\\Open-Volunteering-Requests.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Plantation-and-Afforestation-programme-1.png",
+      "PackagePath": "staticwebassets\\images\\Plantation-and-Afforestation-programme-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Plantation-and-Afforestation-programme.png",
+      "PackagePath": "staticwebassets\\images\\Plantation-and-Afforestation-programme.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Seats-left.png",
+      "PackagePath": "staticwebassets\\images\\Seats-left.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Thumbs.db",
+      "PackagePath": "staticwebassets\\images\\Thumbs.db"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Volunteering-Rank.png",
+      "PackagePath": "staticwebassets\\images\\Volunteering-Rank.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\Voted-Missions.png",
+      "PackagePath": "staticwebassets\\images\\Voted-Missions.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\achieved.png",
+      "PackagePath": "staticwebassets\\images\\achieved.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\add.png",
+      "PackagePath": "staticwebassets\\images\\add.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\add1.png",
+      "PackagePath": "staticwebassets\\images\\add1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\arrow.png",
+      "PackagePath": "staticwebassets\\images\\arrow.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\bell-big.png",
+      "PackagePath": "staticwebassets\\images\\bell-big.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\bell.png",
+      "PackagePath": "staticwebassets\\images\\bell.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\bin.png",
+      "PackagePath": "staticwebassets\\images\\bin.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\calender.png",
+      "PackagePath": "staticwebassets\\images\\calender.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\cancel.png",
+      "PackagePath": "staticwebassets\\images\\cancel.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\cancel1.png",
+      "PackagePath": "staticwebassets\\images\\cancel1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\checked.png",
+      "PackagePath": "staticwebassets\\images\\checked.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\cross.png",
+      "PackagePath": "staticwebassets\\images\\cross.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\deadline.png",
+      "PackagePath": "staticwebassets\\images\\deadline.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\doc.png",
+      "PackagePath": "staticwebassets\\images\\doc.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\down.png",
+      "PackagePath": "staticwebassets\\images\\down.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\drag-and-drop.png",
+      "PackagePath": "staticwebassets\\images\\drag-and-drop.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\drop-down.png",
+      "PackagePath": "staticwebassets\\images\\drop-down.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\eye.png",
+      "PackagePath": "staticwebassets\\images\\eye.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\facebook.png",
+      "PackagePath": "staticwebassets\\images\\facebook.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\filter.png",
+      "PackagePath": "staticwebassets\\images\\filter.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\gift.png",
+      "PackagePath": "staticwebassets\\images\\gift.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\grid.png",
+      "PackagePath": "staticwebassets\\images\\grid.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\heart.png",
+      "PackagePath": "staticwebassets\\images\\heart.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\heart1.png",
+      "PackagePath": "staticwebassets\\images\\heart1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\hours.png",
+      "PackagePath": "staticwebassets\\images\\hours.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\image.png",
+      "PackagePath": "staticwebassets\\images\\image.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\image1.png",
+      "PackagePath": "staticwebassets\\images\\image1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\image2.png",
+      "PackagePath": "staticwebassets\\images\\image2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img.png",
+      "PackagePath": "staticwebassets\\images\\img.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img1.png",
+      "PackagePath": "staticwebassets\\images\\img1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img11.png",
+      "PackagePath": "staticwebassets\\images\\img11.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img2.png",
+      "PackagePath": "staticwebassets\\images\\img2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img22.png",
+      "PackagePath": "staticwebassets\\images\\img22.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img3.png",
+      "PackagePath": "staticwebassets\\images\\img3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\img33.png",
+      "PackagePath": "staticwebassets\\images\\img33.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\info.png",
+      "PackagePath": "staticwebassets\\images\\info.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\left.png",
+      "PackagePath": "staticwebassets\\images\\left.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\left1.png",
+      "PackagePath": "staticwebassets\\images\\left1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\linkedin.png",
+      "PackagePath": "staticwebassets\\images\\linkedin.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\list.png",
+      "PackagePath": "staticwebassets\\images\\list.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\me.jfif",
+      "PackagePath": "staticwebassets\\images\\me.jfif"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\mission.png",
+      "PackagePath": "staticwebassets\\images\\mission.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\my-story.png",
+      "PackagePath": "staticwebassets\\images\\my-story.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\new-message.png",
+      "PackagePath": "staticwebassets\\images\\new-message.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\next.png",
+      "PackagePath": "staticwebassets\\images\\next.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\organization.png",
+      "PackagePath": "staticwebassets\\images\\organization.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\pdf.png",
+      "PackagePath": "staticwebassets\\images\\pdf.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\pin.png",
+      "PackagePath": "staticwebassets\\images\\pin.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\pin1.png",
+      "PackagePath": "staticwebassets\\images\\pin1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\previous.png",
+      "PackagePath": "staticwebassets\\images\\previous.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\right-arrow.png",
+      "PackagePath": "staticwebassets\\images\\right-arrow.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\right-arrow1.png",
+      "PackagePath": "staticwebassets\\images\\right-arrow1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\right-arrow2.png",
+      "PackagePath": "staticwebassets\\images\\right-arrow2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\right-white.png",
+      "PackagePath": "staticwebassets\\images\\right-white.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\right.png",
+      "PackagePath": "staticwebassets\\images\\right.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\search.png",
+      "PackagePath": "staticwebassets\\images\\search.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\selected-star.png",
+      "PackagePath": "staticwebassets\\images\\selected-star.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\settings.png",
+      "PackagePath": "staticwebassets\\images\\settings.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\star-empty.png",
+      "PackagePath": "staticwebassets\\images\\star-empty.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\star.png",
+      "PackagePath": "staticwebassets\\images\\star.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\twitter.png",
+      "PackagePath": "staticwebassets\\images\\twitter.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\up.png",
+      "PackagePath": "staticwebassets\\images\\up.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\user-img-large.png",
+      "PackagePath": "staticwebassets\\images\\user-img-large.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\user-img.png",
+      "PackagePath": "staticwebassets\\images\\user-img.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\user.png",
+      "PackagePath": "staticwebassets\\images\\user.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\user1.png",
+      "PackagePath": "staticwebassets\\images\\user1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer1.png",
+      "PackagePath": "staticwebassets\\images\\volunteer1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer2.png",
+      "PackagePath": "staticwebassets\\images\\volunteer2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer3.png",
+      "PackagePath": "staticwebassets\\images\\volunteer3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer4.png",
+      "PackagePath": "staticwebassets\\images\\volunteer4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer5.png",
+      "PackagePath": "staticwebassets\\images\\volunteer5.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer6.png",
+      "PackagePath": "staticwebassets\\images\\volunteer6.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer7.png",
+      "PackagePath": "staticwebassets\\images\\volunteer7.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer8.png",
+      "PackagePath": "staticwebassets\\images\\volunteer8.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\volunteer9.png",
+      "PackagePath": "staticwebassets\\images\\volunteer9.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\web.png",
+      "PackagePath": "staticwebassets\\images\\web.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\images\\xlsx.png",
+      "PackagePath": "staticwebassets\\images\\xlsx.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\js\\demo.js",
+      "PackagePath": "staticwebassets\\js\\demo.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\05c3d260-1fe2-4095-b679-cc7eb697a940.png",
+      "PackagePath": "staticwebassets\\uploads\\05c3d260-1fe2-4095-b679-cc7eb697a940.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\148b57ed-7099-40ae-bce5-979f24275d9f.png",
+      "PackagePath": "staticwebassets\\uploads\\148b57ed-7099-40ae-bce5-979f24275d9f.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\15fab55c-4ffe-4a0d-a9fe-057d8496fadf.png",
+      "PackagePath": "staticwebassets\\uploads\\15fab55c-4ffe-4a0d-a9fe-057d8496fadf.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\384992f3-6e30-4dbb-9554-8b99832ff9e8.png",
+      "PackagePath": "staticwebassets\\uploads\\384992f3-6e30-4dbb-9554-8b99832ff9e8.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\3de9373e-db7b-4a7f-a226-2026e72e081b.png",
+      "PackagePath": "staticwebassets\\uploads\\3de9373e-db7b-4a7f-a226-2026e72e081b.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\404-Page-image.png",
+      "PackagePath": "staticwebassets\\uploads\\404-Page-image.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\404-Page-image_638175215278275979.png",
+      "PackagePath": "staticwebassets\\uploads\\404-Page-image_638175215278275979.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\43111c2d-f09e-49e2-8c27-ebf3fe0725b5.png",
+      "PackagePath": "staticwebassets\\uploads\\43111c2d-f09e-49e2-8c27-ebf3fe0725b5.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\4f0e9cac-3e20-42fe-a647-1e3b99377c17.png",
+      "PackagePath": "staticwebassets\\uploads\\4f0e9cac-3e20-42fe-a647-1e3b99377c17.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\55d7f3c1-bef8-4b0a-a1cc-e9bc01349152.png",
+      "PackagePath": "staticwebassets\\uploads\\55d7f3c1-bef8-4b0a-a1cc-e9bc01349152.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\8edd834c-b36d-41be-baea-882ba90e54cb.png",
+      "PackagePath": "staticwebassets\\uploads\\8edd834c-b36d-41be-baea-882ba90e54cb.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\93860e42-3a9f-4667-a9f8-3f5daea7249c.png",
+      "PackagePath": "staticwebassets\\uploads\\93860e42-3a9f-4667-a9f8-3f5daea7249c.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Already-volunteered.png",
+      "PackagePath": "staticwebassets\\uploads\\Already-volunteered.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1_638176941395705275.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign-1_638176941395705275.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1_638180348522815091.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign-1_638180348522815091.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638175215278981239.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638175215278981239.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638175223660146905.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638175223660146905.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638175228415102292.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638175228415102292.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638175236783336989.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638175236783336989.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638175826299714073.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638175826299714073.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638176672500175075.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638176672500175075.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign_638176939755543922.png",
+      "PackagePath": "staticwebassets\\uploads\\Animal-welfare-_-save-birds-campaign_638176939755543922.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CI Platform - DB (5)_638175880910048015.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\CI Platform - DB (5)_638175880910048015.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CI Platform - DB (6)_638175223660889003.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\CI Platform - DB (6)_638175223660889003.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CI Platform - DB (6)_638175228415691095.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\CI Platform - DB (6)_638175228415691095.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CI Platform - DB (6)_638175236784156954.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\CI Platform - DB (6)_638175236784156954.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CI Platform - DB (6)_638176777353451040.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\CI Platform - DB (6)_638176777353451040.xlsx"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175228415562006.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175228415562006.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175826300308531.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175826300308531.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175880908818135.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638175880908818135.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638176672500487126.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638176672500487126.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2_638176777352616822.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2_638176777352616822.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2_638180348523264831.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2_638180348523264831.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638175215278875822.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638175215278875822.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638176939756377913.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638176939756377913.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638176941395866792.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3_638176941395866792.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638176941396027199.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638176941396027199.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175215278743734.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175215278743734.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175215279310382.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175215279310382.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175223660694755.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175223660694755.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175236783967250.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175236783967250.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175849641718813.png",
+      "PackagePath": "staticwebassets\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity_638175849641718813.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png",
+      "PackagePath": "staticwebassets\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png",
+      "PackagePath": "staticwebassets\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png",
+      "PackagePath": "staticwebassets\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638175829218278625.png",
+      "PackagePath": "staticwebassets\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638175829218278625.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638176777353202130.png",
+      "PackagePath": "staticwebassets\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638176777353202130.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-1.png",
+      "PackagePath": "staticwebassets\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-5_638175880909333747.png",
+      "PackagePath": "staticwebassets\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-5_638175880909333747.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png",
+      "PackagePath": "staticwebassets\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability_638175223660823713.png",
+      "PackagePath": "staticwebassets\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability_638175223660823713.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Nourish-the-Children-in--African-country.png",
+      "PackagePath": "staticwebassets\\uploads\\Nourish-the-Children-in--African-country.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Plantation-and-Afforestation-programme-1.png",
+      "PackagePath": "staticwebassets\\uploads\\Plantation-and-Afforestation-programme-1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Plantation-and-Afforestation-programme.png",
+      "PackagePath": "staticwebassets\\uploads\\Plantation-and-Afforestation-programme.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Training Plan-2022-23-Part5-ModuleWiseIntegration-.net_638175880910001578.pdf",
+      "PackagePath": "staticwebassets\\uploads\\Training Plan-2022-23-Part5-ModuleWiseIntegration-.net_638175880910001578.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Volunteering-Rank.png",
+      "PackagePath": "staticwebassets\\uploads\\Volunteering-Rank.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\achieved.png",
+      "PackagePath": "staticwebassets\\uploads\\achieved.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\add.png",
+      "PackagePath": "staticwebassets\\uploads\\add.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\add1.png",
+      "PackagePath": "staticwebassets\\uploads\\add1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\arrow.png",
+      "PackagePath": "staticwebassets\\uploads\\arrow.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\baf26d46-4e7d-4905-8e0f-02eac3816a92.png",
+      "PackagePath": "staticwebassets\\uploads\\baf26d46-4e7d-4905-8e0f-02eac3816a92.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\bell-big.png",
+      "PackagePath": "staticwebassets\\uploads\\bell-big.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\bell.png",
+      "PackagePath": "staticwebassets\\uploads\\bell.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\bin.png",
+      "PackagePath": "staticwebassets\\uploads\\bin.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\c2eb2fed-252e-466b-bdab-ba8eff5526f3.png",
+      "PackagePath": "staticwebassets\\uploads\\c2eb2fed-252e-466b-bdab-ba8eff5526f3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\calender.png",
+      "PackagePath": "staticwebassets\\uploads\\calender.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\cancel.png",
+      "PackagePath": "staticwebassets\\uploads\\cancel.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\cancel1.png",
+      "PackagePath": "staticwebassets\\uploads\\cancel1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\d82655ae-1c43-4c72-8041-d9849e1feeea.png",
+      "PackagePath": "staticwebassets\\uploads\\d82655ae-1c43-4c72-8041-d9849e1feeea.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\deadline.png",
+      "PackagePath": "staticwebassets\\uploads\\deadline.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\dee5dee4-b313-4a7e-b168-9ddc3aa19958.png",
+      "PackagePath": "staticwebassets\\uploads\\dee5dee4-b313-4a7e-b168-9ddc3aa19958.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\eye.png",
+      "PackagePath": "staticwebassets\\uploads\\eye.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\facebook.png",
+      "PackagePath": "staticwebassets\\uploads\\facebook.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\fd9b0e17-41b6-4ac0-aa5a-83925fde8673.png",
+      "PackagePath": "staticwebassets\\uploads\\fd9b0e17-41b6-4ac0-aa5a-83925fde8673.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\gift.png",
+      "PackagePath": "staticwebassets\\uploads\\gift.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\image1_638175880909485000.png",
+      "PackagePath": "staticwebassets\\uploads\\image1_638175880909485000.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\image2_638175219537480823.png",
+      "PackagePath": "staticwebassets\\uploads\\image2_638175219537480823.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img1.png",
+      "PackagePath": "staticwebassets\\uploads\\img1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img11.png",
+      "PackagePath": "staticwebassets\\uploads\\img11.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img22.png",
+      "PackagePath": "staticwebassets\\uploads\\img22.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img33.png",
+      "PackagePath": "staticwebassets\\uploads\\img33.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img33_638175880909570009.png",
+      "PackagePath": "staticwebassets\\uploads\\img33_638175880909570009.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img_638176777353380456.png",
+      "PackagePath": "staticwebassets\\uploads\\img_638176777353380456.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\rishit final internship report_638175829218836631.pdf",
+      "PackagePath": "staticwebassets\\uploads\\rishit final internship report_638175829218836631.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\rishit final internship report_638175849642208641.pdf",
+      "PackagePath": "staticwebassets\\uploads\\rishit final internship report_638175849642208641.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\rishit final internship report_638176672501184365.pdf",
+      "PackagePath": "staticwebassets\\uploads\\rishit final internship report_638176672501184365.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\rishit final internship report_638176777353741512.pdf",
+      "PackagePath": "staticwebassets\\uploads\\rishit final internship report_638176777353741512.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\user-img-large.png",
+      "PackagePath": "staticwebassets\\uploads\\user-img-large.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer1.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer2.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer2.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer4.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer4.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer5.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer5.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer8.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer8.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\volunteer9.png",
+      "PackagePath": "staticwebassets\\uploads\\volunteer9.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\weekly diary_638175849689412703.pdf",
+      "PackagePath": "staticwebassets\\uploads\\weekly diary_638175849689412703.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\weekly diary_638175880909647986.pdf",
+      "PackagePath": "staticwebassets\\uploads\\weekly diary_638175880909647986.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\weekly diary_638176672501649869.pdf",
+      "PackagePath": "staticwebassets\\uploads\\weekly diary_638176672501649869.pdf"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\me.jfif",
+      "PackagePath": "staticwebassets\\userAvatar\\me.jfif"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\volunteer1.png",
+      "PackagePath": "staticwebassets\\userAvatar\\volunteer1.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\volunteer3.png",
+      "PackagePath": "staticwebassets\\userAvatar\\volunteer3.png"
+    },
+    {
+      "Id": "D:\\TatvaSoft\\CI-Platform\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\userAvatar\\volunteer5.png",
+      "PackagePath": "staticwebassets\\userAvatar\\volunteer5.png"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.CIPlatform.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.CIPlatform.props",
+      "PackagePath": "build\\CIPlatform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.CIPlatform.props",
+      "PackagePath": "buildMultiTargeting\\CIPlatform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.CIPlatform.props",
+      "PackagePath": "buildTransitive\\CIPlatform.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

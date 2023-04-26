@@ -134,7 +134,7 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.SaveChangesAsync();
         }
 
-        MissionVol MissionInterface.getMissionVolData(int? missionId,int? userId)
+        MissionVol MissionInterface.getMissionVolData(int? missionId, int? userId)
         {
             MissionVol missionVol = new MissionVol();
             missionVol.missionDocument = _ciPlatformContext.MissionDocuments.Where(x => x.MissionId == missionId).AsEnumerable().ToList();
@@ -145,9 +145,56 @@ namespace Repository.Repository.Repository
         List<RecentVolunteer> MissionInterface.getRelatedMissions(int? missionId)
         {
             RecentVolunteer recentVolunteer = new RecentVolunteer();
-            return  _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
-
+            return _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
         }
-    }
 
+        public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID)
+        {
+            return _ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}");
+        }
+
+        public Pagination GetMissionsByUtilities(Utilities utilities, int userId)
+        {
+            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+
+            var missions = _ciPlatformContext.MissionList.FromSqlInterpolated(
+                $"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out,@userId={userId}")
+                .ToList();
+
+            var pagination = new Pagination();
+            pagination.missions = missions;
+            pagination.pageSize = 9;
+            pagination.pageCount = long.Parse(output.Value.ToString());
+            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
+            pagination.activePage = utilities.pageNumber;
+
+            return pagination;
+        }
+
+        public Pagination GetMissionByUtilitiesForList(Utilities utilities, int userId)
+        {
+            var output = new SqlParameter("@TotalCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            var output_1 = new SqlParameter("@MissionCount", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            
+            List<MissionList> test = _ciPlatformContext.MissionList.FromSqlInterpolated(
+                $"exec GetMissionData @searchCountry = {utilities.country}, @searchCity = {utilities.city}, @searchTheme = {utilities.theme}, @searchSkill = {utilities.skill}, @search = {utilities.search}, @sortBy = {utilities.sortBy}, @pageNumber = {utilities.pageNumber}, @TotalCount = {output} out, @MissionCount = {output_1} out, @userId={userId}")
+                .ToList();
+
+            var pagination = new Pagination();
+            pagination.missions = test;
+            pagination.pageSize = 9;
+            pagination.pageCount = long.Parse(output.Value.ToString());
+            pagination.totalMissionCount = long.Parse(output_1.Value.ToString());
+            pagination.activePage = utilities.pageNumber;
+
+            return pagination;
+        }
+
+        public List<Comment> GetCommentsByMissionId(int missionId)
+        {
+            return _ciPlatformContext.Comments.Where(x => x.MissionId == missionId).Include(x => x.User).AsEnumerable().ToList();
+        }
+
+    }
 }
