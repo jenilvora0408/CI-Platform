@@ -8,9 +8,13 @@
         <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
             <div class="card">
                 <div class="card-image">
-                    @if (item.endDate == null && item.goalValue == 100)
+                    @if (item.approvalStatus == "Approved")
                     {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Completed</div>
+                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
+                    }
+                    else if (DateTime.Now > item.endDate)
+                    {
+                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
                     }
                     @{
                         string[] mediaNames = @item.missionImage.ToString().Split(",");
@@ -131,38 +135,25 @@
                 <hr />
                 <div class="apply-btn">
 
-                    @if (item.approvalStatus == "Approved")
-                {
-                    <div class="vol-apply-btn">
-                        <button disabled id="APPLYBTN" type="button" class="btn btn-success" style="border: 2px solid green">
-                            <span>Approved</span> <img src="/images/right.png" alt="" />
+                   @if (DateTime.Now > item.endDate)
+                    {
+                        <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                            View Details <img src="/images/right-arrow.png" alt="" />
                         </button>
-                    </div>
-                }
-                @if (item.approvalStatus == "Pending")
-                {
-                    <div class="vol-apply-btn">
-                        <button disabled id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
-                            <span>Pending</span> <img src="/images/right-arrow.png" alt="" />
+                    }
+                    
+                    else if (item.approvalStatus == "Approved")
+                    {
+                        <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                            View Details <img src="/images/right-arrow.png" alt="" />
                         </button>
-                    </div>
-                }
-                @if (item.approvalStatus == "Declined")
-                {
-                    <div class="vol-apply-btn">
-                        <button id="APPLYBTN" type="button" class="btn btn-light">
-                           <span>Declined</span> <img src="/images/right-arrow.png" alt="" />
+                    }
+                    else
+                    {
+                        <button style="width: fit-content !important; white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                            Apply  <img src="/images/right-arrow.png" alt="" />
                         </button>
-                    </div>
-                }
-                @if (item.approvalStatus == null)
-                {
-                    <div class="vol-apply-btn">
-                        <button id="APPLYBTN" type="button" class="btn btn-success">
-                            <span>Apply</span> <img src="/images/right.png" alt="" />
-                        </button>
-                    </div>
-                }
+                    }
                     <br /><br />
                 </div>
             </div>

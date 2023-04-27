@@ -28,7 +28,7 @@ namespace Repository.Repository.Interface
         public void addComments(long missionid, long userid, string commented);
         public MissionVol getMissionVolData(int? missionId,int? userId);
         public List<RecentVolunteer> getRelatedMissions(int? missionId);
-        public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID);
+        public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID, int? userId);
         public Pagination GetMissionsByUtilities(Utilities utilities, int userId);
         public Pagination GetMissionByUtilitiesForList(Utilities utilities, int userId);
         public List<Comment> GetCommentsByMissionId(int missionId);

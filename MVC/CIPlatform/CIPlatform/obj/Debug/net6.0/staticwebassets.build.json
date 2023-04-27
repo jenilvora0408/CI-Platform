@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yaruvSsQUexeA8/Yvk8HrNDujVPyc7K5O0Id6dwEXr0=",
+  "Hash": "OzZmVxBddwcL1ikXWsCpuXK/y+PdmyOVSS2aQKtqg9o=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -4367,6 +4367,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638181870774006785.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638181972297064496.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638181972297064496.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1_638181972297064496.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png",

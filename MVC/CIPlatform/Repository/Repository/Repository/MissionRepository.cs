@@ -148,10 +148,11 @@ namespace Repository.Repository.Repository
             return _ciPlatformContext.RecentVolunteer.FromSqlInterpolated($"exec recentVolunteer @missionid={missionId} ").ToList();
         }
 
-        public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID)
+        public IEnumerable<RelatedMission> GetRelatedMissions(string theme, int? missionID, int? userId)
         {
             var mission = _ciPlatformContext.Missions.Where(x => x.MissionId == missionID).First();
-            return _ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}, @cityid={mission.CityId}, @countryid={mission.CountryId}");
+            var relatedMission = _ciPlatformContext.RelatedMissions.FromSqlInterpolated($"exec RelatedMissionData @themeTitle={theme}, @missionID={missionID}, @cityid={mission.CityId}, @countryid={mission.CountryId}, @userId={userId}");
+            return relatedMission;
         }
 
         public Pagination GetMissionsByUtilities(Utilities utilities, int userId)

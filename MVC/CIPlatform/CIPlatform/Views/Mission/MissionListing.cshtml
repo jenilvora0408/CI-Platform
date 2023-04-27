@@ -249,6 +249,8 @@ alert('Error!');
                     $("#mission-list").html("");
                     $('#mission-list').html(data);
                     console.warn("list has called");
+                    favouriteMissionsForList();
+
                 },
                 error: function (xhr, status, error) {
                     console.log(error);
@@ -291,7 +293,9 @@ alert('Error!');
                 localStorage.removeItem("sortColumn");
             });
             loadCard();
+            loadList();
             getFavouriteMissions();
+            getFavouriteMissionsForList();
         });
 
         function favouriteMissions() {
@@ -310,6 +314,7 @@ alert('Error!');
                         data: { userId: userId, missionId: missionId },
                         success: function (data) {
                             loadCard();
+                            loadList();
                             //location.reload();
                             //getFavouriteMissions();
                         },
@@ -329,6 +334,7 @@ alert('Error!');
                         success: function (data) {
                             console.log("remove fav");
                             loadCard();
+                            loadList();
                             //location.reload();
                             //getFavouriteMissions();
                             console.log("remove fav2");
@@ -355,6 +361,110 @@ alert('Error!');
                     console.log(dataArr);
                     setTimeout(() => {
                         $("#GridView .favourite-mission-div").each(function (index) {
+                            var id = this.id.slice(18);
+
+                            console.log("In get fav:" + this.id);
+                            var temp = false;
+                            Loop1:
+                            for (var i = 0; i < dataArr.length; i++) {
+                                if (dataArr[i] == id) {
+                                    temp = true;
+
+                                    break Loop1;
+                                }
+                            }
+                            if (temp == true) {
+                                console.log("test");
+                                this.style.backgroundColor = "red";
+                                this.style.opacity = 1;
+                                //console.log("True", dataArr, id, dataArr[i] == id);
+                            }
+                            else {
+                                //console.log("False", dataArr, id, dataArr[i] == id);
+
+                                this.style.backgroundColor = "black";
+                                this.style.opacity = 0.4;
+                            }
+                        });
+                    }, 250);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
+
+
+        //Favourites for List
+        function favouriteMissionsForList() {
+            console.log($("#list-switch .img-heart"),"jjjskfd");
+            $("#list-switch .img-heart").click(function(e){
+                e.preventDefault();
+                console.log("jsfj");
+            })
+            $("#list-switch .img-heart").on("click", function (event) {
+                console.log("clicked");
+                // Add to favourites
+                if (this.style.backgroundColor == "black") {
+                    this.style.opacity = 1;
+                    var missionId = this.id.slice(18,);
+                    var userId = $(".home-nav1-right .user-btn")[0].id;
+                    console.warn(userId);
+                    console.warn(missionId);
+                    $.ajax({
+                        type: "POST",
+                        url: '/Mission/addFavouriteMissions',
+                        data: { userId: userId, missionId: missionId },
+                        success: function (data) {
+                            loadCard();
+                            loadList();
+                            //location.reload();
+                            //getFavouriteMissions();
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+                // Remove from favourites
+                else {
+                    var missionId = this.id.slice(18,);
+                    var userId = $(".home-nav1-right .user-btn")[0].id;
+                    $.ajax({
+                        type: "POST",
+                        url: '/Mission/removeFavouriteMissions',
+                        data: { userId: userId, missionId: missionId },
+                        success: function (data) {
+                            console.log("remove fav");
+                            loadCard();
+                            loadList();
+                            //location.reload();
+                            //getFavouriteMissions();
+                            console.log("remove fav2");
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+
+                }
+            });
+        }
+
+        // Check whether the mission is favourite or not
+        function getFavouriteMissionsForList() {
+            var userId = $(".home-nav1-right .user-btn")[0].id;
+            console.log("In get fav");
+            $.ajax({
+                type: "GET",
+                url: '/Mission/getFavouriteMissionsOfUser',
+                data: { userid: userId },
+                success: function (data) {
+                    var dataArr = data["data"].split(",");
+                    console.log(dataArr);
+                    setTimeout(() => {
+                        $("#list-switch .img-heart").each(function (index) {
                             var id = this.id.slice(18);
 
                             console.log("In get fav:" + this.id);

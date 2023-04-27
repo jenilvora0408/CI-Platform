@@ -13,16 +13,16 @@
     @foreach (var list in Model.missions)
     {
         <div id="list-card-parent" class="col-12 d-flex p-0 mb-4 border shadow">
-            
+
             <div class="list-image-part position-relative">
-                 @if (list.approvalStatus == "Approved")
-                    {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
-                    }
-                    else if (DateTime.Now > list.endDate)
-                    {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
-                    }
+                @if (list.approvalStatus == "Approved")
+                {
+                    <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
+                }
+                else if (DateTime.Now > list.endDate)
+                {
+                    <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
+                }
                 @{
                     string[] mediaNames = @list.missionImage.ToString().Split(",");
                 }
@@ -35,13 +35,25 @@
                 <h5 class="list-card-theme-title bg-white rounded-5 p-2">Environment</h5>
                 <div id="list-card-image-content" class="h-100 d-flex flex-column position-absolute p-2">
                     <div id="list-location-image" class="list-img-content p-2 rounded-5" style="border-radius:23px">
-                        <img src="~/images/pin.png" alt="">
+           <img src="~/images/pin.png" alt="">
                         @list.cityName
                     </div>
                     <div class="d-flex flex-column align-items-end" style="position:absolute; top:100px; right: 15px;">
-                        <div class="img-heart list-img-content p-2 rounded-5 m-1" style="border-radius:23px">
-                            <img src="~/images/heart.png" alt="">
-                        </div>
+                        @if (list.favMissionId != null)
+                        {
+                            <div id="favourite-mission-@list.MissionId" style="background-color:red;border-radius:23px"
+                            class="img-heart list-img-content p-2 rounded-5 m-1">
+                                <img src="~/images/heart.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="favourite-mission-@list.MissionId" style="background-color:black;border-radius:23px;opacity:0.6;"
+                            class="img-heart list-img-content p-2 rounded-5 m-1">
+                                <img src="~/images/heart.png" alt="">
+                            </div>
+                        }
+
                         <div id="list-user-img" class="list-img-content p-2 rounded-5 m-1" style="border-radius:23px">
                             <img src="~/images/user.png" alt="">
                         </div>
@@ -76,18 +88,18 @@
                             </div>
                         </div>
                         <div class="list-card-button-apply m-1 p-1 w-100 ">
-                           @if (DateTime.Now >= list.deadline || list.goalValue == 100)
-                    {
-                        <button style="width: fit-content !important;white-space: nowrap; padding:5px 15px; border-radius:23px; background:#fff;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@list.MissionId}) '">
-                            View Details <img src="/images/right-arrow.png" alt="" />
-                        </button>
-                    }
-                    else
-                    {
-                        <button style="width: fit-content !important; white-space: nowrap; padding:5px 15px; border-radius:23px; background:#fff" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@list.MissionId}) '">
-                            Apply  <img src="/images/right-arrow.png" alt="" />
-                        </button>
-                    }
+                            @if (DateTime.Now >= list.deadline || list.goalValue == 100)
+                            {
+                                <button style="width: fit-content !important;white-space: nowrap; padding:5px 15px; border-radius:23px; background:#fff;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@list.MissionId}) '">
+                                    View Details <img src="/images/right-arrow.png" alt="" />
+                                </button>
+                            }
+                            else
+                            {
+                                <button style="width: fit-content !important; white-space: nowrap; padding:5px 15px; border-radius:23px; background:#fff" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@list.MissionId}) '">
+                                    Apply  <img src="/images/right-arrow.png" alt="" />
+                                </button>
+                            }
 
                         </div>
                     </div>

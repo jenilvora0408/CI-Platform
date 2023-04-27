@@ -482,12 +482,13 @@
 
     var hello = '@Model.Volunteering.themeName';
     var missID = @Model.Volunteering.MissionId;
+    var userId = @Model.Navbar_1.userId;
     $.ajax({
         type: "POST",
         url: "@Url.Action("relatedMissions","Mission")",
         dataType: "html",
         cache: false,
-        data: { theme: hello, missionID: missID },
+        data: { theme: hello, missionID: missID, userId:userId },
         success: function (data) {
             $("#grid-items").html("");
             $('#grid-items').html(data);
@@ -513,6 +514,7 @@
                 data: { missionID: first, userID: userMission },
                 success: function (data) {
                     alert('Applied to Mission Successfully');
+                    location.reload();
                     $(this).text('Pending');
                     $(this).css("color", "gray");
                 },
@@ -525,7 +527,7 @@
         favouriteMissions();
 
         $("#stars-rating .rating-stars").click(function () {
-            alert("Hello Rating");
+            //alert("Hello Rating");
             var rating = $("#user_rating").val();
             $.ajax({
                 url: 'https://localhost:7165/Mission/MissionUserRating',
@@ -594,7 +596,7 @@
     function getFavouriteMissions() {
 
         var userId = $(".home-nav1-right .user-btn")[0].id;
-        alert(userId);
+        //alert(userId);
         console.log("In get fav");
         $.ajax({
             type: "GET",

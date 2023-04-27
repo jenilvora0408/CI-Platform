@@ -79,9 +79,9 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
-        public IActionResult relatedMissions(string theme, int? missionID)
+        public IActionResult relatedMissions(string theme, int? missionID, int? userId)
         {
-            IEnumerable<RelatedMission> relatedMission = _missionInterface.GetRelatedMissions(theme, missionID);
+            IEnumerable<RelatedMission> relatedMission = _missionInterface.GetRelatedMissions(theme, missionID, userId);
             return PartialView("RelatedMission", relatedMission);
         }
 
