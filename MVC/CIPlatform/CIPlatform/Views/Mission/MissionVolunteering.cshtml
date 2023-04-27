@@ -62,7 +62,7 @@
                 else
                 {
                     <p class="mission-date">
-                        <span class="time-span">@Model.Volunteering.startDate?.ToString("dd-mm-yyyy") until @Model.Volunteering.endDate?.ToString("dd-mm-yyyy")</span>
+                        <span class="time-span">@Model.Volunteering.startDate?.ToString("d") until @Model.Volunteering.endDate?.ToString("d")</span>
                     </p>
                 }
             </div>
@@ -86,7 +86,11 @@
                             }
                             else
                             {
-                                <img src="/images/deadline.png" alt="" />
+                                @if(Model.Volunteering.deadline != null)
+                                {
+                                    <img src="/images/deadline.png" alt="" />    
+                                }
+                                
                             }
                         </div>
 
@@ -105,10 +109,13 @@
                         }
                         else
                         {
-                            <div class="card-body-right-text d-flex flex-column">
-                                <span class="figure">@Model.Volunteering.deadline?.ToString("dd-mm-yyyy")</span>
+                            @if(Model.Volunteering.deadline != null){
+                                <div class="card-body-right-text d-flex flex-column">
+                                <span class="figure">@Model.Volunteering.deadline?.ToString("d")</span>
                                 <span class="deadline">Deadline</span>
                             </div>
+                            }
+                            
                         }
                     </div>
                 </div>
@@ -142,7 +149,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalCenterTitle">Recommend to a Co-Worker</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <button style="border: none; background:#fff;"  type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -155,8 +162,8 @@
 
                                     </div>
                                     <div class="modal-footer form-button">
-                                        <button type="button" class=" btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class=" btn-primary" data-bs-dismiss="modal" id="RecommandtoUser">Send</button>
+                                        <button style="padding: 5px 15px; border-radius:23px; background:#fff;" type="button" class=" btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button style="padding: 5px 15px;  border-radius:23px; background:#fff;" type="button" class=" btn-primary" data-bs-dismiss="modal" id="RecommandtoUser">Send</button>
                                     </div>
                                 </form>
                             </div>
@@ -221,7 +228,7 @@
                         </button>
                     </div>
                 }
-                @if (Model.Volunteering.approvalStatus == "Pending")
+                else if (Model.Volunteering.approvalStatus == "Pending")
                 {
                     <div class="vol-apply-btn">
                         <button disabled id="APPLYBTN pending" type="button" class="btn btn-warning" style="border: 2px solid gray">
@@ -229,19 +236,27 @@
                         </button>
                     </div>
                 }
-                @if (Model.Volunteering.approvalStatus == "Declined")
+                else if (Model.Volunteering.approvalStatus == "Declined")
                 {
                     <div class="vol-apply-btn">
-                        <button id="APPLYBTN" type="button" class="btn btn-light">
+                        <button disabled id="APPLYBTN" type="button" class="btn btn-light">
                             Declined <img src="/images/right-arrow.png" alt="" />
                         </button>
                     </div>
                 }
-                @if (Model.Volunteering.approvalStatus == null)
+                else if( DateTime.Now > Model.Volunteering.endDate)
+                {
+                     <div class="vol-apply-btn">
+                        <button disabled id="APPLYBTN" type="button" class="btn btn-light">
+                            Closed 
+                        </button>
+                    </div>
+                }
+                else if (Model.Volunteering.approvalStatus == null)
                 {
                     <div class="vol-apply-btn">
                         <button id="APPLYBTN" type="button" class="btn btn-success">
-                            Apply <img src="/images/right.png" alt="" />
+                            Apply <img src="/images/right-arrow.png" alt="" />
                         </button>
                     </div>
                 }
@@ -440,6 +455,7 @@
     </div>
 </div>
 
+<partial name="_ContactUsFooter" />
 
 <script>
 
@@ -578,6 +594,7 @@
     function getFavouriteMissions() {
 
         var userId = $(".home-nav1-right .user-btn")[0].id;
+        alert(userId);
         console.log("In get fav");
         $.ajax({
             type: "GET",

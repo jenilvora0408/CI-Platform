@@ -24,8 +24,8 @@ else{
                             @item.Title
                         </td>
                         <td >@item.MissionType</td>
-                        <td class="desc">@item.StartDate</td>
-                        <td>@item.EndDate</td>
+                        <td class="desc">@item.StartDate.Value.ToString("d")</td>
+                        <td>@item.EndDate.Value.ToString("d")</td>
                         <td class="icons">
                             <i onclick="return location.href=' @Url.Action("EditMission","Admin",new {MissionId=@item.MissionId}) '" id="edit-icon" class="bi bi-pencil-square"></i>
                             <img data-id="@item.MissionId" data-bs-toggle="modal" data-bs-target="#hello" id="delete-icon" class="delete-img" 

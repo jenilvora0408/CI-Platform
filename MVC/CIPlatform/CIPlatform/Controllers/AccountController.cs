@@ -107,7 +107,7 @@ namespace CIPlatform.Controllers
             u.PhoneNumber = user.phone_number;
             u.Password = user.password;
             _registerInterface.InsertUser(u);
-            return RedirectToAction("Index", "Home", newRegister);
+            return RedirectToAction("Login", "Account", newRegister);
         }
  
         /// <summary>

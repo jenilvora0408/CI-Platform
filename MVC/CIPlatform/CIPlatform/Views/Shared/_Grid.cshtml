@@ -129,7 +129,11 @@
                             }
                             else
                             {
-                                <img src="/images/deadline.png" alt="" />
+                                @if(item.deadline != null)
+                                {
+                                    <img src="/images/deadline.png" alt="" />    
+                                }
+                                
                             }
 
                         </div>
@@ -148,16 +152,29 @@
                         }
                         else
                         {
+                            @if(item.deadline != null)
+                            {
                             <div class="card-body-right-text">
                                 <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
                                 <span class="deadline">Deadline</span>
                             </div>
+
+                            }
+                            
                         }
                     </div>
                 </div>
                 <hr />
                 <div class="apply-btn">
-                    @if (DateTime.Now >= item.deadline || item.goalValue == 100)
+                  
+                     @if (DateTime.Now > item.endDate)
+                    {
+                        <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
+                            View Details <img src="/images/right-arrow.png" alt="" />
+                        </button>
+                    }
+                    
+                    else if (item.approvalStatus == "Approved")
                     {
                         <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                             View Details <img src="/images/right-arrow.png" alt="" />

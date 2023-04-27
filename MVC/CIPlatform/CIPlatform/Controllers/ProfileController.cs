@@ -149,6 +149,7 @@ namespace CIPlatform.Controllers
             missionHomeModel.avatar = userObj.Avatar;
             missionHomeModel.userId = userObj.UserId;
             edit.Navbar_1 = missionHomeModel;
+            edit.Pages=_ciPlatformContext.CmsPages.ToList();
             return View(edit);
         }
 

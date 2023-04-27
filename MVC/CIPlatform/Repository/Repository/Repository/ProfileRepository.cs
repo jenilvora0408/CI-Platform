@@ -96,6 +96,7 @@ namespace Repository.Repository.Repository
             user.CountryId = userEditProfile.CountryID;
             user.EmployeeId = userEditProfile.EmployeeID;
             user.Department = userEditProfile.Department;
+            user.Availability = userEditProfile.Availability;
             user.UpdatedAt = DateTime.Now;
             _ciPlatformContext.Users.Update(user);
             _ciPlatformContext.SaveChanges();
@@ -125,6 +126,7 @@ namespace Repository.Repository.Repository
             model.EmployeeID = user.EmployeeId;
             model.Department = user.Department;
             model.LinkedInURL = user.LinkedInUrl;
+            model.Availability = user.Availability;
             model.skills = _ciPlatformContext.Skills.ToList();
             return model;
         }

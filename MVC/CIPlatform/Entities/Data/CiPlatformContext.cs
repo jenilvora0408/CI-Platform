@@ -71,6 +71,7 @@ public partial class CiPlatformContext : DbContext
     public virtual DbSet<RecentVolunteer> RecentVolunteer { get; set; }
     public virtual DbSet<StoryListing> StoryListings { get; set; }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=PCTR23\\SQL2017;DataBase=CI_Platform;User ID=sa;Password=tatva123;Trusted_Connection=true;TrustServerCertificate=True;");
@@ -797,6 +798,9 @@ public partial class CiPlatformContext : DbContext
             entity.ToTable("user");
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.Availability)
+                .HasMaxLength(50)
+                .HasColumnName("availability");
             entity.Property(e => e.Avatar)
                 .HasMaxLength(2048)
                 .IsUnicode(false)

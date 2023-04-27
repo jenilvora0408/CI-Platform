@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="layer-5">
+        <div class="layer-5 mb-3">
             <div class="col-md-6 col-sm-6 col-6 layer-5-cancel">
                 <button type="reset" id="cancelBtn">Cancel</button>
             </div>
@@ -66,6 +66,7 @@
         </div>
     </div>
 </div>
+<partial name="_ContactUsFooter" />
 <script src="./js/bootstrap.bundle.js"></script>
 <script>
       $(document).ready(function() {
@@ -122,6 +123,7 @@
                     $("#saveBtn").hide();
                     alert("Response submitted successfully");
                     console.log(response);
+                    location.href="/Story/StoryListing";
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr.responseText);

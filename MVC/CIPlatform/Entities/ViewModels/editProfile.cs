@@ -12,6 +12,8 @@ namespace Entities.ViewModels
     {
         public Navbar_1? Navbar_1 { get; set; }
 
+        public List<CmsPage> Pages { get; set; }
+
         [Required]
         public string oldPassword { get; set; }
 

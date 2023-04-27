@@ -1,173 +1,169 @@
 ﻿@model Entities.ViewModels.storyDetail
 
-<partial name="_Navbar_1" model="Model.Navbar_1"/>
+<partial name="_Navbar_1" model="Model.Navbar_1" />
 
 
-    <div class="vol-container">
-      <div class="vol-mission">
+<div class="vol-container">
+    <div class="vol-mission">
         <div class="vol-left">
-         <swiper-container style="
+            <swiper-container style="
               --swiper-navigation-color: #fff;
               --swiper-pagination-color: #fff;
               height: 50vh;
               width: 35vw;
             " class="mySwiper" thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
-         
-           @{
-                string[] mediaNames = @Model.mediaPath.ToString().Split(",");
-            }
-            @foreach (var item in mediaNames)
-            {
-                <swiper-slide>
-                <img style="object-fit:fill;height: -webkit-fill-available;" src="@item" alt="" />
-                </swiper-slide>
-            }
-        </swiper-container>
 
-        <swiper-container style="height: 10vh; width: 35vw" class="mySwiper2" space-between="10" slides-per-view="4"
-          free-mode="true" watch-slides-progress="true">
-         
-         
-            @foreach (var item in mediaNames)
-            {
-                <swiper-slide>
-                <img style="height:90px;" src="@item" alt="" />
-                </swiper-slide>
-            }
-        </swiper-container>
+                @{
+                    string[] mediaNames = @Model.mediaPath.ToString().Split(",");
+                }
+                @foreach (var item in mediaNames)
+                {
+                    <swiper-slide>
+                        <img style="object-fit:fill;height: -webkit-fill-available;" src="@item" alt="" />
+                    </swiper-slide>
+                }
+            </swiper-container>
+
+            <swiper-container style="height: 10vh; width: 35vw" class="mySwiper2" space-between="10" slides-per-view="4"
+                              free-mode="true" watch-slides-progress="true">
+
+
+                @foreach (var item in mediaNames)
+                {
+                    <swiper-slide>
+                        <img style="height:90px;" src="@item" alt="" />
+                    </swiper-slide>
+                }
+            </swiper-container>
         </div>
         <div class="vol-right">
-          <div style="display: flex; align-items: center">
-            <div class="col-6">
-              <img
-                style="border-radius: 50%; height:80px;"
-                src="@Model.Avatar"
-                alt=""
-              />
-              <p class="mx-1 my-2 fs-5">@Model.Name</p>
-            </div>
-            <div class="col-6" style="display: flex; justify-content: flex-end">
-              <p
-                class="me-5"
-                style="
+            <div style="display: flex; align-items: center">
+                <div class="col-6">
+                    <img style="border-radius: 50%; height:80px;"
+                         src="@Model.Avatar"
+                         alt="" />
+                    <p class="mx-1 my-2 fs-5">@Model.Name</p>
+                </div>
+                <div class="col-6" style="display: flex; justify-content: flex-end">
+                    <p class="me-5"
+                       style="
                   border: 1px solid #adadad;
                   border-radius: 23px;
                   padding: 8px 15px;
-                "
-              >
-                <img src="/images/eye.png" alt="" />&nbsp; @Model.Views Views
-              </p>
+                ">
+                        <img src="/images/eye.png" alt="" />&nbsp; @Model.Views Views
+                    </p>
+                </div>
             </div>
-          </div>
 
-          <p class="vol-description">
-            @Model.WhyIVolunteer
-          </p>
-         
-          <div>
-            <div id="mission-favourite-recomend-div" class="d-flex">
-                <button class="w-50 border border-3 rounded-5 bg-white p-2 m-2"  data-bs-toggle="modal" data-bs-target="#exampleModalCenter2">
-                    <img src="images/add1.png" alt="" />
-                    <span>Recommend to a Co-Worker</span>
-                  </button>
+            <p class="vol-description">
+                @Model.WhyIVolunteer
+            </p>
 
-                  <!-- Modal -->
+            <div>
+                <div id="mission-favourite-recomend-div" class="d-flex">
+                    <button  class="w-50 border border-3 rounded-5 bg-white p-2 m-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter2">
+                        <img src="images/add1.png" alt="" />
+                        <span>Recommend to a Co-Worker</span>
+                    </button>
 
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalCenterTitle">Recommend to a Co-Worker</h5>
-<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
+                    <!-- Modal -->
 
-<form style="width:auto;">
-<div class="modal-body">
-<input id="volunteerEmail" onkeyup="filterFunction()"  class="form-control searchInput" type="email" name="email" placeholder="E-mail Address" required>
-           <div style="max-height:60vh; overflow-y:scroll;" id="myInput1"></div>
-<div class="valid-feedback">Email field is valid!</div>
-<div class="invalid-feedback">Email field cannot be blank!</div>
+                    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Recommend to a Co-Worker</h5>
+                                    <button style="border:none; background: #fff;" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-</div>
-<div class="modal-footer form-button">
-<button type="button" class=" btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" class=" btn-primary" data-bs-dismiss="modal" id="RecommandtoUser">Send</button>
-</div>
-</form>
-</div>
-</div>
-</div>
+                                <form style="width:auto;">
+                                    <div class="modal-body">
+                                        <input id="volunteerEmail" onkeyup="filterFunction()" class="form-control searchInput" type="email" name="email" placeholder="E-mail Address" required>
+                                        <div style="max-height:60vh; overflow-y:scroll;" id="myInput1"></div>
+                                        <div class="valid-feedback">Email field is valid!</div>
+                                        <div class="invalid-feedback">Email field cannot be blank!</div>
+
+                                    </div>
+                                    <div class="modal-footer form-button">
+                                        <button style="padding: 5px 15px; background:#fff; border-radius:23px" type="button" class=" btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button style="padding: 5px 15px; background:#fff; border-radius:23px" type="button" class=" btn-primary" data-bs-dismiss="modal" id="RecommandtoUser">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
 
-              <button onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@Model.MissionId}) '" class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border: 2px solid  #F88634!important;">
-                <span>Open Mission</span>
-                <img class="mx-2" src="/images/right-arrow.png" alt="" />
-              </button>
+                    <button onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@Model.MissionId}) '" class="w-50 border border-3 rounded-5 bg-white p-2 m-2" style="border: 2px solid  #F88634!important;">
+                        <span>Open Mission</span>
+                        <img class="mx-2" src="/images/right-arrow.png" alt="" />
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="vol-bottom">
-      <div class="vol-bottom-left" style="width: 80vw !important; margin-left: 5vw;">
+</div>
+<div class="vol-bottom mb-5">
+    <div class="vol-bottom-left" style="width: 80vw !important; margin-left: 5vw;">
         <!--------------------
-           Tabs content 
+           Tabs content
           ------------------------>
         <p class="fs-4"> @Model.StoryTitle </p>
         <p> @Model.StoryDescription </p>
-      </div>
     </div>
-    
-   
-    
-  
-    <script>
+</div>
 
-function filterFunction() {
+<partial name="_ContactUsFooter" />
 
-var searchUser = $(".searchInput").val();
 
-$.ajax({
-type: "GET",
-url: '/Story/SearchUser',
-dataType: "html",
-data: { name: searchUser},
-success: function (data) {
+<script>
 
-$('#myInput1').html("");
-$('#myInput1').html(data);
+    function filterFunction() {
 
-},
-error: function (xhr, status, error) {
-// Handle error
-console.log(error);
-}
-})
-};
-        
-$('#RecommandtoUser').on("click", function (e) {
-var StoryId = @Model.StoryId;
+    var searchUser = $(".searchInput").val();
 
-$.ajax({
-url: '/Story/RecommandtoCoWorker',
-type: 'Post',
-dataType: 'json',
-data: { StoryId: StoryId,
-InviteEmail:$("#volunteerEmail").val()
-},
-success: function (data) {
-alert(data["data"]);
-},
-error: function(xhr, status, error) {
-alert(xhr.responseText);
-},
-});
-});
+    $.ajax({
+    type: "GET",
+    url: '/Story/SearchUser',
+    dataType: "html",
+    data: { name: searchUser},
+    success: function (data) {
 
-function addUserToInput(button) {
-var value = button.value;
-document.getElementById("volunteerEmail").value = value;
-}
-    </script>
+    $('#myInput1').html("");
+    $('#myInput1').html(data);
+
+    },
+    error: function (xhr, status, error) {
+    // Handle error
+    console.log(error);
+    }
+    })
+    };
+
+    $('#RecommandtoUser').on("click", function (e) {
+    var StoryId = @Model.StoryId;
+
+    $.ajax({
+    url: '/Story/RecommandtoCoWorker',
+    type: 'Post',
+    dataType: 'json',
+    data: { StoryId: StoryId,
+    InviteEmail:$("#volunteerEmail").val()
+    },
+    success: function (data) {
+    alert(data["data"]);
+    },
+    error: function(xhr, status, error) {
+    alert(xhr.responseText);
+    },
+    });
+    });
+
+    function addUserToInput(button) {
+    var value = button.value;
+    document.getElementById("volunteerEmail").value = value;
+    }
+</script>
