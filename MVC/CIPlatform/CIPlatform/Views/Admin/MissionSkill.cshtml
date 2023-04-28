@@ -42,7 +42,9 @@
                     @Html.ValidationMessageFor(model => model.skill.Status, "", new { @class = "text-danger" })
 
                     <div class="modalBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                        <button style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;" type="reset">Cancel</button>
+                        <button id="cancel-mission-skill"
+                        style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;"
+                        type="reset">Cancel</button>
                         <button id="DeleteBtn" style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #f88634; border: 2px solid #f88634;" type="submit">Save</button>
                     </div>
                 </form>
@@ -78,6 +80,9 @@
 
 
 <script>
+    $("#cancel-mission-skill").on("click", function(e){
+        window.location.href = "/Admin/MissionSkill";
+    })
     function getTable() {
         $.ajax({
             type: "GET",

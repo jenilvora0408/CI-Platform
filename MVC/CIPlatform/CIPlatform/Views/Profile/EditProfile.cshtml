@@ -21,9 +21,9 @@
                         <button id="closePasswordPopUp"><i class="bi bi-x"></i></button>
                     </div>
                     <form method="post" asp-action="changePasswordForProfile" asp-controller="Profile">
-                        <input asp-for="oldPassword" type="password" class="old-pass form-control mt-3" id="exampleInputEmail1"
+                        <input asp-for="oldPassword" type="password" class="old-pass form-control mt-3"  
                                aria-describedby="emailHelp" placeholder="Enter old Password" />
-                        <span asp-validation-for="oldPassword" class="text-danger"></span>
+                        <span asp-validation-for="@Model.oldPassword" style="color:red"></span>
 
 
                         <input asp-for="newPassword" type="password" class="new-pass form-control mt-3" id="exampleInputEmail2"
@@ -59,13 +59,13 @@
                     <div class="layer-part-1">
                         <div class="edit-name">
                             <label for="name">Name*</label>
-                            <input type="text" asp-for="FirstName" class="form-control" id="exampleInputEmail1"
+                            <input type="text" asp-for="FirstName" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter your Name" />
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="edit-surname">
                             <label for="surname">Surname*</label>
-                            <input type="text" asp-for="LastName" class="form-control" id="exampleInputEmail1"
+                            <input type="text" asp-for="LastName" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter your Surname" />
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
@@ -73,13 +73,13 @@
                     <div class="layer-part-2">
                         <div class="edit-employeeID">
                             <label for="employee-id">Employee ID</label>
-                            <input type="text" asp-for="EmployeeID" class="form-control" id="exampleInputEmail1"
+                            <input type="text" asp-for="EmployeeID" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter your Employee ID" />
                             <span asp-validation-for="EmployeeID" class="text-danger"></span>
                         </div>
                         <div class="edit-surname">
                             <label for="surname">Manager</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
+                            <input type="text" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter your Manager Details" />
 
                         </div>
@@ -87,13 +87,13 @@
                     <div class="layer-part-3">
                         <div class="edit-employeeID">
                             <label for="title">Title</label>
-                            <input type="text" asp-for="Title" class="form-control" id="exampleInputEmail1"
+                            <input type="text" asp-for="Title" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter" />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="edit-surname">
                             <label for="department">Department</label>
-                            <input type="text" asp-for="Department" class="form-control" id="exampleInputEmail1"
+                            <input type="text" asp-for="Department" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter your Department" />
                             <span asp-validation-for="Department" class="text-danger"></span>
                         </div>
@@ -105,7 +105,7 @@
                         <label for="profile">My Profile*</label>
                         <textarea asp-for="MyProfile" class="form-control txt" id="exampleFormControlTextarea1" rows="7"
                                   placeholder="Enter your Comments..."></textarea>
-                        @*<input type="text" asp-for="MyProfile" class="form-control" id="exampleInputEmail1"
+                        @*<input type="text" asp-for="MyProfile" class="form-control"  
                             aria-describedby="emailHelp" placeholder="Enter" />*@
                         @*<textarea asp-for="MyProfile"  placeholder="Enter your comments..." id="" cols="30" rows="5" style="width: 100%;border: 1px solid #ced4da;"></textarea>*@
                     </div>
@@ -123,8 +123,9 @@
                     <div class="layer-3-parts">
                         <div class="layer3-part-1">
                             <label for="city">City</label>
-                            <input asp-for="CityName" type="text" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp" placeholder="Enter your City" />
+                            @*<input asp-for="CityName" type="text" class="form-control"  
+                                   aria-describedby="emailHelp" placeholder="Enter your City" />*@
+                            @Html.DropDownListFor(m => m.CityId,Enumerable.Empty<SelectListItem>(), "Select your city", new { @class = "form-control ",required = "required" })
                         </div>
                         <div class="layer3-part-2">
                             <label for="city">Country*</label>
@@ -160,7 +161,7 @@
                         </div>
                         <div class="layer4-part-2">
                             <label for="city">LinkedIn*</label>
-                            <input required asp-for="LinkedInURL" type="text" class="form-control" id="exampleInputEmail1"
+                            <input required asp-for="LinkedInURL" type="text" class="form-control"  
                                    aria-describedby="emailHelp" placeholder="Enter LinkedIn URL" />
                         </div>
                     </div>
@@ -300,7 +301,28 @@
 
 
 <script>
-
+    $("#changePasswordCencelButton").on("click", function(e){
+        location.reload();
+    })
+    function getCityOfCountry(){
+        debugger
+            var country = $('#CountryID').val();
+                $.ajax({
+                    url: '@Url.Action("GetCitiesOfCountry", "Profile")',
+                    type: 'GET',
+                    data: { country: country },
+                    success: function(data) {
+                        // Populate the city dropdown with the returned data
+                        var cityDropdown = $('#CityId');
+                        cityDropdown.empty();
+                        $.each(data, function(index, item) {
+                            cityDropdown.append('<option value="' + item.cityId + '">' + item.name + '</option>');
+                        }); debugger
+                        var selectedCityId = '@Model.CityId';
+    $('#CityId').val(selectedCityId);
+                    }
+                });
+        }
     $(".user-edit-changepassword").on("click", function(e){
         var oldPassword = $(".old-pass").val();
         var newPassword = $(".new-pass").val();
@@ -312,6 +334,10 @@
 
 
     $(document).ready(function () {
+        getCityOfCountry();
+        $('#CountryID').change(function() {
+                getCityOfCountry();
+            });
     // when the profile picture is clicked
     $('#user-avatar').click(function () {
 

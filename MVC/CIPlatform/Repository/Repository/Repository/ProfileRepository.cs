@@ -45,7 +45,7 @@ namespace Repository.Repository.Repository
         public User SaveUserDetail(editProfile userEditProfile, string email)
         {
             User user = _ciPlatformContext.Users.Where(x => x.Email == email).FirstOrDefault();
-            City city = _ciPlatformContext.Cities.Where(x => x.Name == userEditProfile.CityName).FirstOrDefault();
+            /*City city = _ciPlatformContext.Cities.Where(x => x.Name == userEditProfile.CityName).FirstOrDefault();
             if (city == null && userEditProfile.CityName != null)
             {
                 City city1 = new City();
@@ -62,7 +62,7 @@ namespace Repository.Repository.Repository
                     user.CityId = city.CityId;
                 }
                 
-            }
+            }*/
             if (userEditProfile.SkillIDs != null)
             {
                 string[] skillIDStrings = userEditProfile.SkillIDs.Split(',');
@@ -97,6 +97,7 @@ namespace Repository.Repository.Repository
             user.EmployeeId = userEditProfile.EmployeeID;
             user.Department = userEditProfile.Department;
             user.Availability = userEditProfile.Availability;
+            user.CityId = userEditProfile.CityId;
             user.UpdatedAt = DateTime.Now;
             _ciPlatformContext.Users.Update(user);
             _ciPlatformContext.SaveChanges();
@@ -105,12 +106,12 @@ namespace Repository.Repository.Repository
         public editProfile PutUserDetails(editProfile model, string email)
         {
             User user = _ciPlatformContext.Users.Where(x => x.Email == email).FirstOrDefault();
-            City city = _ciPlatformContext.Cities.Where(x => x.CityId == user.CityId).FirstOrDefault();
+            /*City city = _ciPlatformContext.Cities.Where(x => x.CityId == user.CityId).FirstOrDefault();*/
             Country country = _ciPlatformContext.Countries.Where(x => x.CountryId == user.CountryId).FirstOrDefault();
-            if (city != null)
+            /*if (city != null)
             {
                 model.CityName = city.Name;
-            }
+            }*/
             if (country != null)
             {
                 model.CountryName = country.Name;
@@ -123,7 +124,13 @@ namespace Repository.Repository.Repository
             model.WhyIVolunteer = user.WhyIVolunteer;
             model.MyProfile = user.ProfileText;
             model.UserName = user.FirstName + " " + user.LastName;
+            //model.CityId=long(user.CityId);
             model.EmployeeID = user.EmployeeId;
+            if(user.CityId > 0)
+            {
+                long cityId = (long)user.CityId;
+                model.CityId = cityId;
+            }
             model.Department = user.Department;
             model.LinkedInURL = user.LinkedInUrl;
             model.Availability = user.Availability;
@@ -251,7 +258,7 @@ namespace Repository.Repository.Repository
         }
         public List<SelectListItem> GetSelectedSkills(int userId)
         {
-            return _ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            return _ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Join(_ciPlatformContext.Skills.Where(x => x.Status != false && x.DeletedAt != null), us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
         public List<SelectListItem> GetNotSelectedSkills(int userId)
@@ -268,5 +275,11 @@ namespace Repository.Repository.Repository
                 .ToList();
         }
 
+        public List<City> GetCitiesOfCountry(long country)
+        {
+            List<City> city = _ciPlatformContext.Cities.Where(x => x.Country.CountryId == country).ToList();
+            return city;
+        }
+        public Timesheet GetTimesheetById(int id) => _ciPlatformContext.Timesheets.Where(x => x.TimesheetId == id).Include(x => x.Mission).First();
     }
 }

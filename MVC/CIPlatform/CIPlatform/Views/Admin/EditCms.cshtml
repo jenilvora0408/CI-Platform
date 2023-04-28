@@ -32,8 +32,10 @@
         </div>
     </div>
 
-    @*<script src="./js/bootstrap.bundle.js"></script>*@
     <script>
+        $("#cancelBtn").on("click", function(e){
+            window.location.href = "/Admin/CMS";
+        })
         // AJAX Call
             var cmsId = @Model.CmsPage.CmsPageId;
         $("#saveBtn").on("click", function(e){

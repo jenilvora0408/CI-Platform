@@ -72,6 +72,9 @@
 
 
 <script>
+    $("#user-add-cancel-btn").on("click", function(e){
+        window.location.href = "/Admin/User";
+    })
     function getCityOfCountry() {
         var country = $('#User_CountryId').val();
         $.ajax({

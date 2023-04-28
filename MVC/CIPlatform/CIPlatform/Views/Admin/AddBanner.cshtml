@@ -24,7 +24,7 @@
                     </div>
                 </div>
                     <div class="pt-3 d-flex justify-content-end align-items-center">
-                        <button class=" border border-2 border-secondary bg-white rounded-5 px-4 p-2">Cancel</button>
+                        <button id="cancel-banner" class=" border border-2 border-secondary bg-white rounded-5 px-4 p-2">Cancel</button>
                         <input type="submit" class="banner-save ms-2 btn-orange bg-white rounded-5 px-4 p-2" value="Save">
                     </div>
             </form>
@@ -35,6 +35,9 @@
     
     
     <script>
+        $("#cancel-banner").on("click", function(e){
+            window.location.href = "/Admin/Banner";
+        })
       $(function() {
     // Multiple images preview in browser
     var imagesPreview = function(input, placeToInsertImagePreview) {

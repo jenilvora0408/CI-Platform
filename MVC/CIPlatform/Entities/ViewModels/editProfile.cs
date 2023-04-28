@@ -60,7 +60,7 @@ namespace Entities.ViewModels
 
         public string? WhyIVolunteer { get; set; }
 
-        public string? CityName { get; set; }
+        public long CityId { get; set; }
 
         public string CountryName { get; set; }
 

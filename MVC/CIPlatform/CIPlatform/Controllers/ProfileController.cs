@@ -207,5 +207,12 @@ namespace CIPlatform.Controllers
             var mission = _missionInterface.GetMissionByMissionId(missionID);
             return Json(mission);
         }
+        public JsonResult GetCitiesOfCountry(long country)
+        {
+            var cities = _profileInterface.GetCitiesOfCountry(country);
+
+            return Json(cities);
+        }
+        public IActionResult GetTimesheets(int id) => Json(_profileInterface.GetTimesheetById(id));
     }
 }

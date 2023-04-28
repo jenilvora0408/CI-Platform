@@ -23,7 +23,7 @@ namespace Repository.Repository.Interface
         public void addUser(User user);
         public void addResetPasswordToken(PasswordReset obj);
         public void removeResetPasswordToekn(PasswordReset obj);
-
+        public bool isUserActive(string email);
         public List<Banner> GetBanners();
 
     }

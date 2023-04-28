@@ -225,13 +225,13 @@
     loadPagination();
     function loadPagination() {
         var paging = "";
-
+        var sorting = $('#missionSortBy').val();
 
         $("#pagination li a").on("click", function (e) {
             e.preventDefault();
             paging = $(this).data("page");
-            loadList(null, paging);
-            loadCard(null, paging);
+            loadList(sorting, paging);
+            loadCard(sorting, paging);
         });
 
         $("#pagePrev").on("click", function (e) {
@@ -241,8 +241,8 @@
             }
             paging = parseInt($("#pagination li.active a").data("page"));
             paging--;
-            loadList(null, paging);
-            loadCard(null, paging);
+            loadList(sorting, paging);
+            loadCard(sorting, paging);
         });
 
         $("#pageNext").on("click", function (e) {
@@ -252,8 +252,8 @@
             }
             paging = parseInt($("#pagination li.active a").data("page"));
             paging++;
-            loadList(null, paging);
-            loadCard(null, paging);
+            loadList(sorting, paging);
+            loadCard(sorting, paging);
         });
     }
 </script>

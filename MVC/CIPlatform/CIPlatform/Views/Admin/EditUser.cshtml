@@ -8,7 +8,7 @@
     <partial name="_AdminSidebar" />
 
     <div class="cms-content">
-        <p class="heading"><span>Add User Page</span></p>
+        <p class="heading"><span>Edit User Page</span></p>
 
         <form method="post" asp-action="EditUserData" asp-controller="Admin" class="user-admin">
             <label>First Name</label>
@@ -73,6 +73,9 @@
 
 
 <script>
+    $("#user-add-cancel-btn").on("click", function(e){
+        window.location.href = "/Admin/User";
+    })
     function getCityOfCountry() {
         var country = $('#User_CountryId').val();
         $.ajax({

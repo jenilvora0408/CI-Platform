@@ -43,7 +43,9 @@
 
 
                     <div class="modalBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                        <button style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;" type="reset">Cancel</button>
+                        <button id="cancel-mission-theme"
+                        style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;" 
+                        type="reset">Cancel</button>
                         <button id="DeleteBtn" style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #f88634; border: 2px solid #f88634;" type="submit">Save</button>
                     </div>
                 </form>
@@ -76,8 +78,10 @@
     </div>
 </div>
 
-<script src="./js/bootstrap.bundle.js"></script>
 <script>
+    $("#cancel-mission-theme").on("click", function(e){
+        location.reload();
+    })
     function getTable(){
             $.ajax({
             type: "GET",

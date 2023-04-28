@@ -92,7 +92,7 @@
         <p>Explore <span id="totalMissionCount"></span> missions</p>
     </div>
     <div class="heading-right">
-        <div class="selections">
+        @*<div class="selections">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -109,7 +109,15 @@
                     </ul>
                 </li>
             </ul>
-        </div>
+        </div>*@
+        @Html.DropDownList("Sort By", new SelectList(new[] {
+new { Value = "lowest seats", Text = "Lowest Seats" },
+new { Value = "highest seats", Text = "Highest Seats" },
+new { Value = "newest", Text = "Newest" },
+new { Value = "oldest", Text = "Oldest" },
+new { Value = "Favourites", Text = "Favourites" },
+new { Value = "deadline", Text = "Deadline" }
+}, "Value", "Text"),"Sort By", new {@id="missionSortBy" , @class = "form-control adminMissiontype", @placeholder="Sort By..." })
         <div class="images">
             <div class="circle-bg-img switch-view">
                 <a style="cursor: pointer;" id="select-grid-style"><img src="/images/grid.png" alt="" /></a>
@@ -167,6 +175,7 @@ alert('Error!');
 }
 });
 }
+
         // JS for Grid View
         function loadCard(sortColumn, paging) {
 
@@ -259,6 +268,13 @@ alert('Error!');
         }
 
         $(document).ready(function () {
+            $('#missionSortBy').on('change', function () {
+                var sorting = $(this).val();
+                loadCard(sorting);
+                loadList(sorting);
+                favouriteMissions();
+                getFavouriteMissions();
+             });
 
             var countryName = "@HttpContextAccessor.HttpContext.Session.GetString("UserCountryName")";
             var countryId = "@HttpContextAccessor.HttpContext.Session.GetInt32("UserCountryId")";

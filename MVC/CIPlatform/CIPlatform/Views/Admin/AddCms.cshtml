@@ -33,8 +33,10 @@
     </div>
 </div>
 
-@*<script src="./js/bootstrap.bundle.js"></script>*@
 <script>
+    $("#cancelBtn").on("click", function(e){
+        window.location.href = "/Admin/CMS";
+    })
     // AJAX Call
     $("#saveBtn").on("click", function (e) {
         var title = $(".cms-title").val();

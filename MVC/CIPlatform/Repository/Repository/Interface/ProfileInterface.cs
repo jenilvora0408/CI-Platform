@@ -35,5 +35,8 @@ namespace Repository.Repository.Interface
 
         List<SelectListItem> GetMissionTitlesByUserIdAndType(long userId, string type);
 
+        public List<City> GetCitiesOfCountry(long country);
+        public Timesheet GetTimesheetById(int id);
+
     }
 }

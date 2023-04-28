@@ -33,11 +33,16 @@ namespace Repository.Repository.Repository
         }
         public Boolean isEmailAvailable(string email)
         {
-            return _ciPlatformContext.Users.Any(x => x.Email == email);
+            return _ciPlatformContext.Users.Any(x => x.Email == email && x.Status == true);
         }
         public User isPasswordAvailable(string password, string email)
         {
             return _ciPlatformContext.Users.Where(x => x.Password == password && x.Email == email).FirstOrDefault();
+        }
+
+        public bool isUserActive(string email)
+        {
+            return _ciPlatformContext.Users.Any(x => x.Status == true && x.Email == email);
         }
 
         public long GetUserID(string Email)

@@ -6,7 +6,7 @@
     {
 
         <div class="grid-item col-sm-12 col-md-6 col-lg-4 mb-4" id="grid-column">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-image">
                     @if (item.approvalStatus == "Approved")
                     {
@@ -74,7 +74,7 @@
                 else
                 {
                     <p class="mission-date">
-                        <span class="time-span">@item.startDate?.ToString("dd-mm-yyyy") until @item.endDate?.ToString("dd-mm-yyyy")</span>
+                        <span class="time-span">@item.startDate?.ToString("d") until @item.endDate?.ToString("d")</span>
                     </p>
                 }
 
@@ -105,7 +105,11 @@
                             }
                             else
                             {
-                                <img src="/images/deadline.png" alt="" />
+                                @if(item.deadline != null)
+                                {
+                                    <img src="/images/deadline.png" alt="" />    
+                                }
+                                
                             }
 
                         </div>
@@ -125,10 +129,14 @@
                         }
                         else
                         {
-                            <div class="card-body-right-text">
-                                <span class="figure">@item.deadline?.ToString("dd-mm-yyyy")</span>
+                            @if(item.deadline != null)
+                            {
+                                <div class="card-body-right-text">
+                                <span class="figure">@item.deadline?.ToString("d")</span>
                                 <span class="deadline">Deadline</span>
                             </div>
+                            }
+                            
                         }
                     </div>
                 </div>

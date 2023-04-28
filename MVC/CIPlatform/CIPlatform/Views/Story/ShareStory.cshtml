@@ -68,7 +68,11 @@
 </div>
 <partial name="_ContactUsFooter" />
 <script src="./js/bootstrap.bundle.js"></script>
+
 <script>
+    $("#cancelBtn").on("click", function(e){
+        window.location.href = "/Story/StoryListing";
+    })
       $(document).ready(function() {
         loadUserMission();
         ImgUpload();

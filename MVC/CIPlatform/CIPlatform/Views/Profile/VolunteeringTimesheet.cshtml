@@ -137,7 +137,7 @@
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="add-timesheet-btn btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -158,7 +158,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" asp-action="updateTimesheetData" asp-controller="Profile">
+                <form id="editTimemodalForm"method="post" asp-action="updateTimesheetData" asp-controller="Profile">
                     <input type="hidden" asp-for="@Model.VolTimesheet.TimesheetId" id="gettimesheetid" />
                     <div class="mb-3">
                         <label for="">Mission</label>
@@ -191,7 +191,7 @@
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="edit-timesheet-btn btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -212,7 +212,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" asp-action="updateTimesheetData" asp-controller="Profile">
+                <form method="post" id="editGoalmodalForm" asp-action="updateTimesheetData" asp-controller="Profile">
                     <input id="getgoalsheetid" type="hidden" asp-for="@Model.VolTimesheet.TimesheetId" />
                     <div class="mb-3">
                         <label for="">Mission</label>
@@ -240,7 +240,7 @@
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class=".goal-edit-timesheet btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -273,7 +273,7 @@
                     </div>
                     <div class="mb-3">
                         <label>Date Volunteered</label>
-                        <input required="" type="date"  id="goaldates" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
+                        <input required type="date"  id="goaldates" asp-for="VolTimesheet.DateVolunteered" class="form-control" />
                         <span asp-validation-for="VolTimesheet.DateVolunteered" class="text-danger"></span>
                     </div>
 
@@ -287,7 +287,7 @@
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="goal-add-timesheet btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -299,6 +299,20 @@
 <partial name="_ContactUsFooter" />
 
 <script>
+    $(".add-timesheet-btn").on("click", function(e){
+        alert("Timesheet added successfully");
+    })
+    $(".edit-timesheet-btn").on("click", function(e){
+        alert("Timesheet updated successfully");
+    })
+    $(".goal-edit-timesheet").on("click", function(e){
+        alert("Timesheet updated successfully");
+    })
+    $(".goal-add-timesheet").on("click", function(e){
+        alert("Timesheet added successfully");
+    })
+
+
     $(document).ready(function(e){
         $(".deleteTimesheet").on("click", function(e){
             var a = $(this).attr("data-id");
@@ -318,70 +332,200 @@
 
 
     $(".timeEdit").click(function () {
-        var id = $(this).attr("value");
-        $("#gettimesheetid").val(id);
-        var title = $(this).attr("data-title");
-        $("#getmissiontitleoftime").val(title);
-        var note = $(this).attr("data-note");
 
-        var startdate = $("#TstartDate").val();
-        var enddate = $("#TendDate").val();
-        var startDateParts = startdate.split('-');
-        var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
-        var endDateParts = enddate.split('-');
-        var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
-        var input = document.getElementById("timedate");
-        input.setAttribute("min",outputStartDate);
-        input.setAttribute("max",outputEndDate);
+          $('#editTimemodalForm')[0].reset();
+        var timesheetIdForTime = $(this).attr("value");
+           
+    $(".text-danger").each(function(index, message) {
+        $(message).text("");
+    });
 
-        $("#timenote").val(note);
-        var hour = $(this).attr("data-hour");
-        $("#timehours").val(hour);
-        var minute = $(this).attr("data-minute");
-        $("#timeminutes").val(minute);
-        var date = $(this).attr("data-date");
-        if (date) {
-        var d = date;
-         var dateObj = new Date(d);
-        var year = dateObj.getFullYear();
-        var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-        var day = ("0" + dateObj.getDate()).slice(-2);
-        var formattedDate = `${year}-${day}-${month}`;
-        $("#timedate").val(formattedDate);
-        }
+
+     $.ajax({
+            url: '/Profile/GetTimesheets',
+            type: 'GET',
+            dataType: 'json',
+            data: { id: timesheetIdForTime },
+            success: function (data) {
+                $("#gettimesheetid").val(timesheetIdForTime);
+                var id= $("#getmissiontitleoftime").val(data.mission.title);
+                 console.log(id)
+
+                  var time = data.time
+                  var timeParts = time.split(':');
+                  var hours = timeParts[0];
+                  var minutes = timeParts[1];
+                  $("#timehours").val(hours);
+                   $("#timeminutes").val(minutes);
+                    $("#timenote").val(data.notes);
+                    
+
+                const dateObj = new Date(data.mission.startDate);
+                const day = dateObj.getDate().toString().padStart(2, '0');
+                const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                const year = dateObj.getFullYear().toString();
+                const formattedDate = `${year}-${month}-${day}`;
+
+                const dateObj1 = new Date(data.mission.endDate);
+                const day1 = dateObj1.getDate().toString().padStart(2, '0');
+                const month1 = (dateObj1.getMonth() + 1).toString().padStart(2, '0');
+                const year1 = dateObj1.getFullYear().toString();
+                const formattedDate1 = `${year1}-${month1}-${day1}`;
+
+                 const dateObj2= new Date(data.dateVolunteered);
+                const day2 = dateObj2.getDate().toString().padStart(2, '0');
+                const month2 = (dateObj2.getMonth() + 1).toString().padStart(2, '0');
+                const year2 = dateObj2.getFullYear().toString();
+                const formattedDate2 = `${year2}-${month2}-${day2}`;
+                 $("#timedate").val(formattedDate2);
+
+                var input = document.getElementById("timedate");
+                input.setAttribute("min", formattedDate);
+                input.setAttribute("max", formattedDate1);
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //var id = $(this).attr("value");
+        //$("#gettimesheetid").val(id);
+        //var title = $(this).attr("data-title");
+        //$("#getmissiontitleoftime").val(title);
+        //var note = $(this).attr("data-note");
+
+        //var startdate = $("#TstartDate").val();
+        //var enddate = $("#TendDate").val();
+        //var startDateParts = startdate.split('-');
+        //var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
+        //var endDateParts = enddate.split('-');
+        //var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
+        //var input = document.getElementById("timedate");
+        //input.setAttribute("min",outputStartDate);
+        //input.setAttribute("max",outputEndDate);
+
+        //$("#timenote").val(note);
+        //var hour = $(this).attr("data-hour");
+        //$("#timehours").val(hour);
+        //var minute = $(this).attr("data-minute");
+        //$("#timeminutes").val(minute);
+        //var date = $(this).attr("data-date");
+        //if (date) {
+        //var d = date;
+        // var dateObj = new Date(d);
+        //var year = dateObj.getFullYear();
+        //var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+        //var day = ("0" + dateObj.getDate()).slice(-2);
+        //var formattedDate = `${year}-${day}-${month}`;
+        //$("#timedate").val(formattedDate);
+        //}
     });
 
     $(".goalEdit").click(function () {
-        var id = $(this).attr("value");
-        $("#getgoalsheetid").val(id);
-        var title = $(this).attr("data-title");
-        $("#getmissiontitle").val(title);
 
-        var startdate = $("#GstartDate").val();
-        var enddate = $("#GendDate").val();
-        var startDateParts = startdate.split('-');
-        var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
-        var endDateParts = enddate.split('-');
-        var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
-        var input = document.getElementById("goaldate");
-        input.setAttribute("min",outputStartDate);
-        input.setAttribute("max",outputEndDate);
+          $('#editGoalmodalForm')[0].reset();
+        var timesheetIdForGoal = $(this).attr("value");
+           
+    $(".text-danger").each(function(index, message) {
+        $(message).text("");
+    });
 
-        var note = $(this).attr("data-note");
-        $("#goalnote").val(note);
-        var action = $(this).attr("data-action");
-        $("#goalaction").val(action);
-        var date = $(this).attr("data-date");
-        if (date) {
-        var d = date;
-         var dateObj = new Date(d);
-        var year = dateObj.getFullYear();
-        var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-        var day = ("0" + dateObj.getDate()).slice(-2);
-        var formattedDate123 = `${year}-${day}-${month}`;
-       
 
-        }
+     $.ajax({
+            url: '/Profile/GetTimesheets',
+            type: 'GET',
+            dataType: 'json',
+            data: { id: timesheetIdForGoal },
+            success: function (data) {
+                  $("#getgoalsheetid").val(timesheetIdForGoal);
+                var id= $("#getmissiontitle").val(data.mission.title);
+                 console.log(id)
+
+                 
+                  //$("#timehours").val(hours);
+                   $("#goalaction").val(data.action);
+                    $("#goalnote").val(data.notes);
+                    
+
+                const dateObj = new Date(data.mission.startDate);
+                const day = dateObj.getDate().toString().padStart(2, '0');
+                const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                const year = dateObj.getFullYear().toString();
+                const formattedDate = `${year}-${month}-${day}`;
+
+                const dateObj1 = new Date(data.mission.endDate);
+                const day1 = dateObj1.getDate().toString().padStart(2, '0');
+                const month1 = (dateObj1.getMonth() + 1).toString().padStart(2, '0');
+                const year1 = dateObj1.getFullYear().toString();
+                const formattedDate1 = `${year1}-${month1}-${day1}`;
+
+                 const dateObj2= new Date(data.dateVolunteered);
+                const day2 = dateObj2.getDate().toString().padStart(2, '0');
+                const month2 = (dateObj2.getMonth() + 1).toString().padStart(2, '0');
+                const year2 = dateObj2.getFullYear().toString();
+                const formattedDate2 = `${year2}-${month2}-${day2}`;
+                 $("#goaldate").val(formattedDate2);
+
+                var input = document.getElementById("goaldate");
+                input.setAttribute("min", formattedDate);
+                input.setAttribute("max", formattedDate1);
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+
+
+
+        //var id = $(this).attr("value");
+        //$("#getgoalsheetid").val(id);
+        //var title = $(this).attr("data-title");
+        //$("#getmissiontitle").val(title);
+
+        //var startdate = $("#GstartDate").val();
+        //var enddate = $("#GendDate").val();
+        //var startDateParts = startdate.split('-');
+        //var outputStartDate = startDateParts[2] + '-' + startDateParts[1] + '-' + startDateParts[0];
+        //var endDateParts = enddate.split('-');
+        //var outputEndDate = endDateParts[2] + '-' + endDateParts[1] + '-' + endDateParts[0];
+        //var input = document.getElementById("goaldate");
+        //input.setAttribute("min",outputStartDate);
+        //input.setAttribute("max",outputEndDate);
+
+        //var note = $(this).attr("data-note");
+        //$("#goalnote").val(note);
+        //var action = $(this).attr("data-action");
+        //$("#goalaction").val(action);
+        //var date = $(this).attr("data-date");
+        //if (date) {
+        //var d = date;
+        // var dateObj = new Date(d);
+        //var year = dateObj.getFullYear();
+        //var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+        //var day = ("0" + dateObj.getDate()).slice(-2);
+        //var formattedDate123 = `${year}-${day}-${month}`;
+        //$("#goaldate").val(formattedDate123);
+
+        //}
       });
 
       $(".missionChange").change(function () {

@@ -131,7 +131,7 @@ namespace Repository.Repository.Repository
             comment.CreatedAt = DateTime.Now;
             comment.CommentText = commented;
             _ciPlatformContext.Comments.Add(comment);
-            _ciPlatformContext.SaveChangesAsync();
+            _ciPlatformContext.SaveChanges();
         }
 
         MissionVol MissionInterface.getMissionVolData(int? missionId, int? userId)

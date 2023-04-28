@@ -176,7 +176,7 @@
                     <hr class="ratings" />
                     <p class="mission-date" style="margin-top:-40px">
                         <div id="stars-rating" class="d-flex justify-content-center align-items-center position-relative z-1">
-                            <input id="user_rating" type="text" class="rating text-center d-none" data-size="sm" />
+                            <input value="@Model.Volunteering.Rating" id="user_rating" type="text" class="rating text-center d-none" data-size="sm" />
                         </div>
 
                     </p>
@@ -370,7 +370,7 @@
                 <textarea class="comment-box" id="commentText" name="" cols="100" rows="5"></textarea>
                 <button class="comment-btn" type="button" value="@Model.Volunteering.MissionId" id="post-comment-btn">Post Comment</button>
                 @*<ul class="comment-items" id="list"></ul>*@
-                <div class=" commnets bg-light" id="CommentsList"> </div>
+                <div class=" commnets bg-light" id="CommentsList" style="height:290px; overflow:auto"> </div>
             </div>
         </div>
     </div>
@@ -662,7 +662,7 @@
             dataType: "html",
             data: { MissionID: val, comment: comments.toString() },
             success: function (data) {
-
+                alert("Posted comment successfully");
                 //$('#CommentsList').html("");
                 //$('#CommentsList').html(data);
                 listComment(missionid);

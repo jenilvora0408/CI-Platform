@@ -128,7 +128,9 @@ namespace CIPlatform.Controllers
                 {
                     
                     var password = _registerInterface.isPasswordAvailable(N.password, N.email);
-                    if(password != null)
+                   
+                    
+                     if(password != null)
                     {
                         sessionDetailsViewModel.Email = password.Email;
                         sessionDetailsViewModel.Avatar = password.Avatar;
@@ -173,7 +175,7 @@ namespace CIPlatform.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("email", "Enter correct email address");
+                    ModelState.AddModelError("email", "Enter correct email address and also user shouldn't be inactive");
                     return View("Login", login);
                 }
             }
