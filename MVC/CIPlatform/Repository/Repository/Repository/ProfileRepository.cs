@@ -258,12 +258,12 @@ namespace Repository.Repository.Repository
         }
         public List<SelectListItem> GetSelectedSkills(int userId)
         {
-            return _ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Join(_ciPlatformContext.Skills.Where(x => x.Status != false && x.DeletedAt != null), us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            return _ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Join(_ciPlatformContext.Skills.Where(x => x.Status == true && x.DeletedAt == null), us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
         public List<SelectListItem> GetNotSelectedSkills(int userId)
         {
-            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.UserSkills.Where(us => us.UserId == userId).Select(us => us.SkillId).Contains(s.SkillId)).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.UserSkills.Where(us => us.UserId == userId && us.Skill.DeletedAt == null && us.Skill.Status == true).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null && s.Status == true).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
 

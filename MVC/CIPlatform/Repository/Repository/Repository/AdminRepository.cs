@@ -311,25 +311,37 @@ namespace Repository.Repository.Repository
             }
         }
 
-        public void AddSkill(CMS cms)
+        public bool AddSkill(CMS cms)
         {
-            if(cms != null)
+            Skill skill1 = _ciPlatformContext.Skills.Where(x => x.SkillName.ToLower().Contains(cms.skill.SkillName.ToLower())).FirstOrDefault();
+            if(skill1 == null)
             {
                 Skill skill = new Skill();
                 skill = cms.skill;
                 _ciPlatformContext.Skills.Add(skill);
                 _ciPlatformContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        public void AddTheme(CMS cms)
+        public bool AddTheme(CMS cms)
         {
-            if(cms != null)
+            MissionTheme missionTheme = _ciPlatformContext.MissionThemes.Where(x => x.Title.ToLower().Contains(cms.missionTheme.Title.ToLower())).FirstOrDefault();
+            if(missionTheme == null)
             {
                 MissionTheme theme = new MissionTheme();
                 theme = cms.missionTheme;
                 _ciPlatformContext.MissionThemes.Add(theme);
                 _ciPlatformContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -596,7 +608,7 @@ namespace Repository.Repository.Repository
         public List<SelectListItem> GetSkills()
         {
 
-            return _ciPlatformContext.Skills.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
+            return _ciPlatformContext.Skills.Where(x => x.DeletedAt == null && x.Status == true).Select(x => new SelectListItem { Value = x.SkillId.ToString(), Text = x.SkillName }).ToList();
         }
 
         public List<SelectListItem> GetCountries()
@@ -606,17 +618,17 @@ namespace Repository.Repository.Repository
 
         public List<SelectListItem> GetThemes()
         {
-            return _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
+            return _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null && x.Status == true).Select(x => new SelectListItem { Value = x.MissionThemeId.ToString(), Text = x.Title }).ToList();
         }
 
         public List<SelectListItem> GetSelectedSkills(long MissionId)
         {
-            return _ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills, us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            return _ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Join(_ciPlatformContext.Skills.Where(x => x.Status == true && x.DeletedAt == null), us => us.SkillId, s => s.SkillId, (us, s) => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
         public List<SelectListItem> GetNotSelectedSkills(long MissionId)
         {
-            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
+            return _ciPlatformContext.Skills.Where(s => !_ciPlatformContext.MissionSkills.Where(us => us.MissionId == MissionId && us.Skill.DeletedAt == null && us.Skill.Status == true).Select(us => us.SkillId).Contains(s.SkillId) && s.DeletedAt == null && s.Status == true).Select(s => new SelectListItem { Value = s.SkillId.ToString(), Text = s.SkillName }).ToList();
         }
 
         public long AddMission(MissionCrud model)

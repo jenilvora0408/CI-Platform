@@ -44,12 +44,12 @@ namespace Repository.Repository.Repository
         }
         public List<MissionTheme> GetMissionThemes()
         {
-            List<MissionTheme> missionThemes = _ciPlatformContext.MissionThemes.ToList();
+            List<MissionTheme> missionThemes = _ciPlatformContext.MissionThemes.Where(x => x.DeletedAt == null && x.Status == true).ToList();
             return missionThemes;
         }
         public List<Skill> GetSkills()
         {
-            List<Skill> skills = _ciPlatformContext.Skills.ToList();
+            List<Skill> skills = _ciPlatformContext.Skills.Where(x => x.DeletedAt == null && x.Status == true).ToList();
             return skills;
         }
         public List<Mission> GetMissions()

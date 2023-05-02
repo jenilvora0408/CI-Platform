@@ -1,13 +1,28 @@
 ﻿@model Entities.ViewModels.CMS
 
+
+
 <div class="cms">
     <!-- Navbar -->
     <partial name="_AdminNavbar" model="Model.Navbar_1" />
+
+
 
     <!-- Sidebar -->
     <partial name="_AdminSidebar" />
 
     <div class="cms-content">
+        @if (TempData["error"] != null)
+        {
+            <div id="successMessage" class="alert alert-danger">@TempData["error"]</div>
+            <script>
+                setTimeout(function() {
+                $('#successMessage').fadeOut('slow');
+                }, 5000);
+            </script>
+            @TempData.Remove("error")
+            ;
+        }
         <p class="heading"><span>Mission Skill Page</span></p>
         <div class="content-line mt-4">
             <div class="search">
@@ -43,8 +58,10 @@
 
                     <div class="modalBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                         <button id="cancel-mission-skill"
-                        style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;"
-                        type="reset">Cancel</button>
+                                style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #333333; border: 2px solid #adadad;"
+                                type="reset">
+                            Cancel
+                        </button>
                         <button id="DeleteBtn" style="padding: 8px 18px; border-radius: 23px; background: #fff; color: #f88634; border: 2px solid #f88634;" type="submit">Save</button>
                     </div>
                 </form>
@@ -80,6 +97,8 @@
 
 
 <script>
+
+
     $("#cancel-mission-skill").on("click", function(e){
         window.location.href = "/Admin/MissionSkill";
     })

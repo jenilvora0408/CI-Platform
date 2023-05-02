@@ -33,7 +33,7 @@ namespace Repository.Repository.Repository
         }
         public Boolean isEmailAvailable(string email)
         {
-            return _ciPlatformContext.Users.Any(x => x.Email == email && x.Status == true);
+            return _ciPlatformContext.Users.Any(x => x.Email == email && x.Status == true && x.DeletedAt == null);
         }
         public User isPasswordAvailable(string password, string email)
         {

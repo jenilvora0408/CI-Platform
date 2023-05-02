@@ -126,10 +126,8 @@ namespace CIPlatform.Controllers
                 SessionDetailsViewModel sessionDetailsViewModel = new SessionDetailsViewModel();
                 if (emailExist)
                 {
-                    
                     var password = _registerInterface.isPasswordAvailable(N.password, N.email);
-                   
-                    
+
                      if(password != null)
                     {
                         sessionDetailsViewModel.Email = password.Email;
@@ -175,7 +173,7 @@ namespace CIPlatform.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("email", "Enter correct email address and also user shouldn't be inactive");
+                    ModelState.AddModelError("email", "Enter correct email address. Inactive & Deleted user cannot login.");
                     return View("Login", login);
                 }
             }

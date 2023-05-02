@@ -54,13 +54,13 @@ namespace Repository.Repository.Interface
 
         public void deleteApplication(long applicationId);
 
-        public void AddSkill(CMS cms);
+        public bool AddSkill(CMS cms);
 
         public void UpdateSkillData(CMS cms);
 
         public void deleteSkill(long skillId);
 
-        public void AddTheme(CMS cms);
+        public bool AddTheme(CMS cms);
 
         public CMS GetThemeData(long missionThemeId);
 

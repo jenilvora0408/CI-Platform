@@ -435,7 +435,7 @@ namespace CIPlatform.Controllers
             missionHomeModel.userId = userObj.UserId;
             editUser.Navbar_1 = missionHomeModel;
             var country = _adminInterface.GetCountries();
-            ViewBag.countries = country;
+            ViewBag.countrieS = country;
 
             return View(editUser);
         }
@@ -678,9 +678,17 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult addSkill(CMS cms)
         {
-            _adminInterface.AddSkill(cms);
-
-            return RedirectToAction("MissionSkill", "Admin");
+            var skills = _adminInterface.AddSkill(cms);
+            if(skills == false)
+            {
+                ModelState.AddModelError("SkillName", "Skill already exists.");
+                TempData["error"] = "Skill already exists.";
+                return RedirectToAction("MissionSkill", "Admin", new{status = true});
+            }
+            else
+            {
+                return RedirectToAction("MissionSkill", "Admin", new { status = false });
+            }
         }
 
         /// <summary>
@@ -691,9 +699,18 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult addTheme(CMS cms)
         {
-            _adminInterface.AddTheme(cms);
-
-            return RedirectToAction("MissionTheme", "Admin");
+            var theme = _adminInterface.AddTheme(cms);
+            if(theme == false)
+            {
+                ModelState.AddModelError("title", "Theme already exists.");
+                TempData["error"] = "Theme already exists.";
+                return RedirectToAction("MissionTheme", "Admin",  new {status = true});
+            }
+            else
+            {
+                return RedirectToAction("MissionTheme", "Admin", new {status = false});
+            }
+            
         }
 
         /// <summary>
@@ -963,8 +980,8 @@ namespace CIPlatform.Controllers
         /// View - Mission Skill
         /// </summary>
         /// <returns></returns>
-        public IActionResult MissionSkill()
-        {
+        public IActionResult MissionSkill(bool status)
+        {            
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
             if (userSessionEmailId == null)
@@ -1007,7 +1024,7 @@ namespace CIPlatform.Controllers
         /// View - Mission Theme
         /// </summary>
         /// <returns></returns>
-        public IActionResult MissionTheme()
+        public IActionResult MissionTheme(bool status)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");
             User userObj = _missionInterface.findUser(userSessionEmailId);
