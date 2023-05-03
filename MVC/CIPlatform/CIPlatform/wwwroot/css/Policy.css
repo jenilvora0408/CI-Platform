@@ -3,3 +3,7 @@
         margin-top: 3vh;
     }
 }
+div.policy-scroll::-webkit-scrollbar{
+    /*width:0;*/
+    display:none;
+}

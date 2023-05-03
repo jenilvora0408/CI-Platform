@@ -49,6 +49,8 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
+    public virtual DbSet<Notification> Notifications { get; set; }
+
     public virtual DbSet<PasswordReset> PasswordResets { get; set; }
 
     public virtual DbSet<Skill> Skills { get; set; }
@@ -65,12 +67,12 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
 
+
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
     public virtual DbSet<RelatedMission> RelatedMissions { get; set; }
     public virtual DbSet<RecentVolunteer> RecentVolunteer { get; set; }
     public virtual DbSet<StoryListing> StoryListings { get; set; }
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -604,6 +606,23 @@ public partial class CiPlatformContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("title");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+        });
+
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.ToTable("notification");
+
+            entity.Property(e => e.NotificationId).HasColumnName("notification_id");
+            entity.Property(e => e.MessageId).HasColumnName("message_id");
+            entity.Property(e => e.NotificationMessage)
+                .HasColumnType("text")
+                .HasColumnName("notification_message");
+            entity.Property(e => e.NotificationType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("notification_type");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
         });
 
         modelBuilder.Entity<PasswordReset>(entity =>

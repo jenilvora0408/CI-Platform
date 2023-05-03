@@ -8,7 +8,13 @@
 {
     <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Mission Found</p></div>
 }
-
+<style>
+::-webkit-scrollbar{
+    
+    width:0;
+ 
+}
+</style>
 <div id="GridView" class="row" style="margin-bottom:3vh;">
     @foreach (var item in Model.missions)
     {
@@ -17,11 +23,17 @@
                 <div class="card-image">
                     @if (item.approvalStatus == "Approved")
                     {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">Applied</div>
+                        <div style="position:absolute; top: 20px; border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px; background-color:green; opacity:1; color: #fff; padding: 5px 8px;">
+                            Applied
+                        </div>
                     }
                     else if (DateTime.Now > item.endDate)
                     {
-                        <div style="position:absolute; top: 20px; left: 5px; border-radius:23px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">Closed</div>
+                        <div style="position:absolute; top: 20px; border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px; background-color:orange; opacity:1; color: #fff; padding: 5px 8px;">
+                            Closed
+                        </div>
                     }
                     @{
                         string[] mediaNames = @item.missionImage.ToString().Split(",");
@@ -35,8 +47,8 @@
                     @if (item.favMissionId != null)
                     {
                         <div class="feature @*favourite-mission-div*@" @*style="background-color:red;" id="favourite-mission-@item.MissionId"*@>
-                            <div >
-                                <img class="favourite-mission-div"  style="background-color:red;" id="favourite-mission-@item.MissionId" src="/images/heart.png" alt="" />
+                            <div>
+                                <img class="favourite-mission-div" style="background-color:red;" id="favourite-mission-@item.MissionId" src="/images/heart.png" alt="" />
                             </div>
                             <img src="/images/user.png" alt="" />
                         </div>
@@ -44,10 +56,10 @@
                     else
                     {
                         <div class="feature @*favourite-mission-div*@" @*style="background-color:black;" id="favourite-mission-@item.MissionId"*@>
-                            <div >
+                            <div>
                                 <img class="favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId" src="/images/heart.png" alt="" />
                             </div>
-                            
+
                             <img src="/images/user.png" alt="" />
                         </div>
                     }
@@ -75,17 +87,17 @@
                         <span>@item.organizationName</span>
                         <div class="rating">
                             <div title="Rating">
-                           @*     @if (true)
-                                {
+                                @*     @if (true)
+                                    {
                                     for (var i = 0; i < (@item.Rating); i++)
                                     {
-                                        <i class="fa fa-star rating-color checked"></i>
+                                    <i class="fa fa-star rating-color checked"></i>
                                     }
                                     for (var i = 0; i < 5 - (@item.Rating); i++)
                                     {
-                                        <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
                                     }
-                                }*@
+                                    }*@
                                 @if (item.Rating > 0)
                                 {
                                     for (int i = 0; i < (item.Rating); i++)

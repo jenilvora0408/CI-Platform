@@ -54,7 +54,7 @@
 
 .home-nav1-end {
     height: 1px;
-    width: 100vw;
+   /* width: 100vw;*/
     background: #CCCCCC;
 }
 
@@ -109,7 +109,7 @@
 
 .home-nav2-end {
     height: 2px;
-    width: 100vw;
+    /*width: 100vw;*/
     background: #CCCCCC;
 }
 
@@ -124,7 +124,7 @@
 @media only screen and (max-width: 800px) {
     .home-navbar-2 {
         margin-left: 0;
-        width: 100vw;
+        /*width: 100vw;*/
     }
 
         .home-navbar-2 .home-nav2-left, .home-navbar-2 .home-nav2-right {
@@ -186,7 +186,7 @@
         }
 
         .home-navbar-2 .home-nav2-left, .home-navbar-2 .home-nav2-right {
-            width: 100vw;
+            /*width: 100vw;*/
         }
 
         .home-navbar-2 .home-nav2-left {
@@ -262,7 +262,7 @@
     .home-chips {
         margin-top: 9vh;
         margin-left: 3vw;
-        width: 100vw;
+        /*width: 100vw;*/
     }
 
     .chip {
@@ -344,7 +344,7 @@
 
 @media only screen and (max-width: 800px) {
     .home-heading {
-        width: 100vw;
+       /* width: 100vw;*/
     }
 
         .home-heading .heading-left {
@@ -400,7 +400,7 @@
     }
 
         .home-heading .heading-left, .home-heading .heading-right {
-            width: 100vw;
+           /* width: 100vw;*/
         }
 
             .home-heading .heading-left p {
@@ -656,7 +656,7 @@
 footer {
     display: flex;
     align-items: center;
-    width: 100vw;
+    width: 99vw;
     height: 10vh;
     background: #333333;
 }
@@ -667,7 +667,7 @@ footer {
     align-items: center;
 }
 
-footer p {
+.footer p {
     color: #fff;
 }
 
@@ -730,4 +730,70 @@ footer p {
 
 .rating-color {
     color: #fbc634 !important;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notify {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-drop {
+    font-family: 'Ubuntu', sans-serif;
+    color: #444;
+}
+
+    .notification-drop .item {
+        padding: 10px;
+        font-size: 18px;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .notification-drop .item:hover {
+            cursor: pointer;
+        }
+
+        .notification-drop .item i {
+            margin-left: 10px;
+        }
+
+        .notification-drop .item ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            background: #fff;
+            left: -200px;
+            right: 0;
+            z-index: 1;
+            border-top: 1px solid #ddd;
+        }
+
+            .notification-drop .item ul li {
+                font-size: 16px;
+                padding: 15px 0 15px 25px;
+            }
+
+                .notification-drop .item ul li:hover {
+                    background: #ddd;
+                    color: rgba(0, 0, 0, 0.8);
+                }
+
+@media screen and (min-width: 500px) {
+    .notification-drop {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+        .notification-drop .item {
+            border: none;
+        }
+}
+.dropdown-toggle::after {
+    display: none;
 }

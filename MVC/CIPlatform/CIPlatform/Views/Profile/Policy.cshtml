@@ -7,7 +7,11 @@
         <h2 class="mx-3 mb-3 my-3">Privacy and Cookies Policy</h2>
     </div>
     <div class="row">
-        <div class="col-md-3 mx-3">
+        <div style="POSITION: STICKY;
+    TOP: 0;
+    HEIGHT: FIT-CONTENT;
+    MAX-HEIGHT: 500PX;
+    OVERFLOW: AUTO;" class="policy-scroll col-md-3 mx-3">
             @foreach (var item in Model.Pages)
             {
                 <a href="#@item.Slug" style="text-decoration: none; color: black">
