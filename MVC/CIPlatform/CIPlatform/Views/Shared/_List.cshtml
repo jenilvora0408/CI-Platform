@@ -35,21 +35,21 @@
                 <h5 class="list-card-theme-title bg-white rounded-5 p-2">Environment</h5>
                 <div id="list-card-image-content" class="h-100 d-flex flex-column position-absolute p-2">
                     <div id="list-location-image" class="list-img-content p-2 rounded-5" style="border-radius:23px">
-           <img src="~/images/pin.png" alt="">
+                        <img src="~/images/pin.png" alt="">
                         @list.cityName
                     </div>
                     <div class="d-flex flex-column align-items-end" style="position:absolute; top:100px; right: 15px;">
                         @if (list.favMissionId != null)
                         {
                             <div id="favourite-mission-@list.MissionId" style="background-color:red;border-radius:23px"
-                            class="img-heart list-img-content p-2 rounded-5 m-1">
+                         class="img-heart list-img-content p-2 rounded-5 m-1">
                                 <img src="~/images/heart.png" alt="">
                             </div>
                         }
                         else
                         {
                             <div id="favourite-mission-@list.MissionId" style="background-color:black;border-radius:23px;opacity:0.6;"
-                            class="img-heart list-img-content p-2 rounded-5 m-1">
+                         class="img-heart list-img-content p-2 rounded-5 m-1">
                                 <img src="~/images/heart.png" alt="">
                             </div>
                         }
@@ -72,15 +72,33 @@
                             <div class="d-flex align-items-center">
                                 <div class="rating">
                                     <div title="Rating">
-                                        @if (true)
-                                        {
+                                        @*@if (true)
+                                            {
                                             for (var i = 0; i < (@list.Rating); i++)
                                             {
-                                                <i class="fa fa-star rating-color checked"></i>
+                                            <i class="fa fa-star rating-color checked"></i>
                                             }
                                             for (var i = 0; i < 5 - (@list.Rating); i++)
                                             {
-                                                <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            }
+                                            }*@
+                                        @if (list.Rating > 0)
+                                        {
+                                            for (int i = 0; i < (list.Rating); i++)
+                                            {
+                                                <img src="../images/selected-star.png" />
+                                            }
+                                            for (int i = 0; i < 5 - (list.Rating); i++)
+                                            {
+                                                <img src="../images/star.png" />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i < 5; i++)
+                                            {
+                                                <img src="../images/star.png" />
                                             }
                                         }
                                     </div>

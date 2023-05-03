@@ -27,22 +27,27 @@
                         string[] mediaNames = @item.missionImage.ToString().Split(",");
                     }
                     <img style="height:230px;" class="card-img-top" src="@item.mediaPath@mediaNames[0].@item.mediaType"
-                         alt="Card image cap" />
+                     alt="Card image cap" />
                     <div class="location">
                         <img class="country-pin" src="/images/pin.png" alt="" />
                         <span class="country">@item.cityName</span>
                     </div>
                     @if (item.favMissionId != null)
                     {
-                        <div class="feature favourite-mission-div" style="background-color:red;" id="favourite-mission-@item.MissionId">
-                            <img id="heart" src="/images/heart.png" alt="" />
+                        <div class="feature @*favourite-mission-div*@" @*style="background-color:red;" id="favourite-mission-@item.MissionId"*@>
+                            <div >
+                                <img class="favourite-mission-div"  style="background-color:red;" id="favourite-mission-@item.MissionId" src="/images/heart.png" alt="" />
+                            </div>
                             <img src="/images/user.png" alt="" />
                         </div>
                     }
                     else
                     {
-                        <div class="feature favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId">
-                            <img id="heart" src="/images/heart.png" alt="" />
+                        <div class="feature @*favourite-mission-div*@" @*style="background-color:black;" id="favourite-mission-@item.MissionId"*@>
+                            <div >
+                                <img class="favourite-mission-div" style="background-color:black;" id="favourite-mission-@item.MissionId" src="/images/heart.png" alt="" />
+                            </div>
+                            
                             <img src="/images/user.png" alt="" />
                         </div>
                     }
@@ -70,7 +75,7 @@
                         <span>@item.organizationName</span>
                         <div class="rating">
                             <div title="Rating">
-                                @if (true)
+                           @*     @if (true)
                                 {
                                     for (var i = 0; i < (@item.Rating); i++)
                                     {
@@ -79,6 +84,24 @@
                                     for (var i = 0; i < 5 - (@item.Rating); i++)
                                     {
                                         <i class="fa fa-star"></i>
+                                    }
+                                }*@
+                                @if (item.Rating > 0)
+                                {
+                                    for (int i = 0; i < (item.Rating); i++)
+                                    {
+                                        <img src="../images/selected-star.png" />
+                                    }
+                                    for (int i = 0; i < 5 - (item.Rating); i++)
+                                    {
+                                        <img src="../images/star.png" />
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        <img src="../images/star.png" />
                                     }
                                 }
                             </div>
@@ -129,15 +152,15 @@
                             }
                             else
                             {
-                                @if(item.deadline != null)
+                                @if (item.deadline != null)
                                 {
-                                    <img src="/images/deadline.png" alt="" />    
+                                    <img src="/images/deadline.png" alt="" />
                                 }
-                                
+
                             }
 
                         </div>
-                        
+
                         @if (item.endDate == null)
                         {
                             var progress = @item.goalValue;
@@ -145,35 +168,35 @@
                             <div class="card-body-right-text">
                                 <div class="progress" style="width: 7vw; height: 13px;  ">
                                     <div class="progress-bar" style="background: orange; width:@progress% " role="progressbar" @*style="width: @item.goalValue%"*@ aria-valuenow="@item.goalValue" aria-valuemin="0"
-                                         aria-valuemax="100"></div>
+                                 aria-valuemax="100"></div>
                                 </div>
                                 <span class="seats-left">@item.goalValue achieved</span>
                             </div>
                         }
                         else
                         {
-                            @if(item.deadline != null)
+                            @if (item.deadline != null)
                             {
-                            <div class="card-body-right-text">
-                                <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
-                                <span class="deadline">Deadline</span>
-                            </div>
+                                <div class="card-body-right-text">
+                                    <span class="figure">@item.deadline?.ToString("yyyy-MM-dd")</span>
+                                    <span class="deadline">Deadline</span>
+                                </div>
 
                             }
-                            
+
                         }
                     </div>
                 </div>
                 <hr />
                 <div class="apply-btn">
-                  
-                     @if (DateTime.Now > item.endDate)
+
+                    @if (DateTime.Now > item.endDate)
                     {
                         <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
                             View Details <img src="/images/right-arrow.png" alt="" />
                         </button>
                     }
-                    
+
                     else if (item.approvalStatus == "Approved")
                     {
                         <button style="width: fit-content !important;white-space: nowrap;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '">
@@ -226,6 +249,7 @@
     function loadPagination() {
         var paging = "";
         var sorting = $('#missionSortBy').val();
+        //alert("sorting: " + sorting);
 
         $("#pagination li a").on("click", function (e) {
             e.preventDefault();
