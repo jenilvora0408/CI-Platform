@@ -225,3 +225,4 @@ $(window).resize(function (e) {
     }
 });
 
+// Notifications

@@ -12,6 +12,7 @@ namespace Repository.Repository.Interface
     public interface AdminInterface
     {
         public CMS GetBannerPages(string Search, int pageNumber);
+
         public CMS GetCmsPages(string Search, int pageNumber);
 
         public CMS GetUserPages(string Search, int pageNumber);

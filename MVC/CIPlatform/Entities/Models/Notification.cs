@@ -13,7 +13,9 @@ public partial class Notification
 
     public bool? Status { get; set; }
 
-    public int? UserId { get; set; }
+    public long? UserId { get; set; }
 
     public string? NotificationType { get; set; }
+
+    public virtual User? User { get; set; }
 }

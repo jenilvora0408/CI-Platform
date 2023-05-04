@@ -67,7 +67,6 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
 
-
     public virtual DbSet<MissionList> MissionList { get; set; }
     public virtual DbSet<Volunteering> Volunteerings { get; set; }
     public virtual DbSet<RelatedMission> RelatedMissions { get; set; }
@@ -623,6 +622,10 @@ public partial class CiPlatformContext : DbContext
                 .HasColumnName("notification_type");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Notifications)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_notification_users");
         });
 
         modelBuilder.Entity<PasswordReset>(entity =>

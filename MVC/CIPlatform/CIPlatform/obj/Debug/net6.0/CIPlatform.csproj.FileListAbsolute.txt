@@ -659,3 +659,5 @@ D:\TatvaSoft\CI-Platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\refint\CIPla
 D:\TatvaSoft\CI-Platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.pdb
 D:\TatvaSoft\CI-Platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\CIPlatform.genruntimeconfig.cache
 D:\TatvaSoft\CI-Platform\MVC\CIPlatform\CIPlatform\obj\Debug\net6.0\ref\CIPlatform.dll
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\libman.json
+C:\Users\tatva\Desktop\CI - Platform BootStrap\MVC\CIPlatform\CIPlatform\bin\Debug\net6.0\Microsoft.Owin.Host.SystemWeb.dll

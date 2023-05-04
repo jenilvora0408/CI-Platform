@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Kvwryjzg2TLHuDDXPze58khpFuWBGacrYaTML8Jh9mttGKRRGEwydaLTuhibpMtmKQw9iue5ikq3nwXHJeZJHg==",
+  "dgSpecHash": "QJT00/26d0Eqh8ARPUxzoOqLrvF9vzFKb/bSgzDWZFN0dkZBJYYzLI353qNnNz8yKkgj40D/pNYM4WxOIEntIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\CIPlatform.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\tatva\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnet.signalr\\2.4.1\\microsoft.aspnet.signalr.2.4.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.15\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.15.nupkg.sha512",
@@ -38,7 +39,7 @@
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.0\\microsoft.data.sqlclient.5.1.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.diasymreader\\1.3.0\\microsoft.diasymreader.1.3.0.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\6.0.12\\microsoft.dotnet.scaffolding.shared.6.0.12.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\6.0.13\\microsoft.dotnet.scaffolding.shared.6.0.13.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.8.0.0-preview.1.23111.4.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.abstractions.8.0.0-preview.1.23111.4.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.analyzers.8.0.0-preview.1.23111.4.nupkg.sha512",
@@ -69,15 +70,16 @@
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.owin.host.systemweb\\4.2.2\\microsoft.owin.host.systemweb.4.2.2.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.debugger.contracts\\17.2.0\\microsoft.visualstudio.debugger.contracts.17.2.0.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\6.0.12\\microsoft.visualstudio.web.codegeneration.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\6.0.12\\microsoft.visualstudio.web.codegeneration.core.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design\\6.0.12\\microsoft.visualstudio.web.codegeneration.design.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.entityframeworkcore\\6.0.12\\microsoft.visualstudio.web.codegeneration.entityframeworkcore.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.templating\\6.0.12\\microsoft.visualstudio.web.codegeneration.templating.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\6.0.12\\microsoft.visualstudio.web.codegeneration.utils.6.0.12.nupkg.sha512",
-    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\6.0.12\\microsoft.visualstudio.web.codegenerators.mvc.6.0.12.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\6.0.13\\microsoft.visualstudio.web.codegeneration.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\6.0.13\\microsoft.visualstudio.web.codegeneration.core.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design\\6.0.13\\microsoft.visualstudio.web.codegeneration.design.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.entityframeworkcore\\6.0.13\\microsoft.visualstudio.web.codegeneration.entityframeworkcore.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.templating\\6.0.13\\microsoft.visualstudio.web.codegeneration.templating.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\6.0.13\\microsoft.visualstudio.web.codegeneration.utils.6.0.13.nupkg.sha512",
+    "C:\\Users\\tatva\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\6.0.13\\microsoft.visualstudio.web.codegenerators.mvc.6.0.13.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\tatva\\.nuget\\packages\\mimekit\\3.2.0\\mimekit.3.2.0.nupkg.sha512",
@@ -214,6 +216,16 @@
       "warningLevel": 1,
       "message": "System.Net.Mail 1.0.0-rtm-00002 depends on System.Data.Common (>= 4.0.1) but System.Data.Common 4.0.1 was not found. An approximate best match of System.Data.Common 4.1.0 was resolved.",
       "libraryId": "System.Data.Common",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Host.SystemWeb 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Host.SystemWeb",
       "targetGraphs": [
         "net6.0"
       ]

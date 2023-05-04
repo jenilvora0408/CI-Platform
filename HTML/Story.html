@@ -169,6 +169,15 @@
     <script src="./js/bootstrap.bundle.js"></script>
     <script>
         $(document).ready(function () {
+            if ($(window).width() < 960) {
+                    $(".cms-sidebar").hide();
+                    $("#sidebar-open").show();
+                    $("#sidebar-close").hide();
+                }
+                else{
+                    $("#sidebar-open").hide();
+                    $("#sidebar-close").hide();
+                }
             // Color Change - Sidebar
             $(".cms-sidebar ul li").on("mouseenter", function () {
                 $(this).find("i").css("color", "#F88634");
@@ -190,8 +199,7 @@
             });
 
             // Hide & Show Sidebar
-            $("#sidebar-open").hide();
-            $("#sidebar-close").hide();
+           
 
             $(window).resize(function () {
                 if ($(window).width() < 960) {
