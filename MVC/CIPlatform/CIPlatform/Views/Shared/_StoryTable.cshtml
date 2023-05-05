@@ -85,7 +85,7 @@ else{
             url: "/Admin/deleteStory",
             data: { storyId: deleteID },
             success: function (data) {
-                location.reload();
+                //location.reload();
                 alert("Record Deleted.");
             },
             error: function (xhr, status, error) {
@@ -104,7 +104,7 @@ else{
                 data: {storyId:rejectID},
                 success: function (data) {
                     alert("Story Rejected successfully");
-					window.location.reload();
+					//window.location.reload();
                 },
                 error: function (xhr, status, error) {
                     alert("Something went wrong in adding data");

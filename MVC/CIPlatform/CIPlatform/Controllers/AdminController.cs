@@ -778,10 +778,10 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult rejectStory(long storyId)
+        public async Task<IActionResult> rejectStory(long storyId)
         {
             _adminInterface.rejectStory(storyId);
-
+            await _notificationHub.Clients.All.SendAsync("ReceiveMsg", "Your story has been rejected");
             return Ok();
         }
 
@@ -791,10 +791,10 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult deleteStory(long storyId)
+        public async Task<IActionResult> deleteStory(long storyId)
         {
             _adminInterface.deleteStory(storyId);
-
+            await _notificationHub.Clients.All.SendAsync("ReceiveMsg", "Your story has been deleted");
             return Ok();
         }
 

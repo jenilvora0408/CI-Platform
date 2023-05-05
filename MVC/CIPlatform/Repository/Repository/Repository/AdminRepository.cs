@@ -432,6 +432,14 @@ namespace Repository.Repository.Repository
                 story.Status = "Declined";
                 _ciPlatformContext.Update(story);
                 _ciPlatformContext.SaveChanges();
+
+                int userId = (int)story.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your story has been rejected";
+                notification.UserId=userId;
+                notification.NotificationType = "Story Rejected";
+                _ciPlatformContext.Notifications.Add(notification);
+                _ciPlatformContext.SaveChanges();
             }
         }
 
@@ -442,6 +450,14 @@ namespace Repository.Repository.Repository
                 Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
                 story.DeletedAt = DateTime.Now;
                 _ciPlatformContext.Update(story);
+                _ciPlatformContext.SaveChanges();
+
+                int userId = (int)story.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your story has been deleted";
+                notification.UserId = userId;
+                notification.NotificationType = "Story Deleted";
+                _ciPlatformContext.Notifications.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }
         }

@@ -2,60 +2,61 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
     @*@model Pagination*@
- @model Navbar_1    
+ @model Navbar_1
+
  @{
-    int a = 5;
+    var notificationCount = @Model.notifications.Count();
 }
 <div class="home-navbar-1">
-        <div class="home-nav1-left">
-          <a href="#" onclick="return location.href=' @Url.Action("StoryListing","Story") '">Stories</a>
-          
-              <a href="#" onclick="return location.href=' @Url.Action("Policy","Profile") '">Policy</a>
-              
-        </div>
-        <div class="home-nav1-right">
-            <div class="dropdown">
-                    <button id="notification-button" class="dropdown-toggle border-0 bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="btn btn-warning rounded-circle p-1 m-0 position-absolute" style="background-color: #F88634;color: white;top: -12px;right: 30px;font-size: 10px;width:20px;">1</span>
-                      
-                        <img src="~/images/bell.png" alt="" style="height:3vh !important;width:1.7vw !important;"/>
-                    </button>
-                    <ul id="notification-dropdown" class="dropdown-menu" style="width:380px;max-height: 335px;overflow-y: scroll;">
-                        <div id="notification-header-li" class="p-2 d-flex justify-content-between align-items-center">
-                            <button class="bg-white border-0" data-bs-toggle="modal" data-bs-target="#navigation-setting-modal"><img src="~/images/settings.png" /></button>
-                            <span>Notification</span>
-                            <button class="bg-white border-0">Clear All</button>
-                        </div>
-                @foreach(var item in Model.notifications)
-                {
-                       <li class="p-2 border border-1 d-flex justify-content-between align-items-center">
-                            <div>
-                                <img style="height:30px;width:30px" src="~/images/add.png" style="height:3vh !important;width:1.7vw !important;"/>
-                                <span>@item.NotificationMessage</span>
-                            </div>
-                            <input class="notification-status" type="checkbox" id="id" checked />
-                        </li>    
-                }
+    <div class="home-nav1-left">
+        <a href="#" onclick="return location.href=' @Url.Action("StoryListing","Story") '">Stories</a>
+
+        <a href="#" onclick="return location.href=' @Url.Action("Policy","Profile") '">Policy</a>
+
+    </div>
+    <div class="home-nav1-right">
+        <div class="dropdown">
+            <button id="notification-button" class="dropdown-toggle border-0 bg-white position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="btn btn-warning rounded-circle p-1 m-0 position-absolute" style="color: white;top: -12px;right: 15px;font-size: 10px;width:20px;">@Model.notifications.Count()</span>
                 
-                    </ul>
+                <img src="~/images/bell.png" alt="" style="height:3vh !important;width:1.7vw !important;" />
+            </button>
+            <ul id="notification-dropdown" class="dropdown-menu" style="width:380px;max-height: 335px;overflow-y: scroll;">
+                <div id="notification-header-li" class="p-2 d-flex justify-content-between align-items-center">
+                    <button class="bg-white border-0" data-bs-toggle="modal" data-bs-target="#navigation-setting-modal"><img src="~/images/settings.png" /></button>
+                    <span>Notification</span>
+                    <button class="bg-white border-0">Clear All</button>
                 </div>
-          <img src=" @HttpContextAccessor.HttpContext.Session.GetString("avatar")"  alt="" />
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a id="@HttpContextAccessor.HttpContext.Session.GetString("userId")" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                style="color: #333333">
-                @HttpContextAccessor.HttpContext.Session.GetString("firstName") @HttpContextAccessor.HttpContext.Session.GetString("lastname") 
-              </a>
-              <ul class="dropdown-menu">
-                <li onclick="return location.href=' @Url.Action("EditProfile","Profile") '"><a class="dropdown-item" href="#">Edit Profile</a></li>
-                <li onclick="return location.href=' @Url.Action("VolunteeringTimesheet","Profile") '"><a class="dropdown-item" href="#">Volunteering Timesheet</a></li>
-                <li onclick="return location.href=' @Url.Action("CMS","Admin") '"><a class="dropdown-item" href="#">CMS</a></li>
-                <li onclick="return location.href=' @Url.Action("MissionListing","Mission") '"><a class="dropdown-item" href="#">Home Page</a></li>
-                <li><a class="dropdown-item" href="/Account/logout">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
+                @foreach (var item in Model.notifications)
+                {
+                    <li class="p-2 border border-1 d-flex justify-content-between align-items-center">
+                        <div>
+                            <img style="height:30px;width:30px" src="~/images/add.png" style="height:3vh !important;width:1.7vw !important;" />
+                            <span>@item.NotificationMessage</span>
+                        </div>
+                        <input class="notification-status" type="checkbox" id="id" checked />
+                    </li>
+                }
+
+            </ul>
         </div>
-      </div>
-      <div class="home-nav1-end"></div>
+        <img src=" @HttpContextAccessor.HttpContext.Session.GetString("avatar")" alt="" />
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a id="@HttpContextAccessor.HttpContext.Session.GetString("userId")" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                   style="color: #333333">
+                    @HttpContextAccessor.HttpContext.Session.GetString("firstName") @HttpContextAccessor.HttpContext.Session.GetString("lastname")
+                </a>
+                <ul class="dropdown-menu">
+                    <li onclick="return location.href=' @Url.Action("EditProfile","Profile") '"><a class="dropdown-item" href="#">Edit Profile</a></li>
+                    <li onclick="return location.href=' @Url.Action("VolunteeringTimesheet","Profile") '"><a class="dropdown-item" href="#">Volunteering Timesheet</a></li>
+                    <li onclick="return location.href=' @Url.Action("CMS","Admin") '"><a class="dropdown-item" href="#">CMS</a></li>
+                    <li onclick="return location.href=' @Url.Action("MissionListing","Mission") '"><a class="dropdown-item" href="#">Home Page</a></li>
+                    <li><a class="dropdown-item" href="/Account/logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="home-nav1-end"></div>
 

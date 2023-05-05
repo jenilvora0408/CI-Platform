@@ -233,7 +233,6 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").
 
 //appending the message sent to list of Notifications
 connection.on("ReceiveMsg", function (message) {
-    debugger;
     var li = document.createElement("li");
     li.classList.add("p-2", "border", "border-1", "d-flex", "justify-content-between", "align-items-center");
 
@@ -267,11 +266,25 @@ connection.start().then(function () {
 });
 
 $(".approveStory").on("click", function (event) {
-    //var user = document.getElementById("userInput").value;
-    //var message = document.getElementById("messageInput").value;
-    var message = "Story has been approved successfully";
-    connection.invoke("SendMessage", message).catch(function (err) {
+    var approveStorymessage = "Your story has been approved";
+    connection.invoke("SendMessage", approveStorymessage).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
 });
+
+$(".rejectStory").on("click", function (event) {
+    var rejectStoryMessage = "Your story has been rejected";
+    connection.invoke("SendMessage", rejectStoryMessage).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+})
+
+$("#confirm-delete").on("click", function (event) {
+    var deleteStoryMessage = "Your story has been deleted";
+    connection.invoke("SendMessage", deleteStoryMessage).catch(function (err) {
+        return console.error(err.toString());
+    })
+    event.preventDefault();
+})
