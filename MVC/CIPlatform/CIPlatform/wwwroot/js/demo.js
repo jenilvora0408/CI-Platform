@@ -226,3 +226,52 @@ $(window).resize(function (e) {
 });
 
 // Notifications
+"use strict";
+
+//establishing connection with Notification Hub
+var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+
+//appending the message sent to list of Notifications
+connection.on("ReceiveMsg", function (message) {
+    debugger;
+    var li = document.createElement("li");
+    li.classList.add("p-2", "border", "border-1", "d-flex", "justify-content-between", "align-items-center");
+
+    var img = document.createElement("img");
+    img.setAttribute("src", "/images/add.png");
+    img.setAttribute("style", "height:30px;width:30px");
+
+    var span = document.createElement("span");
+    span.textContent = message;
+
+    var div = document.createElement("div");
+    div.appendChild(img);
+    div.appendChild(span);
+
+    var input = document.createElement("input");
+    input.classList.add("notification-status");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("id", "id");
+    input.setAttribute("checked", "");
+
+    li.appendChild(div);
+    li.appendChild(input);
+
+    document.getElementById("notification-dropdown").appendChild(li);
+});
+
+connection.start().then(function () {
+    /* document.getElementById("sendButton").disabled = false;*/
+}).catch(function (err) {
+    return console.error(err.toString());
+});
+
+$(".approveStory").on("click", function (event) {
+    //var user = document.getElementById("userInput").value;
+    //var message = document.getElementById("messageInput").value;
+    var message = "Story has been approved successfully";
+    connection.invoke("SendMessage", message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});

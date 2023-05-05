@@ -22,6 +22,7 @@ namespace CIPlatform.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Index(notifications model)
+        
         {
             await _notificationHub.Clients.All.SendAsync("ReceiveMsg", model.Message);
             return View();

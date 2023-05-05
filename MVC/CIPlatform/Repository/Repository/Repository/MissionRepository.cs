@@ -203,5 +203,10 @@ namespace Repository.Repository.Repository
         {
             return _ciPlatformContext.Cities.Where(c => c.CountryId == countryId).ToList();
         }
+
+        List<Notification> MissionInterface.GetNotifications(int userId)
+        {
+            return _ciPlatformContext.Notifications.Where(x => x.UserId == userId).ToList();
+        }
     }
 }

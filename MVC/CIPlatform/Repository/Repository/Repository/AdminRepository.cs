@@ -413,6 +413,14 @@ namespace Repository.Repository.Repository
                 story.Status = "Approved";
                 _ciPlatformContext.Update(story);
                 _ciPlatformContext.SaveChanges();
+
+                int userId = (int)story.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your story has been approved";
+                notification.UserId = userId;
+                notification.NotificationType = "Story Approved";
+                _ciPlatformContext.Add(notification);
+                _ciPlatformContext.SaveChanges();
             }
         }
 

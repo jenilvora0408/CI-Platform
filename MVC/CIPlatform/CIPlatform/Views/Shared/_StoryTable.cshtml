@@ -28,11 +28,11 @@ else{
 							    style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; 
 							        background: #fff;">View</button> 
 
-							<i id="@item.StoryId" style="color: #14C506; font-size: 20px;" class="approve bi bi-check-circle"></i>
+							<i id="@item.StoryId" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
 							
-							<i id="@item.StoryId" style="color: red; font-size: 20px;" class="reject bi bi-x-circle"></i>
+							<i id="@item.StoryId" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
 							
-							<img  data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img" src="/images/bin.png" alt="Delete" />
+							<img  data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
 						</td>
 
                         </tr>
@@ -59,13 +59,14 @@ else{
 
 	$(".approve").on("click", function(e){
 		var approveID = this.id;
+		//var userId = this.getAttribute("data-value");
 					 $.ajax({
                 type: "POST",
                 url: "/Admin/approveStory",
                 data: {storyId:approveID},
                 success: function (data) {
                     alert("Story Approved successfully");
-					window.location.reload();
+					//window.location.reload();
                 },
                 error: function (xhr, status, error) {
                     alert("Something went wrong in adding data");

@@ -4,9 +4,9 @@ namespace CIPlatform.Hubs
 {
     public class NotificationHub : Hub
     {
-        //public async Task SendMessage(string message)
-        //{
-        //    await Clients.All.SendAsync("ReceiveMsg", message);
-        //}
+        public async Task SendMessage(string message)
+        {
+            await Clients.All.SendAsync("ReceiveMsg", message);
+        }
     }
 }

@@ -1,9 +1,11 @@
-﻿using Entities.Data;
+﻿using CIPlatform.Hubs;
+using Entities.Data;
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Repository.Repository.Interface;
 
 namespace CIPlatform.Controllers
@@ -18,9 +20,11 @@ namespace CIPlatform.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
+        private readonly IHubContext<NotificationHub> _notificationHub;
 
         public AdminController(ILogger<AccountController> logger, AdminInterface adminInterface, CiPlatformContext ciPlatformContext,
-            IHttpContextAccessor httpContextAccessor, IConfiguration configuration, MissionInterface missionInterface, IWebHostEnvironment env)
+            IHttpContextAccessor httpContextAccessor, IConfiguration configuration, MissionInterface missionInterface, IWebHostEnvironment env,
+            IHubContext<NotificationHub> notificationHub)
         {
             _logger = logger;
             _adminInterface = adminInterface;
@@ -28,6 +32,7 @@ namespace CIPlatform.Controllers
             _ciPlatformContext = ciPlatformContext;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _notificationHub = notificationHub;
             _env = env;
         }
         public IActionResult Index()
@@ -760,10 +765,10 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult approveStory(long storyId)
+        public async Task<IActionResult> approveStory(long storyId)
         {
             _adminInterface.approveStory(storyId);
-
+            await _notificationHub.Clients.All.SendAsync("ReceiveMsg", "Your story has been approved");
             return Ok();
         }
 

@@ -36,32 +36,33 @@
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/locales/LANG.js"></script>
 </head>
 <body>
+
     @RenderBody()
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-    <script src="~/js/demo.js" asp-append-version="true"></script>
-    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
-    <script src="~/signalr/hubs"></script>
+    
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            var hub = $.connection.NotificationHub;
-            $.connection.hub.start()
-                .done(function () {
-                    console.log("Hub Connected!");
+        //$(document).ready(function () {
+        //    var hub = $.connection.NotificationHub;
+        //    $.connection.hub.start()
+        //        .done(function () {
+        //            console.log("Hub Connected!");
 
-                })
-                .fail(function () {
-                    console.log("Could not Connect!");
-                });
-        });
+        //        })
+        //        .fail(function () {
+        //            console.log("Could not Connect!");
+        //        });
+        //});
     </script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/demo.js" asp-append-version="true"></script>
+<script src="~/js/ClientNotification.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
