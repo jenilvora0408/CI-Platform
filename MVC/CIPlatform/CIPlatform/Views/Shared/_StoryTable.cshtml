@@ -30,9 +30,9 @@ else{
 
 							<i id="@item.StoryId" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
 							
-							<i id="@item.StoryId" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
+							<i id="@item.StoryId" data-first="@item.User.FirstName" data-last="@item.User.LastName" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
 							
-							<img  data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
+							<img data-value="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
 						</td>
 
                         </tr>
@@ -59,11 +59,11 @@ else{
 
 	$(".approve").on("click", function(e){
 		var approveID = this.id;
-		//var userId = this.getAttribute("data-value");
+		var approvalUserId = this.getAttribute("data-value");
 					 $.ajax({
                 type: "POST",
                 url: "/Admin/approveStory",
-                data: {storyId:approveID},
+                data: {storyId:approveID, userId:approvalUserId},
                 success: function (data) {
                     alert("Story Approved successfully");
 					//window.location.reload();
@@ -79,11 +79,12 @@ else{
 
 	$('table').on('click', '.delete-img', function () {
     var deleteID = $(this).data('id');
+	var deleteUserId = this.getAttribute("data-value");
     $('#confirm-delete').on('click', function () {
         $.ajax({
             type: "POST",
             url: "/Admin/deleteStory",
-            data: { storyId: deleteID },
+            data: { storyId: deleteID, userId: deleteUserId },
             success: function (data) {
                 //location.reload();
                 alert("Record Deleted.");
@@ -98,10 +99,14 @@ else{
 
 	$(".reject").on("click", function(e){
 		var rejectID = this.id;
+		var rejectFirst = this.getAttribute("data-first");
+		var rejectLast = this.getAttribute("data-last");
+		var rejectUser = rejectFirst + " " + rejectLast;
+		console.log("reject user: " + rejectUser);
 					 $.ajax({
                 type: "POST",
                 url: "/Admin/rejectStory",
-                data: {storyId:rejectID},
+                data: {storyId:rejectID, rejectUser:rejectUser},
                 success: function (data) {
                     alert("Story Rejected successfully");
 					//window.location.reload();

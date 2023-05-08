@@ -233,6 +233,12 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").
 
 //appending the message sent to list of Notifications
 connection.on("ReceiveMsg", function (message) {
+    //var userId = $(".home-nav1-right .user-btn")[0].id;
+    //if (UserId == userId) {
+    var notificationId = $("#notifyCount").text();
+    notificationId = notificationId + 1;
+    $("#notifyCount").text(notificationId);
+
     var li = document.createElement("li");
     li.classList.add("p-2", "border", "border-1", "d-flex", "justify-content-between", "align-items-center");
 
@@ -256,7 +262,8 @@ connection.on("ReceiveMsg", function (message) {
     li.appendChild(div);
     li.appendChild(input);
 
-    document.getElementById("notification-dropdown").appendChild(li);
+        document.getElementById("notification-dropdown").appendChild(li);
+   // }
 });
 
 connection.start().then(function () {
@@ -267,24 +274,27 @@ connection.start().then(function () {
 
 $(".approveStory").on("click", function (event) {
     var approveStorymessage = "Your story has been approved";
-    connection.invoke("SendMessage", approveStorymessage).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
+    var approveUserId = this.getAttribute("data-value");
+    //connection.invoke("SendMessage", approveStorymessage, approveUserId.toString()).catch(function (err) {
+    //    return console.error(err.toString());
+    //});
+    //event.preventDefault();
 });
 
 $(".rejectStory").on("click", function (event) {
     var rejectStoryMessage = "Your story has been rejected";
-    connection.invoke("SendMessage", rejectStoryMessage).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
+    var rejectUserId = this.getAttribute("data-value");
+    //connection.invoke("SendMessage", rejectStoryMessage, rejectUserId.toString()).catch(function (err) {
+    //    return console.error(err.toString());
+    //});
+    //event.preventDefault();
 })
 
 $("#confirm-delete").on("click", function (event) {
     var deleteStoryMessage = "Your story has been deleted";
-    connection.invoke("SendMessage", deleteStoryMessage).catch(function (err) {
-        return console.error(err.toString());
-    })
-    event.preventDefault();
+    var deleteUserId = this.getAttribute("data-value");
+    //connection.invoke("SendMessage", deleteStoryMessage, deleteUserId.toString()).catch(function (err) {
+    //    return console.error(err.toString());
+    //})
+    //event.preventDefault();
 })

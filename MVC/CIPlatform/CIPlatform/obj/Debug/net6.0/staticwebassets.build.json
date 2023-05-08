@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/dOMu7oVngS8UhZkXcKGiT9eqnchcV/I/3YC3xvBNgg=",
+  "Hash": "EuQO0OtXwLm8i3STvQ8XudHJT1vAaPUmrhw113kGP8w=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -5013,6 +5013,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-listingpage.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-login.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/Grow-Trees-On-the-path-to-environment-sustainability-login.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Grow-Trees-On-the-path-to-environment-sustainability-login_638182147420490634.png",
