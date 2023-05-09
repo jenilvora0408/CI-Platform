@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EuQO0OtXwLm8i3STvQ8XudHJT1vAaPUmrhw113kGP8w=",
+  "Hash": "SvzE0EYL49EuW1TIaYM39G5LxJT9cZy3MF8rvOGL3hI=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -4758,6 +4758,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\dee5dee4-b313-4a7e-b168-9ddc3aa19958.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\drag-and-drop.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/drag-and-drop.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\drag-and-drop.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png",

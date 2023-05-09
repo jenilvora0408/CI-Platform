@@ -28,11 +28,11 @@ else{
 							    style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; 
 							        background: #fff;">View</button> 
 
-							<i id="@item.StoryId" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
+							<i id="@item.StoryId" data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
 							
 							<i id="@item.StoryId" data-first="@item.User.FirstName" data-last="@item.User.LastName" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
 							
-							<img data-value="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
+							<img data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
 						</td>
 
                         </tr>
@@ -59,14 +59,17 @@ else{
 
 	$(".approve").on("click", function(e){
 		var approveID = this.id;
-		var approvalUserId = this.getAttribute("data-value");
+		var approveFirst = this.getAttribute("data-first");
+		var approveLast = this.getAttribute("data-last");
+		var approveUser = approveFirst + " " + approveLastl;
 					 $.ajax({
                 type: "POST",
                 url: "/Admin/approveStory",
-                data: {storyId:approveID, userId:approvalUserId},
+                data: {storyId:approveID,userN:approveUser},
                 success: function (data) {
                     alert("Story Approved successfully");
 					//window.location.reload();
+					getTable();
                 },
                 error: function (xhr, status, error) {
                     alert("Something went wrong in adding data");
@@ -75,19 +78,24 @@ else{
 			});
 	});
 
-	
 
-	$('table').on('click', '.delete-img', function () {
+	$('table').on('click', '.delete-img', function (e) {
+		e.preventDefault();
+		var deleteFirst=this.getAttribute("data-first");
+		var deleteLast=this.getAttribute("data-last");
     var deleteID = $(this).data('id');
 	var deleteUserId = this.getAttribute("data-value");
-    $('#confirm-delete').on('click', function () {
+	var deleteUser=deleteFirst+" "+deleteLast;
+    $('#confirm-delete').on('click', function (e) {
+		e.preventDefault();
         $.ajax({
             type: "POST",
             url: "/Admin/deleteStory",
-            data: { storyId: deleteID, userId: deleteUserId },
+            data: { storyId: deleteID, deleteUser:deleteUser },
             success: function (data) {
                 //location.reload();
                 alert("Record Deleted.");
+				 getTable();
             },
             error: function (xhr, status, error) {
                 alert("Record Not Deleted.");
@@ -110,6 +118,7 @@ else{
                 success: function (data) {
                     alert("Story Rejected successfully");
 					//window.location.reload();
+					getTable();
                 },
                 error: function (xhr, status, error) {
                     alert("Something went wrong in adding data");

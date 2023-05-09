@@ -233,9 +233,9 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").
 
 //appending the message sent to list of Notifications
 connection.on("ReceiveMsg", function (message) {
-    //var userId = $(".home-nav1-right .user-btn")[0].id;
-    //if (UserId == userId) {
+   
     var notificationId = $("#notifyCount").text();
+    notificationId=parseInt(notificationId);
     notificationId = notificationId + 1;
     $("#notifyCount").text(notificationId);
 
@@ -272,29 +272,3 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-$(".approveStory").on("click", function (event) {
-    var approveStorymessage = "Your story has been approved";
-    var approveUserId = this.getAttribute("data-value");
-    //connection.invoke("SendMessage", approveStorymessage, approveUserId.toString()).catch(function (err) {
-    //    return console.error(err.toString());
-    //});
-    //event.preventDefault();
-});
-
-$(".rejectStory").on("click", function (event) {
-    var rejectStoryMessage = "Your story has been rejected";
-    var rejectUserId = this.getAttribute("data-value");
-    //connection.invoke("SendMessage", rejectStoryMessage, rejectUserId.toString()).catch(function (err) {
-    //    return console.error(err.toString());
-    //});
-    //event.preventDefault();
-})
-
-$("#confirm-delete").on("click", function (event) {
-    var deleteStoryMessage = "Your story has been deleted";
-    var deleteUserId = this.getAttribute("data-value");
-    //connection.invoke("SendMessage", deleteStoryMessage, deleteUserId.toString()).catch(function (err) {
-    //    return console.error(err.toString());
-    //})
-    //event.preventDefault();
-})
