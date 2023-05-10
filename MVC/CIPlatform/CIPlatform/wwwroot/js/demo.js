@@ -235,7 +235,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").
 connection.on("ReceiveMsg", function (message) {
    
     var notificationId = $("#notifyCount").text();
-    notificationId=parseInt(notificationId);
+    notificationId = parseInt(notificationId);
     notificationId = notificationId + 1;
     $("#notifyCount").text(notificationId);
 
@@ -272,3 +272,22 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
+// Clear Notifications
+$("#clearNotifications").on("click", function (e) {
+    $.ajax({        
+        url: '/Mission/ClearNotification',
+        type: 'GET',
+        success: function (result) {
+            var notificationList = $('#notification-dropdown');
+            notificationList.empty();
+            notificationList.append('<div id="notification-header-li" class="p-2 d-flex justify-content-between align-items-center"><button data-bs-auto-close="outside" class= "bg-white border-0" data - bs - toggle="modal" data - bs - target="#navigation-setting-modal" ><i id="notification-setting" class="bi bi-gear-fill"></i></button><span>Notification</span><button id="clearNotifications" class="bg-white border-0">Clear All</button></div>');
+            notificationList.append('<li style = "cursor:pointer" class= "p-2 border border-1 d-flex justify-content-between align-items-center" >No notification</li>');
+            $('#notifyCount').text(0);
+           
+        },
+          
+        error: function () {
+            alert('Notification Clear');
+        }
+    });
+})

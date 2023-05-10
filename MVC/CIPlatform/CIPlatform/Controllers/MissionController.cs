@@ -59,6 +59,14 @@ namespace CIPlatform.Controllers
             return View(missionHomeModel);
         }
 
+        public IActionResult ClearNotification()
+        { 
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            _missionInterface.ClearNotifications(userObj);
+            return Ok();
+        }
+
         public IActionResult MissionVolunteering(int? missionId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");

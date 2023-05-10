@@ -33,7 +33,7 @@ namespace Repository.Repository.Interface
         public Pagination GetMissionByUtilitiesForList(Utilities utilities, int userId);
         public List<Comment> GetCommentsByMissionId(int missionId);
         public List<City> GetCitiesByCountryId(int countryId);
-
+        public void ClearNotifications(User user);
         public List<Notification> GetNotifications(int userId);
     }
 }

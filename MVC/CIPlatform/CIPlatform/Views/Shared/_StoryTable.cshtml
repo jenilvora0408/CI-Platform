@@ -1,196 +1,216 @@
 ﻿@model Entities.ViewModels.CMS
 
-@if(Model.stories.Count == 0)
+@if (Model.stories.Count == 0)
 {
-	<div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
+    <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
 }
-else{
-<div id="tblOverflow" style="overflow-x: scroll">
-                <table class="table">
-                    <thead>
-                        <tr style="white-space: nowrap;">
-                            <th scope="col">Story Title</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Mission Title</th>
-                            <th scope="col">Action</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach(var item in Model.stories)
-                        {
-                            <tr>
-                            <td>@item.Title</td>
-                            <td>@item.User.FirstName @item.User.LastName</td>
-                            <td>@item.Mission.Title</td>
-                           <td style="display: flex; align-items: center; gap: 10px;">
-							<button onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyID=@item.StoryId}) '"
-							    style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634; 
-							        background: #fff;">View</button> 
+else
+{
+    <div id="tblOverflow" style="overflow-x: scroll">
+        <table class="table">
+            <thead>
+                <tr style="white-space: nowrap;">
+                    <th scope="col">Story Title</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Mission Title</th>
+                    <th scope="col">Action</th>
 
-							<i id="@item.StoryId" data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
-							
-							<i id="@item.StoryId" data-first="@item.User.FirstName" data-last="@item.User.LastName" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
-							
-							<img data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello"  data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
-						</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.stories)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.User.FirstName @item.User.LastName</td>
+                        <td>@item.Mission.Title</td>
+                        <td style="display: flex; align-items: center; gap: 10px;">
+                            <button onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyID=@item.StoryId}) '"
+                            style="border-radius: 23px; padding: 2px 5px; font-size: 13px; color: #f88634; border: 1px solid #f88634;
+							        background: #fff;">
+                                View
+                            </button>
 
-                        </tr>
-                        }
-            
-                    </tbody>
-                </table>
-            </div>
+                            <i id="@item.StoryId" data-title="@item.Title" data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" style="color: #14C506; font-size: 20px;" class="approve approveStory bi bi-check-circle"></i>
+
+                            <i id="@item.StoryId" data-title="@item.Title" data-first="@item.User.FirstName" data-last="@item.User.LastName" style="color: red; font-size: 20px;" class="reject rejectStory bi bi-x-circle"></i>
+
+                            <img data-title="@item.Title" data-first="@item.User.FirstName" data-last="@item.User.LastName" data-value="@item.UserId" data-bs-toggle="modal" data-bs-target="#hello" data-id="@item.StoryId" class="delete-img deleteStory" src="/images/bin.png" alt="Delete" />
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
 }
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
-	@if(Model.PageCount > 0 && Model.PageCount != 1){
-	@if(Model.CurrentPage > 1){
-	<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn" >&laquo;</button>}
-	@for(int i = 1; i <= Model.PageCount; i++) {
-		<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){<text>disabled</text>}>@i</button>
-	}
-	@if(Model.CurrentPage != Model.PageCount){<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>}
-	}
+    @if (Model.PageCount > 0 && Model.PageCount != 1)
+    {
+        @if (Model.CurrentPage > 1)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn">&laquo;</button>
+        }
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){
+    <text>disabled</text>
+}>@i</button>
+        }
+        @if (Model.CurrentPage != Model.PageCount)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>
+        }
+    }
 </div>
 
 
 <script>
 
-	$(".approve").on("click", function(e){
-		var approveID = this.id;
-		var approveFirst = this.getAttribute("data-first");
-		var approveLast = this.getAttribute("data-last");
-		var approveUser = approveFirst + " " + approveLastl;
-					 $.ajax({
+        $(".approve").on("click", function(e){
+
+            var approveID = this.id;
+            var approveFirst = this.getAttribute("data-first");
+            var approveLast = this.getAttribute("data-last");
+            var approveUser = approveFirst + " " + approveLast;
+            console.log(approveUser)
+            var approveStoryTitle = this.getAttribute("data-title");
+
+                         $.ajax({
+                    type: "POST",
+                    url: "/Admin/approveStory",
+                    data: {storyId:approveID,approveUser:approveUser,approveStoryTitle:approveStoryTitle},
+                    success: function (data) {
+                        alert("Story Approved successfully");
+                        //window.location.reload();
+                        getTable();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Something went wrong in adding data");
+                    }
+
+                });
+        });
+
+
+        $('table').on('click', '.delete-img', function (e) {
+
+            e.preventDefault();
+            var deleteFirst=this.getAttribute("data-first");
+            var deleteLast=this.getAttribute("data-last");
+        var deleteID = $(this).data('id');
+        var deleteUserId = this.getAttribute("data-value");
+        var deleteUser=deleteFirst+" "+deleteLast;
+        var deleteStoryTitle = this.getAttribute("data-title");
+
+        $('#confirm-delete').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
                 type: "POST",
-                url: "/Admin/approveStory",
-                data: {storyId:approveID,userN:approveUser},
+                url: "/Admin/deleteStory",
+                data: { storyId: deleteID, deleteUser:deleteUser, deleteStoryTitle:deleteStoryTitle },
                 success: function (data) {
-                    alert("Story Approved successfully");
-					//window.location.reload();
-					getTable();
+                    //location.reload();
+                    alert("Record Deleted.");
+                     getTable();
                 },
                 error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
+                    alert("Record Not Deleted.");
                 }
-          
-			});
-	});
-
-
-	$('table').on('click', '.delete-img', function (e) {
-		e.preventDefault();
-		var deleteFirst=this.getAttribute("data-first");
-		var deleteLast=this.getAttribute("data-last");
-    var deleteID = $(this).data('id');
-	var deleteUserId = this.getAttribute("data-value");
-	var deleteUser=deleteFirst+" "+deleteLast;
-    $('#confirm-delete').on('click', function (e) {
-		e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/Admin/deleteStory",
-            data: { storyId: deleteID, deleteUser:deleteUser },
-            success: function (data) {
-                //location.reload();
-                alert("Record Deleted.");
-				 getTable();
-            },
-            error: function (xhr, status, error) {
-                alert("Record Not Deleted.");
-            }
+            });
         });
     });
-});
 
 
-	$(".reject").on("click", function(e){
-		var rejectID = this.id;
-		var rejectFirst = this.getAttribute("data-first");
-		var rejectLast = this.getAttribute("data-last");
-		var rejectUser = rejectFirst + " " + rejectLast;
-		console.log("reject user: " + rejectUser);
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/rejectStory",
-                data: {storyId:rejectID, rejectUser:rejectUser},
-                success: function (data) {
-                    alert("Story Rejected successfully");
-					//window.location.reload();
-					getTable();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
+        $(".reject").on("click", function(e){
+            var rejectID = this.id;
+            var rejectFirst = this.getAttribute("data-first");
+            var rejectLast = this.getAttribute("data-last");
+            var rejectUser = rejectFirst + " " + rejectLast;
+            var rejectStoryTitle = this.getAttribute("data-title");
+            
+                         $.ajax({
+                    type: "POST",
+                    url: "/Admin/rejectStory",
+                    data: {storyId:rejectID, rejectUser:rejectUser, rejectStoryTitle:rejectStoryTitle},
+                    success: function (data) {
+                        alert("Story Rejected successfully");
+                        //window.location.reload();
+                        getTable();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Something went wrong in adding data");
+                    }
+
+                });
+        });
+
+
+        $(function () {
+            var currentPage = @Model.CurrentPage;
+            var pageCount = @Model.PageCount;
+
+            $(".page-btn").click(function () {
+                var page = $(this).text();
+                var text = $("#searchStoryData").val();
+                if (page != currentPage) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/storyTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:page},
+                        success: function (data) {
+                            $('#storyTable').html("");
+                            $('#storyTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
                 }
-          
-			});
-	});
-	
-	
-	$(function () {
-		var currentPage = @Model.CurrentPage;
-		var pageCount = @Model.PageCount;
-		
-		$(".page-btn").click(function () {
-			var page = $(this).text();
-			var text = $("#searchStoryData").val();
-			if (page != currentPage) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/storyTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:page},
-					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#prev-btn").click(function () {
-			var prevPage = currentPage - 1;
-			var text = $("#searchStoryData").val();
-			if (prevPage >= 1) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/storyTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:prevPage},
-					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#next-btn").click(function () {
-			var nextPage = currentPage + 1;
-			var text = $("#searchStoryData").val();
-			if (nextPage <= pageCount) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/storyTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:nextPage},
-					success: function (data) {
-						$('#storyTable').html("");
-						$('#storyTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-	});
-	//});
+            });
+
+            $("#prev-btn").click(function () {
+                var prevPage = currentPage - 1;
+                var text = $("#searchStoryData").val();
+                if (prevPage >= 1) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/storyTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:prevPage},
+                        success: function (data) {
+                            $('#storyTable').html("");
+                            $('#storyTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+
+            $("#next-btn").click(function () {
+                var nextPage = currentPage + 1;
+                var text = $("#searchStoryData").val();
+                if (nextPage <= pageCount) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/storyTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:nextPage},
+                        success: function (data) {
+                            $('#storyTable').html("");
+                            $('#storyTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+        //});
 </script>

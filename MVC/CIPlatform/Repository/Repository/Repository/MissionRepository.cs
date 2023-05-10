@@ -206,7 +206,17 @@ namespace Repository.Repository.Repository
 
         List<Notification> MissionInterface.GetNotifications(int userId)
         {
-            return _ciPlatformContext.Notifications.Where(x => x.UserId == userId).ToList();
+            return _ciPlatformContext.Notifications.Where(x => x.UserId == userId && x.DeletedAt == null).ToList();
+        }
+
+        public void ClearNotifications(User user)
+        {
+            var notification = _ciPlatformContext.Notifications.Where(x => x.UserId == user.UserId);
+            foreach(var item in notification)
+            {
+                item.DeletedAt = DateTime.Now;
+            }
+            _ciPlatformContext.SaveChanges();
         }
     }
 }

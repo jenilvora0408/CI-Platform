@@ -405,7 +405,7 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.SaveChanges();
         }
 
-        public void approveStory(long storyId)
+        public void approveStory(long storyId, string approveStoryTitle)
         {
             if(storyId != null && storyId != 0)
             {
@@ -416,15 +416,16 @@ namespace Repository.Repository.Repository
 
                 int userId = (int)story.UserId;
                 Notification notification = new Notification();
-                notification.NotificationMessage = "Your story has been approved";
+                notification.NotificationMessage = "Your story " + approveStoryTitle + " has been approved";
                 notification.UserId = userId;
-                notification.NotificationType = "Story Approved";
+                notification.StoryId = storyId;
+                notification.NotificationType = "Story";
                 _ciPlatformContext.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }
         }
 
-        public void rejectStory(long storyId)
+        public void rejectStory(long storyId, string rejectStoryTitle)
         {
             if(storyId != null && storyId != 0)
             {
@@ -435,15 +436,16 @@ namespace Repository.Repository.Repository
 
                 int userId = (int)story.UserId;
                 Notification notification = new Notification();
-                notification.NotificationMessage = "Your story has been rejected";
+                notification.NotificationMessage = "Your story " + rejectStoryTitle + " has been rejected";
                 notification.UserId=userId;
-                notification.NotificationType = "Story Rejected";
+                notification.StoryId = storyId;
+                notification.NotificationType = "Story";
                 _ciPlatformContext.Notifications.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }
         }
 
-        public void deleteStory(long storyId)
+        public void deleteStory(long storyId, string deleteStoryTitle)
         {
             if(storyId != null && storyId != 0)
             {
@@ -454,9 +456,10 @@ namespace Repository.Repository.Repository
 
                 int userId = (int)story.UserId;
                 Notification notification = new Notification();
-                notification.NotificationMessage = "Your story has been deleted";
+                notification.NotificationMessage = "Your story " + deleteStoryTitle + " has been deleted";
                 notification.UserId = userId;
-                notification.NotificationType = "Story Deleted";
+                notification.StoryId = storyId;
+                notification.NotificationType = "Story";
                 _ciPlatformContext.Notifications.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }

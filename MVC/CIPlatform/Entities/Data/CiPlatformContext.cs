@@ -612,7 +612,11 @@ public partial class CiPlatformContext : DbContext
             entity.ToTable("notification");
 
             entity.Property(e => e.NotificationId).HasColumnName("notification_id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.MessageId).HasColumnName("message_id");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
             entity.Property(e => e.NotificationMessage)
                 .HasColumnType("text")
                 .HasColumnName("notification_message");
@@ -621,7 +625,16 @@ public partial class CiPlatformContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("notification_type");
             entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.StoryId).HasColumnName("story_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.Notifications)
+                .HasForeignKey(d => d.MissionId)
+                .HasConstraintName("fk_notifications_mission_id");
+
+            entity.HasOne(d => d.Story).WithMany(p => p.Notifications)
+                .HasForeignKey(d => d.StoryId)
+                .HasConstraintName("fk_notifications_story_id");
 
             entity.HasOne(d => d.User).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.UserId)

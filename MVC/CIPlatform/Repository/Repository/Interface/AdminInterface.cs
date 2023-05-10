@@ -43,11 +43,11 @@ namespace Repository.Repository.Interface
 
         public CMS GetSkillData(long SkillId);
 
-        public void approveStory(long storyId);
+        public void approveStory(long storyId, string approveStoryTitle);
 
-        public void rejectStory(long storyId);
+        public void rejectStory(long storyId, string rejectStoryTitle);
 
-        public void deleteStory(long storyId);
+        public void deleteStory(long storyId, string deleteStoryTitle);
 
         public void approveApplication(long applicationId);
 

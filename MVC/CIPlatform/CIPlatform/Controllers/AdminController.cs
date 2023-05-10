@@ -765,12 +765,11 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> approveStory(long storyId, string approveUser)
+        public async Task<IActionResult> approveStory(long storyId, string approveUser, string approveStoryTitle)
         {
-
             string username = approveUser;
-            _adminInterface.approveStory(storyId);           
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story has been approved");
+            _adminInterface.approveStory(storyId, approveStoryTitle);           
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + approveStoryTitle + " has been approved", storyId);
             return Ok();
         }
 
@@ -780,12 +779,12 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> rejectStory(long storyId, string rejectUser)
+        public async Task<IActionResult> rejectStory(long storyId, string rejectUser, string rejectStoryTitle)
         {
          
             string username = rejectUser;
-            _adminInterface.rejectStory(storyId);
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story has been rejected");
+            _adminInterface.rejectStory(storyId, rejectStoryTitle);
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + rejectStoryTitle + " has been rejected", storyId);
             return Ok();
         }
 
@@ -795,11 +794,11 @@ namespace CIPlatform.Controllers
         /// <param name="storyId"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> deleteStory(long storyId, string deleteUser)
+        public async Task<IActionResult> deleteStory(long storyId, string deleteUser, string deleteStoryTitle)
         {
             string username = deleteUser;
-            _adminInterface.deleteStory(storyId);
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story has been deleted");
+            _adminInterface.deleteStory(storyId, deleteStoryTitle);
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + deleteStoryTitle + " has been deleted", storyId);
             return Ok();
         }
 
