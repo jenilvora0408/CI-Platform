@@ -248,5 +248,41 @@ namespace Repository.Repository.Repository
             }
             _ciPlatformContext.SaveChanges();
         }
+
+        public UserNotificationSetting GetListOfNotificationSetting(long userId)
+        {
+            NotificationSetting setting = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Mission Approved").First();
+            NotificationSetting setting1 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "NewMission").First();
+            NotificationSetting setting2 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Recommend Story").First();
+            NotificationSetting setting3 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Recommend Mission").First();
+            NotificationSetting setting4 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Story Published").First();
+            NotificationSetting setting5 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Email").First();
+            UserNotificationSetting userNotification = new UserNotificationSetting();
+            userNotification.missionApplication = setting.Status;
+            userNotification.newMission = setting1.Status ;
+            userNotification.recommendstory = setting2.Status;
+            userNotification.recommendMission = setting3.Status;
+            userNotification.myStory = setting4.Status;
+            userNotification.email = setting5.Status;
+            return userNotification;
+        }
+
+        public void UpdateNotificationSetting(UserNotificationSetting userNotification, long userId)
+        {
+            NotificationSetting setting = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Mission Approved").First();
+            NotificationSetting setting1 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "NewMission").First();
+            NotificationSetting setting2 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Recommend Story").First();
+            NotificationSetting setting3 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Recommend Mission").First();
+            NotificationSetting setting4 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Story Published").First();
+            NotificationSetting setting5 = _ciPlatformContext.NotificationSettings.Where(X => X.UserId == userId && X.NotificationType == "Email").First();
+            setting.Status = userNotification.missionApplication;
+            setting1.Status = userNotification.newMission;
+            setting2.Status = userNotification.recommendstory;
+            setting3.Status = userNotification.recommendMission;
+            setting4.Status = userNotification.myStory;
+            setting5.Status = userNotification.email;
+            _ciPlatformContext.SaveChanges();
+
+        }
     }
 }

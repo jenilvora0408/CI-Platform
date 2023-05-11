@@ -19,13 +19,16 @@ namespace CIPlatform.Controllers
         private readonly RegisterInterface _registerInterface;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
-      
-        public AccountController(ILogger<AccountController> logger, RegisterInterface registerInterface, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+        private readonly CiPlatformContext _ciPlatformContext;
+
+        public AccountController(ILogger<AccountController> logger, RegisterInterface registerInterface, IHttpContextAccessor httpContextAccessor,
+            IConfiguration configuration, CiPlatformContext ciPlatformContext)
         {
             _logger = logger;
            _registerInterface = registerInterface;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _ciPlatformContext = ciPlatformContext;
         }
         /// <summary>
         /// View - Login Page
@@ -107,6 +110,18 @@ namespace CIPlatform.Controllers
             u.PhoneNumber = user.phone_number;
             u.Password = user.password;
             _registerInterface.InsertUser(u);
+            string[] notificationTypes = { "NewMission", "Recommend Mission", "Recommend Story", "Mission Approved", "Story Published", "Email" };
+            foreach (string notificationType in notificationTypes)
+            {
+                NotificationSetting notificationSetting = new NotificationSetting
+                {
+                    NotificationType = notificationType,
+                    UserId = u.UserId,
+                    Status = false
+                };
+                _ciPlatformContext.NotificationSettings.Add(notificationSetting);
+            }
+            _ciPlatformContext.SaveChanges();
             return RedirectToAction("Login", "Account", newRegister);
         }
  

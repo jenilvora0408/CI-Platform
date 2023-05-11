@@ -63,6 +63,23 @@ namespace CIPlatform.Controllers
             return View(missionHomeModel);
         }
 
+        public IActionResult NotificationSetting()
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            var UserId = userObj.UserId;
+            var data = _missionInterface.GetListOfNotificationSetting(Convert.ToInt64(UserId));
+            return View("_NotificationSetting", data);
+        }
+        [HttpPost]
+        public IActionResult UpdateNotificationSetting(UserNotificationSetting setting)
+        {
+            string userSessionEmailId = HttpContext.Session.GetString("useremail");
+            User userObj = _missionInterface.findUser(userSessionEmailId);
+            var UserId = userObj.UserId;
+            _missionInterface.UpdateNotificationSetting(setting, Convert.ToInt64(UserId));
+            return RedirectToAction("MissionListing", "Mission");
+        }
         public IActionResult ClearNotification()
         { 
             string userSessionEmailId = HttpContext.Session.GetString("useremail");

@@ -1,0 +1,64 @@
+﻿@model Entities.ViewModels.UserNotificationSetting
+
+@using (Html.BeginForm("UpdateNotificationSetting", "Mission", FormMethod.Post, new { id = "notification-settings-form" }))
+
+{
+    <li class="p-1 mb-1 text-center">Notification Setting</li>
+    <li class="p-1 mb-1" style="background-color:#ccc;">Get a notification for</li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>New Mission</span>
+        <input class="ckeckbox-color" id="checkbox" type="checkbox" asp-for="newMission" />
+        <label for="checkbox"></label>
+    </li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>Mission Application</span>
+        <input class="ckeckbox-color" id="checkbox1" type="checkbox" asp-for="missionApplication" />
+        <label for="checkbox1"></label>
+    </li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>Recommend Mission</span>
+        <input class="ckeckbox-color" id="checkbox2" type="checkbox" asp-for="recommendMission" />
+        <label for="checkbox2"></label>
+    </li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>Recommend Story</span>
+        <input class="ckeckbox-color" id="checkbox3" type="checkbox" asp-for="recommendstory" />
+        <label for="checkbox3"></label>
+    </li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>My Story</span>
+        <input class="ckeckbox-color" id="checkbox4" type="checkbox" asp-for="myStory" />
+        <label for="checkbox4"></label>
+    </li>
+    <li class="p-1 d-flex justify-content-between align-items-center custom-checkbox">
+        <span>Email</span>
+        <input class="ckeckbox-color" id="checkbox5" type="checkbox" asp-for="email" />
+        <label for="checkbox5"></label>
+    </li>
+    <div class="d-flex justify-content-end gap-2 mt-1">
+        <button id="notification_setting_cancle" class="brd3" type="button">Cancel</button>
+        <button class="brd4" type="submit">Save</button>
+    </div>
+
+}
+<script>
+    $('#notification-settings-form').on('submit', function (event) {
+    event.preventDefault();
+    $.ajax({
+    url: this.action,
+    type: this.method,
+    dataType: 'html',
+    data: $(this).serialize(),
+    success: function (response) {
+    window.location.href = "https://localhost:7165/Mission/MissionListing";
+    },
+    error: function (error) {
+    // handle error response
+    }
+    });
+    });
+    $("#notification_setting_cancle").on("click", function (e) {
+    window.location.href = "https://localhost:7165/Mission/MissionListing";
+    });
+</script>
+

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SvzE0EYL49EuW1TIaYM39G5LxJT9cZy3MF8rvOGL3hI=",
+  "Hash": "KpOxAx48IlR17kYPtx+RnExIF9HMDPxIj0CSEIecq1w=",
   "Source": "CIPlatform",
   "BasePath": "_content/CIPlatform",
   "Mode": "Default",
@@ -3978,6 +3978,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1_638180348522815091.png"
     },
     {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1_638194210423055767.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/Animal-welfare-_-save-birds-campaign-1_638194210423055767.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Animal-welfare-_-save-birds-campaign-1_638194210423055767.png"
+    },
+    {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\arrow.png",
       "SourceId": "CIPlatform",
       "SourceType": "Discovered",
@@ -4692,6 +4709,40 @@
       "OriginalItemSpec": "wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638181033385572391.png"
     },
     {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638194212708028718.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638194212708028718.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4_638194212708028718.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5_638194210423625674.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5_638194210423625674.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5_638194210423625674.png"
+    },
+    {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png",
       "SourceId": "CIPlatform",
       "SourceType": "Discovered",
@@ -4826,6 +4877,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638176777353202130.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638194210423794727.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/Education-Supplies-for-Every--Pair-of-Shoes-Sold_638194210423794727.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold_638194210423794727.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png",
@@ -5234,6 +5302,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\img22.png"
+    },
+    {
+      "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img3_638194214736433133.png",
+      "SourceId": "CIPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\",
+      "BasePath": "_content/CIPlatform",
+      "RelativePath": "uploads/img3_638194214736433133.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\img3_638194214736433133.png"
     },
     {
       "Identity": "C:\\Users\\tatva\\Desktop\\CI - Platform BootStrap\\MVC\\CIPlatform\\CIPlatform\\wwwroot\\uploads\\img33.png",

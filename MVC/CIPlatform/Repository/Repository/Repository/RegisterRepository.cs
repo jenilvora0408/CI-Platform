@@ -132,6 +132,8 @@ namespace Repository.Repository.Repository
         {
             return _ciPlatformContext.Banners.OrderBy(x => x.SortOrder).ToList();
         }
+
+
     }
 
 }

@@ -1,7 +1,6 @@
 ﻿@using Entities.ViewModels
 @inject IHttpContextAccessor HttpContextAccessor
 
-    @*@model Pagination*@
  @model Navbar_1
 
  @{
@@ -24,7 +23,7 @@
             </button>
             <ul id="notification-dropdown" class="dropdown-menu" style="width:380px;max-height: 335px;overflow-y: scroll;">
                 <div id="notification-header-li" class="p-2 d-flex justify-content-between align-items-center">
-                    <button class="bg-white border-0" data-bs-toggle="modal" data-bs-target="#navigation-setting-modal"><i id="notification-setting" class="bi bi-gear-fill"></i></button>
+                    <button id="notification_setting_icon" class="bg-white border-0" data-bs-toggle="modal" data-bs-target="#navigation-setting-modal"><i id="notification-setting" class="bi bi-gear-fill"></i></button>
                     <span>Notification</span>
                     <button id="clearNotifications" class="bg-white border-0">Clear All</button>
                 </div>
@@ -57,7 +56,7 @@
                                 </li>
                             }
                         }
-                        else if(item.NotificationType == "Mission" && item.DeletedAt == null)
+                        else if((item.NotificationType == "Mission" || item.NotificationType=="NewMission")  && item.DeletedAt == null)
                         {
                             @if (item.Status == false)
                             {

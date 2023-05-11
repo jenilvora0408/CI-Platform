@@ -51,6 +51,8 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<Notification> Notifications { get; set; }
 
+    public virtual DbSet<NotificationSetting> NotificationSettings { get; set; }
+
     public virtual DbSet<PasswordReset> PasswordResets { get; set; }
 
     public virtual DbSet<Skill> Skills { get; set; }
@@ -639,6 +641,26 @@ public partial class CiPlatformContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK_notification_users");
+        });
+
+        modelBuilder.Entity<NotificationSetting>(entity =>
+        {
+            entity.HasKey(e => e.NotificationSettingId).HasName("PK__notifica__2CEC4EFBB1D1F36F");
+
+            entity.ToTable("notification_settings");
+
+            entity.Property(e => e.NotificationSettingId).HasColumnName("notification_setting_id");
+            entity.Property(e => e.NotificationType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("notification_type");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.NotificationSettings)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_user_id");
         });
 
         modelBuilder.Entity<PasswordReset>(entity =>

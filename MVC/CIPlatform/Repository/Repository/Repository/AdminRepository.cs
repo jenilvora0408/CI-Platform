@@ -353,6 +353,19 @@ namespace Repository.Repository.Repository
                 user = cms.User;
                 _ciPlatformContext.Users.Add(user);
                 _ciPlatformContext.SaveChanges();
+
+                string[] notificationTypes = { "NewMission", "Recommend Mission", "Recommend Story", "Mission Approved", "Story Published", "Email" };
+                foreach (string notificationType in notificationTypes)
+                {
+                    NotificationSetting notificationSetting = new NotificationSetting
+                    {
+                        NotificationType = notificationType,
+                        UserId = cms.User.UserId,
+                        Status = false
+                    };
+                    _ciPlatformContext.NotificationSettings.Add(notificationSetting);
+                }
+                _ciPlatformContext.SaveChanges();
             }
         }
 
@@ -745,6 +758,34 @@ namespace Repository.Repository.Repository
                     _ciPlatformContext.SaveChanges();
                 }
             }
+            if (mission.Status == true)
+            {
+                var notificationUser = _ciPlatformContext.NotificationSettings.Where(x => x.NotificationType == "NewMission" && x.Status == true && x.User.Availability == mission.Availability).Include(x => x.User).ThenInclude(x => x.UserSkills).ToList();
+                foreach (var notification in notificationUser)
+                {
+                    var userSkillIds = _ciPlatformContext.UserSkills
+                    .Where(x => x.UserId == notification.UserId)
+                    .Select(x => x.SkillId)
+                    .ToList();
+
+                    var missionSkillIds = model.SkillIDs?
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToList();
+                    if (missionSkillIds != null && userSkillIds.Intersect(missionSkillIds).Any())
+                    {
+                        Notification notification1 = new Notification();
+                        notification1.Status = true;
+                        notification1.UserId = notification.UserId;
+                        notification1.NotificationMessage = "New mission added: " + model.Title;
+                        notification1.NotificationType = "NewMission";
+                        notification1.MessageId = (int)mission.MissionId;
+                        notification1.MissionId = mission.MissionId;
+                        _ciPlatformContext.Notifications.Add(notification1);
+                        _ciPlatformContext.SaveChanges();
+                    }
+                }
+            }
             return mission.MissionId;
         }
 
@@ -838,6 +879,8 @@ namespace Repository.Repository.Repository
             }
             _ciPlatformContext.SaveChanges();
         }
+
+        
 
         public void AddMissionDocument(long missionId, string imagepath, string fileName, string fileExtension)
         {

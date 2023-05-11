@@ -291,7 +291,7 @@ $("#clearNotifications").on("click", function (e) {
 // Notification Status
 $(".notifyItem").on("click", function (e) {
     var notificationId = this.getAttribute("data-notify");
-  
+
     $.ajax({
         url: '/Mission/NotificationStatus',
         type: 'GET',
@@ -306,4 +306,22 @@ $(".notifyItem").on("click", function (e) {
             alert('Notification Clear');
         }
     });
-})
+});
+
+// Notification Setting
+$('#notification_setting_icon').on("click", function (e) {
+    $.ajax({
+        type: "GET",
+        url: "/Mission/NotificationSetting",
+        dataType: "html",
+        success: function (data) {
+            debugger;
+            $("#notification-dropdown").html("");
+            $("#notification-dropdown").html(data);
+        },
+        error: function (response) {
+            alert("Something went Wrong in Vounteering Time data");
+        }
+    });
+});
+

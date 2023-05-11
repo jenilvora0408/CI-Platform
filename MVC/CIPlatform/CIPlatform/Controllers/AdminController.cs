@@ -250,6 +250,7 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMission(MissionCrud model, IEnumerable<IFormFile> fileImg, IEnumerable<IFormFile> fileDoc)
         {
+
             if (ModelState.IsValid)
             {
                 if (fileImg != null && fileImg.Count() > 0)
@@ -300,7 +301,7 @@ namespace CIPlatform.Controllers
                             }
                         }
                     }
-                    
+                    await _notificationHub.Clients.All.SendAsync("ReceiveMsg", "New mission added: " + model.Title, missionId);
                     return RedirectToAction("Mission");
                 }
                 else
@@ -670,7 +671,6 @@ namespace CIPlatform.Controllers
             var country = _adminInterface.GetCountries();
             ViewBag.CountrieS = country;
             _adminInterface.AddUserData(cms);
-
 
             return RedirectToAction("User", "Admin");
         }
