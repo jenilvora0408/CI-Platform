@@ -31,5 +31,9 @@ namespace Repository.Repository.Interface
         public StoryPage GetStoryListings(int pageNumber);
 
         public Task<int> UploadImages(ImageUploadViewModel imageUploadViewModel);
+
+        public Story FindStoryTitle(long StoryId);
+
+        public void addNotificationForRecommendStory(long StoryId, long userId, string title, string usernameFrom);
     }
 }

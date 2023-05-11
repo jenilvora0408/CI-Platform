@@ -12,6 +12,8 @@ using System.Data.SqlClient;
 using System.Data;
 using Dapper;
 using Microsoft.AspNetCore.Http;
+using CIPlatform.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace CIPlatform.Controllers
 {
@@ -24,9 +26,11 @@ namespace CIPlatform.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
         private readonly StoryInterface _storyInterface;
+        private readonly IHubContext<NotificationHub> _notificationHub;
 
         public StoryController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, 
-            IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IConfiguration configuration, StoryInterface storyInterface)
+            IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IConfiguration configuration, StoryInterface storyInterface,
+            IHubContext<NotificationHub> notificationHub)
         {
             _logger = logger;
             _missionInterface = missionInterface;
@@ -35,6 +39,7 @@ namespace CIPlatform.Controllers
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
             _storyInterface = storyInterface;
+            _notificationHub = notificationHub;
         }
 
         public IActionResult Index()
@@ -103,6 +108,11 @@ namespace CIPlatform.Controllers
             var userfrom = _missionInterface.findUser((string)email);
             var userto = _missionInterface.findUser((string)InviteEmail);
 
+            var userFromName = userfrom.FirstName + " " + userfrom.LastName;
+            var userToName = userto.FirstName + " " + userto.LastName;
+            var userToId = userto.UserId;
+            var storyTitle = _storyInterface.FindStoryTitle(StoryId);
+
             bool shareMessage = _storyInterface.RecommandtoCoWorker((long)userfrom.UserId, (int)StoryId, (long)userto.UserId);
             string message = "";
             if (shareMessage)
@@ -120,6 +130,8 @@ namespace CIPlatform.Controllers
                 ViewBag.Message = "You Successfully Invited";
                 ModelState.Clear();
             }
+            _notificationHub.Clients.User(userToName).SendAsync("ReceiveMsg", "Your friend " + userFromName + " has invited you to view story - " + storyTitle.Title);
+            _missionInterface.addNotificationForRecommendMission(StoryId, userToId, userFromName, storyTitle.Title);
             return Json(new { data = message });
         }
 

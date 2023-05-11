@@ -52,6 +52,23 @@ namespace Repository.Repository.Repository
             }
         }
 
+        public void addNotificationForRecommendStory(long StoryId, long userId, string title, string usernameFrom)
+        {
+            Notification notification = new Notification();
+            notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
+            notification.UserId = userId;
+            notification.StoryId = StoryId;
+            notification.Status = false;
+            notification.NotificationType = "Story";
+            _ciPlatformContext.Add(notification);
+            _ciPlatformContext.SaveChanges();
+        }
+
+        public Story FindStoryTitle(long StoryId)
+        {
+            return _ciPlatformContext.Stories.Where(x => x.StoryId == StoryId).FirstOrDefault();
+        }
+
         public Story GetStoryById(long id)
         {
             return _ciPlatformContext.Stories.FirstOrDefault(x => x.StoryId == id);

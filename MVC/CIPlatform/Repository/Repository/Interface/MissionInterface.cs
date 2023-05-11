@@ -36,5 +36,7 @@ namespace Repository.Repository.Interface
         public void ClearNotifications(User user);
         public List<Notification> GetNotifications(int userId);
         public void NotifyStatus(long notificationId);
+        public Mission FindMissionTitle(long MissionId);
+        public void addNotificationForRecommendMission(long MissionId, long userId, string title, string usernameFrom);
     }
 }

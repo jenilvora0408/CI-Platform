@@ -120,7 +120,23 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
                 return false;
             }
+        }
 
+        public Mission FindMissionTitle(long MissionId)
+        {
+            return _ciPlatformContext.Missions.Where(x => x.MissionId == MissionId).First();
+        }
+        
+        public void addNotificationForRecommendMission(long MissionId, long userId, string title, string usernameFrom)
+        {
+            Notification notification = new Notification();
+            notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
+            notification.UserId = userId;
+            notification.MissionId = MissionId;
+            notification.Status = false;
+            notification.NotificationType = "Mission";
+            _ciPlatformContext.Add(notification);
+            _ciPlatformContext.SaveChanges();
         }
 
         public void addComments(long missionid, long userid, string commented)

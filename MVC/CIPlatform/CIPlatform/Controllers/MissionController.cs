@@ -12,6 +12,8 @@ using System.Data.SqlClient;
 using System.Data;
 using Dapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
+using CIPlatform.Hubs;
 
 namespace CIPlatform.Controllers
 {
@@ -22,15 +24,17 @@ namespace CIPlatform.Controllers
         private readonly CiPlatformContext _ciPlatformContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
+        private readonly IHubContext<NotificationHub> _notificationHub;
 
-
-        public MissionController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+        public MissionController(ILogger<AccountController> logger, MissionInterface missionInterface, CiPlatformContext ciPlatformContext,
+            IHttpContextAccessor httpContextAccessor, IConfiguration configuration, IHubContext<NotificationHub> notificationHub)
         {
             _logger = logger;
             _missionInterface = missionInterface;
             _ciPlatformContext = ciPlatformContext;
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _notificationHub = notificationHub;
         }
 
         public IActionResult Index()
@@ -192,6 +196,11 @@ namespace CIPlatform.Controllers
             var userfrom = _missionInterface.findUser((string)email);
             var userto = _missionInterface.findUser((string)InviteEmail);
 
+            var usernameFrom = userfrom.FirstName + " " + userfrom.LastName;
+            var username = userto.FirstName + " " + userto.LastName;
+            var userToId = userto.UserId;
+            var missionTitle = _missionInterface.FindMissionTitle(MissionId);
+
             bool shareMessage = _missionInterface.RecommandtoCoWorker((long)userfrom.UserId, (int)MissionId, (long)userto.UserId);
             string message = "";
             if (shareMessage)
@@ -209,6 +218,8 @@ namespace CIPlatform.Controllers
                 ViewBag.Message = "You Successfully Invited";
                 ModelState.Clear();
             }
+            _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your friend "+ usernameFrom + " has invited you to join mission - " + missionTitle.Title);
+            _missionInterface.addNotificationForRecommendMission(MissionId, userToId, usernameFrom, missionTitle.Title);
             return Json(new { data = message });
         }
 
