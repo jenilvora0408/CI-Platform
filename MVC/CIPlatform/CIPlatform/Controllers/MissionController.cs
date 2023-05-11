@@ -67,6 +67,12 @@ namespace CIPlatform.Controllers
             return Ok();
         }
 
+        public IActionResult NotificationStatus(long notificationId)
+        {
+            _missionInterface.NotifyStatus(notificationId);
+            return Ok();
+        }
+
         public IActionResult MissionVolunteering(int? missionId)
         {
             string userSessionEmailId = HttpContext.Session.GetString("useremail");

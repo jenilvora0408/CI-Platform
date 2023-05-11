@@ -760,9 +760,11 @@ namespace CIPlatform.Controllers
         }
 
         /// <summary>
-        /// Approve story 
+        /// Approve story
         /// </summary>
         /// <param name="storyId"></param>
+        /// <param name="approveUser"></param>
+        /// <param name="approveStoryTitle"></param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> approveStory(long storyId, string approveUser, string approveStoryTitle)
@@ -777,6 +779,8 @@ namespace CIPlatform.Controllers
         /// Reject Story
         /// </summary>
         /// <param name="storyId"></param>
+        /// <param name="rejectUser"></param>
+        /// <param name="rejectStoryTitle"></param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> rejectStory(long storyId, string rejectUser, string rejectStoryTitle)
@@ -792,6 +796,8 @@ namespace CIPlatform.Controllers
         /// Delete Story
         /// </summary>
         /// <param name="storyId"></param>
+        /// <param name="deleteUser"></param>
+        /// <param name="deleteStoryTitle"></param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> deleteStory(long storyId, string deleteUser, string deleteStoryTitle)
@@ -803,15 +809,17 @@ namespace CIPlatform.Controllers
         }
 
         /// <summary>
-        /// Approve application of a user
+        /// Approve application of a User
         /// </summary>
         /// <param name="applicationId"></param>
+        /// <param name="approveName"></param>
+        /// <param name="approveTitle"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult approveApplication(long applicationId)
+        public async Task<IActionResult> approveApplication(long applicationId, string approveName, string approveTitle, long approveMissionId)
         {
-            _adminInterface.approveApplication(applicationId);
-
+            _adminInterface.approveApplication(applicationId, approveTitle, approveMissionId);
+            await _notificationHub.Clients.User(approveName).SendAsync("ReceiveMsg", "Your application for mission " + approveTitle + " has been approved", applicationId);
             return Ok();
         }
 
@@ -821,10 +829,10 @@ namespace CIPlatform.Controllers
         /// <param name="applicationId"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult rejectApplication(long applicationId)
+        public IActionResult rejectApplication(long applicationId, string rejectName, string rejectTitle, long rejectMissionId)
         {
-            _adminInterface.rejectApplication(applicationId);
-
+            _adminInterface.rejectApplication(applicationId, rejectTitle, rejectMissionId);
+             _notificationHub.Clients.User(rejectName).SendAsync("ReceiveMsg", "Your application for mission " + rejectTitle + " has been rejected", applicationId);
             return Ok();
         }
 
@@ -834,10 +842,10 @@ namespace CIPlatform.Controllers
         /// <param name="applicationId"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult deleteApplication(long applicationId)
+        public async Task<IActionResult> deleteApplication(long applicationId, string deleteName, string deleteTitle, long deleteMissionId)
         {
-            _adminInterface.deleteApplication(applicationId);
-
+            _adminInterface.deleteApplication(applicationId, deleteTitle, deleteMissionId);
+            await _notificationHub.Clients.User(deleteName).SendAsync("ReceiveMsg", "Your application for mission " + deleteTitle + " has been deleted", applicationId);
             return Ok();
         }
 

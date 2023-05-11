@@ -16,10 +16,10 @@
     </div>
     <div class="home-nav1-right">
         @*Notifications*@
-        <div  class="dropdown">
+        <div class="dropdown">
             <button data-bs-auto-close="outside" id="notification-button" class="dropdown-toggle border-0 bg-white position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span id="notifyCount" class="btn btn-warning rounded-circle p-1 m-0 position-absolute" style="color: white;top: -12px;right: 15px;font-size: 10px;width:20px;">@Model.notifications.Count()</span>
-                
+
                 <img id="notifyDropdown" src="~/images/bell.png" alt="" style="height:3vh !important;width:1.7vw !important;" />
             </button>
             <ul id="notification-dropdown" class="dropdown-menu" style="width:380px;max-height: 335px;overflow-y: scroll;">
@@ -28,24 +28,65 @@
                     <span>Notification</span>
                     <button id="clearNotifications" class="bg-white border-0">Clear All</button>
                 </div>
-               @if(Model.notifications.Count() != 0)
-               {
-                @foreach (var item in Model.notifications)
+                @if (Model.notifications.Count() != 0)
                 {
-                    @if(item.NotificationType == "Story" && item.DeletedAt == null){
-                    <li style="cursor:pointer" onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyId=@item.StoryId}) '" class="p-2 border border-1 d-flex justify-content-between align-items-center">
-                        <div>
-                            <img style="height:30px;width:30px" src="~/images/add.png" style="height:3vh !important;width:1.7vw !important;" />
-                            <span>@item.NotificationMessage</span>
-                        </div>
-                        <input class="notification-status" type="checkbox" id="id" checked />
-                    </li>
-                    }
+                    @foreach (var item in Model.notifications)
+                    {
+                        @if (item.NotificationType == "Story" && item.DeletedAt == null)
+                        {
+                            @if (item.Status == false)
+                            {
+                                <li id="notificationListItem" data-notify="@item.NotificationId" style="cursor:pointer; background: #adadad;" onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyId=@item.StoryId}) '" class="notifyItem p-2 border border-1 d-flex justify-content-between align-items-center">
+                                    <div>
+
+                                        <i style="color:#fff;" class="bi bi-plus-circle"></i>
+                                        <span style="color:#fff">@item.NotificationMessage</span>
+                                    </div>
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li id="notificationListItem" data-notify="@item.NotificationId" style="cursor:pointer;" onclick="return location.href=' @Url.Action("StoryDetail","Story",new {storyId=@item.StoryId}) '" class="notifyItem p-2 border border-1 d-flex justify-content-between align-items-center">
+                                    <div>
+
+                                        <i class="bi bi-plus-circle"></i>
+                                        <span>@item.NotificationMessage</span>
+                                    </div>
+
+                                </li>
+                            }
+                        }
+                        else if(item.NotificationType == "Mission" && item.DeletedAt == null)
+                        {
+                            @if (item.Status == false)
+                            {
+                                <li id="notificationListItem" data-notify="@item.NotificationId" style="cursor:pointer; background: #adadad;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '" class="notifyItem p-2 border border-1 d-flex justify-content-between align-items-center">
+                                    <div>
+
+                                        <i style="color:#fff;" class="bi bi-plus-circle"></i>
+                                        <span style="color:#fff">@item.NotificationMessage</span>
+                                    </div>
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li id="notificationListItem" data-notify="@item.NotificationId" style="cursor:pointer;" onclick="return location.href=' @Url.Action("MissionVolunteering","Mission",new {missionId=@item.MissionId}) '" class="notifyItem p-2 border border-1 d-flex justify-content-between align-items-center">
+                                    <div>
+
+                                        <i class="bi bi-plus-circle"></i>
+                                        <span>@item.NotificationMessage</span>
+                                    </div>
+
+                                </li>
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    <li style = "cursor:pointer" class= "p-2 border border-1 d-flex justify-content-between align-items-center" >No notification</li>
+                    <li style="cursor:pointer" class="p-2 border border-1 d-flex justify-content-between align-items-center">No notification</li>
                 }
             </ul>
         </div>

@@ -35,5 +35,6 @@ namespace Repository.Repository.Interface
         public List<City> GetCitiesByCountryId(int countryId);
         public void ClearNotifications(User user);
         public List<Notification> GetNotifications(int userId);
+        public void NotifyStatus(long notificationId);
     }
 }

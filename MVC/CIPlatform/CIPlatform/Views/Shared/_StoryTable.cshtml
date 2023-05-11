@@ -68,7 +68,7 @@ else
 
 
 <script>
-
+        // Approve Story
         $(".approve").on("click", function(e){
 
             var approveID = this.id;
@@ -84,7 +84,6 @@ else
                     data: {storyId:approveID,approveUser:approveUser,approveStoryTitle:approveStoryTitle},
                     success: function (data) {
                         alert("Story Approved successfully");
-                        //window.location.reload();
                         getTable();
                     },
                     error: function (xhr, status, error) {
@@ -94,7 +93,7 @@ else
                 });
         });
 
-
+        // Delete Story
         $('table').on('click', '.delete-img', function (e) {
 
             e.preventDefault();
@@ -112,7 +111,6 @@ else
                 url: "/Admin/deleteStory",
                 data: { storyId: deleteID, deleteUser:deleteUser, deleteStoryTitle:deleteStoryTitle },
                 success: function (data) {
-                    //location.reload();
                     alert("Record Deleted.");
                      getTable();
                 },
@@ -123,7 +121,7 @@ else
         });
     });
 
-
+        // Reject Story
         $(".reject").on("click", function(e){
             var rejectID = this.id;
             var rejectFirst = this.getAttribute("data-first");
@@ -137,7 +135,6 @@ else
                     data: {storyId:rejectID, rejectUser:rejectUser, rejectStoryTitle:rejectStoryTitle},
                     success: function (data) {
                         alert("Story Rejected successfully");
-                        //window.location.reload();
                         getTable();
                     },
                     error: function (xhr, status, error) {

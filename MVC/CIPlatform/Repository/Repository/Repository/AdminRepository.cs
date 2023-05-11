@@ -419,6 +419,7 @@ namespace Repository.Repository.Repository
                 notification.NotificationMessage = "Your story " + approveStoryTitle + " has been approved";
                 notification.UserId = userId;
                 notification.StoryId = storyId;
+                notification.Status = false;
                 notification.NotificationType = "Story";
                 _ciPlatformContext.Add(notification);
                 _ciPlatformContext.SaveChanges();
@@ -439,6 +440,7 @@ namespace Repository.Repository.Repository
                 notification.NotificationMessage = "Your story " + rejectStoryTitle + " has been rejected";
                 notification.UserId=userId;
                 notification.StoryId = storyId;
+                notification.Status = false;
                 notification.NotificationType = "Story";
                 _ciPlatformContext.Notifications.Add(notification);
                 _ciPlatformContext.SaveChanges();
@@ -459,13 +461,14 @@ namespace Repository.Repository.Repository
                 notification.NotificationMessage = "Your story " + deleteStoryTitle + " has been deleted";
                 notification.UserId = userId;
                 notification.StoryId = storyId;
+                notification.Status = false;
                 notification.NotificationType = "Story";
                 _ciPlatformContext.Notifications.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }
         }
 
-        public void approveApplication(long applicationId)
+        public void approveApplication(long applicationId, string approveTitle, long approveMissionId)
         {
             if(applicationId != null && applicationId != 0)
             {
@@ -476,10 +479,20 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.Update(mission);
                 _ciPlatformContext.Update(missionApplication);
                 _ciPlatformContext.SaveChanges();
+
+                int userId = (int)missionApplication.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your application for mission " + approveTitle + " has been approved";
+                notification.UserId = userId;
+                notification.MissionId = approveMissionId;
+                notification.Status = false;
+                notification.NotificationType = "Mission";
+                _ciPlatformContext.Notifications.Add(notification);
+                _ciPlatformContext.SaveChanges();
             }
         }
 
-        public void rejectApplication(long applicationId)
+        public void rejectApplication(long applicationId, string rejectTitle, long rejectMissionId)
         {
             if(applicationId != null && applicationId != 0)
             {
@@ -487,16 +500,36 @@ namespace Repository.Repository.Repository
                 missionApplication.ApprovalStatus = "Declined";
                 _ciPlatformContext.Update(missionApplication);
                 _ciPlatformContext.SaveChanges();
+
+                int userId = (int)missionApplication.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your application for mission " + rejectTitle + " has been rejected";
+                notification.UserId = userId;
+                notification.MissionId = rejectMissionId;
+                notification.Status =false;
+                notification.NotificationType = "Mission";
+                _ciPlatformContext.Add(notification);
+                _ciPlatformContext.SaveChanges();
             }
         }
 
-        public void deleteApplication(long applicationId)
+        public void deleteApplication(long applicationId, string deleteTitle, long deleteMissionId)
         {
             if(applicationId != null && applicationId != 0)
             {
                 MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
                 missionApplication.DeletedAt = DateTime.Now;
                 _ciPlatformContext.Update(missionApplication);
+                _ciPlatformContext.SaveChanges();
+
+                int userId = (int)missionApplication.UserId;
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your application for mission " + deleteTitle + " has been deleted";
+                notification.UserId = userId;
+                notification.MissionId = deleteMissionId;
+                notification.Status = false;
+                notification.NotificationType = "Mission";
+                _ciPlatformContext.Add(notification);
                 _ciPlatformContext.SaveChanges();
             }
         }

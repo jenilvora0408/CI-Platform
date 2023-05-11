@@ -233,41 +233,37 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").
 
 //appending the message sent to list of Notifications
 connection.on("ReceiveMsg", function (message) {
-   
+
     var notificationId = $("#notifyCount").text();
     notificationId = parseInt(notificationId);
     notificationId = notificationId + 1;
     $("#notifyCount").text(notificationId);
 
     var li = document.createElement("li");
+    li.setAttribute("id", "notificationListItem");
+    li.setAttribute("data-notify", "@item.NotificationId");
+    li.setAttribute("style", "cursor:pointer; background: #adadad;");
+    li.setAttribute("onclick", "location.href='@Url.Action(\"StoryDetail\",\"Story\",new {storyId=@item.StoryId})'");
+
     li.classList.add("p-2", "border", "border-1", "d-flex", "justify-content-between", "align-items-center");
 
-    var img = document.createElement("img");
-    img.setAttribute("src", "/images/add.png");
-    img.setAttribute("style", "height:30px;width:30px");
-
     var span = document.createElement("span");
-    span.textContent = message;
+    span.classList.add("me-2");
+    span.innerHTML = '<i style="color:#fff;" class="bi bi-plus-circle"></i>';
 
     var div = document.createElement("div");
-    div.appendChild(img);
-    div.appendChild(span);
+    div.classList.add("flex-grow-1");
+    div.style.color = "#fff";
+    div.textContent = message;
 
-    var input = document.createElement("input");
-    input.classList.add("notification-status");
-    input.setAttribute("type", "checkbox");
-    input.setAttribute("id", "id");
-    input.setAttribute("checked", "");
-
+    li.appendChild(span);
     li.appendChild(div);
-    li.appendChild(input);
 
-        document.getElementById("notification-dropdown").appendChild(li);
-   // }
+    document.getElementById("notification-dropdown").appendChild(li);
 });
 
+
 connection.start().then(function () {
-    /* document.getElementById("sendButton").disabled = false;*/
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -286,6 +282,26 @@ $("#clearNotifications").on("click", function (e) {
            
         },
           
+        error: function () {
+            alert('Notification Clear');
+        }
+    });
+})
+
+// Notification Status
+$(".notifyItem").on("click", function (e) {
+    var notificationId = this.getAttribute("data-notify");
+  
+    $.ajax({
+        url: '/Mission/NotificationStatus',
+        type: 'GET',
+        data: { notificationId: notificationId },
+        success: function (result) {
+            $(this).css('background', 'white');
+            $(this).css('color', 'black');
+            $(".notifyItem i").css('color', 'black');
+        },
+
         error: function () {
             alert('Notification Clear');
         }

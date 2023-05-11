@@ -49,11 +49,11 @@ namespace Repository.Repository.Interface
 
         public void deleteStory(long storyId, string deleteStoryTitle);
 
-        public void approveApplication(long applicationId);
+        public void approveApplication(long applicationId, string approveTitle, long approveMissionId);
+        
+        public void rejectApplication(long applicationId, string rejectTitle, long rejectMissionId);
 
-        public void rejectApplication(long applicationId);
-
-        public void deleteApplication(long applicationId);
+        public void deleteApplication(long applicationId, string deleteTitle, long deleteMissionId);
 
         public bool AddSkill(CMS cms);
 

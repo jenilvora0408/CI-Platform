@@ -218,5 +218,19 @@ namespace Repository.Repository.Repository
             }
             _ciPlatformContext.SaveChanges();
         }
+
+        public void NotifyStatus(long notificationId)
+        {
+            var notification = _ciPlatformContext.Notifications.Where(x => x.NotificationId == notificationId).FirstOrDefault();
+            if(notification.Status == true)
+            {
+                notification.Status = false;
+            }
+            else
+            {
+                notification.Status=true;
+            }
+            _ciPlatformContext.SaveChanges();
+        }
     }
 }

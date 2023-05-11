@@ -1,176 +1,204 @@
-﻿@model Entities.ViewModels.CMS 
+﻿@model Entities.ViewModels.CMS
 
-@if(Model.missionApplication.Count == 0)
+@if (Model.missionApplication.Count == 0)
 {
-	<div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
+    <div><p style="font-size: 2rem; color: gray; letter-spacing:2px; text-align:center; margin-bottom:50vh;">No Record Found</p></div>
 }
-else{
-<div id="tblOverflow" style="overflow-x: scroll;">
-            <table class="table">
-                <thead>
-                    <tr style="white-space: nowrap;">
-                        <th scope="col">Mission Title</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Applied At</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var item in Model.missionApplication)
-                    {
-                       <tr>
+else
+{
+    <div id="tblOverflow" style="overflow-x: scroll;">
+        <table class="table">
+            <thead>
+                <tr style="white-space: nowrap;">
+                    <th scope="col">Mission Title</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Applied At</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.missionApplication)
+                {
+                    <tr>
                         <td>
                             @item.Mission.Title
                         </td>
-                        <td >@item.User.FirstName @item.User.LastName</td>
+                        <td>@item.User.FirstName @item.User.LastName</td>
                         <td>@item.AppliedAt.ToString("d")</td>
                         <td class="icons">
-                            <i id="@item.MissionApplicationId" style="color: #14C506; font-size: 20px;" class="approveApplication bi bi-check-circle"></i>
-                                <i id="@item.MissionApplicationId" style="color: red; font-size: 20px;" class="rejectApplication bi bi-x-circle"></i>
-                            <img data-id="@item.MissionApplicationId" data-bs-toggle="modal" data-bs-target="#hello" class="delete-img"
-							id="delete-icon" src="/images/bin.png" alt="" />
+
+                            <i id="@item.MissionApplicationId" data-mission="@item.Mission.MissionId" data-title="@item.Mission.Title" data-name="@item.User.FirstName @item.User.LastName" style="color: #14C506; font-size: 20px;" class="approveApplication bi bi-check-circle"></i>
+                           
+                            <i id="@item.MissionApplicationId" data-mission="@item.Mission.MissionId" data-title="@item.Mission.Title" data-name="@item.User.FirstName @item.User.LastName" style="color: red; font-size: 20px;" class="rejectApplication bi bi-x-circle"></i>
+                            
+                            <img data-id="@item.MissionApplicationId" data-mission="@item.Mission.MissionId" data-title="@item.Mission.Title" data-name="@item.User.FirstName @item.User.LastName" data-bs-toggle="modal" data-bs-target="#hello" class="delete-img"
+                         id="delete-icon" src="/images/bin.png" alt="" />
                         </td>
-                    </tr> 
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 
 <div class="pagination justify-content-end mt-3" style="gap:7px;">
-	@if(Model.PageCount > 0 && Model.PageCount != 1){
-	@if(Model.CurrentPage > 1){
-	<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn" >&laquo;</button>}
-	@for(int i = 1; i <= Model.PageCount; i++) {
-		<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){<text>disabled</text>}>@i</button>
-	}
-	@if(Model.CurrentPage != Model.PageCount){<button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>}
-	}
+    @if (Model.PageCount > 0 && Model.PageCount != 1)
+    {
+        @if (Model.CurrentPage > 1)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="prev-btn">&laquo;</button>
+        }
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" class="page-btn" @if(Model.CurrentPage == i){
+    <text>disabled</text>
+}>@i</button>
+        }
+        @if (Model.CurrentPage != Model.PageCount)
+        {
+            <button style="padding: 3px 8px;background: white;color: #f88634;border: 2px solid #f88634;" id="next-btn">&raquo;</button>
+        }
+    }
 </div>
 
 
 <script>
-	$(".approveApplication").on("click", function(e){
-		var approveID = this.id;
-		console.log(approveID);
-					 $.ajax({
+        // Approve Application
+        $(".approveApplication").on("click", function(e){
+            var approveID = this.id;
+            var approveName = this.getAttribute("data-name");
+            var approveTitle = this.getAttribute("data-title");
+            var approveMissionId = this.getAttribute("data-mission");
+
+                         $.ajax({
+                    type: "POST",
+                    url: "/Admin/approveApplication",
+                    data: {applicationId:approveID, approveName:approveName, approveTitle:approveTitle, approveMissionId:approveMissionId},
+                    success: function (data) {
+                        alert("Application Approved successfully");
+                        getTable();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Something went wrong in adding data");
+                    }
+
+                });
+        });
+
+        // Delete Application
+        $('table').on('click', '.delete-img', function () {
+        var deleteID = $(this).data('id');
+        var deleteName = this.getAttribute("data-name");
+        var deleteTitle = this.getAttribute("data-title");
+        var deleteMissionId = this.getAttribute("data-mission");
+        $('#confirm-delete').on('click', function () {
+            $.ajax({
                 type: "POST",
-                url: "/Admin/approveApplication",
-                data: {applicationId:approveID},
+                url: "/Admin/deleteApplication",
+                data: { applicationId: deleteID, deleteName:deleteName, deleteTitle:deleteTitle, deleteMissionId:deleteMissionId },
                 success: function (data) {
-                    alert("Application Approved successfully");
-					window.location.reload();
+                    getTable();
+                    alert("Record Deleted.");
                 },
                 error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
+                    alert("Record Not Deleted.");
                 }
-          
-			});
-	});
-
-	
-	
-	$('table').on('click', '.delete-img', function () {
-    var deleteID = $(this).data('id');
-    $('#confirm-delete').on('click', function () {
-        $.ajax({
-            type: "POST",
-            url: "/Admin/deleteApplication",
-            data: { applicationId: deleteID },
-            success: function (data) {
-                location.reload();
-                alert("Record Deleted.");
-            },
-            error: function (xhr, status, error) {
-                alert("Record Not Deleted.");
-            }
+            });
         });
     });
+        
+        // Reject Application
+       $(".rejectApplication").on("click", function(e){
+    var rejectID = this.id;
+    var rejectName = this.getAttribute("data-name");
+    var rejectTitle = this.getAttribute("data-title");
+    var rejectMissionId = this.getAttribute("data-mission");
+    console.log(rejectID);
+    console.log("reject name: " + rejectName);
+    console.log("reject title: " + rejectTitle);
+
+    setTimeout(function() {
+        $.ajax({
+            type: "POST",
+            url: "/Admin/rejectApplication",
+            data: {applicationId:rejectID, rejectName:rejectName, rejectTitle:rejectTitle, rejectMissionId:rejectMissionId },
+            success: function (data) {
+                alert("Application Rejected successfully");
+                getTable();
+            },
+            error: function (xhr, status, error) {
+                alert("Something went wrong in adding data");
+            }
+        });
+    }, 250);
 });
 
-	$(".rejectApplication").on("click", function(e){
-		var rejectID = this.id;
-		
-					 $.ajax({
-                type: "POST",
-                url: "/Admin/rejectApplication",
-                data: {applicationId:rejectID},
-                success: function (data) {
-                    alert("Application Rejected successfully");
-					window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong in adding data");
+
+
+        $(function () {
+            var currentPage = @Model.CurrentPage;
+            var pageCount = @Model.PageCount;
+
+            $(".page-btn").click(function () {
+                var page = $(this).text();
+                var text = $("#searchApplicationData").val();
+                if (page != currentPage) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/applicationTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:page},
+                        success: function (data) {
+                            $('#applicationTable').html("");
+                            $('#applicationTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
                 }
-          
-			});
-	});
-	
-	
-	$(function () {
-		var currentPage = @Model.CurrentPage;
-		var pageCount = @Model.PageCount;
-		
-		$(".page-btn").click(function () {
-			var page = $(this).text();
-			var text = $("#searchApplicationData").val();
-			if (page != currentPage) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/applicationTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:page},
-					success: function (data) {
-						$('#applicationTable').html("");
-						$('#applicationTable').html(data);searchUser();
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#prev-btn").click(function () {
-			var prevPage = currentPage - 1;
-			var text = $("#searchApplicationData").val();
-			if (prevPage >= 1) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/applicationTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:prevPage},
-					success: function (data) {
-						$('#applicationTable').html("");
-						$('#applicationTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-		
-		$("#next-btn").click(function () {
-			var nextPage = currentPage + 1;
-			var text = $("#searchApplicationData").val();
-			if (nextPage <= pageCount) {
-				$.ajax({
-					type: 'GET',
-					url: '/Admin/applicationTable',
-					dataType: 'html',
-					data: {search:text,pageNumber:nextPage},
-					success: function (data) {
-						$('#applicationTable').html("");
-						$('#applicationTable').html(data);
-					},
-					error: function (xhr, status, error) {
-						console.log(error);
-					}
-				});
-			}
-		});
-	});
-	
+            });
+
+            $("#prev-btn").click(function () {
+                var prevPage = currentPage - 1;
+                var text = $("#searchApplicationData").val();
+                if (prevPage >= 1) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/applicationTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:prevPage},
+                        success: function (data) {
+                            $('#applicationTable').html("");
+                            $('#applicationTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+
+            $("#next-btn").click(function () {
+                var nextPage = currentPage + 1;
+                var text = $("#searchApplicationData").val();
+                if (nextPage <= pageCount) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/applicationTable',
+                        dataType: 'html',
+                        data: {search:text,pageNumber:nextPage},
+                        success: function (data) {
+                            $('#applicationTable').html("");
+                            $('#applicationTable').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+
 </script>
