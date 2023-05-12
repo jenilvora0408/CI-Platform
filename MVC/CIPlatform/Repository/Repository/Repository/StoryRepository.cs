@@ -54,14 +54,18 @@ namespace Repository.Repository.Repository
 
         public void addNotificationForRecommendStory(long StoryId, long userId, string title, string usernameFrom)
         {
-            Notification notification = new Notification();
-            notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
-            notification.UserId = userId;
-            notification.StoryId = StoryId;
-            notification.Status = false;
-            notification.NotificationType = "Story";
-            _ciPlatformContext.Add(notification);
-            _ciPlatformContext.SaveChanges();
+            NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Recommend Story" && x.Status == true).FirstOrDefault();
+            if (notificationSetting != null)
+            {
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
+                notification.UserId = userId;
+                notification.StoryId = StoryId;
+                notification.Status = false;
+                notification.NotificationType = "Story";
+                _ciPlatformContext.Add(notification);
+                _ciPlatformContext.SaveChanges();
+            }
         }
 
         public Story FindStoryTitle(long StoryId)

@@ -129,14 +129,18 @@ namespace Repository.Repository.Repository
         
         public void addNotificationForRecommendMission(long MissionId, long userId, string title, string usernameFrom)
         {
-            Notification notification = new Notification();
-            notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
-            notification.UserId = userId;
-            notification.MissionId = MissionId;
-            notification.Status = false;
-            notification.NotificationType = "Mission";
-            _ciPlatformContext.Add(notification);
-            _ciPlatformContext.SaveChanges();
+            NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Recommend Mission" && x.Status == true).FirstOrDefault();
+            if (notificationSetting != null)
+            {
+                Notification notification = new Notification();
+                notification.NotificationMessage = "Your friend " + usernameFrom + " has invited you to join mission - " + title;
+                notification.UserId = userId;
+                notification.MissionId = MissionId;
+                notification.Status = false;
+                notification.NotificationType = "Mission";
+                _ciPlatformContext.Add(notification);
+                _ciPlatformContext.SaveChanges();
+            }
         }
 
         public void addComments(long missionid, long userid, string commented)

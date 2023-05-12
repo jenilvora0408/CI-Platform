@@ -418,9 +418,10 @@ namespace Repository.Repository.Repository
             _ciPlatformContext.SaveChanges();
         }
 
-        public void approveStory(long storyId, string approveStoryTitle)
+        public string approveStory(long storyId, string approveStoryTitle)
         {
-            if(storyId != null && storyId != 0)
+            string message = "";
+            if (storyId != null && storyId != 0)
             {
                 Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).FirstOrDefault();
                 story.Status = "Approved";
@@ -428,20 +429,33 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)story.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your story " + approveStoryTitle + " has been approved";
-                notification.UserId = userId;
-                notification.StoryId = storyId;
-                notification.Status = false;
-                notification.NotificationType = "Story";
-                _ciPlatformContext.Add(notification);
-                _ciPlatformContext.SaveChanges();
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Story Published" && x.Status == true).FirstOrDefault();
+                if(notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your story " + approveStoryTitle + " has been approved";
+                    notification.UserId = userId;
+                    notification.StoryId = storyId;
+                    notification.Status = false;
+                    notification.NotificationType = "Story";
+                    _ciPlatformContext.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if (notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
-        public void rejectStory(long storyId, string rejectStoryTitle)
+        public string rejectStory(long storyId, string rejectStoryTitle)
         {
-            if(storyId != null && storyId != 0)
+            string message = "";
+            if (storyId != null && storyId != 0)
             {
                 Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
                 story.Status = "Declined";
@@ -449,20 +463,34 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)story.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your story " + rejectStoryTitle + " has been rejected";
-                notification.UserId=userId;
-                notification.StoryId = storyId;
-                notification.Status = false;
-                notification.NotificationType = "Story";
-                _ciPlatformContext.Notifications.Add(notification);
-                _ciPlatformContext.SaveChanges();
+               
+
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Story Published" && x.Status == true).FirstOrDefault();
+                if (notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your story " + rejectStoryTitle + " has been rejected";
+                    notification.UserId = userId;
+                    notification.StoryId = storyId;
+                    notification.Status = false;
+                    notification.NotificationType = "Story";
+                    _ciPlatformContext.Notifications.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if (notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
-        public void deleteStory(long storyId, string deleteStoryTitle)
+        public string deleteStory(long storyId, string deleteStoryTitle)
         {
-            if(storyId != null && storyId != 0)
+            string message = "";
+            if (storyId != null && storyId != 0)
             {
                 Story story = _ciPlatformContext.Stories.Where(x => x.StoryId == storyId).First();
                 story.DeletedAt = DateTime.Now;
@@ -470,19 +498,34 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)story.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your story " + deleteStoryTitle + " has been deleted";
-                notification.UserId = userId;
-                notification.StoryId = storyId;
-                notification.Status = false;
-                notification.NotificationType = "Story";
-                _ciPlatformContext.Notifications.Add(notification);
-                _ciPlatformContext.SaveChanges();
+                
+
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Story Published" && x.Status == true).FirstOrDefault();
+                if (notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your story " + deleteStoryTitle + " has been deleted";
+                    notification.UserId = userId;
+                    notification.StoryId = storyId;
+                    notification.Status = false;
+                    notification.NotificationType = "Story";
+                    _ciPlatformContext.Notifications.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if (notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
-        public void approveApplication(long applicationId, string approveTitle, long approveMissionId)
+        public string approveApplication(long applicationId, string approveTitle, long approveMissionId)
         {
+            string message = "";
             if(applicationId != null && applicationId != 0)
             {
                 MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
@@ -494,20 +537,34 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)missionApplication.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your application for mission " + approveTitle + " has been approved";
-                notification.UserId = userId;
-                notification.MissionId = approveMissionId;
-                notification.Status = false;
-                notification.NotificationType = "Mission";
-                _ciPlatformContext.Notifications.Add(notification);
-                _ciPlatformContext.SaveChanges();
+               
+
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Mission Approved" && x.Status == true).FirstOrDefault();
+                if (notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your application for mission " + approveTitle + " has been approved";
+                    notification.UserId = userId;
+                    notification.MissionId = approveMissionId;
+                    notification.Status = false;
+                    notification.NotificationType = "Mission";
+                    _ciPlatformContext.Notifications.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if(notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
-        public void rejectApplication(long applicationId, string rejectTitle, long rejectMissionId)
+        public string rejectApplication(long applicationId, string rejectTitle, long rejectMissionId)
         {
-            if(applicationId != null && applicationId != 0)
+            string message = "";
+            if (applicationId != null && applicationId != 0)
             {
                 MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
                 missionApplication.ApprovalStatus = "Declined";
@@ -515,20 +572,33 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)missionApplication.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your application for mission " + rejectTitle + " has been rejected";
-                notification.UserId = userId;
-                notification.MissionId = rejectMissionId;
-                notification.Status =false;
-                notification.NotificationType = "Mission";
-                _ciPlatformContext.Add(notification);
-                _ciPlatformContext.SaveChanges();
+
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Mission Approved" && x.Status == true).FirstOrDefault();
+                if (notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your application for mission " + rejectTitle + " has been rejected";
+                    notification.UserId = userId;
+                    notification.MissionId = rejectMissionId;
+                    notification.Status = false;
+                    notification.NotificationType = "Mission";
+                    _ciPlatformContext.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if (notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
-        public void deleteApplication(long applicationId, string deleteTitle, long deleteMissionId)
+        public string deleteApplication(long applicationId, string deleteTitle, long deleteMissionId)
         {
-            if(applicationId != null && applicationId != 0)
+            string message = "";
+            if (applicationId != null && applicationId != 0)
             {
                 MissionApplication missionApplication = _ciPlatformContext.MissionApplications.Where(x => x.MissionApplicationId == applicationId).First();
                 missionApplication.DeletedAt = DateTime.Now;
@@ -536,15 +606,27 @@ namespace Repository.Repository.Repository
                 _ciPlatformContext.SaveChanges();
 
                 int userId = (int)missionApplication.UserId;
-                Notification notification = new Notification();
-                notification.NotificationMessage = "Your application for mission " + deleteTitle + " has been deleted";
-                notification.UserId = userId;
-                notification.MissionId = deleteMissionId;
-                notification.Status = false;
-                notification.NotificationType = "Mission";
-                _ciPlatformContext.Add(notification);
-                _ciPlatformContext.SaveChanges();
+
+                NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Mission Approved" && x.Status == true).FirstOrDefault();
+                if (notificationSetting != null)
+                {
+                    Notification notification = new Notification();
+                    notification.NotificationMessage = "Your application for mission " + deleteTitle + " has been deleted";
+                    notification.UserId = userId;
+                    notification.MissionId = deleteMissionId;
+                    notification.Status = false;
+                    notification.NotificationType = "Mission";
+                    _ciPlatformContext.Add(notification);
+                    _ciPlatformContext.SaveChanges();
+
+                    NotificationSetting notificationSetting1 = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == userId && x.NotificationType == "Email" && x.Status == true).FirstOrDefault();
+                    if (notificationSetting1 != null)
+                    {
+                        message = notification.NotificationMessage;
+                    }
+                }
             }
+            return message;
         }
 
         public void deleteMission(long missionId)
@@ -774,15 +856,21 @@ namespace Repository.Repository.Repository
                     .ToList();
                     if (missionSkillIds != null && userSkillIds.Intersect(missionSkillIds).Any())
                     {
-                        Notification notification1 = new Notification();
-                        notification1.Status = true;
-                        notification1.UserId = notification.UserId;
-                        notification1.NotificationMessage = "New mission added: " + model.Title;
-                        notification1.NotificationType = "NewMission";
-                        notification1.MessageId = (int)mission.MissionId;
-                        notification1.MissionId = mission.MissionId;
-                        _ciPlatformContext.Notifications.Add(notification1);
-                        _ciPlatformContext.SaveChanges();
+                        
+                        NotificationSetting notificationSetting = _ciPlatformContext.NotificationSettings.Where(x => x.UserId == notification.UserId && x.NotificationType == "NewMission" && x.Status == true).FirstOrDefault();
+                        if (notificationSetting != null)
+                        {
+                            Notification notification1 = new Notification();
+                            notification1.Status = true;
+                            notification1.UserId = notification.UserId;
+                            notification1.NotificationMessage = "New mission added: " + model.Title;
+                            notification1.NotificationType = "NewMission";
+                            notification1.MessageId = (int)mission.MissionId;
+                            notification1.MissionId = mission.MissionId;
+                            _ciPlatformContext.Notifications.Add(notification1);
+                            _ciPlatformContext.SaveChanges();
+
+                        }
                     }
                 }
             }

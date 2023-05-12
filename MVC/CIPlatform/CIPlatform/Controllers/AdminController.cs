@@ -769,9 +769,19 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> approveStory(long storyId, string approveUser, string approveStoryTitle)
         {
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
             string username = approveUser;
-            _adminInterface.approveStory(storyId, approveStoryTitle);           
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + approveStoryTitle + " has been approved", storyId);
+            string message = _adminInterface.approveStory(storyId, approveStoryTitle);
+            if(message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Story Approved";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", message, storyId);
             return Ok();
         }
 
@@ -785,10 +795,19 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> rejectStory(long storyId, string rejectUser, string rejectStoryTitle)
         {
-         
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
             string username = rejectUser;
-            _adminInterface.rejectStory(storyId, rejectStoryTitle);
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + rejectStoryTitle + " has been rejected", storyId);
+            string message = _adminInterface.rejectStory(storyId, rejectStoryTitle);
+            if (message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Story Rejected";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", message, storyId);
             return Ok();
         }
 
@@ -802,9 +821,19 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> deleteStory(long storyId, string deleteUser, string deleteStoryTitle)
         {
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
             string username = deleteUser;
-            _adminInterface.deleteStory(storyId, deleteStoryTitle);
-            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", "Your story " + deleteStoryTitle + " has been deleted", storyId);
+            string message = _adminInterface.deleteStory(storyId, deleteStoryTitle);
+            if (message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Story Deleted";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            await _notificationHub.Clients.User(username).SendAsync("ReceiveMsg", message, storyId);
             return Ok();
         }
 
@@ -818,8 +847,18 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> approveApplication(long applicationId, string approveName, string approveTitle, long approveMissionId)
         {
-            _adminInterface.approveApplication(applicationId, approveTitle, approveMissionId);
-            await _notificationHub.Clients.User(approveName).SendAsync("ReceiveMsg", "Your application for mission " + approveTitle + " has been approved", applicationId);
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
+            string message = _adminInterface.approveApplication(applicationId, approveTitle, approveMissionId);
+            if (message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Application Approved";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            await _notificationHub.Clients.User(approveName).SendAsync("ReceiveMsg", message, applicationId);
             return Ok();
         }
 
@@ -831,8 +870,18 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public IActionResult rejectApplication(long applicationId, string rejectName, string rejectTitle, long rejectMissionId)
         {
-            _adminInterface.rejectApplication(applicationId, rejectTitle, rejectMissionId);
-             _notificationHub.Clients.User(rejectName).SendAsync("ReceiveMsg", "Your application for mission " + rejectTitle + " has been rejected", applicationId);
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
+            string message = _adminInterface.rejectApplication(applicationId, rejectTitle, rejectMissionId);
+            if (message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Application Rejected";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            _notificationHub.Clients.User(rejectName).SendAsync("ReceiveMsg", message, applicationId);
             return Ok();
         }
 
@@ -844,8 +893,18 @@ namespace CIPlatform.Controllers
         [HttpPost]
         public async Task<IActionResult> deleteApplication(long applicationId, string deleteName, string deleteTitle, long deleteMissionId)
         {
-            _adminInterface.deleteApplication(applicationId, deleteTitle, deleteMissionId);
-            await _notificationHub.Clients.User(deleteName).SendAsync("ReceiveMsg", "Your application for mission " + deleteTitle + " has been deleted", applicationId);
+            var email = HttpContext.Session.GetString("useremail");
+            User user = _missionInterface.findUser(email ?? "");
+            string message = _adminInterface.deleteApplication(applicationId, deleteTitle, deleteMissionId);
+            if (message != "")
+            {
+                string welcomeMessage = "Welcome to CI platform <br/>" + message;
+                string path = "";
+                MailManager mailHelper = new MailManager(_configuration);
+                string subject = "Application Deleted";
+                ViewBag.sendMail = mailHelper.Send(user.Email, subject, welcomeMessage + path);
+            }
+            await _notificationHub.Clients.User(deleteName).SendAsync("ReceiveMsg", message, applicationId);
             return Ok();
         }
 

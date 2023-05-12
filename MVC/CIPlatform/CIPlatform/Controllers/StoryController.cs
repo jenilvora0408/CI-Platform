@@ -131,7 +131,7 @@ namespace CIPlatform.Controllers
                 ModelState.Clear();
             }
             _notificationHub.Clients.User(userToName).SendAsync("ReceiveMsg", "Your friend " + userFromName + " has invited you to view story - " + storyTitle.Title);
-            _missionInterface.addNotificationForRecommendMission(StoryId, userToId, userFromName, storyTitle.Title);
+            _storyInterface.addNotificationForRecommendStory(StoryId, userToId, userFromName, storyTitle.Title);
             return Json(new { data = message });
         }
 

@@ -43,17 +43,17 @@ namespace Repository.Repository.Interface
 
         public CMS GetSkillData(long SkillId);
 
-        public void approveStory(long storyId, string approveStoryTitle);
+        public string approveStory(long storyId, string approveStoryTitle);
 
-        public void rejectStory(long storyId, string rejectStoryTitle);
+        public string rejectStory(long storyId, string rejectStoryTitle);
 
-        public void deleteStory(long storyId, string deleteStoryTitle);
+        public string deleteStory(long storyId, string deleteStoryTitle);
 
-        public void approveApplication(long applicationId, string approveTitle, long approveMissionId);
+        public string approveApplication(long applicationId, string approveTitle, long approveMissionId);
         
-        public void rejectApplication(long applicationId, string rejectTitle, long rejectMissionId);
+        public string rejectApplication(long applicationId, string rejectTitle, long rejectMissionId);
 
-        public void deleteApplication(long applicationId, string deleteTitle, long deleteMissionId);
+        public string deleteApplication(long applicationId, string deleteTitle, long deleteMissionId);
 
         public bool AddSkill(CMS cms);
 
